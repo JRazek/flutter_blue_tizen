@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  FlutterBlue flutterBlue = FlutterBlue.instance;
+  // debugPrint("AVAILABLE " + flutterBlue.isAvailable.toString());
   runApp(const MyApp());
 }
 
@@ -13,8 +16,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
   @override
   void initState() {
     super.initState();
@@ -27,8 +28,8 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: const Center(
+          child: Text('Running on: '),
         ),
       ),
     );
