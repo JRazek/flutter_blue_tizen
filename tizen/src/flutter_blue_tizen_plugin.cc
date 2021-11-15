@@ -43,19 +43,9 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
       const flutter::MethodCall<flutter::EncodableValue> &method_call,
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
     // Replace "getPlatformVersion" check with your plugin's method.
-    if (method_call.method_name().compare("getPlatformVersion") == 0) {
-      char *value = NULL;
-      int ret = system_info_get_platform_string(
-          "http://tizen.org/feature/platform.version", &value);
-      if (ret == SYSTEM_INFO_ERROR_NONE) {
-        result->Success(flutter::EncodableValue(std::string(value)));
-      } else {
-        result->Error(std::to_string(ret), "Failed to get platform version.");
-      }
-      if (value) {
-        free(value);
-      }
-    } else {
+    if(method_call.method_name() == "isAvailable"){
+        result->Success(flutter::EncodableValue(AddClass::getString()));
+    }else {
       result->NotImplemented();
     }
   }
