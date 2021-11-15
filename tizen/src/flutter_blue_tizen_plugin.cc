@@ -46,10 +46,7 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
   void HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-    dlog_print(DLOG_DEBUG, method_call.method_name().c_str(), "");
-    dlog_print(DLOG_DEBUG, "HERE2", "");
     if(method_call.method_name() == "isAvailable"){
-        dlog_print(DLOG_DEBUG, "HERE", "");
         result->Success(flutter::EncodableValue(bluetoothUtils.getBluetoothAvailability()));
     }else {
       result->NotImplemented();
