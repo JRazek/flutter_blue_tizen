@@ -11,7 +11,7 @@
 #include <memory>
 #include <sstream>
 #include <string>
-
+#include "BluetoothUtils.h"
 #include "log.h"
 
 namespace {
@@ -34,7 +34,11 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
     registrar->AddPlugin(std::move(plugin));
   }
 
-  FlutterBlueTizenPlugin() {}
+  btu::BluetoothUtils bluetoothUtils;
+
+  FlutterBlueTizenPlugin():
+  bluetoothUtils()
+  {}
 
   virtual ~FlutterBlueTizenPlugin() {}
 
@@ -42,9 +46,8 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
   void HandleMethodCall(
       const flutter::MethodCall<flutter::EncodableValue> &method_call,
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-    // Replace "getPlatformVersion" check with your plugin's method.
     if(method_call.method_name() == "isAvailable"){
-        result->Success(flutter::EncodableValue(AddClass::getString()));
+        result->Success(flutter::EncodableValue(bluetoothUtils.getBluetoothAvailability()));
     }else {
       result->NotImplemented();
     }
