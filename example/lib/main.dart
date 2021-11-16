@@ -4,10 +4,7 @@ import 'package:flutter_blue/flutter_blue.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
-  Future<bool> b = flutterBlue.isAvailable;
-  b.then((res) {
-    debugPrint(res.toString());
-  });
+  Stream<BluetoothState> b = flutterBlue.state;
 
   // debugPrint("AVAILABLE " + flutterBlue.isAvailable.toString());
   runApp(const MyApp());

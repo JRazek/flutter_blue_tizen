@@ -1,9 +1,9 @@
 #ifndef BLUETOOTH_UTILS_H
 #define BLUETOOTH_UTILS_H
 
-#include "BluetoothState.h"
 
 namespace btu{
+    enum class BluetoothState;
     class BluetoothManager{
     public:
 

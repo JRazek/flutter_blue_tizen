@@ -11,7 +11,8 @@
 #include <memory>
 #include <sstream>
 #include <string>
-#include "BluetoothUtils.h"
+
+#include <BluetoothUtils.h>
 
 namespace {
 

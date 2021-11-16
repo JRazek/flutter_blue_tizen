@@ -1,7 +1,9 @@
-#include "BluetoothUtils.h"
 #include <system_info.h>
 #include <Log.h>
 #include <bluetooth.h>
+
+#include <BluetoothState.h>
+#include <BluetoothUtils.h>
 
 namespace btu{
     bool BluetoothManager::getBluetoothAvailability() const noexcept{
@@ -15,31 +17,27 @@ namespace btu{
         bt_adapter_state_e adapter_state;
         int ret = bt_adapter_get_state(&adapter_state);
         BluetoothState bluetoothState;
-        switch (ret){
-        case BT_ERROR_NONE:
-            bluetoothState = BluetoothState::ON;
-            break;
-        case BT_ERROR_NOT_INITIALIZED:
+        if(ret == BT_ERROR_NONE){
+            if(adapter_state == BT_ADAPTER_ENABLED)
+                bluetoothState = BluetoothState::ON;
+            else if(adapter_state == BT_ADAPTER_DISABLED)
+                bluetoothState = BluetoothState::OFF;
+        }else if(ret == BT_ERROR_NOT_INITIALIZED){
             bluetoothState = BluetoothState::UNINITIALIZED;
-            break;
-        case BT_ERROR_NOT_ENABLED:
-            bluetoothState = BluetoothState::OFF;
-            break;
-        default:
-            LOG(DLOG_ERROR, "[bt_adapter_get_state] failed");
+        }else{
             bluetoothState = BluetoothState::UNKNOWN;
-            break;
         }
+        return bluetoothState;
     }
 
     BluetoothManager::BluetoothManager() noexcept{
-        if(bt_initialize() != 0){
+        if(bt_initialize() != BT_ERROR_NONE){
             LOG(DLOG_ERROR, "[bt_initialize] failed");
         }
         //[todo] error handing
     }
     BluetoothManager::~BluetoothManager() noexcept{
-        if(bt_deinitialize() != 0){
+        if(bt_deinitialize() != BT_ERROR_NONE){
             LOG(DLOG_ERROR, "[bt_deinitialize] failed");
         }
     }
