@@ -4,16 +4,18 @@
 #include "BluetoothState.h"
 
 namespace btu{
-    class BluetoothUtils{
+    class BluetoothManager{
     public:
 
-        BluetoothUtils() noexcept = default;
+        BluetoothManager() noexcept;
+        virtual ~BluetoothManager() noexcept;
 
         /**
          * @brief checks if the bluetooth is available on the device
          */
         bool getBluetoothAvailability() const noexcept;
-
+        
+        void setBluetoothState(BluetoothState bluetoothState) noexcept;
         BluetoothState getBluetoothState() const noexcept;
     };
 } // namespace btu

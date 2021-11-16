@@ -5,10 +5,9 @@ namespace btu{
     enum class BluetoothState{
         OFF,
         ON,
-        TURNING_OFF,
-        TURNING_ON,
         UNKNOWN,
-        UNAUTHORIZED
+        UNAUTHORIZED,
+        UNINITIALIZED
     };
 }
 #endif //BLUETOOTH_STATE_H

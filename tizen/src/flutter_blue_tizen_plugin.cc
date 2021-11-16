@@ -12,7 +12,6 @@
 #include <sstream>
 #include <string>
 #include "BluetoothUtils.h"
-#include "log.h"
 
 namespace {
 
@@ -34,7 +33,7 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
     registrar->AddPlugin(std::move(plugin));
   }
 
-  btu::BluetoothUtils bluetoothUtils;
+  btu::BluetoothManager bluetoothUtils;
 
   FlutterBlueTizenPlugin():
   bluetoothUtils()
