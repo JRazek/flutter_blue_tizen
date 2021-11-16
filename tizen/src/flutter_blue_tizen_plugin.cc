@@ -2,6 +2,8 @@
 
 // For getPlatformVersion; remove unless needed for your plugin implementation.
 #include <system_info.h>
+#include <app_control.h>
+#include <bluetooth.h>
 
 #include <flutter/method_channel.h>
 #include <flutter/plugin_registrar.h>
@@ -12,7 +14,8 @@
 #include <sstream>
 #include <string>
 
-#include <BluetoothUtils.h>
+#include <BluetoothManager.h>
+#include <Log.h>
 
 namespace {
 
