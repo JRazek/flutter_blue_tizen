@@ -15,6 +15,7 @@
 #include <string>
 
 #include <BluetoothManager.h>
+#include <BluetoothState.h>
 #include <Logger.h>
 
 namespace {
@@ -37,10 +38,10 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
     registrar->AddPlugin(std::move(plugin));
   }
 
-  btu::BluetoothManager bluetoothUtils;
+  btu::BluetoothManager bluetoothManager;
 
   FlutterBlueTizenPlugin():
-  bluetoothUtils()
+  bluetoothManager()
   {}
 
   virtual ~FlutterBlueTizenPlugin() {}
@@ -49,12 +50,39 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
   void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
     const flutter::EncodableValue& args = *method_call.arguments();
     if(method_call.method_name() == "isAvailable"){
-        result->Success(flutter::EncodableValue(bluetoothUtils.getBluetoothAvailability()));
-    }else if(method_call.method_name() == "setLogLevel" && std::holds_alternative<int>(args)){
+        result->Success(flutter::EncodableValue(bluetoothManager.getBluetoothAvailability()));
+    }
+    else if(method_call.method_name() == "setLogLevel" && std::holds_alternative<int>(args)){
         log_priority logLevel = static_cast<log_priority>(std::get<int>(args));
         btlog::Logger::setLogLevel(logLevel);
         result->Success(flutter::EncodableValue(true));
-    }else {
+    }
+    else if(method_call.method_name() == "isOn"){
+        result->Success(flutter::EncodableValue((bluetoothManager.getBluetoothState() == btu::BluetoothState::ON)));
+    }
+    else if(method_call.method_name() == "startScan"){
+        bluetoothManager.startBluetoothDeviceDiscovery();
+    }
+    else if(method_call.method_name() == "stopScan"){
+        bluetoothManager.stopBluetoothDeviceDiscovery();
+        result->Success(flutter::EncodableValue(NULL));
+    }
+    else if(method_call.method_name() == "getConnectedDevices"){
+      
+    }
+    else if(method_call.method_name() == "connect"){
+      
+    }
+    else if(method_call.method_name() == "disconnect"){
+      
+    }
+    else if(method_call.method_name() == "deviceState"){
+      
+    }
+    else if(method_call.method_name() == "discoverServices"){
+      
+    }
+    else {
       result->NotImplemented();
     }
   }
