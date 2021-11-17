@@ -5,7 +5,7 @@
 
 #include <vector>
 #include <mutex>
-
+#include <dlog.h>
 
 
 namespace btu{
@@ -19,12 +19,12 @@ namespace btu{
     class BluetoothManager{
         SafeType<bt_adapter_state_e> adapterState;
         SafeType<std::vector<bt_adapter_device_discovery_info_s>> devices;
-
+        log_priority logLevel;
     public:
 
         BluetoothManager() noexcept;
         virtual ~BluetoothManager() noexcept;
-
+        
         /**
          * @brief checks if the bluetooth is available on the device
          */

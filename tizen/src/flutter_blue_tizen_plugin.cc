@@ -15,7 +15,7 @@
 #include <string>
 
 #include <BluetoothManager.h>
-#include <Log.h>
+#include <Logger.h>
 
 namespace {
 
@@ -46,11 +46,14 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
   virtual ~FlutterBlueTizenPlugin() {}
 
  private:
-  void HandleMethodCall(
-    const flutter::MethodCall<flutter::EncodableValue> &method_call,
-    std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
+  void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
+    const flutter::EncodableValue& args = *method_call.arguments();
     if(method_call.method_name() == "isAvailable"){
         result->Success(flutter::EncodableValue(bluetoothUtils.getBluetoothAvailability()));
+    }else if(method_call.method_name() == "setLogLevel" && std::holds_alternative<int>(args)){
+        log_priority logLevel = static_cast<log_priority>(std::get<int>(args));
+        btlog::Logger::setLogLevel(logLevel);
+        result->Success(flutter::EncodableValue(true));
     }else {
       result->NotImplemented();
     }
