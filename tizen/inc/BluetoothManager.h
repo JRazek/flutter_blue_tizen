@@ -19,7 +19,7 @@ namespace btu{
     class BluetoothManager{
         SafeType<bt_adapter_state_e> adapterState;
         SafeType<std::vector<bt_adapter_device_discovery_info_s>> devices;
-        log_priority logLevel;
+
     public:
 
         BluetoothManager() noexcept;

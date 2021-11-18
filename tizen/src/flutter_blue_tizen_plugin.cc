@@ -18,6 +18,7 @@
 #include <BluetoothState.h>
 #include <Logger.h>
 
+
 namespace {
 
 class FlutterBlueTizenPlugin : public flutter::Plugin {
@@ -68,7 +69,7 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
         result->Success(flutter::EncodableValue(NULL));
     }
     else if(method_call.method_name() == "getConnectedDevices"){
-      
+
     }
     else if(method_call.method_name() == "connect"){
       

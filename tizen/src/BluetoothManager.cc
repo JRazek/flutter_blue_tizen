@@ -6,6 +6,8 @@
 #include <LogLevel.h>
 #include <bluetooth.h>
 
+#include <flutterblue.pb.h>
+
 namespace btu{
     using LogLevel = btlog::LogLevel;
     using Logger = btlog::Logger;
@@ -22,12 +24,12 @@ namespace btu{
 
         int res = bt_adapter_set_state_changed_cb(BluetoothManager::adapterStateChangedCallback, this);
         if(res != BT_ERROR_NONE){
-            Logger::log(LogLevel::ERROR, "could not set adapter state callback function! err_code: " + res);
+            Logger::log(LogLevel::ERROR, "could not set adapter state callback function! err_code: " + std::to_string(res));
             return;
         }
         res = bt_adapter_set_device_discovery_state_changed_cb(BluetoothManager::adapterDeviceDiscoveryStateChangedCallback, this);
         if(res != BT_ERROR_NONE){
-            Logger::log(LogLevel::ERROR, "could not set discovery callback! err_code: " + res);
+            Logger::log(LogLevel::ERROR, "could not set discovery callback! err_code: " + std::to_string(res));
             return;
         }
     }
