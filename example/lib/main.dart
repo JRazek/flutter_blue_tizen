@@ -8,6 +8,7 @@ void main() {
 
   // debugPrint("AVAILABLE " + flutterBlue.isAvailable.toString());
   runApp(const MyApp());
+  flutterBlue.setLogLevel(LogLevel.error);
 }
 
 class MyApp extends StatefulWidget {

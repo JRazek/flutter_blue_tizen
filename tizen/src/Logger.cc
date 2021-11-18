@@ -1,36 +1,40 @@
 #include <Logger.h>
 #include <LogLevel.h>
+
+
 namespace btlog{
     void Logger::log(LogLevel level, const std::string& mess) noexcept{
-        // log_priority p;
-        // switch (logLevel){
-        //     case LogLevel::VERBOSE:
-        //         p = log_priority::DLOG_VERBOSE;
-        //         break;
-        //     case LogLevel::DEBUG:
-        //         p = log_priority::DLOG_DEBUG;
-        //         break;
-        //     case LogLevel::INFO:
-        //         p = log_priority::DLOG_INFO;
-        //         break;
-        //     case LogLevel::WARNING:
-        //         p = log_priority::DLOG_WARN;
-        //         break;
-        //     case LogLevel::ERROR:
-        //         p = log_priority::DLOG_ERROR;
-        //         break;
-        //     case LogLevel::FATAL:
-        //         p = log_priority::DLOG_FATAL;
-        //         break;
-        //     case LogLevel::SILENT:
-        //         p = log_priority::DLOG_SILENT;
-        //         break;
-        //     default:
-        //         p = log_priority::DLOG_DEBUG;
-        //         break;
-        // }
-        // //change this!
-        dlog_print(DLOG_ERROR, logTag.c_str(), mess.c_str(), "");
+        if(level >= logLevel){
+            log_priority p;
+            switch (logLevel){
+                case LogLevel::VERBOSE:
+                    p = log_priority::DLOG_VERBOSE;
+                    break;
+                case LogLevel::DEBUG:
+                    p = log_priority::DLOG_DEBUG;
+                    break;
+                case LogLevel::INFO:
+                    p = log_priority::DLOG_INFO;
+                    break;
+                case LogLevel::WARNING:
+                    p = log_priority::DLOG_WARN;
+                    break;
+                case LogLevel::ERROR:
+                    p = log_priority::DLOG_ERROR;
+                    break;
+                case LogLevel::FATAL:
+                    p = log_priority::DLOG_FATAL;
+                    break;
+                case LogLevel::SILENT:
+                    p = log_priority::DLOG_SILENT;
+                    break;
+                default:
+                    p = log_priority::DLOG_DEBUG;
+                    break;
+            }
+            
+            dlog_print(p, logTag.c_str(), mess.c_str(), "");
+        }
     }
     void Logger::setLogLevel(log_priority log_priority) noexcept{
         switch (log_priority){
@@ -59,5 +63,6 @@ namespace btlog{
                 logLevel = LogLevel::DEBUG;
                 break;
         }
+        log(LogLevel::DEBUG, "log level set to " + std::to_string(static_cast<int>(logLevel)));
     }
 }

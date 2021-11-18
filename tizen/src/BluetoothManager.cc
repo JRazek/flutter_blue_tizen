@@ -19,7 +19,6 @@ namespace btu{
             Logger::log(LogLevel::ERROR, "[bt_initialize] failed");
             return;
         }
-        //[todo] error handing
 
         int res = bt_adapter_set_state_changed_cb(BluetoothManager::adapterStateChangedCallback, this);
         if(res != BT_ERROR_NONE){
