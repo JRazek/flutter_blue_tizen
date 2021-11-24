@@ -92,17 +92,17 @@ namespace btu{
     }
     void BluetoothManager::addDiscoveryResult(bt_adapter_device_discovery_info_s& discovery_info) noexcept{
         std::scoped_lock lock(discoveryResults.mut);
-        discoveryResults.var.emplace_back();
+        auto& p = discoveryResults.var.emplace_back();
         
-        ScanResult& scanResult = discoveryResults.var.back().first;
-        BluetoothDevice& bluetoothDevice = discoveryResults.var.back().second;
+        ScanResult& scanResult = p.first;
+        BluetoothDevice& bluetoothDevice = p.second;
 
 
         bluetoothDevice.set_remote_id(discovery_info.remote_address);
         bluetoothDevice.set_name(discovery_info.remote_name);
         bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);//[TODO]
 
-        scanResult.set_allocated_device(&discoveryResults.var.back().second);
+        scanResult.set_allocated_device(&bluetoothDevice);
     }
 
     SafeType<std::vector<BluetoothDevice>>& BluetoothManager::getConnectedDevices() noexcept{
