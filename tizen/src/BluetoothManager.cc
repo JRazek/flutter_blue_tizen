@@ -87,20 +87,26 @@ namespace btu{
     void BluetoothManager::adapterDeviceDiscoveryStateChangedCallback(int result, bt_adapter_device_discovery_state_e discovery_state, bt_adapter_device_discovery_info_s *discovery_info, void* user_data) noexcept{
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
         if(discovery_state == BT_ADAPTER_DEVICE_DISCOVERY_FOUND){
-            bluetoothManager.addBluetoothDevice(*discovery_info);
+            bluetoothManager.addDiscoveryResult(*discovery_info);
         }
     }
-    void BluetoothManager::addBluetoothDevice(bt_adapter_device_discovery_info_s& discovery_info) noexcept{
-        BluetoothDevice bluetoothDevice;
+    void BluetoothManager::addDiscoveryResult(bt_adapter_device_discovery_info_s& discovery_info) noexcept{
+        std::scoped_lock lock(discoveryResults.mut);
+        discoveryResults.var.push_back({ScanResult(), BluetoothDevice()});
+        
+        ScanResult& scanResult = discoveryResults.var.back().first;
+        BluetoothDevice& bluetoothDevice = discoveryResults.var.back().second;
+
+
         bluetoothDevice.set_remote_id(discovery_info.remote_address);
         bluetoothDevice.set_name(discovery_info.remote_name);
-        bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);
-        std::scoped_lock lock(discoveryDevices.mut);
-        discoveryDevices.var.emplace_back(std::move(bluetoothDevice));
+        bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);//[TODO]
+
+        scanResult.set_allocated_device(&discoveryResults.var.back().second);
     }
-    
-    const std::vector<BluetoothDevice>& BluetoothManager::getDiscoveryDevices() const noexcept{
-        return discoveryDevices.var;
+
+    SafeType<std::vector<BluetoothDevice>>& BluetoothManager::getConnectedDevices() noexcept{
+        return connectedDevices;
     }
 
 } // namespace btu

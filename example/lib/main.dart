@@ -5,7 +5,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
   Stream<BluetoothState> b = flutterBlue.state;
-
+  flutterBlue.scanResults;
+  flutterBlue.startScan();
   // debugPrint("AVAILABLE " + flutterBlue.isAvailable.toString());
   runApp(const MyApp());
   flutterBlue.setLogLevel(LogLevel.error);

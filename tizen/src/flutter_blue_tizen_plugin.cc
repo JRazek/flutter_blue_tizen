@@ -73,10 +73,13 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
     }
     else if(method_call.method_name() == "getConnectedDevices"){
         ConnectedDevicesResponse response;
-        for(const auto& dev : bluetoothManager.getDiscoveryDevices()){
+        auto& p = bluetoothManager.getConnectedDevices();
+        std::scoped_lock lock(p.mut);
+        for(const auto& dev : p.var){
           BluetoothDevice* bluetoothDevice = response.add_devices();
           *bluetoothDevice = dev;
         }
+        result->Success(flutter::EncodableValue(response.SerializeAsString()));
     }
     else if(method_call.method_name() == "connect"){
       

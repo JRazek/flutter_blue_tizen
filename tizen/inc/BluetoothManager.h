@@ -9,6 +9,7 @@
 
 class BluetoothState;
 class BluetoothDevice;
+class ScanResult;
 
 namespace btu{
     template<typename T>
@@ -19,7 +20,8 @@ namespace btu{
 
     class BluetoothManager{
         SafeType<bt_adapter_state_e> adapterState;
-        SafeType<std::vector<BluetoothDevice>> discoveryDevices;
+        SafeType<std::vector<std::pair<ScanResult, BluetoothDevice>>> discoveryResults; ///[TODO] stream to do 
+        SafeType<std::vector<BluetoothDevice>> connectedDevices;
 
     public:
 
@@ -41,7 +43,7 @@ namespace btu{
          * 
          * @param discovery_info 
          */
-        void addBluetoothDevice(bt_adapter_device_discovery_info_s& discovery_info) noexcept;
+        void addDiscoveryResult(bt_adapter_device_discovery_info_s& discovery_info) noexcept;
 
 
         //////////////////////////
@@ -50,7 +52,7 @@ namespace btu{
         static void adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept;
         void setAdapterState(bt_adapter_state_e state) noexcept;
 
-        const std::vector<BluetoothDevice>& getDiscoveryDevices() const noexcept;
+        SafeType<std::vector<BluetoothDevice>>& getConnectedDevices() noexcept;
     };
 } // namespace btu
 
