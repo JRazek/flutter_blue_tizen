@@ -8,6 +8,7 @@
 #include <dlog.h>
 
 class BluetoothState;
+class BluetoothDevice;
 
 namespace btu{
     template<typename T>
@@ -18,7 +19,7 @@ namespace btu{
 
     class BluetoothManager{
         SafeType<bt_adapter_state_e> adapterState;
-        SafeType<std::vector<bt_adapter_device_discovery_info_s>> devices;
+        SafeType<std::vector<BluetoothDevice>> discoveryDevices;
 
     public:
 
@@ -48,6 +49,8 @@ namespace btu{
 
         static void adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept;
         void setAdapterState(bt_adapter_state_e state) noexcept;
+
+        const std::vector<BluetoothDevice>& getDiscoveryDevices() const noexcept;
     };
 } // namespace btu
 

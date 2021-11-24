@@ -72,7 +72,7 @@ namespace btu{
         bluetoothManager.setAdapterState(adapter_state);
     }
     void BluetoothManager::setAdapterState(bt_adapter_state_e _state) noexcept{
-        std::scoped_lock(adapterState.mut);
+        std::scoped_lock lock(adapterState.mut);
         adapterState.var = _state;
     }
 
@@ -91,8 +91,16 @@ namespace btu{
         }
     }
     void BluetoothManager::addBluetoothDevice(bt_adapter_device_discovery_info_s& discovery_info) noexcept{
-        std::scoped_lock(devices.mut);
-        devices.var.emplace_back(std::move(discovery_info));
+        BluetoothDevice bluetoothDevice;
+        bluetoothDevice.set_remote_id(discovery_info.remote_address);
+        bluetoothDevice.set_name(discovery_info.remote_name);
+        bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);
+        std::scoped_lock lock(discoveryDevices.mut);
+        discoveryDevices.var.emplace_back(std::move(bluetoothDevice));
+    }
+    
+    const std::vector<BluetoothDevice>& BluetoothManager::getDiscoveryDevices() const noexcept{
+        return discoveryDevices.var;
     }
 
 } // namespace btu
