@@ -7,6 +7,7 @@
 #include <mutex>
 #include <dlog.h>
 
+class BluetoothState;
 
 namespace btu{
     template<typename T>
@@ -15,7 +16,6 @@ namespace btu{
         std::mutex mut;
     };
 
-    enum class BluetoothState;
     class BluetoothManager{
         SafeType<bt_adapter_state_e> adapterState;
         SafeType<std::vector<bt_adapter_device_discovery_info_s>> devices;

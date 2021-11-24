@@ -5,1084 +5,531 @@
 
 #include <algorithm>
 
-#include <google/protobuf/stubs/common.h>
-#include <google/protobuf/stubs/port.h>
 #include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/wire_format_lite_inl.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
-// This is a temporary google only hack
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-#include "third_party/protobuf/version.h"
-#endif
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/wire_format_lite.h>
+#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 // @@protoc_insertion_point(includes)
-
-namespace protobuf_flutterblue_2eproto {
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_AdvertisementData_ServiceDataEntry_DoNotUse;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_BluetoothDescriptor;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_BluetoothDevice;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_CharacteristicProperties;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Int32Value;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ReadDescriptorRequest;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_WriteCharacteristicRequest;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_WriteDescriptorRequest;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_BluetoothService;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<2> scc_info_BluetoothCharacteristic;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_flutterblue_2eproto ::google::protobuf::internal::SCCInfo<3> scc_info_AdvertisementData;
-}  // namespace protobuf_flutterblue_2eproto
+#include <google/protobuf/port_def.inc>
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_AdvertisementData_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_AdvertisementData_ServiceDataEntry_DoNotUse_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_BluetoothCharacteristic_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BluetoothDescriptor_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BluetoothDevice_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_BluetoothService_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CharacteristicProperties_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Int32Value_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ReadDescriptorRequest_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_WriteCharacteristicRequest_flutterblue_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_flutterblue_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_WriteDescriptorRequest_flutterblue_2eproto;
 class Int32ValueDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<Int32Value>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Int32Value> _instance;
 } _Int32Value_default_instance_;
 class BluetoothStateDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<BluetoothState>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<BluetoothState> _instance;
 } _BluetoothState_default_instance_;
 class AdvertisementData_ManufacturerDataEntry_DoNotUseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<AdvertisementData_ManufacturerDataEntry_DoNotUse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AdvertisementData_ManufacturerDataEntry_DoNotUse> _instance;
 } _AdvertisementData_ManufacturerDataEntry_DoNotUse_default_instance_;
 class AdvertisementData_ServiceDataEntry_DoNotUseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<AdvertisementData_ServiceDataEntry_DoNotUse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AdvertisementData_ServiceDataEntry_DoNotUse> _instance;
 } _AdvertisementData_ServiceDataEntry_DoNotUse_default_instance_;
 class AdvertisementDataDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<AdvertisementData>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AdvertisementData> _instance;
 } _AdvertisementData_default_instance_;
 class ScanSettingsDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ScanSettings>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ScanSettings> _instance;
 } _ScanSettings_default_instance_;
 class ScanResultDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ScanResult>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ScanResult> _instance;
 } _ScanResult_default_instance_;
 class ConnectRequestDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ConnectRequest>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ConnectRequest> _instance;
 } _ConnectRequest_default_instance_;
 class BluetoothDeviceDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<BluetoothDevice>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<BluetoothDevice> _instance;
 } _BluetoothDevice_default_instance_;
 class BluetoothServiceDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<BluetoothService>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<BluetoothService> _instance;
 } _BluetoothService_default_instance_;
 class BluetoothCharacteristicDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<BluetoothCharacteristic>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<BluetoothCharacteristic> _instance;
 } _BluetoothCharacteristic_default_instance_;
 class BluetoothDescriptorDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<BluetoothDescriptor>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<BluetoothDescriptor> _instance;
 } _BluetoothDescriptor_default_instance_;
 class CharacteristicPropertiesDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<CharacteristicProperties>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CharacteristicProperties> _instance;
 } _CharacteristicProperties_default_instance_;
 class DiscoverServicesResultDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<DiscoverServicesResult>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DiscoverServicesResult> _instance;
 } _DiscoverServicesResult_default_instance_;
 class ReadCharacteristicRequestDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ReadCharacteristicRequest>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ReadCharacteristicRequest> _instance;
 } _ReadCharacteristicRequest_default_instance_;
 class ReadCharacteristicResponseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ReadCharacteristicResponse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ReadCharacteristicResponse> _instance;
 } _ReadCharacteristicResponse_default_instance_;
 class ReadDescriptorRequestDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ReadDescriptorRequest>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ReadDescriptorRequest> _instance;
 } _ReadDescriptorRequest_default_instance_;
 class ReadDescriptorResponseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ReadDescriptorResponse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ReadDescriptorResponse> _instance;
 } _ReadDescriptorResponse_default_instance_;
 class WriteCharacteristicRequestDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<WriteCharacteristicRequest>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<WriteCharacteristicRequest> _instance;
 } _WriteCharacteristicRequest_default_instance_;
 class WriteCharacteristicResponseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<WriteCharacteristicResponse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<WriteCharacteristicResponse> _instance;
 } _WriteCharacteristicResponse_default_instance_;
 class WriteDescriptorRequestDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<WriteDescriptorRequest>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<WriteDescriptorRequest> _instance;
 } _WriteDescriptorRequest_default_instance_;
 class WriteDescriptorResponseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<WriteDescriptorResponse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<WriteDescriptorResponse> _instance;
 } _WriteDescriptorResponse_default_instance_;
 class SetNotificationRequestDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<SetNotificationRequest>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetNotificationRequest> _instance;
 } _SetNotificationRequest_default_instance_;
 class SetNotificationResponseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<SetNotificationResponse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetNotificationResponse> _instance;
 } _SetNotificationResponse_default_instance_;
 class OnCharacteristicChangedDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<OnCharacteristicChanged>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<OnCharacteristicChanged> _instance;
 } _OnCharacteristicChanged_default_instance_;
 class DeviceStateResponseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<DeviceStateResponse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DeviceStateResponse> _instance;
 } _DeviceStateResponse_default_instance_;
 class ConnectedDevicesResponseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ConnectedDevicesResponse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ConnectedDevicesResponse> _instance;
 } _ConnectedDevicesResponse_default_instance_;
 class MtuSizeRequestDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<MtuSizeRequest>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MtuSizeRequest> _instance;
 } _MtuSizeRequest_default_instance_;
 class MtuSizeResponseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<MtuSizeResponse>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MtuSizeResponse> _instance;
 } _MtuSizeResponse_default_instance_;
-namespace protobuf_flutterblue_2eproto {
-static void InitDefaultsInt32Value() {
+static void InitDefaultsscc_info_AdvertisementData_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::_Int32Value_default_instance_;
-    new (ptr) ::Int32Value();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    void* ptr = &::_AdvertisementData_default_instance_;
+    new (ptr) ::AdvertisementData();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::Int32Value::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_Int32Value =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsInt32Value}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_AdvertisementData_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_AdvertisementData_flutterblue_2eproto}, {
+      &scc_info_Int32Value_flutterblue_2eproto.base,
+      &scc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse_flutterblue_2eproto.base,
+      &scc_info_AdvertisementData_ServiceDataEntry_DoNotUse_flutterblue_2eproto.base,}};
 
-static void InitDefaultsBluetoothState() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_BluetoothState_default_instance_;
-    new (ptr) ::BluetoothState();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::BluetoothState::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_BluetoothState =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsBluetoothState}, {}};
-
-static void InitDefaultsAdvertisementData_ManufacturerDataEntry_DoNotUse() {
+static void InitDefaultsscc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::_AdvertisementData_ManufacturerDataEntry_DoNotUse_default_instance_;
     new (ptr) ::AdvertisementData_ManufacturerDataEntry_DoNotUse();
   }
-  ::AdvertisementData_ManufacturerDataEntry_DoNotUse::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsAdvertisementData_ManufacturerDataEntry_DoNotUse}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse_flutterblue_2eproto}, {}};
 
-static void InitDefaultsAdvertisementData_ServiceDataEntry_DoNotUse() {
+static void InitDefaultsscc_info_AdvertisementData_ServiceDataEntry_DoNotUse_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::_AdvertisementData_ServiceDataEntry_DoNotUse_default_instance_;
     new (ptr) ::AdvertisementData_ServiceDataEntry_DoNotUse();
   }
-  ::AdvertisementData_ServiceDataEntry_DoNotUse::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_AdvertisementData_ServiceDataEntry_DoNotUse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsAdvertisementData_ServiceDataEntry_DoNotUse}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_AdvertisementData_ServiceDataEntry_DoNotUse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_AdvertisementData_ServiceDataEntry_DoNotUse_flutterblue_2eproto}, {}};
 
-static void InitDefaultsAdvertisementData() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_AdvertisementData_default_instance_;
-    new (ptr) ::AdvertisementData();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::AdvertisementData::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<3> scc_info_AdvertisementData =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 3, InitDefaultsAdvertisementData}, {
-      &protobuf_flutterblue_2eproto::scc_info_Int32Value.base,
-      &protobuf_flutterblue_2eproto::scc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse.base,
-      &protobuf_flutterblue_2eproto::scc_info_AdvertisementData_ServiceDataEntry_DoNotUse.base,}};
-
-static void InitDefaultsScanSettings() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_ScanSettings_default_instance_;
-    new (ptr) ::ScanSettings();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::ScanSettings::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_ScanSettings =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsScanSettings}, {}};
-
-static void InitDefaultsScanResult() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_ScanResult_default_instance_;
-    new (ptr) ::ScanResult();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::ScanResult::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<2> scc_info_ScanResult =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 2, InitDefaultsScanResult}, {
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothDevice.base,
-      &protobuf_flutterblue_2eproto::scc_info_AdvertisementData.base,}};
-
-static void InitDefaultsConnectRequest() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_ConnectRequest_default_instance_;
-    new (ptr) ::ConnectRequest();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::ConnectRequest::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_ConnectRequest =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsConnectRequest}, {}};
-
-static void InitDefaultsBluetoothDevice() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_BluetoothDevice_default_instance_;
-    new (ptr) ::BluetoothDevice();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::BluetoothDevice::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_BluetoothDevice =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsBluetoothDevice}, {}};
-
-static void InitDefaultsBluetoothService() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_BluetoothService_default_instance_;
-    new (ptr) ::BluetoothService();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::BluetoothService::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_BluetoothService =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsBluetoothService}, {
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothCharacteristic.base,}};
-
-static void InitDefaultsBluetoothCharacteristic() {
+static void InitDefaultsscc_info_BluetoothCharacteristic_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::_BluetoothCharacteristic_default_instance_;
     new (ptr) ::BluetoothCharacteristic();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::BluetoothCharacteristic::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<2> scc_info_BluetoothCharacteristic =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 2, InitDefaultsBluetoothCharacteristic}, {
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothDescriptor.base,
-      &protobuf_flutterblue_2eproto::scc_info_CharacteristicProperties.base,}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_BluetoothCharacteristic_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_BluetoothCharacteristic_flutterblue_2eproto}, {
+      &scc_info_BluetoothDescriptor_flutterblue_2eproto.base,
+      &scc_info_CharacteristicProperties_flutterblue_2eproto.base,}};
 
-static void InitDefaultsBluetoothDescriptor() {
+static void InitDefaultsscc_info_BluetoothDescriptor_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::_BluetoothDescriptor_default_instance_;
     new (ptr) ::BluetoothDescriptor();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::BluetoothDescriptor::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_BluetoothDescriptor =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsBluetoothDescriptor}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BluetoothDescriptor_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_BluetoothDescriptor_flutterblue_2eproto}, {}};
 
-static void InitDefaultsCharacteristicProperties() {
+static void InitDefaultsscc_info_BluetoothDevice_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_BluetoothDevice_default_instance_;
+    new (ptr) ::BluetoothDevice();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BluetoothDevice_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_BluetoothDevice_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_BluetoothService_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_BluetoothService_default_instance_;
+    new (ptr) ::BluetoothService();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_BluetoothService_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_BluetoothService_flutterblue_2eproto}, {
+      &scc_info_BluetoothCharacteristic_flutterblue_2eproto.base,}};
+
+static void InitDefaultsscc_info_BluetoothState_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_BluetoothState_default_instance_;
+    new (ptr) ::BluetoothState();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BluetoothState_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_BluetoothState_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_CharacteristicProperties_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::_CharacteristicProperties_default_instance_;
     new (ptr) ::CharacteristicProperties();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::CharacteristicProperties::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_CharacteristicProperties =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsCharacteristicProperties}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CharacteristicProperties_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_CharacteristicProperties_flutterblue_2eproto}, {}};
 
-static void InitDefaultsDiscoverServicesResult() {
+static void InitDefaultsscc_info_ConnectRequest_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::_DiscoverServicesResult_default_instance_;
-    new (ptr) ::DiscoverServicesResult();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    void* ptr = &::_ConnectRequest_default_instance_;
+    new (ptr) ::ConnectRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::DiscoverServicesResult::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<1> scc_info_DiscoverServicesResult =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsDiscoverServicesResult}, {
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothService.base,}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ConnectRequest_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ConnectRequest_flutterblue_2eproto}, {}};
 
-static void InitDefaultsReadCharacteristicRequest() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_ReadCharacteristicRequest_default_instance_;
-    new (ptr) ::ReadCharacteristicRequest();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::ReadCharacteristicRequest::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_ReadCharacteristicRequest =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsReadCharacteristicRequest}, {}};
-
-static void InitDefaultsReadCharacteristicResponse() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_ReadCharacteristicResponse_default_instance_;
-    new (ptr) ::ReadCharacteristicResponse();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::ReadCharacteristicResponse::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_ReadCharacteristicResponse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsReadCharacteristicResponse}, {
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothCharacteristic.base,}};
-
-static void InitDefaultsReadDescriptorRequest() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_ReadDescriptorRequest_default_instance_;
-    new (ptr) ::ReadDescriptorRequest();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::ReadDescriptorRequest::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_ReadDescriptorRequest =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsReadDescriptorRequest}, {}};
-
-static void InitDefaultsReadDescriptorResponse() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_ReadDescriptorResponse_default_instance_;
-    new (ptr) ::ReadDescriptorResponse();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::ReadDescriptorResponse::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_ReadDescriptorResponse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsReadDescriptorResponse}, {
-      &protobuf_flutterblue_2eproto::scc_info_ReadDescriptorRequest.base,}};
-
-static void InitDefaultsWriteCharacteristicRequest() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_WriteCharacteristicRequest_default_instance_;
-    new (ptr) ::WriteCharacteristicRequest();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::WriteCharacteristicRequest::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_WriteCharacteristicRequest =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsWriteCharacteristicRequest}, {}};
-
-static void InitDefaultsWriteCharacteristicResponse() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_WriteCharacteristicResponse_default_instance_;
-    new (ptr) ::WriteCharacteristicResponse();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::WriteCharacteristicResponse::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_WriteCharacteristicResponse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsWriteCharacteristicResponse}, {
-      &protobuf_flutterblue_2eproto::scc_info_WriteCharacteristicRequest.base,}};
-
-static void InitDefaultsWriteDescriptorRequest() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_WriteDescriptorRequest_default_instance_;
-    new (ptr) ::WriteDescriptorRequest();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::WriteDescriptorRequest::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_WriteDescriptorRequest =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsWriteDescriptorRequest}, {}};
-
-static void InitDefaultsWriteDescriptorResponse() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_WriteDescriptorResponse_default_instance_;
-    new (ptr) ::WriteDescriptorResponse();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::WriteDescriptorResponse::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_WriteDescriptorResponse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsWriteDescriptorResponse}, {
-      &protobuf_flutterblue_2eproto::scc_info_WriteDescriptorRequest.base,}};
-
-static void InitDefaultsSetNotificationRequest() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_SetNotificationRequest_default_instance_;
-    new (ptr) ::SetNotificationRequest();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::SetNotificationRequest::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_SetNotificationRequest =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSetNotificationRequest}, {}};
-
-static void InitDefaultsSetNotificationResponse() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_SetNotificationResponse_default_instance_;
-    new (ptr) ::SetNotificationResponse();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::SetNotificationResponse::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_SetNotificationResponse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsSetNotificationResponse}, {
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothCharacteristic.base,}};
-
-static void InitDefaultsOnCharacteristicChanged() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_OnCharacteristicChanged_default_instance_;
-    new (ptr) ::OnCharacteristicChanged();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::OnCharacteristicChanged::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_OnCharacteristicChanged =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsOnCharacteristicChanged}, {
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothCharacteristic.base,}};
-
-static void InitDefaultsDeviceStateResponse() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_DeviceStateResponse_default_instance_;
-    new (ptr) ::DeviceStateResponse();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::DeviceStateResponse::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_DeviceStateResponse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsDeviceStateResponse}, {}};
-
-static void InitDefaultsConnectedDevicesResponse() {
+static void InitDefaultsscc_info_ConnectedDevicesResponse_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::_ConnectedDevicesResponse_default_instance_;
     new (ptr) ::ConnectedDevicesResponse();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::ConnectedDevicesResponse::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<1> scc_info_ConnectedDevicesResponse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsConnectedDevicesResponse}, {
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothDevice.base,}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ConnectedDevicesResponse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ConnectedDevicesResponse_flutterblue_2eproto}, {
+      &scc_info_BluetoothDevice_flutterblue_2eproto.base,}};
 
-static void InitDefaultsMtuSizeRequest() {
+static void InitDefaultsscc_info_DeviceStateResponse_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_DeviceStateResponse_default_instance_;
+    new (ptr) ::DeviceStateResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DeviceStateResponse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_DeviceStateResponse_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_DiscoverServicesResult_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_DiscoverServicesResult_default_instance_;
+    new (ptr) ::DiscoverServicesResult();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DiscoverServicesResult_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_DiscoverServicesResult_flutterblue_2eproto}, {
+      &scc_info_BluetoothService_flutterblue_2eproto.base,}};
+
+static void InitDefaultsscc_info_Int32Value_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_Int32Value_default_instance_;
+    new (ptr) ::Int32Value();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Int32Value_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Int32Value_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_MtuSizeRequest_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::_MtuSizeRequest_default_instance_;
     new (ptr) ::MtuSizeRequest();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::MtuSizeRequest::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_MtuSizeRequest =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsMtuSizeRequest}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_MtuSizeRequest_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_MtuSizeRequest_flutterblue_2eproto}, {}};
 
-static void InitDefaultsMtuSizeResponse() {
+static void InitDefaultsscc_info_MtuSizeResponse_flutterblue_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::_MtuSizeResponse_default_instance_;
     new (ptr) ::MtuSizeResponse();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::MtuSizeResponse::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_MtuSizeResponse =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsMtuSizeResponse}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_MtuSizeResponse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_MtuSizeResponse_flutterblue_2eproto}, {}};
 
-void InitDefaults() {
-  ::google::protobuf::internal::InitSCC(&scc_info_Int32Value.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_BluetoothState.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_AdvertisementData_ManufacturerDataEntry_DoNotUse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_AdvertisementData_ServiceDataEntry_DoNotUse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_AdvertisementData.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ScanSettings.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ScanResult.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ConnectRequest.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_BluetoothDevice.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_BluetoothService.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_BluetoothCharacteristic.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_BluetoothDescriptor.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_CharacteristicProperties.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_DiscoverServicesResult.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ReadCharacteristicRequest.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ReadCharacteristicResponse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ReadDescriptorRequest.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ReadDescriptorResponse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_WriteCharacteristicRequest.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_WriteCharacteristicResponse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_WriteDescriptorRequest.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_WriteDescriptorResponse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_SetNotificationRequest.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_SetNotificationResponse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_OnCharacteristicChanged.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_DeviceStateResponse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ConnectedDevicesResponse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_MtuSizeRequest.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_MtuSizeResponse.base);
-}
+static void InitDefaultsscc_info_OnCharacteristicChanged_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-::google::protobuf::Metadata file_level_metadata[29];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[4];
-
-const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Int32Value, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Int32Value, value_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothState, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothState, state_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData_ManufacturerDataEntry_DoNotUse, _has_bits_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData_ManufacturerDataEntry_DoNotUse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData_ManufacturerDataEntry_DoNotUse, key_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData_ManufacturerDataEntry_DoNotUse, value_),
-  0,
-  1,
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData_ServiceDataEntry_DoNotUse, _has_bits_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData_ServiceDataEntry_DoNotUse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData_ServiceDataEntry_DoNotUse, key_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData_ServiceDataEntry_DoNotUse, value_),
-  0,
-  1,
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData, local_name_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData, tx_power_level_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData, connectable_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData, manufacturer_data_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData, service_data_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::AdvertisementData, service_uuids_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ScanSettings, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ScanSettings, android_scan_mode_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ScanSettings, service_uuids_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ScanSettings, allow_duplicates_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ScanResult, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ScanResult, device_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ScanResult, advertisement_data_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ScanResult, rssi_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ConnectRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ConnectRequest, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ConnectRequest, android_auto_connect_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDevice, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDevice, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDevice, name_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDevice, type_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothService, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothService, uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothService, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothService, is_primary_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothService, characteristics_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothService, included_services_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothCharacteristic, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothCharacteristic, uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothCharacteristic, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothCharacteristic, serviceuuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothCharacteristic, secondaryserviceuuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothCharacteristic, descriptors_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothCharacteristic, properties_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothCharacteristic, value_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDescriptor, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDescriptor, uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDescriptor, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDescriptor, serviceuuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDescriptor, characteristicuuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::BluetoothDescriptor, value_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, broadcast_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, read_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, write_without_response_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, write_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, notify_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, indicate_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, authenticated_signed_writes_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, extended_properties_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, notify_encryption_required_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CharacteristicProperties, indicate_encryption_required_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DiscoverServicesResult, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DiscoverServicesResult, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DiscoverServicesResult, services_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadCharacteristicRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadCharacteristicRequest, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadCharacteristicRequest, characteristic_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadCharacteristicRequest, service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadCharacteristicRequest, secondary_service_uuid_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadCharacteristicResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadCharacteristicResponse, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadCharacteristicResponse, characteristic_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorRequest, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorRequest, descriptor_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorRequest, service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorRequest, secondary_service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorRequest, characteristic_uuid_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorResponse, request_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ReadDescriptorResponse, value_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicRequest, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicRequest, characteristic_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicRequest, service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicRequest, secondary_service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicRequest, write_type_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicRequest, value_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicResponse, request_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteCharacteristicResponse, success_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorRequest, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorRequest, descriptor_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorRequest, service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorRequest, secondary_service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorRequest, characteristic_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorRequest, value_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorResponse, request_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WriteDescriptorResponse, success_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationRequest, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationRequest, service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationRequest, secondary_service_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationRequest, characteristic_uuid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationRequest, enable_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationResponse, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationResponse, characteristic_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::SetNotificationResponse, success_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::OnCharacteristicChanged, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::OnCharacteristicChanged, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::OnCharacteristicChanged, characteristic_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DeviceStateResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DeviceStateResponse, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::DeviceStateResponse, state_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ConnectedDevicesResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ConnectedDevicesResponse, devices_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::MtuSizeRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::MtuSizeRequest, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::MtuSizeRequest, mtu_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::MtuSizeResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::MtuSizeResponse, remote_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::MtuSizeResponse, mtu_),
-};
-static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::Int32Value)},
-  { 6, -1, sizeof(::BluetoothState)},
-  { 12, 19, sizeof(::AdvertisementData_ManufacturerDataEntry_DoNotUse)},
-  { 21, 28, sizeof(::AdvertisementData_ServiceDataEntry_DoNotUse)},
-  { 30, -1, sizeof(::AdvertisementData)},
-  { 41, -1, sizeof(::ScanSettings)},
-  { 49, -1, sizeof(::ScanResult)},
-  { 57, -1, sizeof(::ConnectRequest)},
-  { 64, -1, sizeof(::BluetoothDevice)},
-  { 72, -1, sizeof(::BluetoothService)},
-  { 82, -1, sizeof(::BluetoothCharacteristic)},
-  { 94, -1, sizeof(::BluetoothDescriptor)},
-  { 104, -1, sizeof(::CharacteristicProperties)},
-  { 119, -1, sizeof(::DiscoverServicesResult)},
-  { 126, -1, sizeof(::ReadCharacteristicRequest)},
-  { 135, -1, sizeof(::ReadCharacteristicResponse)},
-  { 142, -1, sizeof(::ReadDescriptorRequest)},
-  { 152, -1, sizeof(::ReadDescriptorResponse)},
-  { 159, -1, sizeof(::WriteCharacteristicRequest)},
-  { 170, -1, sizeof(::WriteCharacteristicResponse)},
-  { 177, -1, sizeof(::WriteDescriptorRequest)},
-  { 188, -1, sizeof(::WriteDescriptorResponse)},
-  { 195, -1, sizeof(::SetNotificationRequest)},
-  { 205, -1, sizeof(::SetNotificationResponse)},
-  { 213, -1, sizeof(::OnCharacteristicChanged)},
-  { 220, -1, sizeof(::DeviceStateResponse)},
-  { 227, -1, sizeof(::ConnectedDevicesResponse)},
-  { 233, -1, sizeof(::MtuSizeRequest)},
-  { 240, -1, sizeof(::MtuSizeResponse)},
-};
-
-static ::google::protobuf::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_Int32Value_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_BluetoothState_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_AdvertisementData_ManufacturerDataEntry_DoNotUse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_AdvertisementData_ServiceDataEntry_DoNotUse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_AdvertisementData_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ScanSettings_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ScanResult_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ConnectRequest_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_BluetoothDevice_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_BluetoothService_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_BluetoothCharacteristic_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_BluetoothDescriptor_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_CharacteristicProperties_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_DiscoverServicesResult_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ReadCharacteristicRequest_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ReadCharacteristicResponse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ReadDescriptorRequest_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ReadDescriptorResponse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_WriteCharacteristicRequest_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_WriteCharacteristicResponse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_WriteDescriptorRequest_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_WriteDescriptorResponse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_SetNotificationRequest_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_SetNotificationResponse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_OnCharacteristicChanged_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_DeviceStateResponse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ConnectedDevicesResponse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_MtuSizeRequest_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_MtuSizeResponse_default_instance_),
-};
-
-void protobuf_AssignDescriptors() {
-  AddDescriptors();
-  AssignDescriptors(
-      "flutterblue.proto", schemas, file_default_instances, TableStruct::offsets,
-      file_level_metadata, file_level_enum_descriptors, NULL);
-}
-
-void protobuf_AssignDescriptorsOnce() {
-  static ::google::protobuf::internal::once_flag once;
-  ::google::protobuf::internal::call_once(once, protobuf_AssignDescriptors);
-}
-
-void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
-void protobuf_RegisterTypes(const ::std::string&) {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 29);
-}
-
-void AddDescriptorsImpl() {
-  InitDefaults();
-  static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\021flutterblue.proto\"\033\n\nInt32Value\022\r\n\005val"
-      "ue\030\001 \001(\005\"\241\001\n\016BluetoothState\022$\n\005state\030\001 \001"
-      "(\0162\025.BluetoothState.State\"i\n\005State\022\013\n\007UN"
-      "KNOWN\020\000\022\017\n\013UNAVAILABLE\020\001\022\020\n\014UNAUTHORIZED"
-      "\020\002\022\016\n\nTURNING_ON\020\003\022\006\n\002ON\020\004\022\017\n\013TURNING_OF"
-      "F\020\005\022\007\n\003OFF\020\006\"\345\002\n\021AdvertisementData\022\022\n\nlo"
-      "cal_name\030\001 \001(\t\022#\n\016tx_power_level\030\002 \001(\0132\013"
-      ".Int32Value\022\023\n\013connectable\030\003 \001(\010\022C\n\021manu"
-      "facturer_data\030\004 \003(\0132(.AdvertisementData."
-      "ManufacturerDataEntry\0229\n\014service_data\030\005 "
-      "\003(\0132#.AdvertisementData.ServiceDataEntry"
-      "\022\025\n\rservice_uuids\030\006 \003(\t\0327\n\025ManufacturerD"
-      "ataEntry\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\014:\0028\001"
-      "\0322\n\020ServiceDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val"
-      "ue\030\002 \001(\014:\0028\001\"Z\n\014ScanSettings\022\031\n\021android_"
-      "scan_mode\030\001 \001(\005\022\025\n\rservice_uuids\030\002 \003(\t\022\030"
-      "\n\020allow_duplicates\030\003 \001(\010\"l\n\nScanResult\022 "
-      "\n\006device\030\001 \001(\0132\020.BluetoothDevice\022.\n\022adve"
-      "rtisement_data\030\002 \001(\0132\022.AdvertisementData"
-      "\022\014\n\004rssi\030\003 \001(\005\"A\n\016ConnectRequest\022\021\n\tremo"
-      "te_id\030\001 \001(\t\022\034\n\024android_auto_connect\030\002 \001("
-      "\010\"\213\001\n\017BluetoothDevice\022\021\n\tremote_id\030\001 \001(\t"
-      "\022\014\n\004name\030\002 \001(\t\022#\n\004type\030\003 \001(\0162\025.Bluetooth"
-      "Device.Type\"2\n\004Type\022\013\n\007UNKNOWN\020\000\022\013\n\007CLAS"
-      "SIC\020\001\022\006\n\002LE\020\002\022\010\n\004DUAL\020\003\"\250\001\n\020BluetoothSer"
-      "vice\022\014\n\004uuid\030\001 \001(\t\022\021\n\tremote_id\030\002 \001(\t\022\022\n"
-      "\nis_primary\030\003 \001(\010\0221\n\017characteristics\030\004 \003"
-      "(\0132\030.BluetoothCharacteristic\022,\n\021included"
-      "_services\030\005 \003(\0132\021.BluetoothService\"\326\001\n\027B"
-      "luetoothCharacteristic\022\014\n\004uuid\030\001 \001(\t\022\021\n\t"
-      "remote_id\030\002 \001(\t\022\023\n\013serviceUuid\030\003 \001(\t\022\034\n\024"
-      "secondaryServiceUuid\030\004 \001(\t\022)\n\013descriptor"
-      "s\030\005 \003(\0132\024.BluetoothDescriptor\022-\n\npropert"
-      "ies\030\006 \001(\0132\031.CharacteristicProperties\022\r\n\005"
-      "value\030\007 \001(\014\"v\n\023BluetoothDescriptor\022\014\n\004uu"
-      "id\030\001 \001(\t\022\021\n\tremote_id\030\002 \001(\t\022\023\n\013serviceUu"
-      "id\030\003 \001(\t\022\032\n\022characteristicUuid\030\004 \001(\t\022\r\n\005"
-      "value\030\005 \001(\014\"\230\002\n\030CharacteristicProperties"
-      "\022\021\n\tbroadcast\030\001 \001(\010\022\014\n\004read\030\002 \001(\010\022\036\n\026wri"
-      "te_without_response\030\003 \001(\010\022\r\n\005write\030\004 \001(\010"
-      "\022\016\n\006notify\030\005 \001(\010\022\020\n\010indicate\030\006 \001(\010\022#\n\033au"
-      "thenticated_signed_writes\030\007 \001(\010\022\033\n\023exten"
-      "ded_properties\030\010 \001(\010\022\"\n\032notify_encryptio"
-      "n_required\030\t \001(\010\022$\n\034indicate_encryption_"
-      "required\030\n \001(\010\"P\n\026DiscoverServicesResult"
-      "\022\021\n\tremote_id\030\001 \001(\t\022#\n\010services\030\002 \003(\0132\021."
-      "BluetoothService\"\201\001\n\031ReadCharacteristicR"
-      "equest\022\021\n\tremote_id\030\001 \001(\t\022\033\n\023characteris"
-      "tic_uuid\030\002 \001(\t\022\024\n\014service_uuid\030\003 \001(\t\022\036\n\026"
-      "secondary_service_uuid\030\004 \001(\t\"a\n\032ReadChar"
-      "acteristicResponse\022\021\n\tremote_id\030\001 \001(\t\0220\n"
-      "\016characteristic\030\002 \001(\0132\030.BluetoothCharact"
-      "eristic\"\226\001\n\025ReadDescriptorRequest\022\021\n\trem"
-      "ote_id\030\001 \001(\t\022\027\n\017descriptor_uuid\030\002 \001(\t\022\024\n"
-      "\014service_uuid\030\003 \001(\t\022\036\n\026secondary_service"
-      "_uuid\030\004 \001(\t\022\033\n\023characteristic_uuid\030\005 \001(\t"
-      "\"P\n\026ReadDescriptorResponse\022\'\n\007request\030\001 "
-      "\001(\0132\026.ReadDescriptorRequest\022\r\n\005value\030\002 \001"
-      "(\014\"\202\002\n\032WriteCharacteristicRequest\022\021\n\trem"
-      "ote_id\030\001 \001(\t\022\033\n\023characteristic_uuid\030\002 \001("
-      "\t\022\024\n\014service_uuid\030\003 \001(\t\022\036\n\026secondary_ser"
-      "vice_uuid\030\004 \001(\t\0229\n\nwrite_type\030\005 \001(\0162%.Wr"
-      "iteCharacteristicRequest.WriteType\022\r\n\005va"
-      "lue\030\006 \001(\014\"4\n\tWriteType\022\021\n\rWITH_RESPONSE\020"
-      "\000\022\024\n\020WITHOUT_RESPONSE\020\001\"\\\n\033WriteCharacte"
-      "risticResponse\022,\n\007request\030\001 \001(\0132\033.WriteC"
-      "haracteristicRequest\022\017\n\007success\030\002 \001(\010\"\246\001"
-      "\n\026WriteDescriptorRequest\022\021\n\tremote_id\030\001 "
-      "\001(\t\022\027\n\017descriptor_uuid\030\002 \001(\t\022\024\n\014service_"
-      "uuid\030\003 \001(\t\022\036\n\026secondary_service_uuid\030\004 \001"
-      "(\t\022\033\n\023characteristic_uuid\030\005 \001(\t\022\r\n\005value"
-      "\030\006 \001(\014\"T\n\027WriteDescriptorResponse\022(\n\007req"
-      "uest\030\001 \001(\0132\027.WriteDescriptorRequest\022\017\n\007s"
-      "uccess\030\002 \001(\010\"\216\001\n\026SetNotificationRequest\022"
-      "\021\n\tremote_id\030\001 \001(\t\022\024\n\014service_uuid\030\002 \001(\t"
-      "\022\036\n\026secondary_service_uuid\030\003 \001(\t\022\033\n\023char"
-      "acteristic_uuid\030\004 \001(\t\022\016\n\006enable\030\005 \001(\010\"o\n"
-      "\027SetNotificationResponse\022\021\n\tremote_id\030\001 "
-      "\001(\t\0220\n\016characteristic\030\002 \001(\0132\030.BluetoothC"
-      "haracteristic\022\017\n\007success\030\003 \001(\010\"^\n\027OnChar"
-      "acteristicChanged\022\021\n\tremote_id\030\001 \001(\t\0220\n\016"
-      "characteristic\030\002 \001(\0132\030.BluetoothCharacte"
-      "ristic\"\276\001\n\023DeviceStateResponse\022\021\n\tremote"
-      "_id\030\001 \001(\t\0228\n\005state\030\002 \001(\0162).DeviceStateRe"
-      "sponse.BluetoothDeviceState\"Z\n\024Bluetooth"
-      "DeviceState\022\020\n\014DISCONNECTED\020\000\022\016\n\nCONNECT"
-      "ING\020\001\022\r\n\tCONNECTED\020\002\022\021\n\rDISCONNECTING\020\003\""
-      "=\n\030ConnectedDevicesResponse\022!\n\007devices\030\001"
-      " \003(\0132\020.BluetoothDevice\"0\n\016MtuSizeRequest"
-      "\022\021\n\tremote_id\030\001 \001(\t\022\013\n\003mtu\030\002 \001(\r\"1\n\017MtuS"
-      "izeResponse\022\021\n\tremote_id\030\001 \001(\t\022\013\n\003mtu\030\002 "
-      "\001(\rB/\n\034com.pauldemarco.flutter_blueB\006Pro"
-      "tos\242\002\006Protosb\006proto3"
-  };
-  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 3700);
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
-    "flutterblue.proto", &protobuf_RegisterTypes);
-}
-
-void AddDescriptors() {
-  static ::google::protobuf::internal::once_flag once;
-  ::google::protobuf::internal::call_once(once, AddDescriptorsImpl);
-}
-// Force AddDescriptors() to be called at dynamic initialization time.
-struct StaticDescriptorInitializer {
-  StaticDescriptorInitializer() {
-    AddDescriptors();
+  {
+    void* ptr = &::_OnCharacteristicChanged_default_instance_;
+    new (ptr) ::OnCharacteristicChanged();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-} static_descriptor_initializer;
-}  // namespace protobuf_flutterblue_2eproto
-const ::google::protobuf::EnumDescriptor* BluetoothState_State_descriptor() {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_flutterblue_2eproto::file_level_enum_descriptors[0];
 }
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_OnCharacteristicChanged_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_OnCharacteristicChanged_flutterblue_2eproto}, {
+      &scc_info_BluetoothCharacteristic_flutterblue_2eproto.base,}};
+
+static void InitDefaultsscc_info_ReadCharacteristicRequest_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_ReadCharacteristicRequest_default_instance_;
+    new (ptr) ::ReadCharacteristicRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ReadCharacteristicRequest_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ReadCharacteristicRequest_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_ReadCharacteristicResponse_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_ReadCharacteristicResponse_default_instance_;
+    new (ptr) ::ReadCharacteristicResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ReadCharacteristicResponse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ReadCharacteristicResponse_flutterblue_2eproto}, {
+      &scc_info_BluetoothCharacteristic_flutterblue_2eproto.base,}};
+
+static void InitDefaultsscc_info_ReadDescriptorRequest_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_ReadDescriptorRequest_default_instance_;
+    new (ptr) ::ReadDescriptorRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ReadDescriptorRequest_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ReadDescriptorRequest_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_ReadDescriptorResponse_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_ReadDescriptorResponse_default_instance_;
+    new (ptr) ::ReadDescriptorResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ReadDescriptorResponse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ReadDescriptorResponse_flutterblue_2eproto}, {
+      &scc_info_ReadDescriptorRequest_flutterblue_2eproto.base,}};
+
+static void InitDefaultsscc_info_ScanResult_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_ScanResult_default_instance_;
+    new (ptr) ::ScanResult();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_ScanResult_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_ScanResult_flutterblue_2eproto}, {
+      &scc_info_BluetoothDevice_flutterblue_2eproto.base,
+      &scc_info_AdvertisementData_flutterblue_2eproto.base,}};
+
+static void InitDefaultsscc_info_ScanSettings_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_ScanSettings_default_instance_;
+    new (ptr) ::ScanSettings();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ScanSettings_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ScanSettings_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_SetNotificationRequest_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_SetNotificationRequest_default_instance_;
+    new (ptr) ::SetNotificationRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SetNotificationRequest_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_SetNotificationRequest_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_SetNotificationResponse_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_SetNotificationResponse_default_instance_;
+    new (ptr) ::SetNotificationResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SetNotificationResponse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_SetNotificationResponse_flutterblue_2eproto}, {
+      &scc_info_BluetoothCharacteristic_flutterblue_2eproto.base,}};
+
+static void InitDefaultsscc_info_WriteCharacteristicRequest_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_WriteCharacteristicRequest_default_instance_;
+    new (ptr) ::WriteCharacteristicRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_WriteCharacteristicRequest_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_WriteCharacteristicRequest_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_WriteCharacteristicResponse_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_WriteCharacteristicResponse_default_instance_;
+    new (ptr) ::WriteCharacteristicResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_WriteCharacteristicResponse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_WriteCharacteristicResponse_flutterblue_2eproto}, {
+      &scc_info_WriteCharacteristicRequest_flutterblue_2eproto.base,}};
+
+static void InitDefaultsscc_info_WriteDescriptorRequest_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_WriteDescriptorRequest_default_instance_;
+    new (ptr) ::WriteDescriptorRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_WriteDescriptorRequest_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_WriteDescriptorRequest_flutterblue_2eproto}, {}};
+
+static void InitDefaultsscc_info_WriteDescriptorResponse_flutterblue_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_WriteDescriptorResponse_default_instance_;
+    new (ptr) ::WriteDescriptorResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_WriteDescriptorResponse_flutterblue_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_WriteDescriptorResponse_flutterblue_2eproto}, {
+      &scc_info_WriteDescriptorRequest_flutterblue_2eproto.base,}};
+
 bool BluetoothState_State_IsValid(int value) {
   switch (value) {
     case 0:
@@ -1098,22 +545,74 @@ bool BluetoothState_State_IsValid(int value) {
   }
 }
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const BluetoothState_State BluetoothState::UNKNOWN;
-const BluetoothState_State BluetoothState::UNAVAILABLE;
-const BluetoothState_State BluetoothState::UNAUTHORIZED;
-const BluetoothState_State BluetoothState::TURNING_ON;
-const BluetoothState_State BluetoothState::ON;
-const BluetoothState_State BluetoothState::TURNING_OFF;
-const BluetoothState_State BluetoothState::OFF;
-const BluetoothState_State BluetoothState::State_MIN;
-const BluetoothState_State BluetoothState::State_MAX;
-const int BluetoothState::State_ARRAYSIZE;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-const ::google::protobuf::EnumDescriptor* BluetoothDevice_Type_descriptor() {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_flutterblue_2eproto::file_level_enum_descriptors[1];
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> BluetoothState_State_strings[7] = {};
+
+static const char BluetoothState_State_names[] =
+  "OFF"
+  "ON"
+  "TURNING_OFF"
+  "TURNING_ON"
+  "UNAUTHORIZED"
+  "UNAVAILABLE"
+  "UNKNOWN";
+
+static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry BluetoothState_State_entries[] = {
+  { {BluetoothState_State_names + 0, 3}, 6 },
+  { {BluetoothState_State_names + 3, 2}, 4 },
+  { {BluetoothState_State_names + 5, 11}, 5 },
+  { {BluetoothState_State_names + 16, 10}, 3 },
+  { {BluetoothState_State_names + 26, 12}, 2 },
+  { {BluetoothState_State_names + 38, 11}, 1 },
+  { {BluetoothState_State_names + 49, 7}, 0 },
+};
+
+static const int BluetoothState_State_entries_by_number[] = {
+  6, // 0 -> UNKNOWN
+  5, // 1 -> UNAVAILABLE
+  4, // 2 -> UNAUTHORIZED
+  3, // 3 -> TURNING_ON
+  1, // 4 -> ON
+  2, // 5 -> TURNING_OFF
+  0, // 6 -> OFF
+};
+
+const std::string& BluetoothState_State_Name(
+    BluetoothState_State value) {
+  static const bool dummy =
+      ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
+          BluetoothState_State_entries,
+          BluetoothState_State_entries_by_number,
+          7, BluetoothState_State_strings);
+  (void) dummy;
+  int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
+      BluetoothState_State_entries,
+      BluetoothState_State_entries_by_number,
+      7, value);
+  return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
+                     BluetoothState_State_strings[idx].get();
 }
+bool BluetoothState_State_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, BluetoothState_State* value) {
+  int int_value;
+  bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
+      BluetoothState_State_entries, 7, name, &int_value);
+  if (success) {
+    *value = static_cast<BluetoothState_State>(int_value);
+  }
+  return success;
+}
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr BluetoothState_State BluetoothState::UNKNOWN;
+constexpr BluetoothState_State BluetoothState::UNAVAILABLE;
+constexpr BluetoothState_State BluetoothState::UNAUTHORIZED;
+constexpr BluetoothState_State BluetoothState::TURNING_ON;
+constexpr BluetoothState_State BluetoothState::ON;
+constexpr BluetoothState_State BluetoothState::TURNING_OFF;
+constexpr BluetoothState_State BluetoothState::OFF;
+constexpr BluetoothState_State BluetoothState::State_MIN;
+constexpr BluetoothState_State BluetoothState::State_MAX;
+constexpr int BluetoothState::State_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 bool BluetoothDevice_Type_IsValid(int value) {
   switch (value) {
     case 0:
@@ -1126,19 +625,62 @@ bool BluetoothDevice_Type_IsValid(int value) {
   }
 }
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const BluetoothDevice_Type BluetoothDevice::UNKNOWN;
-const BluetoothDevice_Type BluetoothDevice::CLASSIC;
-const BluetoothDevice_Type BluetoothDevice::LE;
-const BluetoothDevice_Type BluetoothDevice::DUAL;
-const BluetoothDevice_Type BluetoothDevice::Type_MIN;
-const BluetoothDevice_Type BluetoothDevice::Type_MAX;
-const int BluetoothDevice::Type_ARRAYSIZE;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-const ::google::protobuf::EnumDescriptor* WriteCharacteristicRequest_WriteType_descriptor() {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_flutterblue_2eproto::file_level_enum_descriptors[2];
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> BluetoothDevice_Type_strings[4] = {};
+
+static const char BluetoothDevice_Type_names[] =
+  "CLASSIC"
+  "DUAL"
+  "LE"
+  "UNKNOWN";
+
+static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry BluetoothDevice_Type_entries[] = {
+  { {BluetoothDevice_Type_names + 0, 7}, 1 },
+  { {BluetoothDevice_Type_names + 7, 4}, 3 },
+  { {BluetoothDevice_Type_names + 11, 2}, 2 },
+  { {BluetoothDevice_Type_names + 13, 7}, 0 },
+};
+
+static const int BluetoothDevice_Type_entries_by_number[] = {
+  3, // 0 -> UNKNOWN
+  0, // 1 -> CLASSIC
+  2, // 2 -> LE
+  1, // 3 -> DUAL
+};
+
+const std::string& BluetoothDevice_Type_Name(
+    BluetoothDevice_Type value) {
+  static const bool dummy =
+      ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
+          BluetoothDevice_Type_entries,
+          BluetoothDevice_Type_entries_by_number,
+          4, BluetoothDevice_Type_strings);
+  (void) dummy;
+  int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
+      BluetoothDevice_Type_entries,
+      BluetoothDevice_Type_entries_by_number,
+      4, value);
+  return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
+                     BluetoothDevice_Type_strings[idx].get();
 }
+bool BluetoothDevice_Type_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, BluetoothDevice_Type* value) {
+  int int_value;
+  bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
+      BluetoothDevice_Type_entries, 4, name, &int_value);
+  if (success) {
+    *value = static_cast<BluetoothDevice_Type>(int_value);
+  }
+  return success;
+}
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr BluetoothDevice_Type BluetoothDevice::UNKNOWN;
+constexpr BluetoothDevice_Type BluetoothDevice::CLASSIC;
+constexpr BluetoothDevice_Type BluetoothDevice::LE;
+constexpr BluetoothDevice_Type BluetoothDevice::DUAL;
+constexpr BluetoothDevice_Type BluetoothDevice::Type_MIN;
+constexpr BluetoothDevice_Type BluetoothDevice::Type_MAX;
+constexpr int BluetoothDevice::Type_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 bool WriteCharacteristicRequest_WriteType_IsValid(int value) {
   switch (value) {
     case 0:
@@ -1149,17 +691,54 @@ bool WriteCharacteristicRequest_WriteType_IsValid(int value) {
   }
 }
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::WITH_RESPONSE;
-const WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::WITHOUT_RESPONSE;
-const WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::WriteType_MIN;
-const WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::WriteType_MAX;
-const int WriteCharacteristicRequest::WriteType_ARRAYSIZE;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-const ::google::protobuf::EnumDescriptor* DeviceStateResponse_BluetoothDeviceState_descriptor() {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_flutterblue_2eproto::file_level_enum_descriptors[3];
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> WriteCharacteristicRequest_WriteType_strings[2] = {};
+
+static const char WriteCharacteristicRequest_WriteType_names[] =
+  "WITHOUT_RESPONSE"
+  "WITH_RESPONSE";
+
+static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry WriteCharacteristicRequest_WriteType_entries[] = {
+  { {WriteCharacteristicRequest_WriteType_names + 0, 16}, 1 },
+  { {WriteCharacteristicRequest_WriteType_names + 16, 13}, 0 },
+};
+
+static const int WriteCharacteristicRequest_WriteType_entries_by_number[] = {
+  1, // 0 -> WITH_RESPONSE
+  0, // 1 -> WITHOUT_RESPONSE
+};
+
+const std::string& WriteCharacteristicRequest_WriteType_Name(
+    WriteCharacteristicRequest_WriteType value) {
+  static const bool dummy =
+      ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
+          WriteCharacteristicRequest_WriteType_entries,
+          WriteCharacteristicRequest_WriteType_entries_by_number,
+          2, WriteCharacteristicRequest_WriteType_strings);
+  (void) dummy;
+  int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
+      WriteCharacteristicRequest_WriteType_entries,
+      WriteCharacteristicRequest_WriteType_entries_by_number,
+      2, value);
+  return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
+                     WriteCharacteristicRequest_WriteType_strings[idx].get();
 }
+bool WriteCharacteristicRequest_WriteType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, WriteCharacteristicRequest_WriteType* value) {
+  int int_value;
+  bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
+      WriteCharacteristicRequest_WriteType_entries, 2, name, &int_value);
+  if (success) {
+    *value = static_cast<WriteCharacteristicRequest_WriteType>(int_value);
+  }
+  return success;
+}
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::WITH_RESPONSE;
+constexpr WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::WITHOUT_RESPONSE;
+constexpr WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::WriteType_MIN;
+constexpr WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::WriteType_MAX;
+constexpr int WriteCharacteristicRequest::WriteType_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 bool DeviceStateResponse_BluetoothDeviceState_IsValid(int value) {
   switch (value) {
     case 0:
@@ -1172,35 +751,78 @@ bool DeviceStateResponse_BluetoothDeviceState_IsValid(int value) {
   }
 }
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::DISCONNECTED;
-const DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::CONNECTING;
-const DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::CONNECTED;
-const DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::DISCONNECTING;
-const DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::BluetoothDeviceState_MIN;
-const DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::BluetoothDeviceState_MAX;
-const int DeviceStateResponse::BluetoothDeviceState_ARRAYSIZE;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> DeviceStateResponse_BluetoothDeviceState_strings[4] = {};
+
+static const char DeviceStateResponse_BluetoothDeviceState_names[] =
+  "CONNECTED"
+  "CONNECTING"
+  "DISCONNECTED"
+  "DISCONNECTING";
+
+static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry DeviceStateResponse_BluetoothDeviceState_entries[] = {
+  { {DeviceStateResponse_BluetoothDeviceState_names + 0, 9}, 2 },
+  { {DeviceStateResponse_BluetoothDeviceState_names + 9, 10}, 1 },
+  { {DeviceStateResponse_BluetoothDeviceState_names + 19, 12}, 0 },
+  { {DeviceStateResponse_BluetoothDeviceState_names + 31, 13}, 3 },
+};
+
+static const int DeviceStateResponse_BluetoothDeviceState_entries_by_number[] = {
+  2, // 0 -> DISCONNECTED
+  1, // 1 -> CONNECTING
+  0, // 2 -> CONNECTED
+  3, // 3 -> DISCONNECTING
+};
+
+const std::string& DeviceStateResponse_BluetoothDeviceState_Name(
+    DeviceStateResponse_BluetoothDeviceState value) {
+  static const bool dummy =
+      ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
+          DeviceStateResponse_BluetoothDeviceState_entries,
+          DeviceStateResponse_BluetoothDeviceState_entries_by_number,
+          4, DeviceStateResponse_BluetoothDeviceState_strings);
+  (void) dummy;
+  int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
+      DeviceStateResponse_BluetoothDeviceState_entries,
+      DeviceStateResponse_BluetoothDeviceState_entries_by_number,
+      4, value);
+  return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
+                     DeviceStateResponse_BluetoothDeviceState_strings[idx].get();
+}
+bool DeviceStateResponse_BluetoothDeviceState_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, DeviceStateResponse_BluetoothDeviceState* value) {
+  int int_value;
+  bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
+      DeviceStateResponse_BluetoothDeviceState_entries, 4, name, &int_value);
+  if (success) {
+    *value = static_cast<DeviceStateResponse_BluetoothDeviceState>(int_value);
+  }
+  return success;
+}
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::DISCONNECTED;
+constexpr DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::CONNECTING;
+constexpr DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::CONNECTED;
+constexpr DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::DISCONNECTING;
+constexpr DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::BluetoothDeviceState_MIN;
+constexpr DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::BluetoothDeviceState_MAX;
+constexpr int DeviceStateResponse::BluetoothDeviceState_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 
 // ===================================================================
 
-void Int32Value::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int Int32Value::kValueFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class Int32Value::_Internal {
+ public:
+};
 
-Int32Value::Int32Value()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_Int32Value.base);
+Int32Value::Int32Value(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:Int32Value)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Int32Value)
 }
 Int32Value::Int32Value(const Int32Value& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Int32Value)
 }
@@ -1212,112 +834,89 @@ void Int32Value::SharedCtor() {
 Int32Value::~Int32Value() {
   // @@protoc_insertion_point(destructor:Int32Value)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void Int32Value::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Int32Value::ArenaDtor(void* object) {
+  Int32Value* _this = reinterpret_cast< Int32Value* >(object);
+  (void)_this;
+}
+void Int32Value::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Int32Value::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* Int32Value::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const Int32Value& Int32Value::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_Int32Value.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Int32Value_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void Int32Value::Clear() {
 // @@protoc_insertion_point(message_clear_start:Int32Value)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   value_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool Int32Value::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:Int32Value)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* Int32Value::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // int32 value = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &value_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:Int32Value)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:Int32Value)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void Int32Value::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:Int32Value)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 value = 1;
-  if (this->value() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->value(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:Int32Value)
-}
-
-::google::protobuf::uint8* Int32Value::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* Int32Value::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Int32Value)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // int32 value = 1;
   if (this->value() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->value(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_value(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Int32Value)
   return target;
@@ -1327,55 +926,41 @@ size_t Int32Value::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Int32Value)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // int32 value = 1;
   if (this->value() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->value());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_value());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void Int32Value::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:Int32Value)
-  GOOGLE_DCHECK_NE(&from, this);
-  const Int32Value* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const Int32Value>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Int32Value)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:Int32Value)
-    MergeFrom(*source);
-  }
+void Int32Value::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const Int32Value*>(
+      &from));
 }
 
 void Int32Value::MergeFrom(const Int32Value& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:Int32Value)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.value() != 0) {
-    set_value(from.value());
+    _internal_set_value(from._internal_value());
   }
-}
-
-void Int32Value::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:Int32Value)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void Int32Value::CopyFrom(const Int32Value& from) {
@@ -1389,41 +974,32 @@ bool Int32Value::IsInitialized() const {
   return true;
 }
 
-void Int32Value::Swap(Int32Value* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void Int32Value::InternalSwap(Int32Value* other) {
   using std::swap;
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
   swap(value_, other->value_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata Int32Value::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string Int32Value::GetTypeName() const {
+  return "Int32Value";
 }
 
 
 // ===================================================================
 
-void BluetoothState::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int BluetoothState::kStateFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class BluetoothState::_Internal {
+ public:
+};
 
-BluetoothState::BluetoothState()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothState.base);
+BluetoothState::BluetoothState(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:BluetoothState)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:BluetoothState)
 }
 BluetoothState::BluetoothState(const BluetoothState& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   state_ = from.state_;
   // @@protoc_insertion_point(copy_constructor:BluetoothState)
 }
@@ -1435,115 +1011,91 @@ void BluetoothState::SharedCtor() {
 BluetoothState::~BluetoothState() {
   // @@protoc_insertion_point(destructor:BluetoothState)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void BluetoothState::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void BluetoothState::ArenaDtor(void* object) {
+  BluetoothState* _this = reinterpret_cast< BluetoothState* >(object);
+  (void)_this;
+}
+void BluetoothState::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void BluetoothState::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* BluetoothState::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const BluetoothState& BluetoothState::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_BluetoothState.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_BluetoothState_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void BluetoothState::Clear() {
 // @@protoc_insertion_point(message_clear_start:BluetoothState)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   state_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool BluetoothState::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:BluetoothState)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* BluetoothState::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // .BluetoothState.State state = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          set_state(static_cast< ::BluetoothState_State >(value));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_state(static_cast<::BluetoothState_State>(val));
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:BluetoothState)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:BluetoothState)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void BluetoothState::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:BluetoothState)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .BluetoothState.State state = 1;
-  if (this->state() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      1, this->state(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:BluetoothState)
-}
-
-::google::protobuf::uint8* BluetoothState::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* BluetoothState::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:BluetoothState)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .BluetoothState.State state = 1;
   if (this->state() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      1, this->state(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_state(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:BluetoothState)
   return target;
@@ -1553,54 +1105,40 @@ size_t BluetoothState::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:BluetoothState)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // .BluetoothState.State state = 1;
   if (this->state() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->state());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void BluetoothState::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:BluetoothState)
-  GOOGLE_DCHECK_NE(&from, this);
-  const BluetoothState* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const BluetoothState>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:BluetoothState)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:BluetoothState)
-    MergeFrom(*source);
-  }
+void BluetoothState::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const BluetoothState*>(
+      &from));
 }
 
 void BluetoothState::MergeFrom(const BluetoothState& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:BluetoothState)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.state() != 0) {
-    set_state(from.state());
+    _internal_set_state(from._internal_state());
   }
-}
-
-void BluetoothState::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:BluetoothState)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void BluetoothState::CopyFrom(const BluetoothState& from) {
@@ -1614,549 +1152,334 @@ bool BluetoothState::IsInitialized() const {
   return true;
 }
 
-void BluetoothState::Swap(BluetoothState* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void BluetoothState::InternalSwap(BluetoothState* other) {
   using std::swap;
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
   swap(state_, other->state_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata BluetoothState::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string BluetoothState::GetTypeName() const {
+  return "BluetoothState";
 }
 
 
 // ===================================================================
 
 AdvertisementData_ManufacturerDataEntry_DoNotUse::AdvertisementData_ManufacturerDataEntry_DoNotUse() {}
-AdvertisementData_ManufacturerDataEntry_DoNotUse::AdvertisementData_ManufacturerDataEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+AdvertisementData_ManufacturerDataEntry_DoNotUse::AdvertisementData_ManufacturerDataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
 void AdvertisementData_ManufacturerDataEntry_DoNotUse::MergeFrom(const AdvertisementData_ManufacturerDataEntry_DoNotUse& other) {
   MergeFromInternal(other);
 }
-::google::protobuf::Metadata AdvertisementData_ManufacturerDataEntry_DoNotUse::GetMetadata() const {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[2];
-}
-void AdvertisementData_ManufacturerDataEntry_DoNotUse::MergeFrom(
-    const ::google::protobuf::Message& other) {
-  ::google::protobuf::Message::MergeFrom(other);
-}
-
 
 // ===================================================================
 
 AdvertisementData_ServiceDataEntry_DoNotUse::AdvertisementData_ServiceDataEntry_DoNotUse() {}
-AdvertisementData_ServiceDataEntry_DoNotUse::AdvertisementData_ServiceDataEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+AdvertisementData_ServiceDataEntry_DoNotUse::AdvertisementData_ServiceDataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
 void AdvertisementData_ServiceDataEntry_DoNotUse::MergeFrom(const AdvertisementData_ServiceDataEntry_DoNotUse& other) {
   MergeFromInternal(other);
 }
-::google::protobuf::Metadata AdvertisementData_ServiceDataEntry_DoNotUse::GetMetadata() const {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[3];
-}
-void AdvertisementData_ServiceDataEntry_DoNotUse::MergeFrom(
-    const ::google::protobuf::Message& other) {
-  ::google::protobuf::Message::MergeFrom(other);
-}
-
 
 // ===================================================================
 
-void AdvertisementData::InitAsDefaultInstance() {
-  ::_AdvertisementData_default_instance_._instance.get_mutable()->tx_power_level_ = const_cast< ::Int32Value*>(
-      ::Int32Value::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int AdvertisementData::kLocalNameFieldNumber;
-const int AdvertisementData::kTxPowerLevelFieldNumber;
-const int AdvertisementData::kConnectableFieldNumber;
-const int AdvertisementData::kManufacturerDataFieldNumber;
-const int AdvertisementData::kServiceDataFieldNumber;
-const int AdvertisementData::kServiceUuidsFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class AdvertisementData::_Internal {
+ public:
+  static const ::Int32Value& tx_power_level(const AdvertisementData* msg);
+};
 
-AdvertisementData::AdvertisementData()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_AdvertisementData.base);
+const ::Int32Value&
+AdvertisementData::_Internal::tx_power_level(const AdvertisementData* msg) {
+  return *msg->tx_power_level_;
+}
+AdvertisementData::AdvertisementData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena),
+  manufacturer_data_(arena),
+  service_data_(arena),
+  service_uuids_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:AdvertisementData)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:AdvertisementData)
 }
 AdvertisementData::AdvertisementData(const AdvertisementData& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
       service_uuids_(from.service_uuids_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   manufacturer_data_.MergeFrom(from.manufacturer_data_);
   service_data_.MergeFrom(from.service_data_);
-  local_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.local_name().size() > 0) {
-    local_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.local_name_);
+  local_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_local_name().empty()) {
+    local_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_local_name(), 
+      GetArena());
   }
-  if (from.has_tx_power_level()) {
+  if (from._internal_has_tx_power_level()) {
     tx_power_level_ = new ::Int32Value(*from.tx_power_level_);
   } else {
-    tx_power_level_ = NULL;
+    tx_power_level_ = nullptr;
   }
   connectable_ = from.connectable_;
   // @@protoc_insertion_point(copy_constructor:AdvertisementData)
 }
 
 void AdvertisementData::SharedCtor() {
-  local_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&tx_power_level_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&connectable_) -
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_AdvertisementData_flutterblue_2eproto.base);
+  local_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&tx_power_level_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&connectable_) -
       reinterpret_cast<char*>(&tx_power_level_)) + sizeof(connectable_));
 }
 
 AdvertisementData::~AdvertisementData() {
   // @@protoc_insertion_point(destructor:AdvertisementData)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void AdvertisementData::SharedDtor() {
-  local_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  local_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete tx_power_level_;
 }
 
+void AdvertisementData::ArenaDtor(void* object) {
+  AdvertisementData* _this = reinterpret_cast< AdvertisementData* >(object);
+  (void)_this;
+}
+void AdvertisementData::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void AdvertisementData::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* AdvertisementData::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const AdvertisementData& AdvertisementData::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_AdvertisementData.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_AdvertisementData_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void AdvertisementData::Clear() {
 // @@protoc_insertion_point(message_clear_start:AdvertisementData)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   manufacturer_data_.Clear();
   service_data_.Clear();
   service_uuids_.Clear();
-  local_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && tx_power_level_ != NULL) {
+  local_name_.ClearToEmpty();
+  if (GetArena() == nullptr && tx_power_level_ != nullptr) {
     delete tx_power_level_;
   }
-  tx_power_level_ = NULL;
+  tx_power_level_ = nullptr;
   connectable_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool AdvertisementData::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:AdvertisementData)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* AdvertisementData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string local_name = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_local_name()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->local_name().data(), static_cast<int>(this->local_name().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "AdvertisementData.local_name"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_local_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // .Int32Value tx_power_level = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_tx_power_level()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_tx_power_level(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool connectable = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &connectable_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          connectable_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // map<int32, bytes> manufacturer_data = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          AdvertisementData_ManufacturerDataEntry_DoNotUse::Parser< ::google::protobuf::internal::MapField<
-              AdvertisementData_ManufacturerDataEntry_DoNotUse,
-              ::google::protobuf::int32, ::std::string,
-              ::google::protobuf::internal::WireFormatLite::TYPE_INT32,
-              ::google::protobuf::internal::WireFormatLite::TYPE_BYTES,
-              0 >,
-            ::google::protobuf::Map< ::google::protobuf::int32, ::std::string > > parser(&manufacturer_data_);
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-              input, &parser));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&manufacturer_data_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else goto handle_unusual;
+        continue;
       // map<string, bytes> service_data = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          AdvertisementData_ServiceDataEntry_DoNotUse::Parser< ::google::protobuf::internal::MapField<
-              AdvertisementData_ServiceDataEntry_DoNotUse,
-              ::std::string, ::std::string,
-              ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-              ::google::protobuf::internal::WireFormatLite::TYPE_BYTES,
-              0 >,
-            ::google::protobuf::Map< ::std::string, ::std::string > > parser(&service_data_);
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-              input, &parser));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            parser.key().data(), static_cast<int>(parser.key().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "AdvertisementData.ServiceDataEntry.key"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&service_data_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else goto handle_unusual;
+        continue;
       // repeated string service_uuids = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_service_uuids()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->service_uuids(this->service_uuids_size() - 1).data(),
-            static_cast<int>(this->service_uuids(this->service_uuids_size() - 1).length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "AdvertisementData.service_uuids"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_service_uuids();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:AdvertisementData)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:AdvertisementData)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void AdvertisementData::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:AdvertisementData)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string local_name = 1;
-  if (this->local_name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->local_name().data(), static_cast<int>(this->local_name().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "AdvertisementData.local_name");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->local_name(), output);
-  }
-
-  // .Int32Value tx_power_level = 2;
-  if (this->has_tx_power_level()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->_internal_tx_power_level(), output);
-  }
-
-  // bool connectable = 3;
-  if (this->connectable() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->connectable(), output);
-  }
-
-  // map<int32, bytes> manufacturer_data = 4;
-  if (!this->manufacturer_data().empty()) {
-    typedef ::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::const_pointer
-        ConstPtr;
-    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::int32, ConstPtr > SortItem;
-    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
-
-    if (output->IsSerializationDeterministic() &&
-        this->manufacturer_data().size() > 1) {
-      ::std::unique_ptr<SortItem[]> items(
-          new SortItem[this->manufacturer_data().size()]);
-      typedef ::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::size_type size_type;
-      size_type n = 0;
-      for (::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::const_iterator
-          it = this->manufacturer_data().begin();
-          it != this->manufacturer_data().end(); ++it, ++n) {
-        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
-      }
-      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
-      ::std::unique_ptr<AdvertisementData_ManufacturerDataEntry_DoNotUse> entry;
-      for (size_type i = 0; i < n; i++) {
-        entry.reset(manufacturer_data_.NewEntryWrapper(
-            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
-        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-            4, *entry, output);
-      }
-    } else {
-      ::std::unique_ptr<AdvertisementData_ManufacturerDataEntry_DoNotUse> entry;
-      for (::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::const_iterator
-          it = this->manufacturer_data().begin();
-          it != this->manufacturer_data().end(); ++it) {
-        entry.reset(manufacturer_data_.NewEntryWrapper(
-            it->first, it->second));
-        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-            4, *entry, output);
-      }
-    }
-  }
-
-  // map<string, bytes> service_data = 5;
-  if (!this->service_data().empty()) {
-    typedef ::google::protobuf::Map< ::std::string, ::std::string >::const_pointer
-        ConstPtr;
-    typedef ConstPtr SortItem;
-    typedef ::google::protobuf::internal::CompareByDerefFirst<SortItem> Less;
-    struct Utf8Check {
-      static void Check(ConstPtr p) {
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->first.data(), static_cast<int>(p->first.length()),
-          ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-          "AdvertisementData.ServiceDataEntry.key");
-      }
-    };
-
-    if (output->IsSerializationDeterministic() &&
-        this->service_data().size() > 1) {
-      ::std::unique_ptr<SortItem[]> items(
-          new SortItem[this->service_data().size()]);
-      typedef ::google::protobuf::Map< ::std::string, ::std::string >::size_type size_type;
-      size_type n = 0;
-      for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
-          it = this->service_data().begin();
-          it != this->service_data().end(); ++it, ++n) {
-        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
-      }
-      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
-      ::std::unique_ptr<AdvertisementData_ServiceDataEntry_DoNotUse> entry;
-      for (size_type i = 0; i < n; i++) {
-        entry.reset(service_data_.NewEntryWrapper(
-            items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
-        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-            5, *entry, output);
-        Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
-      }
-    } else {
-      ::std::unique_ptr<AdvertisementData_ServiceDataEntry_DoNotUse> entry;
-      for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
-          it = this->service_data().begin();
-          it != this->service_data().end(); ++it) {
-        entry.reset(service_data_.NewEntryWrapper(
-            it->first, it->second));
-        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-            5, *entry, output);
-        Utf8Check::Check(&*it);
-      }
-    }
-  }
-
-  // repeated string service_uuids = 6;
-  for (int i = 0, n = this->service_uuids_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuids(i).data(), static_cast<int>(this->service_uuids(i).length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "AdvertisementData.service_uuids");
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      6, this->service_uuids(i), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:AdvertisementData)
-}
-
-::google::protobuf::uint8* AdvertisementData::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* AdvertisementData::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:AdvertisementData)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string local_name = 1;
   if (this->local_name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->local_name().data(), static_cast<int>(this->local_name().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_local_name().data(), static_cast<int>(this->_internal_local_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "AdvertisementData.local_name");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->local_name(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_local_name(), target);
   }
 
   // .Int32Value tx_power_level = 2;
   if (this->has_tx_power_level()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        2, this->_internal_tx_power_level(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::tx_power_level(this), target, stream);
   }
 
   // bool connectable = 3;
   if (this->connectable() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->connectable(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_connectable(), target);
   }
 
   // map<int32, bytes> manufacturer_data = 4;
-  if (!this->manufacturer_data().empty()) {
-    typedef ::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::const_pointer
+  if (!this->_internal_manufacturer_data().empty()) {
+    typedef ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::const_pointer
         ConstPtr;
-    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::int32, ConstPtr > SortItem;
-    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+    typedef ::PROTOBUF_NAMESPACE_ID::internal::SortItem< ::PROTOBUF_NAMESPACE_ID::int32, ConstPtr > SortItem;
+    typedef ::PROTOBUF_NAMESPACE_ID::internal::CompareByFirstField<SortItem> Less;
 
-    if (deterministic &&
-        this->manufacturer_data().size() > 1) {
+    if (stream->IsSerializationDeterministic() &&
+        this->_internal_manufacturer_data().size() > 1) {
       ::std::unique_ptr<SortItem[]> items(
-          new SortItem[this->manufacturer_data().size()]);
-      typedef ::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::size_type size_type;
+          new SortItem[this->_internal_manufacturer_data().size()]);
+      typedef ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::size_type size_type;
       size_type n = 0;
-      for (::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::const_iterator
-          it = this->manufacturer_data().begin();
-          it != this->manufacturer_data().end(); ++it, ++n) {
+      for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::const_iterator
+          it = this->_internal_manufacturer_data().begin();
+          it != this->_internal_manufacturer_data().end(); ++it, ++n) {
         items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
       }
       ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
-      ::std::unique_ptr<AdvertisementData_ManufacturerDataEntry_DoNotUse> entry;
       for (size_type i = 0; i < n; i++) {
-        entry.reset(manufacturer_data_.NewEntryWrapper(
-            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
-        target = ::google::protobuf::internal::WireFormatLite::
-                   InternalWriteMessageNoVirtualToArray(
-                       4, *entry, deterministic, target);
-;
+        target = AdvertisementData_ManufacturerDataEntry_DoNotUse::Funcs::InternalSerialize(4, items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second, target, stream);
       }
     } else {
-      ::std::unique_ptr<AdvertisementData_ManufacturerDataEntry_DoNotUse> entry;
-      for (::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::const_iterator
-          it = this->manufacturer_data().begin();
-          it != this->manufacturer_data().end(); ++it) {
-        entry.reset(manufacturer_data_.NewEntryWrapper(
-            it->first, it->second));
-        target = ::google::protobuf::internal::WireFormatLite::
-                   InternalWriteMessageNoVirtualToArray(
-                       4, *entry, deterministic, target);
-;
+      for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::const_iterator
+          it = this->_internal_manufacturer_data().begin();
+          it != this->_internal_manufacturer_data().end(); ++it) {
+        target = AdvertisementData_ManufacturerDataEntry_DoNotUse::Funcs::InternalSerialize(4, it->first, it->second, target, stream);
       }
     }
   }
 
   // map<string, bytes> service_data = 5;
-  if (!this->service_data().empty()) {
-    typedef ::google::protobuf::Map< ::std::string, ::std::string >::const_pointer
+  if (!this->_internal_service_data().empty()) {
+    typedef ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_pointer
         ConstPtr;
     typedef ConstPtr SortItem;
-    typedef ::google::protobuf::internal::CompareByDerefFirst<SortItem> Less;
+    typedef ::PROTOBUF_NAMESPACE_ID::internal::CompareByDerefFirst<SortItem> Less;
     struct Utf8Check {
       static void Check(ConstPtr p) {
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
           p->first.data(), static_cast<int>(p->first.length()),
-          ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+          ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
           "AdvertisementData.ServiceDataEntry.key");
       }
     };
 
-    if (deterministic &&
-        this->service_data().size() > 1) {
+    if (stream->IsSerializationDeterministic() &&
+        this->_internal_service_data().size() > 1) {
       ::std::unique_ptr<SortItem[]> items(
-          new SortItem[this->service_data().size()]);
-      typedef ::google::protobuf::Map< ::std::string, ::std::string >::size_type size_type;
+          new SortItem[this->_internal_service_data().size()]);
+      typedef ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::size_type size_type;
       size_type n = 0;
-      for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
-          it = this->service_data().begin();
-          it != this->service_data().end(); ++it, ++n) {
+      for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+          it = this->_internal_service_data().begin();
+          it != this->_internal_service_data().end(); ++it, ++n) {
         items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
       }
       ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
-      ::std::unique_ptr<AdvertisementData_ServiceDataEntry_DoNotUse> entry;
       for (size_type i = 0; i < n; i++) {
-        entry.reset(service_data_.NewEntryWrapper(
-            items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
-        target = ::google::protobuf::internal::WireFormatLite::
-                   InternalWriteMessageNoVirtualToArray(
-                       5, *entry, deterministic, target);
-;
-        Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
+        target = AdvertisementData_ServiceDataEntry_DoNotUse::Funcs::InternalSerialize(5, items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second, target, stream);
+        Utf8Check::Check(&(*items[static_cast<ptrdiff_t>(i)]));
       }
     } else {
-      ::std::unique_ptr<AdvertisementData_ServiceDataEntry_DoNotUse> entry;
-      for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
-          it = this->service_data().begin();
-          it != this->service_data().end(); ++it) {
-        entry.reset(service_data_.NewEntryWrapper(
-            it->first, it->second));
-        target = ::google::protobuf::internal::WireFormatLite::
-                   InternalWriteMessageNoVirtualToArray(
-                       5, *entry, deterministic, target);
-;
-        Utf8Check::Check(&*it);
+      for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+          it = this->_internal_service_data().begin();
+          it != this->_internal_service_data().end(); ++it) {
+        target = AdvertisementData_ServiceDataEntry_DoNotUse::Funcs::InternalSerialize(5, it->first, it->second, target, stream);
+        Utf8Check::Check(&(*it));
       }
     }
   }
 
   // repeated string service_uuids = 6;
-  for (int i = 0, n = this->service_uuids_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuids(i).data(), static_cast<int>(this->service_uuids(i).length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+  for (int i = 0, n = this->_internal_service_uuids_size(); i < n; i++) {
+    const auto& s = this->_internal_service_uuids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "AdvertisementData.service_uuids");
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteStringToArray(6, this->service_uuids(i), target);
+    target = stream->WriteString(6, s, target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:AdvertisementData)
   return target;
@@ -2166,58 +1489,47 @@ size_t AdvertisementData::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:AdvertisementData)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // map<int32, bytes> manufacturer_data = 4;
   total_size += 1 *
-      ::google::protobuf::internal::FromIntSize(this->manufacturer_data_size());
-  {
-    ::std::unique_ptr<AdvertisementData_ManufacturerDataEntry_DoNotUse> entry;
-    for (::google::protobuf::Map< ::google::protobuf::int32, ::std::string >::const_iterator
-        it = this->manufacturer_data().begin();
-        it != this->manufacturer_data().end(); ++it) {
-      entry.reset(manufacturer_data_.NewEntryWrapper(it->first, it->second));
-      total_size += ::google::protobuf::internal::WireFormatLite::
-          MessageSizeNoVirtual(*entry);
-    }
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_manufacturer_data_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::const_iterator
+      it = this->_internal_manufacturer_data().begin();
+      it != this->_internal_manufacturer_data().end(); ++it) {
+    total_size += AdvertisementData_ManufacturerDataEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
   // map<string, bytes> service_data = 5;
   total_size += 1 *
-      ::google::protobuf::internal::FromIntSize(this->service_data_size());
-  {
-    ::std::unique_ptr<AdvertisementData_ServiceDataEntry_DoNotUse> entry;
-    for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
-        it = this->service_data().begin();
-        it != this->service_data().end(); ++it) {
-      entry.reset(service_data_.NewEntryWrapper(it->first, it->second));
-      total_size += ::google::protobuf::internal::WireFormatLite::
-          MessageSizeNoVirtual(*entry);
-    }
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_service_data_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+      it = this->_internal_service_data().begin();
+      it != this->_internal_service_data().end(); ++it) {
+    total_size += AdvertisementData_ServiceDataEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
   // repeated string service_uuids = 6;
   total_size += 1 *
-      ::google::protobuf::internal::FromIntSize(this->service_uuids_size());
-  for (int i = 0, n = this->service_uuids_size(); i < n; i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->service_uuids(i));
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(service_uuids_.size());
+  for (int i = 0, n = service_uuids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      service_uuids_.Get(i));
   }
 
   // string local_name = 1;
   if (this->local_name().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->local_name());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_local_name());
   }
 
   // .Int32Value tx_power_level = 2;
   if (this->has_tx_power_level()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *tx_power_level_);
   }
 
@@ -2226,53 +1538,39 @@ size_t AdvertisementData::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void AdvertisementData::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:AdvertisementData)
-  GOOGLE_DCHECK_NE(&from, this);
-  const AdvertisementData* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const AdvertisementData>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:AdvertisementData)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:AdvertisementData)
-    MergeFrom(*source);
-  }
+void AdvertisementData::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const AdvertisementData*>(
+      &from));
 }
 
 void AdvertisementData::MergeFrom(const AdvertisementData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:AdvertisementData)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   manufacturer_data_.MergeFrom(from.manufacturer_data_);
   service_data_.MergeFrom(from.service_data_);
   service_uuids_.MergeFrom(from.service_uuids_);
   if (from.local_name().size() > 0) {
-
-    local_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.local_name_);
+    _internal_set_local_name(from._internal_local_name());
   }
   if (from.has_tx_power_level()) {
-    mutable_tx_power_level()->::Int32Value::MergeFrom(from.tx_power_level());
+    _internal_mutable_tx_power_level()->::Int32Value::MergeFrom(from._internal_tx_power_level());
   }
   if (from.connectable() != 0) {
-    set_connectable(from.connectable());
+    _internal_set_connectable(from._internal_connectable());
   }
-}
-
-void AdvertisementData::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:AdvertisementData)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void AdvertisementData::CopyFrom(const AdvertisementData& from) {
@@ -2286,50 +1584,43 @@ bool AdvertisementData::IsInitialized() const {
   return true;
 }
 
-void AdvertisementData::Swap(AdvertisementData* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void AdvertisementData::InternalSwap(AdvertisementData* other) {
   using std::swap;
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
   manufacturer_data_.Swap(&other->manufacturer_data_);
   service_data_.Swap(&other->service_data_);
-  service_uuids_.InternalSwap(CastToBase(&other->service_uuids_));
-  local_name_.Swap(&other->local_name_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(tx_power_level_, other->tx_power_level_);
-  swap(connectable_, other->connectable_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  service_uuids_.InternalSwap(&other->service_uuids_);
+  local_name_.Swap(&other->local_name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AdvertisementData, connectable_)
+      + sizeof(AdvertisementData::connectable_)
+      - PROTOBUF_FIELD_OFFSET(AdvertisementData, tx_power_level_)>(
+          reinterpret_cast<char*>(&tx_power_level_),
+          reinterpret_cast<char*>(&other->tx_power_level_));
 }
 
-::google::protobuf::Metadata AdvertisementData::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string AdvertisementData::GetTypeName() const {
+  return "AdvertisementData";
 }
 
 
 // ===================================================================
 
-void ScanSettings::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ScanSettings::kAndroidScanModeFieldNumber;
-const int ScanSettings::kServiceUuidsFieldNumber;
-const int ScanSettings::kAllowDuplicatesFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class ScanSettings::_Internal {
+ public:
+};
 
-ScanSettings::ScanSettings()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_ScanSettings.base);
+ScanSettings::ScanSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena),
+  service_uuids_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:ScanSettings)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ScanSettings)
 }
 ScanSettings::ScanSettings(const ScanSettings& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
       service_uuids_(from.service_uuids_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   ::memcpy(&android_scan_mode_, &from.android_scan_mode_,
     static_cast<size_t>(reinterpret_cast<char*>(&allow_duplicates_) -
     reinterpret_cast<char*>(&android_scan_mode_)) + sizeof(allow_duplicates_));
@@ -2337,36 +1628,41 @@ ScanSettings::ScanSettings(const ScanSettings& from)
 }
 
 void ScanSettings::SharedCtor() {
-  ::memset(&android_scan_mode_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&allow_duplicates_) -
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ScanSettings_flutterblue_2eproto.base);
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&android_scan_mode_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&allow_duplicates_) -
       reinterpret_cast<char*>(&android_scan_mode_)) + sizeof(allow_duplicates_));
 }
 
 ScanSettings::~ScanSettings() {
   // @@protoc_insertion_point(destructor:ScanSettings)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void ScanSettings::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void ScanSettings::ArenaDtor(void* object) {
+  ScanSettings* _this = reinterpret_cast< ScanSettings* >(object);
+  (void)_this;
+}
+void ScanSettings::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ScanSettings::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ScanSettings::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const ScanSettings& ScanSettings::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_ScanSettings.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ScanSettings_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void ScanSettings::Clear() {
 // @@protoc_insertion_point(message_clear_start:ScanSettings)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -2374,147 +1670,97 @@ void ScanSettings::Clear() {
   ::memset(&android_scan_mode_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&allow_duplicates_) -
       reinterpret_cast<char*>(&android_scan_mode_)) + sizeof(allow_duplicates_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool ScanSettings::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ScanSettings)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* ScanSettings::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // int32 android_scan_mode = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &android_scan_mode_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          android_scan_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // repeated string service_uuids = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_service_uuids()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->service_uuids(this->service_uuids_size() - 1).data(),
-            static_cast<int>(this->service_uuids(this->service_uuids_size() - 1).length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ScanSettings.service_uuids"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_service_uuids();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
       // bool allow_duplicates = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &allow_duplicates_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          allow_duplicates_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:ScanSettings)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:ScanSettings)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void ScanSettings::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ScanSettings)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 android_scan_mode = 1;
-  if (this->android_scan_mode() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->android_scan_mode(), output);
-  }
-
-  // repeated string service_uuids = 2;
-  for (int i = 0, n = this->service_uuids_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuids(i).data(), static_cast<int>(this->service_uuids(i).length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ScanSettings.service_uuids");
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->service_uuids(i), output);
-  }
-
-  // bool allow_duplicates = 3;
-  if (this->allow_duplicates() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->allow_duplicates(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ScanSettings)
-}
-
-::google::protobuf::uint8* ScanSettings::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* ScanSettings::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:ScanSettings)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // int32 android_scan_mode = 1;
   if (this->android_scan_mode() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->android_scan_mode(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_android_scan_mode(), target);
   }
 
   // repeated string service_uuids = 2;
-  for (int i = 0, n = this->service_uuids_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuids(i).data(), static_cast<int>(this->service_uuids(i).length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+  for (int i = 0, n = this->_internal_service_uuids_size(); i < n; i++) {
+    const auto& s = this->_internal_service_uuids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ScanSettings.service_uuids");
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteStringToArray(2, this->service_uuids(i), target);
+    target = stream->WriteString(2, s, target);
   }
 
   // bool allow_duplicates = 3;
   if (this->allow_duplicates() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->allow_duplicates(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_allow_duplicates(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:ScanSettings)
   return target;
@@ -2524,24 +1770,23 @@ size_t ScanSettings::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:ScanSettings)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // repeated string service_uuids = 2;
   total_size += 1 *
-      ::google::protobuf::internal::FromIntSize(this->service_uuids_size());
-  for (int i = 0, n = this->service_uuids_size(); i < n; i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->service_uuids(i));
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(service_uuids_.size());
+  for (int i = 0, n = service_uuids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      service_uuids_.Get(i));
   }
 
   // int32 android_scan_mode = 1;
   if (this->android_scan_mode() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->android_scan_mode());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_android_scan_mode());
   }
 
   // bool allow_duplicates = 3;
@@ -2549,47 +1794,34 @@ size_t ScanSettings::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void ScanSettings::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ScanSettings)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ScanSettings* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ScanSettings>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ScanSettings)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ScanSettings)
-    MergeFrom(*source);
-  }
+void ScanSettings::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ScanSettings*>(
+      &from));
 }
 
 void ScanSettings::MergeFrom(const ScanSettings& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:ScanSettings)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   service_uuids_.MergeFrom(from.service_uuids_);
   if (from.android_scan_mode() != 0) {
-    set_android_scan_mode(from.android_scan_mode());
+    _internal_set_android_scan_mode(from._internal_android_scan_mode());
   }
   if (from.allow_duplicates() != 0) {
-    set_allow_duplicates(from.allow_duplicates());
+    _internal_set_allow_duplicates(from._internal_allow_duplicates());
   }
-}
-
-void ScanSettings::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ScanSettings)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void ScanSettings::CopyFrom(const ScanSettings& from) {
@@ -2603,238 +1835,196 @@ bool ScanSettings::IsInitialized() const {
   return true;
 }
 
-void ScanSettings::Swap(ScanSettings* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void ScanSettings::InternalSwap(ScanSettings* other) {
   using std::swap;
-  service_uuids_.InternalSwap(CastToBase(&other->service_uuids_));
-  swap(android_scan_mode_, other->android_scan_mode_);
-  swap(allow_duplicates_, other->allow_duplicates_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  service_uuids_.InternalSwap(&other->service_uuids_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ScanSettings, allow_duplicates_)
+      + sizeof(ScanSettings::allow_duplicates_)
+      - PROTOBUF_FIELD_OFFSET(ScanSettings, android_scan_mode_)>(
+          reinterpret_cast<char*>(&android_scan_mode_),
+          reinterpret_cast<char*>(&other->android_scan_mode_));
 }
 
-::google::protobuf::Metadata ScanSettings::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string ScanSettings::GetTypeName() const {
+  return "ScanSettings";
 }
 
 
 // ===================================================================
 
-void ScanResult::InitAsDefaultInstance() {
-  ::_ScanResult_default_instance_._instance.get_mutable()->device_ = const_cast< ::BluetoothDevice*>(
-      ::BluetoothDevice::internal_default_instance());
-  ::_ScanResult_default_instance_._instance.get_mutable()->advertisement_data_ = const_cast< ::AdvertisementData*>(
-      ::AdvertisementData::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ScanResult::kDeviceFieldNumber;
-const int ScanResult::kAdvertisementDataFieldNumber;
-const int ScanResult::kRssiFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class ScanResult::_Internal {
+ public:
+  static const ::BluetoothDevice& device(const ScanResult* msg);
+  static const ::AdvertisementData& advertisement_data(const ScanResult* msg);
+};
 
-ScanResult::ScanResult()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_ScanResult.base);
+const ::BluetoothDevice&
+ScanResult::_Internal::device(const ScanResult* msg) {
+  return *msg->device_;
+}
+const ::AdvertisementData&
+ScanResult::_Internal::advertisement_data(const ScanResult* msg) {
+  return *msg->advertisement_data_;
+}
+ScanResult::ScanResult(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:ScanResult)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ScanResult)
 }
 ScanResult::ScanResult(const ScanResult& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.has_device()) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  if (from._internal_has_device()) {
     device_ = new ::BluetoothDevice(*from.device_);
   } else {
-    device_ = NULL;
+    device_ = nullptr;
   }
-  if (from.has_advertisement_data()) {
+  if (from._internal_has_advertisement_data()) {
     advertisement_data_ = new ::AdvertisementData(*from.advertisement_data_);
   } else {
-    advertisement_data_ = NULL;
+    advertisement_data_ = nullptr;
   }
   rssi_ = from.rssi_;
   // @@protoc_insertion_point(copy_constructor:ScanResult)
 }
 
 void ScanResult::SharedCtor() {
-  ::memset(&device_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&rssi_) -
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ScanResult_flutterblue_2eproto.base);
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&device_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&rssi_) -
       reinterpret_cast<char*>(&device_)) + sizeof(rssi_));
 }
 
 ScanResult::~ScanResult() {
   // @@protoc_insertion_point(destructor:ScanResult)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void ScanResult::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete device_;
   if (this != internal_default_instance()) delete advertisement_data_;
 }
 
+void ScanResult::ArenaDtor(void* object) {
+  ScanResult* _this = reinterpret_cast< ScanResult* >(object);
+  (void)_this;
+}
+void ScanResult::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ScanResult::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ScanResult::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const ScanResult& ScanResult::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_ScanResult.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ScanResult_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void ScanResult::Clear() {
 // @@protoc_insertion_point(message_clear_start:ScanResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == NULL && device_ != NULL) {
+  if (GetArena() == nullptr && device_ != nullptr) {
     delete device_;
   }
-  device_ = NULL;
-  if (GetArenaNoVirtual() == NULL && advertisement_data_ != NULL) {
+  device_ = nullptr;
+  if (GetArena() == nullptr && advertisement_data_ != nullptr) {
     delete advertisement_data_;
   }
-  advertisement_data_ = NULL;
+  advertisement_data_ = nullptr;
   rssi_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool ScanResult::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ScanResult)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* ScanResult::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // .BluetoothDevice device = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_device()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_device(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // .AdvertisementData advertisement_data = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_advertisement_data()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_advertisement_data(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // int32 rssi = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &rssi_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          rssi_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:ScanResult)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:ScanResult)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void ScanResult::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ScanResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .BluetoothDevice device = 1;
-  if (this->has_device()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->_internal_device(), output);
-  }
-
-  // .AdvertisementData advertisement_data = 2;
-  if (this->has_advertisement_data()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->_internal_advertisement_data(), output);
-  }
-
-  // int32 rssi = 3;
-  if (this->rssi() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->rssi(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ScanResult)
-}
-
-::google::protobuf::uint8* ScanResult::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* ScanResult::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:ScanResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .BluetoothDevice device = 1;
   if (this->has_device()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        1, this->_internal_device(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::device(this), target, stream);
   }
 
   // .AdvertisementData advertisement_data = 2;
   if (this->has_advertisement_data()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        2, this->_internal_advertisement_data(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::advertisement_data(this), target, stream);
   }
 
   // int32 rssi = 3;
   if (this->rssi() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->rssi(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_rssi(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:ScanResult)
   return target;
@@ -2844,75 +2034,61 @@ size_t ScanResult::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:ScanResult)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // .BluetoothDevice device = 1;
   if (this->has_device()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *device_);
   }
 
   // .AdvertisementData advertisement_data = 2;
   if (this->has_advertisement_data()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *advertisement_data_);
   }
 
   // int32 rssi = 3;
   if (this->rssi() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->rssi());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_rssi());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void ScanResult::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ScanResult)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ScanResult* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ScanResult>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ScanResult)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ScanResult)
-    MergeFrom(*source);
-  }
+void ScanResult::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ScanResult*>(
+      &from));
 }
 
 void ScanResult::MergeFrom(const ScanResult& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:ScanResult)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.has_device()) {
-    mutable_device()->::BluetoothDevice::MergeFrom(from.device());
+    _internal_mutable_device()->::BluetoothDevice::MergeFrom(from._internal_device());
   }
   if (from.has_advertisement_data()) {
-    mutable_advertisement_data()->::AdvertisementData::MergeFrom(from.advertisement_data());
+    _internal_mutable_advertisement_data()->::AdvertisementData::MergeFrom(from._internal_advertisement_data());
   }
   if (from.rssi() != 0) {
-    set_rssi(from.rssi());
+    _internal_set_rssi(from._internal_rssi());
   }
-}
-
-void ScanResult::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ScanResult)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void ScanResult::CopyFrom(const ScanResult& from) {
@@ -2926,205 +2102,159 @@ bool ScanResult::IsInitialized() const {
   return true;
 }
 
-void ScanResult::Swap(ScanResult* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void ScanResult::InternalSwap(ScanResult* other) {
   using std::swap;
-  swap(device_, other->device_);
-  swap(advertisement_data_, other->advertisement_data_);
-  swap(rssi_, other->rssi_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ScanResult, rssi_)
+      + sizeof(ScanResult::rssi_)
+      - PROTOBUF_FIELD_OFFSET(ScanResult, device_)>(
+          reinterpret_cast<char*>(&device_),
+          reinterpret_cast<char*>(&other->device_));
 }
 
-::google::protobuf::Metadata ScanResult::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string ScanResult::GetTypeName() const {
+  return "ScanResult";
 }
 
 
 // ===================================================================
 
-void ConnectRequest::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ConnectRequest::kRemoteIdFieldNumber;
-const int ConnectRequest::kAndroidAutoConnectFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class ConnectRequest::_Internal {
+ public:
+};
 
-ConnectRequest::ConnectRequest()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_ConnectRequest.base);
+ConnectRequest::ConnectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:ConnectRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ConnectRequest)
 }
 ConnectRequest::ConnectRequest(const ConnectRequest& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
   android_auto_connect_ = from.android_auto_connect_;
   // @@protoc_insertion_point(copy_constructor:ConnectRequest)
 }
 
 void ConnectRequest::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ConnectRequest_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   android_auto_connect_ = false;
 }
 
 ConnectRequest::~ConnectRequest() {
   // @@protoc_insertion_point(destructor:ConnectRequest)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void ConnectRequest::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void ConnectRequest::ArenaDtor(void* object) {
+  ConnectRequest* _this = reinterpret_cast< ConnectRequest* >(object);
+  (void)_this;
+}
+void ConnectRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ConnectRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ConnectRequest::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const ConnectRequest& ConnectRequest::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_ConnectRequest.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ConnectRequest_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void ConnectRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:ConnectRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  remote_id_.ClearToEmpty();
   android_auto_connect_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool ConnectRequest::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ConnectRequest)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* ConnectRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ConnectRequest.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool android_auto_connect = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &android_auto_connect_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          android_auto_connect_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:ConnectRequest)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:ConnectRequest)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void ConnectRequest::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ConnectRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ConnectRequest.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // bool android_auto_connect = 2;
-  if (this->android_auto_connect() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->android_auto_connect(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ConnectRequest)
-}
-
-::google::protobuf::uint8* ConnectRequest::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* ConnectRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:ConnectRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ConnectRequest.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // bool android_auto_connect = 2;
   if (this->android_auto_connect() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->android_auto_connect(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_android_auto_connect(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:ConnectRequest)
   return target;
@@ -3134,16 +2264,15 @@ size_t ConnectRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:ConnectRequest)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // bool android_auto_connect = 2;
@@ -3151,47 +2280,33 @@ size_t ConnectRequest::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void ConnectRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ConnectRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ConnectRequest* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ConnectRequest>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ConnectRequest)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ConnectRequest)
-    MergeFrom(*source);
-  }
+void ConnectRequest::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ConnectRequest*>(
+      &from));
 }
 
 void ConnectRequest::MergeFrom(const ConnectRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:ConnectRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.android_auto_connect() != 0) {
-    set_android_auto_connect(from.android_auto_connect());
+    _internal_set_android_auto_connect(from._internal_android_auto_connect());
   }
-}
-
-void ConnectRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ConnectRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void ConnectRequest::CopyFrom(const ConnectRequest& from) {
@@ -3205,253 +2320,184 @@ bool ConnectRequest::IsInitialized() const {
   return true;
 }
 
-void ConnectRequest::Swap(ConnectRequest* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void ConnectRequest::InternalSwap(ConnectRequest* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(android_auto_connect_, other->android_auto_connect_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata ConnectRequest::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string ConnectRequest::GetTypeName() const {
+  return "ConnectRequest";
 }
 
 
 // ===================================================================
 
-void BluetoothDevice::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int BluetoothDevice::kRemoteIdFieldNumber;
-const int BluetoothDevice::kNameFieldNumber;
-const int BluetoothDevice::kTypeFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class BluetoothDevice::_Internal {
+ public:
+};
 
-BluetoothDevice::BluetoothDevice()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothDevice.base);
+BluetoothDevice::BluetoothDevice(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:BluetoothDevice)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:BluetoothDevice)
 }
 BluetoothDevice::BluetoothDevice(const BluetoothDevice& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.name().size() > 0) {
-    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArena());
   }
   type_ = from.type_;
   // @@protoc_insertion_point(copy_constructor:BluetoothDevice)
 }
 
 void BluetoothDevice::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_BluetoothDevice_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   type_ = 0;
 }
 
 BluetoothDevice::~BluetoothDevice() {
   // @@protoc_insertion_point(destructor:BluetoothDevice)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void BluetoothDevice::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void BluetoothDevice::ArenaDtor(void* object) {
+  BluetoothDevice* _this = reinterpret_cast< BluetoothDevice* >(object);
+  (void)_this;
+}
+void BluetoothDevice::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void BluetoothDevice::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* BluetoothDevice::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const BluetoothDevice& BluetoothDevice::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_BluetoothDevice.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_BluetoothDevice_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void BluetoothDevice::Clear() {
 // @@protoc_insertion_point(message_clear_start:BluetoothDevice)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  remote_id_.ClearToEmpty();
+  name_.ClearToEmpty();
   type_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool BluetoothDevice::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:BluetoothDevice)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* BluetoothDevice::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothDevice.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string name = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_name()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->name().data(), static_cast<int>(this->name().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothDevice.name"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // .BluetoothDevice.Type type = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          set_type(static_cast< ::BluetoothDevice_Type >(value));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_type(static_cast<::BluetoothDevice_Type>(val));
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:BluetoothDevice)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:BluetoothDevice)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void BluetoothDevice::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:BluetoothDevice)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothDevice.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // string name = 2;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->name().data(), static_cast<int>(this->name().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothDevice.name");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->name(), output);
-  }
-
-  // .BluetoothDevice.Type type = 3;
-  if (this->type() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      3, this->type(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:BluetoothDevice)
-}
-
-::google::protobuf::uint8* BluetoothDevice::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* BluetoothDevice::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:BluetoothDevice)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothDevice.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // string name = 2;
   if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->name().data(), static_cast<int>(this->name().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothDevice.name");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->name(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_name(), target);
   }
 
   // .BluetoothDevice.Type type = 3;
   if (this->type() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      3, this->type(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      3, this->_internal_type(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:BluetoothDevice)
   return target;
@@ -3461,76 +2507,60 @@ size_t BluetoothDevice::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:BluetoothDevice)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // string name = 2;
   if (this->name().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->name());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
   }
 
   // .BluetoothDevice.Type type = 3;
   if (this->type() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_type());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void BluetoothDevice::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:BluetoothDevice)
-  GOOGLE_DCHECK_NE(&from, this);
-  const BluetoothDevice* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const BluetoothDevice>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:BluetoothDevice)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:BluetoothDevice)
-    MergeFrom(*source);
-  }
+void BluetoothDevice::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const BluetoothDevice*>(
+      &from));
 }
 
 void BluetoothDevice::MergeFrom(const BluetoothDevice& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:BluetoothDevice)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+    _internal_set_name(from._internal_name());
   }
   if (from.type() != 0) {
-    set_type(from.type());
+    _internal_set_type(from._internal_type());
   }
-}
-
-void BluetoothDevice::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:BluetoothDevice)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void BluetoothDevice::CopyFrom(const BluetoothDevice& from) {
@@ -3544,316 +2574,229 @@ bool BluetoothDevice::IsInitialized() const {
   return true;
 }
 
-void BluetoothDevice::Swap(BluetoothDevice* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void BluetoothDevice::InternalSwap(BluetoothDevice* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  name_.Swap(&other->name_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(type_, other->type_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata BluetoothDevice::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string BluetoothDevice::GetTypeName() const {
+  return "BluetoothDevice";
 }
 
 
 // ===================================================================
 
-void BluetoothService::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int BluetoothService::kUuidFieldNumber;
-const int BluetoothService::kRemoteIdFieldNumber;
-const int BluetoothService::kIsPrimaryFieldNumber;
-const int BluetoothService::kCharacteristicsFieldNumber;
-const int BluetoothService::kIncludedServicesFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class BluetoothService::_Internal {
+ public:
+};
 
-BluetoothService::BluetoothService()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothService.base);
+BluetoothService::BluetoothService(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena),
+  characteristics_(arena),
+  included_services_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:BluetoothService)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:BluetoothService)
 }
 BluetoothService::BluetoothService(const BluetoothService& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
       characteristics_(from.characteristics_),
       included_services_(from.included_services_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.uuid().size() > 0) {
-    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_uuid().empty()) {
+    uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_uuid(), 
+      GetArena());
   }
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
   is_primary_ = from.is_primary_;
   // @@protoc_insertion_point(copy_constructor:BluetoothService)
 }
 
 void BluetoothService::SharedCtor() {
-  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_BluetoothService_flutterblue_2eproto.base);
+  uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   is_primary_ = false;
 }
 
 BluetoothService::~BluetoothService() {
   // @@protoc_insertion_point(destructor:BluetoothService)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void BluetoothService::SharedDtor() {
-  uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void BluetoothService::ArenaDtor(void* object) {
+  BluetoothService* _this = reinterpret_cast< BluetoothService* >(object);
+  (void)_this;
+}
+void BluetoothService::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void BluetoothService::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* BluetoothService::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const BluetoothService& BluetoothService::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_BluetoothService.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_BluetoothService_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void BluetoothService::Clear() {
 // @@protoc_insertion_point(message_clear_start:BluetoothService)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   characteristics_.Clear();
   included_services_.Clear();
-  uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  uuid_.ClearToEmpty();
+  remote_id_.ClearToEmpty();
   is_primary_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool BluetoothService::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:BluetoothService)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* BluetoothService::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string uuid = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->uuid().data(), static_cast<int>(this->uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothService.uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string remote_id = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothService.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool is_primary = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &is_primary_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          is_primary_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // repeated .BluetoothCharacteristic characteristics = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_characteristics()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_characteristics(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else goto handle_unusual;
+        continue;
       // repeated .BluetoothService included_services = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_included_services()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_included_services(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:BluetoothService)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:BluetoothService)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void BluetoothService::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:BluetoothService)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string uuid = 1;
-  if (this->uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->uuid().data(), static_cast<int>(this->uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothService.uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->uuid(), output);
-  }
-
-  // string remote_id = 2;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothService.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->remote_id(), output);
-  }
-
-  // bool is_primary = 3;
-  if (this->is_primary() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->is_primary(), output);
-  }
-
-  // repeated .BluetoothCharacteristic characteristics = 4;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->characteristics_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      4,
-      this->characteristics(static_cast<int>(i)),
-      output);
-  }
-
-  // repeated .BluetoothService included_services = 5;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->included_services_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5,
-      this->included_services(static_cast<int>(i)),
-      output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:BluetoothService)
-}
-
-::google::protobuf::uint8* BluetoothService::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* BluetoothService::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:BluetoothService)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string uuid = 1;
   if (this->uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->uuid().data(), static_cast<int>(this->uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_uuid().data(), static_cast<int>(this->_internal_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothService.uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_uuid(), target);
   }
 
   // string remote_id = 2;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothService.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_remote_id(), target);
   }
 
   // bool is_primary = 3;
   if (this->is_primary() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->is_primary(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_is_primary(), target);
   }
 
   // repeated .BluetoothCharacteristic characteristics = 4;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->characteristics_size()); i < n; i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        4, this->characteristics(static_cast<int>(i)), deterministic, target);
+      n = static_cast<unsigned int>(this->_internal_characteristics_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(4, this->_internal_characteristics(i), target, stream);
   }
 
   // repeated .BluetoothService included_services = 5;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->included_services_size()); i < n; i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        5, this->included_services(static_cast<int>(i)), deterministic, target);
+      n = static_cast<unsigned int>(this->_internal_included_services_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, this->_internal_included_services(i), target, stream);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:BluetoothService)
   return target;
@@ -3863,45 +2806,36 @@ size_t BluetoothService::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:BluetoothService)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // repeated .BluetoothCharacteristic characteristics = 4;
-  {
-    unsigned int count = static_cast<unsigned int>(this->characteristics_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->characteristics(static_cast<int>(i)));
-    }
+  total_size += 1UL * this->_internal_characteristics_size();
+  for (const auto& msg : this->characteristics_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .BluetoothService included_services = 5;
-  {
-    unsigned int count = static_cast<unsigned int>(this->included_services_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->included_services(static_cast<int>(i)));
-    }
+  total_size += 1UL * this->_internal_included_services_size();
+  for (const auto& msg : this->included_services_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // string uuid = 1;
   if (this->uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_uuid());
   }
 
   // string remote_id = 2;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // bool is_primary = 3;
@@ -3909,53 +2843,38 @@ size_t BluetoothService::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void BluetoothService::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:BluetoothService)
-  GOOGLE_DCHECK_NE(&from, this);
-  const BluetoothService* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const BluetoothService>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:BluetoothService)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:BluetoothService)
-    MergeFrom(*source);
-  }
+void BluetoothService::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const BluetoothService*>(
+      &from));
 }
 
 void BluetoothService::MergeFrom(const BluetoothService& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:BluetoothService)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   characteristics_.MergeFrom(from.characteristics_);
   included_services_.MergeFrom(from.included_services_);
   if (from.uuid().size() > 0) {
-
-    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+    _internal_set_uuid(from._internal_uuid());
   }
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.is_primary() != 0) {
-    set_is_primary(from.is_primary());
+    _internal_set_is_primary(from._internal_is_primary());
   }
-}
-
-void BluetoothService::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:BluetoothService)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void BluetoothService::CopyFrom(const BluetoothService& from) {
@@ -3969,420 +2888,299 @@ bool BluetoothService::IsInitialized() const {
   return true;
 }
 
-void BluetoothService::Swap(BluetoothService* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void BluetoothService::InternalSwap(BluetoothService* other) {
   using std::swap;
-  CastToBase(&characteristics_)->InternalSwap(CastToBase(&other->characteristics_));
-  CastToBase(&included_services_)->InternalSwap(CastToBase(&other->included_services_));
-  uuid_.Swap(&other->uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  characteristics_.InternalSwap(&other->characteristics_);
+  included_services_.InternalSwap(&other->included_services_);
+  uuid_.Swap(&other->uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(is_primary_, other->is_primary_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata BluetoothService::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string BluetoothService::GetTypeName() const {
+  return "BluetoothService";
 }
 
 
 // ===================================================================
 
-void BluetoothCharacteristic::InitAsDefaultInstance() {
-  ::_BluetoothCharacteristic_default_instance_._instance.get_mutable()->properties_ = const_cast< ::CharacteristicProperties*>(
-      ::CharacteristicProperties::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int BluetoothCharacteristic::kUuidFieldNumber;
-const int BluetoothCharacteristic::kRemoteIdFieldNumber;
-const int BluetoothCharacteristic::kServiceUuidFieldNumber;
-const int BluetoothCharacteristic::kSecondaryServiceUuidFieldNumber;
-const int BluetoothCharacteristic::kDescriptorsFieldNumber;
-const int BluetoothCharacteristic::kPropertiesFieldNumber;
-const int BluetoothCharacteristic::kValueFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class BluetoothCharacteristic::_Internal {
+ public:
+  static const ::CharacteristicProperties& properties(const BluetoothCharacteristic* msg);
+};
 
-BluetoothCharacteristic::BluetoothCharacteristic()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothCharacteristic.base);
+const ::CharacteristicProperties&
+BluetoothCharacteristic::_Internal::properties(const BluetoothCharacteristic* msg) {
+  return *msg->properties_;
+}
+BluetoothCharacteristic::BluetoothCharacteristic(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena),
+  descriptors_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:BluetoothCharacteristic)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:BluetoothCharacteristic)
 }
 BluetoothCharacteristic::BluetoothCharacteristic(const BluetoothCharacteristic& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
       descriptors_(from.descriptors_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.uuid().size() > 0) {
-    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_uuid().empty()) {
+    uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_uuid(), 
+      GetArena());
   }
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  serviceuuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.serviceuuid().size() > 0) {
-    serviceuuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serviceuuid_);
+  serviceuuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_serviceuuid().empty()) {
+    serviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_serviceuuid(), 
+      GetArena());
   }
-  secondaryserviceuuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.secondaryserviceuuid().size() > 0) {
-    secondaryserviceuuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondaryserviceuuid_);
+  secondaryserviceuuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_secondaryserviceuuid().empty()) {
+    secondaryserviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_secondaryserviceuuid(), 
+      GetArena());
   }
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.value().size() > 0) {
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_value().empty()) {
+    value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_value(), 
+      GetArena());
   }
-  if (from.has_properties()) {
+  if (from._internal_has_properties()) {
     properties_ = new ::CharacteristicProperties(*from.properties_);
   } else {
-    properties_ = NULL;
+    properties_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:BluetoothCharacteristic)
 }
 
 void BluetoothCharacteristic::SharedCtor() {
-  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  serviceuuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondaryserviceuuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  properties_ = NULL;
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_BluetoothCharacteristic_flutterblue_2eproto.base);
+  uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  serviceuuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondaryserviceuuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  properties_ = nullptr;
 }
 
 BluetoothCharacteristic::~BluetoothCharacteristic() {
   // @@protoc_insertion_point(destructor:BluetoothCharacteristic)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void BluetoothCharacteristic::SharedDtor() {
-  uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  serviceuuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondaryserviceuuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  serviceuuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondaryserviceuuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete properties_;
 }
 
+void BluetoothCharacteristic::ArenaDtor(void* object) {
+  BluetoothCharacteristic* _this = reinterpret_cast< BluetoothCharacteristic* >(object);
+  (void)_this;
+}
+void BluetoothCharacteristic::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void BluetoothCharacteristic::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* BluetoothCharacteristic::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const BluetoothCharacteristic& BluetoothCharacteristic::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_BluetoothCharacteristic.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_BluetoothCharacteristic_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void BluetoothCharacteristic::Clear() {
 // @@protoc_insertion_point(message_clear_start:BluetoothCharacteristic)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   descriptors_.Clear();
-  uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  serviceuuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondaryserviceuuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && properties_ != NULL) {
+  uuid_.ClearToEmpty();
+  remote_id_.ClearToEmpty();
+  serviceuuid_.ClearToEmpty();
+  secondaryserviceuuid_.ClearToEmpty();
+  value_.ClearToEmpty();
+  if (GetArena() == nullptr && properties_ != nullptr) {
     delete properties_;
   }
-  properties_ = NULL;
-  _internal_metadata_.Clear();
+  properties_ = nullptr;
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool BluetoothCharacteristic::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:BluetoothCharacteristic)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* BluetoothCharacteristic::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string uuid = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->uuid().data(), static_cast<int>(this->uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothCharacteristic.uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string remote_id = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothCharacteristic.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string serviceUuid = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_serviceuuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->serviceuuid().data(), static_cast<int>(this->serviceuuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothCharacteristic.serviceUuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_serviceuuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string secondaryServiceUuid = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_secondaryserviceuuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->secondaryserviceuuid().data(), static_cast<int>(this->secondaryserviceuuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothCharacteristic.secondaryServiceUuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_secondaryserviceuuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // repeated .BluetoothDescriptor descriptors = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_descriptors()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_descriptors(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else goto handle_unusual;
+        continue;
       // .CharacteristicProperties properties = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_properties()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_properties(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bytes value = 7;
-      case 7: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(58u /* 58 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_value()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          auto str = _internal_mutable_value();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:BluetoothCharacteristic)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:BluetoothCharacteristic)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void BluetoothCharacteristic::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:BluetoothCharacteristic)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string uuid = 1;
-  if (this->uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->uuid().data(), static_cast<int>(this->uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothCharacteristic.uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->uuid(), output);
-  }
-
-  // string remote_id = 2;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothCharacteristic.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->remote_id(), output);
-  }
-
-  // string serviceUuid = 3;
-  if (this->serviceuuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->serviceuuid().data(), static_cast<int>(this->serviceuuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothCharacteristic.serviceUuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->serviceuuid(), output);
-  }
-
-  // string secondaryServiceUuid = 4;
-  if (this->secondaryserviceuuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondaryserviceuuid().data(), static_cast<int>(this->secondaryserviceuuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothCharacteristic.secondaryServiceUuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->secondaryserviceuuid(), output);
-  }
-
-  // repeated .BluetoothDescriptor descriptors = 5;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->descriptors_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5,
-      this->descriptors(static_cast<int>(i)),
-      output);
-  }
-
-  // .CharacteristicProperties properties = 6;
-  if (this->has_properties()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      6, this->_internal_properties(), output);
-  }
-
-  // bytes value = 7;
-  if (this->value().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      7, this->value(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:BluetoothCharacteristic)
-}
-
-::google::protobuf::uint8* BluetoothCharacteristic::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* BluetoothCharacteristic::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:BluetoothCharacteristic)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string uuid = 1;
   if (this->uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->uuid().data(), static_cast<int>(this->uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_uuid().data(), static_cast<int>(this->_internal_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothCharacteristic.uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_uuid(), target);
   }
 
   // string remote_id = 2;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothCharacteristic.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_remote_id(), target);
   }
 
   // string serviceUuid = 3;
   if (this->serviceuuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->serviceuuid().data(), static_cast<int>(this->serviceuuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_serviceuuid().data(), static_cast<int>(this->_internal_serviceuuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothCharacteristic.serviceUuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->serviceuuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_serviceuuid(), target);
   }
 
   // string secondaryServiceUuid = 4;
   if (this->secondaryserviceuuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondaryserviceuuid().data(), static_cast<int>(this->secondaryserviceuuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_secondaryserviceuuid().data(), static_cast<int>(this->_internal_secondaryserviceuuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothCharacteristic.secondaryServiceUuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->secondaryserviceuuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_secondaryserviceuuid(), target);
   }
 
   // repeated .BluetoothDescriptor descriptors = 5;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->descriptors_size()); i < n; i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        5, this->descriptors(static_cast<int>(i)), deterministic, target);
+      n = static_cast<unsigned int>(this->_internal_descriptors_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, this->_internal_descriptors(i), target, stream);
   }
 
   // .CharacteristicProperties properties = 6;
   if (this->has_properties()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        6, this->_internal_properties(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        6, _Internal::properties(this), target, stream);
   }
 
   // bytes value = 7;
   if (this->value().size() > 0) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        7, this->value(), target);
+    target = stream->WriteBytesMaybeAliased(
+        7, this->_internal_value(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:BluetoothCharacteristic)
   return target;
@@ -4392,122 +3190,99 @@ size_t BluetoothCharacteristic::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:BluetoothCharacteristic)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // repeated .BluetoothDescriptor descriptors = 5;
-  {
-    unsigned int count = static_cast<unsigned int>(this->descriptors_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->descriptors(static_cast<int>(i)));
-    }
+  total_size += 1UL * this->_internal_descriptors_size();
+  for (const auto& msg : this->descriptors_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // string uuid = 1;
   if (this->uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_uuid());
   }
 
   // string remote_id = 2;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // string serviceUuid = 3;
   if (this->serviceuuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->serviceuuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_serviceuuid());
   }
 
   // string secondaryServiceUuid = 4;
   if (this->secondaryserviceuuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->secondaryserviceuuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_secondaryserviceuuid());
   }
 
   // bytes value = 7;
   if (this->value().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->value());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_value());
   }
 
   // .CharacteristicProperties properties = 6;
   if (this->has_properties()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *properties_);
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void BluetoothCharacteristic::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:BluetoothCharacteristic)
-  GOOGLE_DCHECK_NE(&from, this);
-  const BluetoothCharacteristic* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const BluetoothCharacteristic>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:BluetoothCharacteristic)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:BluetoothCharacteristic)
-    MergeFrom(*source);
-  }
+void BluetoothCharacteristic::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const BluetoothCharacteristic*>(
+      &from));
 }
 
 void BluetoothCharacteristic::MergeFrom(const BluetoothCharacteristic& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:BluetoothCharacteristic)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   descriptors_.MergeFrom(from.descriptors_);
   if (from.uuid().size() > 0) {
-
-    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+    _internal_set_uuid(from._internal_uuid());
   }
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.serviceuuid().size() > 0) {
-
-    serviceuuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serviceuuid_);
+    _internal_set_serviceuuid(from._internal_serviceuuid());
   }
   if (from.secondaryserviceuuid().size() > 0) {
-
-    secondaryserviceuuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondaryserviceuuid_);
+    _internal_set_secondaryserviceuuid(from._internal_secondaryserviceuuid());
   }
   if (from.value().size() > 0) {
-
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+    _internal_set_value(from._internal_value());
   }
   if (from.has_properties()) {
-    mutable_properties()->::CharacteristicProperties::MergeFrom(from.properties());
+    _internal_mutable_properties()->::CharacteristicProperties::MergeFrom(from._internal_properties());
   }
-}
-
-void BluetoothCharacteristic::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:BluetoothCharacteristic)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void BluetoothCharacteristic::CopyFrom(const BluetoothCharacteristic& from) {
@@ -4521,354 +3296,247 @@ bool BluetoothCharacteristic::IsInitialized() const {
   return true;
 }
 
-void BluetoothCharacteristic::Swap(BluetoothCharacteristic* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void BluetoothCharacteristic::InternalSwap(BluetoothCharacteristic* other) {
   using std::swap;
-  CastToBase(&descriptors_)->InternalSwap(CastToBase(&other->descriptors_));
-  uuid_.Swap(&other->uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  serviceuuid_.Swap(&other->serviceuuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  secondaryserviceuuid_.Swap(&other->secondaryserviceuuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  value_.Swap(&other->value_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  descriptors_.InternalSwap(&other->descriptors_);
+  uuid_.Swap(&other->uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  serviceuuid_.Swap(&other->serviceuuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  secondaryserviceuuid_.Swap(&other->secondaryserviceuuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(properties_, other->properties_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata BluetoothCharacteristic::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string BluetoothCharacteristic::GetTypeName() const {
+  return "BluetoothCharacteristic";
 }
 
 
 // ===================================================================
 
-void BluetoothDescriptor::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int BluetoothDescriptor::kUuidFieldNumber;
-const int BluetoothDescriptor::kRemoteIdFieldNumber;
-const int BluetoothDescriptor::kServiceUuidFieldNumber;
-const int BluetoothDescriptor::kCharacteristicUuidFieldNumber;
-const int BluetoothDescriptor::kValueFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class BluetoothDescriptor::_Internal {
+ public:
+};
 
-BluetoothDescriptor::BluetoothDescriptor()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_BluetoothDescriptor.base);
+BluetoothDescriptor::BluetoothDescriptor(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:BluetoothDescriptor)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:BluetoothDescriptor)
 }
 BluetoothDescriptor::BluetoothDescriptor(const BluetoothDescriptor& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.uuid().size() > 0) {
-    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_uuid().empty()) {
+    uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_uuid(), 
+      GetArena());
   }
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  serviceuuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.serviceuuid().size() > 0) {
-    serviceuuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serviceuuid_);
+  serviceuuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_serviceuuid().empty()) {
+    serviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_serviceuuid(), 
+      GetArena());
   }
-  characteristicuuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.characteristicuuid().size() > 0) {
-    characteristicuuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristicuuid_);
+  characteristicuuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_characteristicuuid().empty()) {
+    characteristicuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_characteristicuuid(), 
+      GetArena());
   }
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.value().size() > 0) {
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_value().empty()) {
+    value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_value(), 
+      GetArena());
   }
   // @@protoc_insertion_point(copy_constructor:BluetoothDescriptor)
 }
 
 void BluetoothDescriptor::SharedCtor() {
-  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  serviceuuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristicuuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_BluetoothDescriptor_flutterblue_2eproto.base);
+  uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  serviceuuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristicuuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 BluetoothDescriptor::~BluetoothDescriptor() {
   // @@protoc_insertion_point(destructor:BluetoothDescriptor)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void BluetoothDescriptor::SharedDtor() {
-  uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  serviceuuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristicuuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  serviceuuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristicuuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void BluetoothDescriptor::ArenaDtor(void* object) {
+  BluetoothDescriptor* _this = reinterpret_cast< BluetoothDescriptor* >(object);
+  (void)_this;
+}
+void BluetoothDescriptor::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void BluetoothDescriptor::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* BluetoothDescriptor::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const BluetoothDescriptor& BluetoothDescriptor::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_BluetoothDescriptor.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_BluetoothDescriptor_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void BluetoothDescriptor::Clear() {
 // @@protoc_insertion_point(message_clear_start:BluetoothDescriptor)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  serviceuuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristicuuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _internal_metadata_.Clear();
+  uuid_.ClearToEmpty();
+  remote_id_.ClearToEmpty();
+  serviceuuid_.ClearToEmpty();
+  characteristicuuid_.ClearToEmpty();
+  value_.ClearToEmpty();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool BluetoothDescriptor::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:BluetoothDescriptor)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* BluetoothDescriptor::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string uuid = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->uuid().data(), static_cast<int>(this->uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothDescriptor.uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string remote_id = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothDescriptor.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string serviceUuid = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_serviceuuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->serviceuuid().data(), static_cast<int>(this->serviceuuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothDescriptor.serviceUuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_serviceuuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string characteristicUuid = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_characteristicuuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->characteristicuuid().data(), static_cast<int>(this->characteristicuuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "BluetoothDescriptor.characteristicUuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_characteristicuuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bytes value = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_value()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_value();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:BluetoothDescriptor)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:BluetoothDescriptor)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void BluetoothDescriptor::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:BluetoothDescriptor)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string uuid = 1;
-  if (this->uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->uuid().data(), static_cast<int>(this->uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothDescriptor.uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->uuid(), output);
-  }
-
-  // string remote_id = 2;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothDescriptor.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->remote_id(), output);
-  }
-
-  // string serviceUuid = 3;
-  if (this->serviceuuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->serviceuuid().data(), static_cast<int>(this->serviceuuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothDescriptor.serviceUuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->serviceuuid(), output);
-  }
-
-  // string characteristicUuid = 4;
-  if (this->characteristicuuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristicuuid().data(), static_cast<int>(this->characteristicuuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "BluetoothDescriptor.characteristicUuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->characteristicuuid(), output);
-  }
-
-  // bytes value = 5;
-  if (this->value().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      5, this->value(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:BluetoothDescriptor)
-}
-
-::google::protobuf::uint8* BluetoothDescriptor::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* BluetoothDescriptor::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:BluetoothDescriptor)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string uuid = 1;
   if (this->uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->uuid().data(), static_cast<int>(this->uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_uuid().data(), static_cast<int>(this->_internal_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothDescriptor.uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_uuid(), target);
   }
 
   // string remote_id = 2;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothDescriptor.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_remote_id(), target);
   }
 
   // string serviceUuid = 3;
   if (this->serviceuuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->serviceuuid().data(), static_cast<int>(this->serviceuuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_serviceuuid().data(), static_cast<int>(this->_internal_serviceuuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothDescriptor.serviceUuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->serviceuuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_serviceuuid(), target);
   }
 
   // string characteristicUuid = 4;
   if (this->characteristicuuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristicuuid().data(), static_cast<int>(this->characteristicuuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_characteristicuuid().data(), static_cast<int>(this->_internal_characteristicuuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "BluetoothDescriptor.characteristicUuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->characteristicuuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_characteristicuuid(), target);
   }
 
   // bytes value = 5;
   if (this->value().size() > 0) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        5, this->value(), target);
+    target = stream->WriteBytesMaybeAliased(
+        5, this->_internal_value(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:BluetoothDescriptor)
   return target;
@@ -4878,100 +3546,81 @@ size_t BluetoothDescriptor::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:BluetoothDescriptor)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string uuid = 1;
   if (this->uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_uuid());
   }
 
   // string remote_id = 2;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // string serviceUuid = 3;
   if (this->serviceuuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->serviceuuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_serviceuuid());
   }
 
   // string characteristicUuid = 4;
   if (this->characteristicuuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->characteristicuuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_characteristicuuid());
   }
 
   // bytes value = 5;
   if (this->value().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->value());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_value());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void BluetoothDescriptor::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:BluetoothDescriptor)
-  GOOGLE_DCHECK_NE(&from, this);
-  const BluetoothDescriptor* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const BluetoothDescriptor>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:BluetoothDescriptor)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:BluetoothDescriptor)
-    MergeFrom(*source);
-  }
+void BluetoothDescriptor::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const BluetoothDescriptor*>(
+      &from));
 }
 
 void BluetoothDescriptor::MergeFrom(const BluetoothDescriptor& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:BluetoothDescriptor)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.uuid().size() > 0) {
-
-    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+    _internal_set_uuid(from._internal_uuid());
   }
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.serviceuuid().size() > 0) {
-
-    serviceuuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serviceuuid_);
+    _internal_set_serviceuuid(from._internal_serviceuuid());
   }
   if (from.characteristicuuid().size() > 0) {
-
-    characteristicuuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristicuuid_);
+    _internal_set_characteristicuuid(from._internal_characteristicuuid());
   }
   if (from.value().size() > 0) {
-
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+    _internal_set_value(from._internal_value());
   }
-}
-
-void BluetoothDescriptor::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:BluetoothDescriptor)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void BluetoothDescriptor::CopyFrom(const BluetoothDescriptor& from) {
@@ -4985,59 +3634,36 @@ bool BluetoothDescriptor::IsInitialized() const {
   return true;
 }
 
-void BluetoothDescriptor::Swap(BluetoothDescriptor* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void BluetoothDescriptor::InternalSwap(BluetoothDescriptor* other) {
   using std::swap;
-  uuid_.Swap(&other->uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  serviceuuid_.Swap(&other->serviceuuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  characteristicuuid_.Swap(&other->characteristicuuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  value_.Swap(&other->value_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  uuid_.Swap(&other->uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  serviceuuid_.Swap(&other->serviceuuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  characteristicuuid_.Swap(&other->characteristicuuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
-::google::protobuf::Metadata BluetoothDescriptor::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string BluetoothDescriptor::GetTypeName() const {
+  return "BluetoothDescriptor";
 }
 
 
 // ===================================================================
 
-void CharacteristicProperties::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int CharacteristicProperties::kBroadcastFieldNumber;
-const int CharacteristicProperties::kReadFieldNumber;
-const int CharacteristicProperties::kWriteWithoutResponseFieldNumber;
-const int CharacteristicProperties::kWriteFieldNumber;
-const int CharacteristicProperties::kNotifyFieldNumber;
-const int CharacteristicProperties::kIndicateFieldNumber;
-const int CharacteristicProperties::kAuthenticatedSignedWritesFieldNumber;
-const int CharacteristicProperties::kExtendedPropertiesFieldNumber;
-const int CharacteristicProperties::kNotifyEncryptionRequiredFieldNumber;
-const int CharacteristicProperties::kIndicateEncryptionRequiredFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class CharacteristicProperties::_Internal {
+ public:
+};
 
-CharacteristicProperties::CharacteristicProperties()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_CharacteristicProperties.base);
+CharacteristicProperties::CharacteristicProperties(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:CharacteristicProperties)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:CharacteristicProperties)
 }
 CharacteristicProperties::CharacteristicProperties(const CharacteristicProperties& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   ::memcpy(&broadcast_, &from.broadcast_,
     static_cast<size_t>(reinterpret_cast<char*>(&indicate_encryption_required_) -
     reinterpret_cast<char*>(&broadcast_)) + sizeof(indicate_encryption_required_));
@@ -5045,338 +3671,217 @@ CharacteristicProperties::CharacteristicProperties(const CharacteristicPropertie
 }
 
 void CharacteristicProperties::SharedCtor() {
-  ::memset(&broadcast_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&indicate_encryption_required_) -
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&broadcast_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&indicate_encryption_required_) -
       reinterpret_cast<char*>(&broadcast_)) + sizeof(indicate_encryption_required_));
 }
 
 CharacteristicProperties::~CharacteristicProperties() {
   // @@protoc_insertion_point(destructor:CharacteristicProperties)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void CharacteristicProperties::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void CharacteristicProperties::ArenaDtor(void* object) {
+  CharacteristicProperties* _this = reinterpret_cast< CharacteristicProperties* >(object);
+  (void)_this;
+}
+void CharacteristicProperties::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void CharacteristicProperties::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* CharacteristicProperties::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const CharacteristicProperties& CharacteristicProperties::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_CharacteristicProperties.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_CharacteristicProperties_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void CharacteristicProperties::Clear() {
 // @@protoc_insertion_point(message_clear_start:CharacteristicProperties)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   ::memset(&broadcast_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&indicate_encryption_required_) -
       reinterpret_cast<char*>(&broadcast_)) + sizeof(indicate_encryption_required_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool CharacteristicProperties::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:CharacteristicProperties)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* CharacteristicProperties::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // bool broadcast = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &broadcast_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          broadcast_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool read = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &read_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          read_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool write_without_response = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &write_without_response_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          write_without_response_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool write = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &write_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          write_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool notify = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &notify_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          notify_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool indicate = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &indicate_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          indicate_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool authenticated_signed_writes = 7;
-      case 7: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &authenticated_signed_writes_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          authenticated_signed_writes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool extended_properties = 8;
-      case 8: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &extended_properties_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
+          extended_properties_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool notify_encryption_required = 9;
-      case 9: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &notify_encryption_required_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
+          notify_encryption_required_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool indicate_encryption_required = 10;
-      case 10: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(80u /* 80 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &indicate_encryption_required_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 80)) {
+          indicate_encryption_required_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:CharacteristicProperties)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:CharacteristicProperties)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void CharacteristicProperties::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:CharacteristicProperties)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // bool broadcast = 1;
-  if (this->broadcast() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->broadcast(), output);
-  }
-
-  // bool read = 2;
-  if (this->read() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->read(), output);
-  }
-
-  // bool write_without_response = 3;
-  if (this->write_without_response() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->write_without_response(), output);
-  }
-
-  // bool write = 4;
-  if (this->write() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->write(), output);
-  }
-
-  // bool notify = 5;
-  if (this->notify() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(5, this->notify(), output);
-  }
-
-  // bool indicate = 6;
-  if (this->indicate() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(6, this->indicate(), output);
-  }
-
-  // bool authenticated_signed_writes = 7;
-  if (this->authenticated_signed_writes() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(7, this->authenticated_signed_writes(), output);
-  }
-
-  // bool extended_properties = 8;
-  if (this->extended_properties() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->extended_properties(), output);
-  }
-
-  // bool notify_encryption_required = 9;
-  if (this->notify_encryption_required() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->notify_encryption_required(), output);
-  }
-
-  // bool indicate_encryption_required = 10;
-  if (this->indicate_encryption_required() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(10, this->indicate_encryption_required(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:CharacteristicProperties)
-}
-
-::google::protobuf::uint8* CharacteristicProperties::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* CharacteristicProperties::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:CharacteristicProperties)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // bool broadcast = 1;
   if (this->broadcast() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->broadcast(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_broadcast(), target);
   }
 
   // bool read = 2;
   if (this->read() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->read(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_read(), target);
   }
 
   // bool write_without_response = 3;
   if (this->write_without_response() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->write_without_response(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_write_without_response(), target);
   }
 
   // bool write = 4;
   if (this->write() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->write(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(4, this->_internal_write(), target);
   }
 
   // bool notify = 5;
   if (this->notify() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(5, this->notify(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(5, this->_internal_notify(), target);
   }
 
   // bool indicate = 6;
   if (this->indicate() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(6, this->indicate(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(6, this->_internal_indicate(), target);
   }
 
   // bool authenticated_signed_writes = 7;
   if (this->authenticated_signed_writes() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(7, this->authenticated_signed_writes(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(7, this->_internal_authenticated_signed_writes(), target);
   }
 
   // bool extended_properties = 8;
   if (this->extended_properties() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->extended_properties(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(8, this->_internal_extended_properties(), target);
   }
 
   // bool notify_encryption_required = 9;
   if (this->notify_encryption_required() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(9, this->notify_encryption_required(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(9, this->_internal_notify_encryption_required(), target);
   }
 
   // bool indicate_encryption_required = 10;
   if (this->indicate_encryption_required() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(10, this->indicate_encryption_required(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(10, this->_internal_indicate_encryption_required(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:CharacteristicProperties)
   return target;
@@ -5386,11 +3891,10 @@ size_t CharacteristicProperties::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:CharacteristicProperties)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // bool broadcast = 1;
   if (this->broadcast() != 0) {
     total_size += 1 + 1;
@@ -5441,70 +3945,57 @@ size_t CharacteristicProperties::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void CharacteristicProperties::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:CharacteristicProperties)
-  GOOGLE_DCHECK_NE(&from, this);
-  const CharacteristicProperties* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const CharacteristicProperties>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:CharacteristicProperties)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:CharacteristicProperties)
-    MergeFrom(*source);
-  }
+void CharacteristicProperties::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const CharacteristicProperties*>(
+      &from));
 }
 
 void CharacteristicProperties::MergeFrom(const CharacteristicProperties& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:CharacteristicProperties)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.broadcast() != 0) {
-    set_broadcast(from.broadcast());
+    _internal_set_broadcast(from._internal_broadcast());
   }
   if (from.read() != 0) {
-    set_read(from.read());
+    _internal_set_read(from._internal_read());
   }
   if (from.write_without_response() != 0) {
-    set_write_without_response(from.write_without_response());
+    _internal_set_write_without_response(from._internal_write_without_response());
   }
   if (from.write() != 0) {
-    set_write(from.write());
+    _internal_set_write(from._internal_write());
   }
   if (from.notify() != 0) {
-    set_notify(from.notify());
+    _internal_set_notify(from._internal_notify());
   }
   if (from.indicate() != 0) {
-    set_indicate(from.indicate());
+    _internal_set_indicate(from._internal_indicate());
   }
   if (from.authenticated_signed_writes() != 0) {
-    set_authenticated_signed_writes(from.authenticated_signed_writes());
+    _internal_set_authenticated_signed_writes(from._internal_authenticated_signed_writes());
   }
   if (from.extended_properties() != 0) {
-    set_extended_properties(from.extended_properties());
+    _internal_set_extended_properties(from._internal_extended_properties());
   }
   if (from.notify_encryption_required() != 0) {
-    set_notify_encryption_required(from.notify_encryption_required());
+    _internal_set_notify_encryption_required(from._internal_notify_encryption_required());
   }
   if (from.indicate_encryption_required() != 0) {
-    set_indicate_encryption_required(from.indicate_encryption_required());
+    _internal_set_indicate_encryption_required(from._internal_indicate_encryption_required());
   }
-}
-
-void CharacteristicProperties::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:CharacteristicProperties)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void CharacteristicProperties::CopyFrom(const CharacteristicProperties& from) {
@@ -5518,216 +4009,166 @@ bool CharacteristicProperties::IsInitialized() const {
   return true;
 }
 
-void CharacteristicProperties::Swap(CharacteristicProperties* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void CharacteristicProperties::InternalSwap(CharacteristicProperties* other) {
   using std::swap;
-  swap(broadcast_, other->broadcast_);
-  swap(read_, other->read_);
-  swap(write_without_response_, other->write_without_response_);
-  swap(write_, other->write_);
-  swap(notify_, other->notify_);
-  swap(indicate_, other->indicate_);
-  swap(authenticated_signed_writes_, other->authenticated_signed_writes_);
-  swap(extended_properties_, other->extended_properties_);
-  swap(notify_encryption_required_, other->notify_encryption_required_);
-  swap(indicate_encryption_required_, other->indicate_encryption_required_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(CharacteristicProperties, indicate_encryption_required_)
+      + sizeof(CharacteristicProperties::indicate_encryption_required_)
+      - PROTOBUF_FIELD_OFFSET(CharacteristicProperties, broadcast_)>(
+          reinterpret_cast<char*>(&broadcast_),
+          reinterpret_cast<char*>(&other->broadcast_));
 }
 
-::google::protobuf::Metadata CharacteristicProperties::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string CharacteristicProperties::GetTypeName() const {
+  return "CharacteristicProperties";
 }
 
 
 // ===================================================================
 
-void DiscoverServicesResult::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int DiscoverServicesResult::kRemoteIdFieldNumber;
-const int DiscoverServicesResult::kServicesFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class DiscoverServicesResult::_Internal {
+ public:
+};
 
-DiscoverServicesResult::DiscoverServicesResult()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_DiscoverServicesResult.base);
+DiscoverServicesResult::DiscoverServicesResult(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena),
+  services_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:DiscoverServicesResult)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:DiscoverServicesResult)
 }
 DiscoverServicesResult::DiscoverServicesResult(const DiscoverServicesResult& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
       services_(from.services_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
   // @@protoc_insertion_point(copy_constructor:DiscoverServicesResult)
 }
 
 void DiscoverServicesResult::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DiscoverServicesResult_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 DiscoverServicesResult::~DiscoverServicesResult() {
   // @@protoc_insertion_point(destructor:DiscoverServicesResult)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void DiscoverServicesResult::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void DiscoverServicesResult::ArenaDtor(void* object) {
+  DiscoverServicesResult* _this = reinterpret_cast< DiscoverServicesResult* >(object);
+  (void)_this;
+}
+void DiscoverServicesResult::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void DiscoverServicesResult::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* DiscoverServicesResult::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const DiscoverServicesResult& DiscoverServicesResult::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_DiscoverServicesResult.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DiscoverServicesResult_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void DiscoverServicesResult::Clear() {
 // @@protoc_insertion_point(message_clear_start:DiscoverServicesResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   services_.Clear();
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _internal_metadata_.Clear();
+  remote_id_.ClearToEmpty();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool DiscoverServicesResult::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:DiscoverServicesResult)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* DiscoverServicesResult::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "DiscoverServicesResult.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // repeated .BluetoothService services = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_services()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_services(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:DiscoverServicesResult)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:DiscoverServicesResult)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void DiscoverServicesResult::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:DiscoverServicesResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "DiscoverServicesResult.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // repeated .BluetoothService services = 2;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->services_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2,
-      this->services(static_cast<int>(i)),
-      output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:DiscoverServicesResult)
-}
-
-::google::protobuf::uint8* DiscoverServicesResult::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* DiscoverServicesResult::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:DiscoverServicesResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "DiscoverServicesResult.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // repeated .BluetoothService services = 2;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->services_size()); i < n; i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        2, this->services(static_cast<int>(i)), deterministic, target);
+      n = static_cast<unsigned int>(this->_internal_services_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_services(i), target, stream);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:DiscoverServicesResult)
   return target;
@@ -5737,68 +4178,49 @@ size_t DiscoverServicesResult::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:DiscoverServicesResult)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // repeated .BluetoothService services = 2;
-  {
-    unsigned int count = static_cast<unsigned int>(this->services_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->services(static_cast<int>(i)));
-    }
+  total_size += 1UL * this->_internal_services_size();
+  for (const auto& msg : this->services_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void DiscoverServicesResult::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:DiscoverServicesResult)
-  GOOGLE_DCHECK_NE(&from, this);
-  const DiscoverServicesResult* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const DiscoverServicesResult>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DiscoverServicesResult)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:DiscoverServicesResult)
-    MergeFrom(*source);
-  }
+void DiscoverServicesResult::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const DiscoverServicesResult*>(
+      &from));
 }
 
 void DiscoverServicesResult::MergeFrom(const DiscoverServicesResult& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:DiscoverServicesResult)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   services_.MergeFrom(from.services_);
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
-}
-
-void DiscoverServicesResult::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:DiscoverServicesResult)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void DiscoverServicesResult::CopyFrom(const DiscoverServicesResult& from) {
@@ -5812,312 +4234,220 @@ bool DiscoverServicesResult::IsInitialized() const {
   return true;
 }
 
-void DiscoverServicesResult::Swap(DiscoverServicesResult* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void DiscoverServicesResult::InternalSwap(DiscoverServicesResult* other) {
   using std::swap;
-  CastToBase(&services_)->InternalSwap(CastToBase(&other->services_));
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  services_.InternalSwap(&other->services_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
-::google::protobuf::Metadata DiscoverServicesResult::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string DiscoverServicesResult::GetTypeName() const {
+  return "DiscoverServicesResult";
 }
 
 
 // ===================================================================
 
-void ReadCharacteristicRequest::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ReadCharacteristicRequest::kRemoteIdFieldNumber;
-const int ReadCharacteristicRequest::kCharacteristicUuidFieldNumber;
-const int ReadCharacteristicRequest::kServiceUuidFieldNumber;
-const int ReadCharacteristicRequest::kSecondaryServiceUuidFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class ReadCharacteristicRequest::_Internal {
+ public:
+};
 
-ReadCharacteristicRequest::ReadCharacteristicRequest()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_ReadCharacteristicRequest.base);
+ReadCharacteristicRequest::ReadCharacteristicRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:ReadCharacteristicRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ReadCharacteristicRequest)
 }
 ReadCharacteristicRequest::ReadCharacteristicRequest(const ReadCharacteristicRequest& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.characteristic_uuid().size() > 0) {
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_characteristic_uuid().empty()) {
+    characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_characteristic_uuid(), 
+      GetArena());
   }
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.service_uuid().size() > 0) {
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_service_uuid().empty()) {
+    service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_service_uuid(), 
+      GetArena());
   }
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.secondary_service_uuid().size() > 0) {
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_secondary_service_uuid().empty()) {
+    secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_secondary_service_uuid(), 
+      GetArena());
   }
   // @@protoc_insertion_point(copy_constructor:ReadCharacteristicRequest)
 }
 
 void ReadCharacteristicRequest::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ReadCharacteristicRequest_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 ReadCharacteristicRequest::~ReadCharacteristicRequest() {
   // @@protoc_insertion_point(destructor:ReadCharacteristicRequest)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void ReadCharacteristicRequest::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void ReadCharacteristicRequest::ArenaDtor(void* object) {
+  ReadCharacteristicRequest* _this = reinterpret_cast< ReadCharacteristicRequest* >(object);
+  (void)_this;
+}
+void ReadCharacteristicRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ReadCharacteristicRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ReadCharacteristicRequest::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const ReadCharacteristicRequest& ReadCharacteristicRequest::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_ReadCharacteristicRequest.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ReadCharacteristicRequest_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void ReadCharacteristicRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:ReadCharacteristicRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _internal_metadata_.Clear();
+  remote_id_.ClearToEmpty();
+  characteristic_uuid_.ClearToEmpty();
+  service_uuid_.ClearToEmpty();
+  secondary_service_uuid_.ClearToEmpty();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool ReadCharacteristicRequest::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ReadCharacteristicRequest)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* ReadCharacteristicRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadCharacteristicRequest.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string characteristic_uuid = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_characteristic_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadCharacteristicRequest.characteristic_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_characteristic_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string service_uuid = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadCharacteristicRequest.service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string secondary_service_uuid = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_secondary_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadCharacteristicRequest.secondary_service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_secondary_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:ReadCharacteristicRequest)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:ReadCharacteristicRequest)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void ReadCharacteristicRequest::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ReadCharacteristicRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadCharacteristicRequest.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // string characteristic_uuid = 2;
-  if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadCharacteristicRequest.characteristic_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->characteristic_uuid(), output);
-  }
-
-  // string service_uuid = 3;
-  if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadCharacteristicRequest.service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->service_uuid(), output);
-  }
-
-  // string secondary_service_uuid = 4;
-  if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadCharacteristicRequest.secondary_service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->secondary_service_uuid(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ReadCharacteristicRequest)
-}
-
-::google::protobuf::uint8* ReadCharacteristicRequest::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* ReadCharacteristicRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:ReadCharacteristicRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadCharacteristicRequest.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // string characteristic_uuid = 2;
   if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_characteristic_uuid().data(), static_cast<int>(this->_internal_characteristic_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadCharacteristicRequest.characteristic_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->characteristic_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_characteristic_uuid(), target);
   }
 
   // string service_uuid = 3;
   if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_service_uuid().data(), static_cast<int>(this->_internal_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadCharacteristicRequest.service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_service_uuid(), target);
   }
 
   // string secondary_service_uuid = 4;
   if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_secondary_service_uuid().data(), static_cast<int>(this->_internal_secondary_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadCharacteristicRequest.secondary_service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->secondary_service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_secondary_service_uuid(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:ReadCharacteristicRequest)
   return target;
@@ -6127,89 +4457,71 @@ size_t ReadCharacteristicRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:ReadCharacteristicRequest)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // string characteristic_uuid = 2;
   if (this->characteristic_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->characteristic_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_characteristic_uuid());
   }
 
   // string service_uuid = 3;
   if (this->service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_service_uuid());
   }
 
   // string secondary_service_uuid = 4;
   if (this->secondary_service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->secondary_service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_secondary_service_uuid());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void ReadCharacteristicRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ReadCharacteristicRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ReadCharacteristicRequest* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ReadCharacteristicRequest>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ReadCharacteristicRequest)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ReadCharacteristicRequest)
-    MergeFrom(*source);
-  }
+void ReadCharacteristicRequest::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ReadCharacteristicRequest*>(
+      &from));
 }
 
 void ReadCharacteristicRequest::MergeFrom(const ReadCharacteristicRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:ReadCharacteristicRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.characteristic_uuid().size() > 0) {
-
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+    _internal_set_characteristic_uuid(from._internal_characteristic_uuid());
   }
   if (from.service_uuid().size() > 0) {
-
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+    _internal_set_service_uuid(from._internal_service_uuid());
   }
   if (from.secondary_service_uuid().size() > 0) {
-
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+    _internal_set_secondary_service_uuid(from._internal_secondary_service_uuid());
   }
-}
-
-void ReadCharacteristicRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ReadCharacteristicRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void ReadCharacteristicRequest::CopyFrom(const ReadCharacteristicRequest& from) {
@@ -6223,221 +4535,172 @@ bool ReadCharacteristicRequest::IsInitialized() const {
   return true;
 }
 
-void ReadCharacteristicRequest::Swap(ReadCharacteristicRequest* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void ReadCharacteristicRequest::InternalSwap(ReadCharacteristicRequest* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  service_uuid_.Swap(&other->service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  service_uuid_.Swap(&other->service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
-::google::protobuf::Metadata ReadCharacteristicRequest::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string ReadCharacteristicRequest::GetTypeName() const {
+  return "ReadCharacteristicRequest";
 }
 
 
 // ===================================================================
 
-void ReadCharacteristicResponse::InitAsDefaultInstance() {
-  ::_ReadCharacteristicResponse_default_instance_._instance.get_mutable()->characteristic_ = const_cast< ::BluetoothCharacteristic*>(
-      ::BluetoothCharacteristic::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ReadCharacteristicResponse::kRemoteIdFieldNumber;
-const int ReadCharacteristicResponse::kCharacteristicFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class ReadCharacteristicResponse::_Internal {
+ public:
+  static const ::BluetoothCharacteristic& characteristic(const ReadCharacteristicResponse* msg);
+};
 
-ReadCharacteristicResponse::ReadCharacteristicResponse()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_ReadCharacteristicResponse.base);
+const ::BluetoothCharacteristic&
+ReadCharacteristicResponse::_Internal::characteristic(const ReadCharacteristicResponse* msg) {
+  return *msg->characteristic_;
+}
+ReadCharacteristicResponse::ReadCharacteristicResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:ReadCharacteristicResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ReadCharacteristicResponse)
 }
 ReadCharacteristicResponse::ReadCharacteristicResponse(const ReadCharacteristicResponse& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  if (from.has_characteristic()) {
+  if (from._internal_has_characteristic()) {
     characteristic_ = new ::BluetoothCharacteristic(*from.characteristic_);
   } else {
-    characteristic_ = NULL;
+    characteristic_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:ReadCharacteristicResponse)
 }
 
 void ReadCharacteristicResponse::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_ = NULL;
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ReadCharacteristicResponse_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_ = nullptr;
 }
 
 ReadCharacteristicResponse::~ReadCharacteristicResponse() {
   // @@protoc_insertion_point(destructor:ReadCharacteristicResponse)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void ReadCharacteristicResponse::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete characteristic_;
 }
 
+void ReadCharacteristicResponse::ArenaDtor(void* object) {
+  ReadCharacteristicResponse* _this = reinterpret_cast< ReadCharacteristicResponse* >(object);
+  (void)_this;
+}
+void ReadCharacteristicResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ReadCharacteristicResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ReadCharacteristicResponse::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const ReadCharacteristicResponse& ReadCharacteristicResponse::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_ReadCharacteristicResponse.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ReadCharacteristicResponse_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void ReadCharacteristicResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:ReadCharacteristicResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && characteristic_ != NULL) {
+  remote_id_.ClearToEmpty();
+  if (GetArena() == nullptr && characteristic_ != nullptr) {
     delete characteristic_;
   }
-  characteristic_ = NULL;
-  _internal_metadata_.Clear();
+  characteristic_ = nullptr;
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool ReadCharacteristicResponse::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ReadCharacteristicResponse)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* ReadCharacteristicResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadCharacteristicResponse.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // .BluetoothCharacteristic characteristic = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_characteristic()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_characteristic(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:ReadCharacteristicResponse)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:ReadCharacteristicResponse)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void ReadCharacteristicResponse::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ReadCharacteristicResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadCharacteristicResponse.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // .BluetoothCharacteristic characteristic = 2;
-  if (this->has_characteristic()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->_internal_characteristic(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ReadCharacteristicResponse)
-}
-
-::google::protobuf::uint8* ReadCharacteristicResponse::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* ReadCharacteristicResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:ReadCharacteristicResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadCharacteristicResponse.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // .BluetoothCharacteristic characteristic = 2;
   if (this->has_characteristic()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        2, this->_internal_characteristic(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::characteristic(this), target, stream);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:ReadCharacteristicResponse)
   return target;
@@ -6447,66 +4710,51 @@ size_t ReadCharacteristicResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:ReadCharacteristicResponse)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // .BluetoothCharacteristic characteristic = 2;
   if (this->has_characteristic()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *characteristic_);
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void ReadCharacteristicResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ReadCharacteristicResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ReadCharacteristicResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ReadCharacteristicResponse>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ReadCharacteristicResponse)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ReadCharacteristicResponse)
-    MergeFrom(*source);
-  }
+void ReadCharacteristicResponse::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ReadCharacteristicResponse*>(
+      &from));
 }
 
 void ReadCharacteristicResponse::MergeFrom(const ReadCharacteristicResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:ReadCharacteristicResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.has_characteristic()) {
-    mutable_characteristic()->::BluetoothCharacteristic::MergeFrom(from.characteristic());
+    _internal_mutable_characteristic()->::BluetoothCharacteristic::MergeFrom(from._internal_characteristic());
   }
-}
-
-void ReadCharacteristicResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ReadCharacteristicResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void ReadCharacteristicResponse::CopyFrom(const ReadCharacteristicResponse& from) {
@@ -6520,357 +4768,247 @@ bool ReadCharacteristicResponse::IsInitialized() const {
   return true;
 }
 
-void ReadCharacteristicResponse::Swap(ReadCharacteristicResponse* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void ReadCharacteristicResponse::InternalSwap(ReadCharacteristicResponse* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(characteristic_, other->characteristic_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata ReadCharacteristicResponse::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string ReadCharacteristicResponse::GetTypeName() const {
+  return "ReadCharacteristicResponse";
 }
 
 
 // ===================================================================
 
-void ReadDescriptorRequest::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ReadDescriptorRequest::kRemoteIdFieldNumber;
-const int ReadDescriptorRequest::kDescriptorUuidFieldNumber;
-const int ReadDescriptorRequest::kServiceUuidFieldNumber;
-const int ReadDescriptorRequest::kSecondaryServiceUuidFieldNumber;
-const int ReadDescriptorRequest::kCharacteristicUuidFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class ReadDescriptorRequest::_Internal {
+ public:
+};
 
-ReadDescriptorRequest::ReadDescriptorRequest()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_ReadDescriptorRequest.base);
+ReadDescriptorRequest::ReadDescriptorRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:ReadDescriptorRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ReadDescriptorRequest)
 }
 ReadDescriptorRequest::ReadDescriptorRequest(const ReadDescriptorRequest& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  descriptor_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.descriptor_uuid().size() > 0) {
-    descriptor_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.descriptor_uuid_);
+  descriptor_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_descriptor_uuid().empty()) {
+    descriptor_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_descriptor_uuid(), 
+      GetArena());
   }
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.service_uuid().size() > 0) {
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_service_uuid().empty()) {
+    service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_service_uuid(), 
+      GetArena());
   }
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.secondary_service_uuid().size() > 0) {
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_secondary_service_uuid().empty()) {
+    secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_secondary_service_uuid(), 
+      GetArena());
   }
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.characteristic_uuid().size() > 0) {
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_characteristic_uuid().empty()) {
+    characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_characteristic_uuid(), 
+      GetArena());
   }
   // @@protoc_insertion_point(copy_constructor:ReadDescriptorRequest)
 }
 
 void ReadDescriptorRequest::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  descriptor_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ReadDescriptorRequest_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  descriptor_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 ReadDescriptorRequest::~ReadDescriptorRequest() {
   // @@protoc_insertion_point(destructor:ReadDescriptorRequest)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void ReadDescriptorRequest::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  descriptor_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  descriptor_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void ReadDescriptorRequest::ArenaDtor(void* object) {
+  ReadDescriptorRequest* _this = reinterpret_cast< ReadDescriptorRequest* >(object);
+  (void)_this;
+}
+void ReadDescriptorRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ReadDescriptorRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ReadDescriptorRequest::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const ReadDescriptorRequest& ReadDescriptorRequest::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_ReadDescriptorRequest.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ReadDescriptorRequest_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void ReadDescriptorRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:ReadDescriptorRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  descriptor_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _internal_metadata_.Clear();
+  remote_id_.ClearToEmpty();
+  descriptor_uuid_.ClearToEmpty();
+  service_uuid_.ClearToEmpty();
+  secondary_service_uuid_.ClearToEmpty();
+  characteristic_uuid_.ClearToEmpty();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool ReadDescriptorRequest::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ReadDescriptorRequest)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* ReadDescriptorRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadDescriptorRequest.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string descriptor_uuid = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_descriptor_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->descriptor_uuid().data(), static_cast<int>(this->descriptor_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadDescriptorRequest.descriptor_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_descriptor_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string service_uuid = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadDescriptorRequest.service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string secondary_service_uuid = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_secondary_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadDescriptorRequest.secondary_service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_secondary_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string characteristic_uuid = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_characteristic_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "ReadDescriptorRequest.characteristic_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_characteristic_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:ReadDescriptorRequest)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:ReadDescriptorRequest)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void ReadDescriptorRequest::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ReadDescriptorRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadDescriptorRequest.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // string descriptor_uuid = 2;
-  if (this->descriptor_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->descriptor_uuid().data(), static_cast<int>(this->descriptor_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadDescriptorRequest.descriptor_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->descriptor_uuid(), output);
-  }
-
-  // string service_uuid = 3;
-  if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadDescriptorRequest.service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->service_uuid(), output);
-  }
-
-  // string secondary_service_uuid = 4;
-  if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadDescriptorRequest.secondary_service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->secondary_service_uuid(), output);
-  }
-
-  // string characteristic_uuid = 5;
-  if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "ReadDescriptorRequest.characteristic_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->characteristic_uuid(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ReadDescriptorRequest)
-}
-
-::google::protobuf::uint8* ReadDescriptorRequest::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* ReadDescriptorRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:ReadDescriptorRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadDescriptorRequest.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // string descriptor_uuid = 2;
   if (this->descriptor_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->descriptor_uuid().data(), static_cast<int>(this->descriptor_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_descriptor_uuid().data(), static_cast<int>(this->_internal_descriptor_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadDescriptorRequest.descriptor_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->descriptor_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_descriptor_uuid(), target);
   }
 
   // string service_uuid = 3;
   if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_service_uuid().data(), static_cast<int>(this->_internal_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadDescriptorRequest.service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_service_uuid(), target);
   }
 
   // string secondary_service_uuid = 4;
   if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_secondary_service_uuid().data(), static_cast<int>(this->_internal_secondary_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadDescriptorRequest.secondary_service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->secondary_service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_secondary_service_uuid(), target);
   }
 
   // string characteristic_uuid = 5;
   if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_characteristic_uuid().data(), static_cast<int>(this->_internal_characteristic_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "ReadDescriptorRequest.characteristic_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->characteristic_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_characteristic_uuid(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:ReadDescriptorRequest)
   return target;
@@ -6880,100 +5018,81 @@ size_t ReadDescriptorRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:ReadDescriptorRequest)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // string descriptor_uuid = 2;
   if (this->descriptor_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->descriptor_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_descriptor_uuid());
   }
 
   // string service_uuid = 3;
   if (this->service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_service_uuid());
   }
 
   // string secondary_service_uuid = 4;
   if (this->secondary_service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->secondary_service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_secondary_service_uuid());
   }
 
   // string characteristic_uuid = 5;
   if (this->characteristic_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->characteristic_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_characteristic_uuid());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void ReadDescriptorRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ReadDescriptorRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ReadDescriptorRequest* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ReadDescriptorRequest>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ReadDescriptorRequest)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ReadDescriptorRequest)
-    MergeFrom(*source);
-  }
+void ReadDescriptorRequest::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ReadDescriptorRequest*>(
+      &from));
 }
 
 void ReadDescriptorRequest::MergeFrom(const ReadDescriptorRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:ReadDescriptorRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.descriptor_uuid().size() > 0) {
-
-    descriptor_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.descriptor_uuid_);
+    _internal_set_descriptor_uuid(from._internal_descriptor_uuid());
   }
   if (from.service_uuid().size() > 0) {
-
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+    _internal_set_service_uuid(from._internal_service_uuid());
   }
   if (from.secondary_service_uuid().size() > 0) {
-
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+    _internal_set_secondary_service_uuid(from._internal_secondary_service_uuid());
   }
   if (from.characteristic_uuid().size() > 0) {
-
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+    _internal_set_characteristic_uuid(from._internal_characteristic_uuid());
   }
-}
-
-void ReadDescriptorRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ReadDescriptorRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void ReadDescriptorRequest::CopyFrom(const ReadDescriptorRequest& from) {
@@ -6987,211 +5106,168 @@ bool ReadDescriptorRequest::IsInitialized() const {
   return true;
 }
 
-void ReadDescriptorRequest::Swap(ReadDescriptorRequest* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void ReadDescriptorRequest::InternalSwap(ReadDescriptorRequest* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  descriptor_uuid_.Swap(&other->descriptor_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  service_uuid_.Swap(&other->service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  descriptor_uuid_.Swap(&other->descriptor_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  service_uuid_.Swap(&other->service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
-::google::protobuf::Metadata ReadDescriptorRequest::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string ReadDescriptorRequest::GetTypeName() const {
+  return "ReadDescriptorRequest";
 }
 
 
 // ===================================================================
 
-void ReadDescriptorResponse::InitAsDefaultInstance() {
-  ::_ReadDescriptorResponse_default_instance_._instance.get_mutable()->request_ = const_cast< ::ReadDescriptorRequest*>(
-      ::ReadDescriptorRequest::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ReadDescriptorResponse::kRequestFieldNumber;
-const int ReadDescriptorResponse::kValueFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class ReadDescriptorResponse::_Internal {
+ public:
+  static const ::ReadDescriptorRequest& request(const ReadDescriptorResponse* msg);
+};
 
-ReadDescriptorResponse::ReadDescriptorResponse()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_ReadDescriptorResponse.base);
+const ::ReadDescriptorRequest&
+ReadDescriptorResponse::_Internal::request(const ReadDescriptorResponse* msg) {
+  return *msg->request_;
+}
+ReadDescriptorResponse::ReadDescriptorResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:ReadDescriptorResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ReadDescriptorResponse)
 }
 ReadDescriptorResponse::ReadDescriptorResponse(const ReadDescriptorResponse& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.value().size() > 0) {
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_value().empty()) {
+    value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_value(), 
+      GetArena());
   }
-  if (from.has_request()) {
+  if (from._internal_has_request()) {
     request_ = new ::ReadDescriptorRequest(*from.request_);
   } else {
-    request_ = NULL;
+    request_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:ReadDescriptorResponse)
 }
 
 void ReadDescriptorResponse::SharedCtor() {
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  request_ = NULL;
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ReadDescriptorResponse_flutterblue_2eproto.base);
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  request_ = nullptr;
 }
 
 ReadDescriptorResponse::~ReadDescriptorResponse() {
   // @@protoc_insertion_point(destructor:ReadDescriptorResponse)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void ReadDescriptorResponse::SharedDtor() {
-  value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete request_;
 }
 
+void ReadDescriptorResponse::ArenaDtor(void* object) {
+  ReadDescriptorResponse* _this = reinterpret_cast< ReadDescriptorResponse* >(object);
+  (void)_this;
+}
+void ReadDescriptorResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ReadDescriptorResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ReadDescriptorResponse::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const ReadDescriptorResponse& ReadDescriptorResponse::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_ReadDescriptorResponse.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ReadDescriptorResponse_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void ReadDescriptorResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:ReadDescriptorResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && request_ != NULL) {
+  value_.ClearToEmpty();
+  if (GetArena() == nullptr && request_ != nullptr) {
     delete request_;
   }
-  request_ = NULL;
-  _internal_metadata_.Clear();
+  request_ = nullptr;
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool ReadDescriptorResponse::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ReadDescriptorResponse)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* ReadDescriptorResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // .ReadDescriptorRequest request = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_request()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_request(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bytes value = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_value()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_value();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:ReadDescriptorResponse)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:ReadDescriptorResponse)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void ReadDescriptorResponse::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ReadDescriptorResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .ReadDescriptorRequest request = 1;
-  if (this->has_request()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->_internal_request(), output);
-  }
-
-  // bytes value = 2;
-  if (this->value().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      2, this->value(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ReadDescriptorResponse)
-}
-
-::google::protobuf::uint8* ReadDescriptorResponse::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* ReadDescriptorResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:ReadDescriptorResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .ReadDescriptorRequest request = 1;
   if (this->has_request()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        1, this->_internal_request(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::request(this), target, stream);
   }
 
   // bytes value = 2;
   if (this->value().size() > 0) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        2, this->value(), target);
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_value(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:ReadDescriptorResponse)
   return target;
@@ -7201,66 +5277,51 @@ size_t ReadDescriptorResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:ReadDescriptorResponse)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // bytes value = 2;
   if (this->value().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->value());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_value());
   }
 
   // .ReadDescriptorRequest request = 1;
   if (this->has_request()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *request_);
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void ReadDescriptorResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ReadDescriptorResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ReadDescriptorResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ReadDescriptorResponse>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ReadDescriptorResponse)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ReadDescriptorResponse)
-    MergeFrom(*source);
-  }
+void ReadDescriptorResponse::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ReadDescriptorResponse*>(
+      &from));
 }
 
 void ReadDescriptorResponse::MergeFrom(const ReadDescriptorResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:ReadDescriptorResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.value().size() > 0) {
-
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+    _internal_set_value(from._internal_value());
   }
   if (from.has_request()) {
-    mutable_request()->::ReadDescriptorRequest::MergeFrom(from.request());
+    _internal_mutable_request()->::ReadDescriptorRequest::MergeFrom(from._internal_request());
   }
-}
-
-void ReadDescriptorResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ReadDescriptorResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void ReadDescriptorResponse::CopyFrom(const ReadDescriptorResponse& from) {
@@ -7274,376 +5335,260 @@ bool ReadDescriptorResponse::IsInitialized() const {
   return true;
 }
 
-void ReadDescriptorResponse::Swap(ReadDescriptorResponse* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void ReadDescriptorResponse::InternalSwap(ReadDescriptorResponse* other) {
   using std::swap;
-  value_.Swap(&other->value_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(request_, other->request_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata ReadDescriptorResponse::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string ReadDescriptorResponse::GetTypeName() const {
+  return "ReadDescriptorResponse";
 }
 
 
 // ===================================================================
 
-void WriteCharacteristicRequest::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int WriteCharacteristicRequest::kRemoteIdFieldNumber;
-const int WriteCharacteristicRequest::kCharacteristicUuidFieldNumber;
-const int WriteCharacteristicRequest::kServiceUuidFieldNumber;
-const int WriteCharacteristicRequest::kSecondaryServiceUuidFieldNumber;
-const int WriteCharacteristicRequest::kWriteTypeFieldNumber;
-const int WriteCharacteristicRequest::kValueFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class WriteCharacteristicRequest::_Internal {
+ public:
+};
 
-WriteCharacteristicRequest::WriteCharacteristicRequest()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_WriteCharacteristicRequest.base);
+WriteCharacteristicRequest::WriteCharacteristicRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:WriteCharacteristicRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:WriteCharacteristicRequest)
 }
 WriteCharacteristicRequest::WriteCharacteristicRequest(const WriteCharacteristicRequest& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.characteristic_uuid().size() > 0) {
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_characteristic_uuid().empty()) {
+    characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_characteristic_uuid(), 
+      GetArena());
   }
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.service_uuid().size() > 0) {
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_service_uuid().empty()) {
+    service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_service_uuid(), 
+      GetArena());
   }
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.secondary_service_uuid().size() > 0) {
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_secondary_service_uuid().empty()) {
+    secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_secondary_service_uuid(), 
+      GetArena());
   }
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.value().size() > 0) {
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_value().empty()) {
+    value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_value(), 
+      GetArena());
   }
   write_type_ = from.write_type_;
   // @@protoc_insertion_point(copy_constructor:WriteCharacteristicRequest)
 }
 
 void WriteCharacteristicRequest::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_WriteCharacteristicRequest_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   write_type_ = 0;
 }
 
 WriteCharacteristicRequest::~WriteCharacteristicRequest() {
   // @@protoc_insertion_point(destructor:WriteCharacteristicRequest)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void WriteCharacteristicRequest::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void WriteCharacteristicRequest::ArenaDtor(void* object) {
+  WriteCharacteristicRequest* _this = reinterpret_cast< WriteCharacteristicRequest* >(object);
+  (void)_this;
+}
+void WriteCharacteristicRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void WriteCharacteristicRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* WriteCharacteristicRequest::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const WriteCharacteristicRequest& WriteCharacteristicRequest::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_WriteCharacteristicRequest.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_WriteCharacteristicRequest_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void WriteCharacteristicRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:WriteCharacteristicRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  remote_id_.ClearToEmpty();
+  characteristic_uuid_.ClearToEmpty();
+  service_uuid_.ClearToEmpty();
+  secondary_service_uuid_.ClearToEmpty();
+  value_.ClearToEmpty();
   write_type_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool WriteCharacteristicRequest::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:WriteCharacteristicRequest)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* WriteCharacteristicRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteCharacteristicRequest.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string characteristic_uuid = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_characteristic_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteCharacteristicRequest.characteristic_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_characteristic_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string service_uuid = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteCharacteristicRequest.service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string secondary_service_uuid = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_secondary_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteCharacteristicRequest.secondary_service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_secondary_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // .WriteCharacteristicRequest.WriteType write_type = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          set_write_type(static_cast< ::WriteCharacteristicRequest_WriteType >(value));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_write_type(static_cast<::WriteCharacteristicRequest_WriteType>(val));
+        } else goto handle_unusual;
+        continue;
       // bytes value = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_value()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_value();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:WriteCharacteristicRequest)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:WriteCharacteristicRequest)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void WriteCharacteristicRequest::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:WriteCharacteristicRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteCharacteristicRequest.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // string characteristic_uuid = 2;
-  if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteCharacteristicRequest.characteristic_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->characteristic_uuid(), output);
-  }
-
-  // string service_uuid = 3;
-  if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteCharacteristicRequest.service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->service_uuid(), output);
-  }
-
-  // string secondary_service_uuid = 4;
-  if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteCharacteristicRequest.secondary_service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->secondary_service_uuid(), output);
-  }
-
-  // .WriteCharacteristicRequest.WriteType write_type = 5;
-  if (this->write_type() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      5, this->write_type(), output);
-  }
-
-  // bytes value = 6;
-  if (this->value().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      6, this->value(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:WriteCharacteristicRequest)
-}
-
-::google::protobuf::uint8* WriteCharacteristicRequest::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* WriteCharacteristicRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:WriteCharacteristicRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteCharacteristicRequest.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // string characteristic_uuid = 2;
   if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_characteristic_uuid().data(), static_cast<int>(this->_internal_characteristic_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteCharacteristicRequest.characteristic_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->characteristic_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_characteristic_uuid(), target);
   }
 
   // string service_uuid = 3;
   if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_service_uuid().data(), static_cast<int>(this->_internal_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteCharacteristicRequest.service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_service_uuid(), target);
   }
 
   // string secondary_service_uuid = 4;
   if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_secondary_service_uuid().data(), static_cast<int>(this->_internal_secondary_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteCharacteristicRequest.secondary_service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->secondary_service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_secondary_service_uuid(), target);
   }
 
   // .WriteCharacteristicRequest.WriteType write_type = 5;
   if (this->write_type() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      5, this->write_type(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      5, this->_internal_write_type(), target);
   }
 
   // bytes value = 6;
   if (this->value().size() > 0) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        6, this->value(), target);
+    target = stream->WriteBytesMaybeAliased(
+        6, this->_internal_value(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:WriteCharacteristicRequest)
   return target;
@@ -7653,109 +5598,90 @@ size_t WriteCharacteristicRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:WriteCharacteristicRequest)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // string characteristic_uuid = 2;
   if (this->characteristic_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->characteristic_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_characteristic_uuid());
   }
 
   // string service_uuid = 3;
   if (this->service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_service_uuid());
   }
 
   // string secondary_service_uuid = 4;
   if (this->secondary_service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->secondary_service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_secondary_service_uuid());
   }
 
   // bytes value = 6;
   if (this->value().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->value());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_value());
   }
 
   // .WriteCharacteristicRequest.WriteType write_type = 5;
   if (this->write_type() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->write_type());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_write_type());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void WriteCharacteristicRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:WriteCharacteristicRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const WriteCharacteristicRequest* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const WriteCharacteristicRequest>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WriteCharacteristicRequest)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:WriteCharacteristicRequest)
-    MergeFrom(*source);
-  }
+void WriteCharacteristicRequest::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const WriteCharacteristicRequest*>(
+      &from));
 }
 
 void WriteCharacteristicRequest::MergeFrom(const WriteCharacteristicRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:WriteCharacteristicRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.characteristic_uuid().size() > 0) {
-
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+    _internal_set_characteristic_uuid(from._internal_characteristic_uuid());
   }
   if (from.service_uuid().size() > 0) {
-
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+    _internal_set_service_uuid(from._internal_service_uuid());
   }
   if (from.secondary_service_uuid().size() > 0) {
-
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+    _internal_set_secondary_service_uuid(from._internal_secondary_service_uuid());
   }
   if (from.value().size() > 0) {
-
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+    _internal_set_value(from._internal_value());
   }
   if (from.write_type() != 0) {
-    set_write_type(from.write_type());
+    _internal_set_write_type(from._internal_write_type());
   }
-}
-
-void WriteCharacteristicRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:WriteCharacteristicRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void WriteCharacteristicRequest::CopyFrom(const WriteCharacteristicRequest& from) {
@@ -7769,208 +5695,165 @@ bool WriteCharacteristicRequest::IsInitialized() const {
   return true;
 }
 
-void WriteCharacteristicRequest::Swap(WriteCharacteristicRequest* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void WriteCharacteristicRequest::InternalSwap(WriteCharacteristicRequest* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  service_uuid_.Swap(&other->service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  value_.Swap(&other->value_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  service_uuid_.Swap(&other->service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(write_type_, other->write_type_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata WriteCharacteristicRequest::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string WriteCharacteristicRequest::GetTypeName() const {
+  return "WriteCharacteristicRequest";
 }
 
 
 // ===================================================================
 
-void WriteCharacteristicResponse::InitAsDefaultInstance() {
-  ::_WriteCharacteristicResponse_default_instance_._instance.get_mutable()->request_ = const_cast< ::WriteCharacteristicRequest*>(
-      ::WriteCharacteristicRequest::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int WriteCharacteristicResponse::kRequestFieldNumber;
-const int WriteCharacteristicResponse::kSuccessFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class WriteCharacteristicResponse::_Internal {
+ public:
+  static const ::WriteCharacteristicRequest& request(const WriteCharacteristicResponse* msg);
+};
 
-WriteCharacteristicResponse::WriteCharacteristicResponse()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_WriteCharacteristicResponse.base);
+const ::WriteCharacteristicRequest&
+WriteCharacteristicResponse::_Internal::request(const WriteCharacteristicResponse* msg) {
+  return *msg->request_;
+}
+WriteCharacteristicResponse::WriteCharacteristicResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:WriteCharacteristicResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:WriteCharacteristicResponse)
 }
 WriteCharacteristicResponse::WriteCharacteristicResponse(const WriteCharacteristicResponse& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.has_request()) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  if (from._internal_has_request()) {
     request_ = new ::WriteCharacteristicRequest(*from.request_);
   } else {
-    request_ = NULL;
+    request_ = nullptr;
   }
   success_ = from.success_;
   // @@protoc_insertion_point(copy_constructor:WriteCharacteristicResponse)
 }
 
 void WriteCharacteristicResponse::SharedCtor() {
-  ::memset(&request_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&success_) -
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_WriteCharacteristicResponse_flutterblue_2eproto.base);
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&request_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
       reinterpret_cast<char*>(&request_)) + sizeof(success_));
 }
 
 WriteCharacteristicResponse::~WriteCharacteristicResponse() {
   // @@protoc_insertion_point(destructor:WriteCharacteristicResponse)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void WriteCharacteristicResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete request_;
 }
 
+void WriteCharacteristicResponse::ArenaDtor(void* object) {
+  WriteCharacteristicResponse* _this = reinterpret_cast< WriteCharacteristicResponse* >(object);
+  (void)_this;
+}
+void WriteCharacteristicResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void WriteCharacteristicResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* WriteCharacteristicResponse::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const WriteCharacteristicResponse& WriteCharacteristicResponse::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_WriteCharacteristicResponse.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_WriteCharacteristicResponse_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void WriteCharacteristicResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:WriteCharacteristicResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == NULL && request_ != NULL) {
+  if (GetArena() == nullptr && request_ != nullptr) {
     delete request_;
   }
-  request_ = NULL;
+  request_ = nullptr;
   success_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool WriteCharacteristicResponse::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:WriteCharacteristicResponse)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* WriteCharacteristicResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // .WriteCharacteristicRequest request = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_request()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_request(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool success = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &success_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:WriteCharacteristicResponse)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:WriteCharacteristicResponse)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void WriteCharacteristicResponse::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:WriteCharacteristicResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .WriteCharacteristicRequest request = 1;
-  if (this->has_request()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->_internal_request(), output);
-  }
-
-  // bool success = 2;
-  if (this->success() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->success(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:WriteCharacteristicResponse)
-}
-
-::google::protobuf::uint8* WriteCharacteristicResponse::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* WriteCharacteristicResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:WriteCharacteristicResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .WriteCharacteristicRequest request = 1;
   if (this->has_request()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        1, this->_internal_request(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::request(this), target, stream);
   }
 
   // bool success = 2;
   if (this->success() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->success(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_success(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:WriteCharacteristicResponse)
   return target;
@@ -7980,15 +5863,14 @@ size_t WriteCharacteristicResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:WriteCharacteristicResponse)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // .WriteCharacteristicRequest request = 1;
   if (this->has_request()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *request_);
   }
 
@@ -7997,46 +5879,33 @@ size_t WriteCharacteristicResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void WriteCharacteristicResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:WriteCharacteristicResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const WriteCharacteristicResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const WriteCharacteristicResponse>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WriteCharacteristicResponse)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:WriteCharacteristicResponse)
-    MergeFrom(*source);
-  }
+void WriteCharacteristicResponse::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const WriteCharacteristicResponse*>(
+      &from));
 }
 
 void WriteCharacteristicResponse::MergeFrom(const WriteCharacteristicResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:WriteCharacteristicResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.has_request()) {
-    mutable_request()->::WriteCharacteristicRequest::MergeFrom(from.request());
+    _internal_mutable_request()->::WriteCharacteristicRequest::MergeFrom(from._internal_request());
   }
   if (from.success() != 0) {
-    set_success(from.success());
+    _internal_set_success(from._internal_success());
   }
-}
-
-void WriteCharacteristicResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:WriteCharacteristicResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void WriteCharacteristicResponse::CopyFrom(const WriteCharacteristicResponse& from) {
@@ -8050,389 +5919,273 @@ bool WriteCharacteristicResponse::IsInitialized() const {
   return true;
 }
 
-void WriteCharacteristicResponse::Swap(WriteCharacteristicResponse* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void WriteCharacteristicResponse::InternalSwap(WriteCharacteristicResponse* other) {
   using std::swap;
-  swap(request_, other->request_);
-  swap(success_, other->success_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(WriteCharacteristicResponse, success_)
+      + sizeof(WriteCharacteristicResponse::success_)
+      - PROTOBUF_FIELD_OFFSET(WriteCharacteristicResponse, request_)>(
+          reinterpret_cast<char*>(&request_),
+          reinterpret_cast<char*>(&other->request_));
 }
 
-::google::protobuf::Metadata WriteCharacteristicResponse::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string WriteCharacteristicResponse::GetTypeName() const {
+  return "WriteCharacteristicResponse";
 }
 
 
 // ===================================================================
 
-void WriteDescriptorRequest::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int WriteDescriptorRequest::kRemoteIdFieldNumber;
-const int WriteDescriptorRequest::kDescriptorUuidFieldNumber;
-const int WriteDescriptorRequest::kServiceUuidFieldNumber;
-const int WriteDescriptorRequest::kSecondaryServiceUuidFieldNumber;
-const int WriteDescriptorRequest::kCharacteristicUuidFieldNumber;
-const int WriteDescriptorRequest::kValueFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class WriteDescriptorRequest::_Internal {
+ public:
+};
 
-WriteDescriptorRequest::WriteDescriptorRequest()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_WriteDescriptorRequest.base);
+WriteDescriptorRequest::WriteDescriptorRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:WriteDescriptorRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:WriteDescriptorRequest)
 }
 WriteDescriptorRequest::WriteDescriptorRequest(const WriteDescriptorRequest& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  descriptor_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.descriptor_uuid().size() > 0) {
-    descriptor_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.descriptor_uuid_);
+  descriptor_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_descriptor_uuid().empty()) {
+    descriptor_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_descriptor_uuid(), 
+      GetArena());
   }
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.service_uuid().size() > 0) {
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_service_uuid().empty()) {
+    service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_service_uuid(), 
+      GetArena());
   }
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.secondary_service_uuid().size() > 0) {
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_secondary_service_uuid().empty()) {
+    secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_secondary_service_uuid(), 
+      GetArena());
   }
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.characteristic_uuid().size() > 0) {
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_characteristic_uuid().empty()) {
+    characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_characteristic_uuid(), 
+      GetArena());
   }
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.value().size() > 0) {
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_value().empty()) {
+    value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_value(), 
+      GetArena());
   }
   // @@protoc_insertion_point(copy_constructor:WriteDescriptorRequest)
 }
 
 void WriteDescriptorRequest::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  descriptor_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_WriteDescriptorRequest_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  descriptor_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 WriteDescriptorRequest::~WriteDescriptorRequest() {
   // @@protoc_insertion_point(destructor:WriteDescriptorRequest)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void WriteDescriptorRequest::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  descriptor_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  descriptor_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void WriteDescriptorRequest::ArenaDtor(void* object) {
+  WriteDescriptorRequest* _this = reinterpret_cast< WriteDescriptorRequest* >(object);
+  (void)_this;
+}
+void WriteDescriptorRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void WriteDescriptorRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* WriteDescriptorRequest::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const WriteDescriptorRequest& WriteDescriptorRequest::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_WriteDescriptorRequest.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_WriteDescriptorRequest_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void WriteDescriptorRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:WriteDescriptorRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  descriptor_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _internal_metadata_.Clear();
+  remote_id_.ClearToEmpty();
+  descriptor_uuid_.ClearToEmpty();
+  service_uuid_.ClearToEmpty();
+  secondary_service_uuid_.ClearToEmpty();
+  characteristic_uuid_.ClearToEmpty();
+  value_.ClearToEmpty();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool WriteDescriptorRequest::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:WriteDescriptorRequest)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* WriteDescriptorRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteDescriptorRequest.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string descriptor_uuid = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_descriptor_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->descriptor_uuid().data(), static_cast<int>(this->descriptor_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteDescriptorRequest.descriptor_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_descriptor_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string service_uuid = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteDescriptorRequest.service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string secondary_service_uuid = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_secondary_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteDescriptorRequest.secondary_service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_secondary_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string characteristic_uuid = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_characteristic_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WriteDescriptorRequest.characteristic_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_characteristic_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bytes value = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_value()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_value();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:WriteDescriptorRequest)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:WriteDescriptorRequest)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void WriteDescriptorRequest::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:WriteDescriptorRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteDescriptorRequest.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // string descriptor_uuid = 2;
-  if (this->descriptor_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->descriptor_uuid().data(), static_cast<int>(this->descriptor_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteDescriptorRequest.descriptor_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->descriptor_uuid(), output);
-  }
-
-  // string service_uuid = 3;
-  if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteDescriptorRequest.service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->service_uuid(), output);
-  }
-
-  // string secondary_service_uuid = 4;
-  if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteDescriptorRequest.secondary_service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->secondary_service_uuid(), output);
-  }
-
-  // string characteristic_uuid = 5;
-  if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WriteDescriptorRequest.characteristic_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->characteristic_uuid(), output);
-  }
-
-  // bytes value = 6;
-  if (this->value().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      6, this->value(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:WriteDescriptorRequest)
-}
-
-::google::protobuf::uint8* WriteDescriptorRequest::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* WriteDescriptorRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:WriteDescriptorRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteDescriptorRequest.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // string descriptor_uuid = 2;
   if (this->descriptor_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->descriptor_uuid().data(), static_cast<int>(this->descriptor_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_descriptor_uuid().data(), static_cast<int>(this->_internal_descriptor_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteDescriptorRequest.descriptor_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->descriptor_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_descriptor_uuid(), target);
   }
 
   // string service_uuid = 3;
   if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_service_uuid().data(), static_cast<int>(this->_internal_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteDescriptorRequest.service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_service_uuid(), target);
   }
 
   // string secondary_service_uuid = 4;
   if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_secondary_service_uuid().data(), static_cast<int>(this->_internal_secondary_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteDescriptorRequest.secondary_service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->secondary_service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_secondary_service_uuid(), target);
   }
 
   // string characteristic_uuid = 5;
   if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_characteristic_uuid().data(), static_cast<int>(this->_internal_characteristic_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "WriteDescriptorRequest.characteristic_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->characteristic_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_characteristic_uuid(), target);
   }
 
   // bytes value = 6;
   if (this->value().size() > 0) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        6, this->value(), target);
+    target = stream->WriteBytesMaybeAliased(
+        6, this->_internal_value(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:WriteDescriptorRequest)
   return target;
@@ -8442,111 +6195,91 @@ size_t WriteDescriptorRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:WriteDescriptorRequest)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // string descriptor_uuid = 2;
   if (this->descriptor_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->descriptor_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_descriptor_uuid());
   }
 
   // string service_uuid = 3;
   if (this->service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_service_uuid());
   }
 
   // string secondary_service_uuid = 4;
   if (this->secondary_service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->secondary_service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_secondary_service_uuid());
   }
 
   // string characteristic_uuid = 5;
   if (this->characteristic_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->characteristic_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_characteristic_uuid());
   }
 
   // bytes value = 6;
   if (this->value().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->value());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_value());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void WriteDescriptorRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:WriteDescriptorRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const WriteDescriptorRequest* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const WriteDescriptorRequest>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WriteDescriptorRequest)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:WriteDescriptorRequest)
-    MergeFrom(*source);
-  }
+void WriteDescriptorRequest::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const WriteDescriptorRequest*>(
+      &from));
 }
 
 void WriteDescriptorRequest::MergeFrom(const WriteDescriptorRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:WriteDescriptorRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.descriptor_uuid().size() > 0) {
-
-    descriptor_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.descriptor_uuid_);
+    _internal_set_descriptor_uuid(from._internal_descriptor_uuid());
   }
   if (from.service_uuid().size() > 0) {
-
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+    _internal_set_service_uuid(from._internal_service_uuid());
   }
   if (from.secondary_service_uuid().size() > 0) {
-
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+    _internal_set_secondary_service_uuid(from._internal_secondary_service_uuid());
   }
   if (from.characteristic_uuid().size() > 0) {
-
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+    _internal_set_characteristic_uuid(from._internal_characteristic_uuid());
   }
   if (from.value().size() > 0) {
-
-    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+    _internal_set_value(from._internal_value());
   }
-}
-
-void WriteDescriptorRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:WriteDescriptorRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void WriteDescriptorRequest::CopyFrom(const WriteDescriptorRequest& from) {
@@ -8560,209 +6293,165 @@ bool WriteDescriptorRequest::IsInitialized() const {
   return true;
 }
 
-void WriteDescriptorRequest::Swap(WriteDescriptorRequest* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void WriteDescriptorRequest::InternalSwap(WriteDescriptorRequest* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  descriptor_uuid_.Swap(&other->descriptor_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  service_uuid_.Swap(&other->service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  value_.Swap(&other->value_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  descriptor_uuid_.Swap(&other->descriptor_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  service_uuid_.Swap(&other->service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
-::google::protobuf::Metadata WriteDescriptorRequest::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string WriteDescriptorRequest::GetTypeName() const {
+  return "WriteDescriptorRequest";
 }
 
 
 // ===================================================================
 
-void WriteDescriptorResponse::InitAsDefaultInstance() {
-  ::_WriteDescriptorResponse_default_instance_._instance.get_mutable()->request_ = const_cast< ::WriteDescriptorRequest*>(
-      ::WriteDescriptorRequest::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int WriteDescriptorResponse::kRequestFieldNumber;
-const int WriteDescriptorResponse::kSuccessFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class WriteDescriptorResponse::_Internal {
+ public:
+  static const ::WriteDescriptorRequest& request(const WriteDescriptorResponse* msg);
+};
 
-WriteDescriptorResponse::WriteDescriptorResponse()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_WriteDescriptorResponse.base);
+const ::WriteDescriptorRequest&
+WriteDescriptorResponse::_Internal::request(const WriteDescriptorResponse* msg) {
+  return *msg->request_;
+}
+WriteDescriptorResponse::WriteDescriptorResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:WriteDescriptorResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:WriteDescriptorResponse)
 }
 WriteDescriptorResponse::WriteDescriptorResponse(const WriteDescriptorResponse& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.has_request()) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  if (from._internal_has_request()) {
     request_ = new ::WriteDescriptorRequest(*from.request_);
   } else {
-    request_ = NULL;
+    request_ = nullptr;
   }
   success_ = from.success_;
   // @@protoc_insertion_point(copy_constructor:WriteDescriptorResponse)
 }
 
 void WriteDescriptorResponse::SharedCtor() {
-  ::memset(&request_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&success_) -
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_WriteDescriptorResponse_flutterblue_2eproto.base);
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&request_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
       reinterpret_cast<char*>(&request_)) + sizeof(success_));
 }
 
 WriteDescriptorResponse::~WriteDescriptorResponse() {
   // @@protoc_insertion_point(destructor:WriteDescriptorResponse)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void WriteDescriptorResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete request_;
 }
 
+void WriteDescriptorResponse::ArenaDtor(void* object) {
+  WriteDescriptorResponse* _this = reinterpret_cast< WriteDescriptorResponse* >(object);
+  (void)_this;
+}
+void WriteDescriptorResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void WriteDescriptorResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* WriteDescriptorResponse::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const WriteDescriptorResponse& WriteDescriptorResponse::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_WriteDescriptorResponse.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_WriteDescriptorResponse_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void WriteDescriptorResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:WriteDescriptorResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == NULL && request_ != NULL) {
+  if (GetArena() == nullptr && request_ != nullptr) {
     delete request_;
   }
-  request_ = NULL;
+  request_ = nullptr;
   success_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool WriteDescriptorResponse::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:WriteDescriptorResponse)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* WriteDescriptorResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // .WriteDescriptorRequest request = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_request()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_request(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool success = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &success_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:WriteDescriptorResponse)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:WriteDescriptorResponse)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void WriteDescriptorResponse::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:WriteDescriptorResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .WriteDescriptorRequest request = 1;
-  if (this->has_request()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->_internal_request(), output);
-  }
-
-  // bool success = 2;
-  if (this->success() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->success(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:WriteDescriptorResponse)
-}
-
-::google::protobuf::uint8* WriteDescriptorResponse::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* WriteDescriptorResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:WriteDescriptorResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .WriteDescriptorRequest request = 1;
   if (this->has_request()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        1, this->_internal_request(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::request(this), target, stream);
   }
 
   // bool success = 2;
   if (this->success() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->success(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_success(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:WriteDescriptorResponse)
   return target;
@@ -8772,15 +6461,14 @@ size_t WriteDescriptorResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:WriteDescriptorResponse)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // .WriteDescriptorRequest request = 1;
   if (this->has_request()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *request_);
   }
 
@@ -8789,46 +6477,33 @@ size_t WriteDescriptorResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void WriteDescriptorResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:WriteDescriptorResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const WriteDescriptorResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const WriteDescriptorResponse>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WriteDescriptorResponse)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:WriteDescriptorResponse)
-    MergeFrom(*source);
-  }
+void WriteDescriptorResponse::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const WriteDescriptorResponse*>(
+      &from));
 }
 
 void WriteDescriptorResponse::MergeFrom(const WriteDescriptorResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:WriteDescriptorResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.has_request()) {
-    mutable_request()->::WriteDescriptorRequest::MergeFrom(from.request());
+    _internal_mutable_request()->::WriteDescriptorRequest::MergeFrom(from._internal_request());
   }
   if (from.success() != 0) {
-    set_success(from.success());
+    _internal_set_success(from._internal_success());
   }
-}
-
-void WriteDescriptorResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:WriteDescriptorResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void WriteDescriptorResponse::CopyFrom(const WriteDescriptorResponse& from) {
@@ -8842,339 +6517,240 @@ bool WriteDescriptorResponse::IsInitialized() const {
   return true;
 }
 
-void WriteDescriptorResponse::Swap(WriteDescriptorResponse* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void WriteDescriptorResponse::InternalSwap(WriteDescriptorResponse* other) {
   using std::swap;
-  swap(request_, other->request_);
-  swap(success_, other->success_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(WriteDescriptorResponse, success_)
+      + sizeof(WriteDescriptorResponse::success_)
+      - PROTOBUF_FIELD_OFFSET(WriteDescriptorResponse, request_)>(
+          reinterpret_cast<char*>(&request_),
+          reinterpret_cast<char*>(&other->request_));
 }
 
-::google::protobuf::Metadata WriteDescriptorResponse::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string WriteDescriptorResponse::GetTypeName() const {
+  return "WriteDescriptorResponse";
 }
 
 
 // ===================================================================
 
-void SetNotificationRequest::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int SetNotificationRequest::kRemoteIdFieldNumber;
-const int SetNotificationRequest::kServiceUuidFieldNumber;
-const int SetNotificationRequest::kSecondaryServiceUuidFieldNumber;
-const int SetNotificationRequest::kCharacteristicUuidFieldNumber;
-const int SetNotificationRequest::kEnableFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class SetNotificationRequest::_Internal {
+ public:
+};
 
-SetNotificationRequest::SetNotificationRequest()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_SetNotificationRequest.base);
+SetNotificationRequest::SetNotificationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SetNotificationRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:SetNotificationRequest)
 }
 SetNotificationRequest::SetNotificationRequest(const SetNotificationRequest& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.service_uuid().size() > 0) {
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_service_uuid().empty()) {
+    service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_service_uuid(), 
+      GetArena());
   }
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.secondary_service_uuid().size() > 0) {
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_secondary_service_uuid().empty()) {
+    secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_secondary_service_uuid(), 
+      GetArena());
   }
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.characteristic_uuid().size() > 0) {
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_characteristic_uuid().empty()) {
+    characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_characteristic_uuid(), 
+      GetArena());
   }
   enable_ = from.enable_;
   // @@protoc_insertion_point(copy_constructor:SetNotificationRequest)
 }
 
 void SetNotificationRequest::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SetNotificationRequest_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   enable_ = false;
 }
 
 SetNotificationRequest::~SetNotificationRequest() {
   // @@protoc_insertion_point(destructor:SetNotificationRequest)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void SetNotificationRequest::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  secondary_service_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_uuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void SetNotificationRequest::ArenaDtor(void* object) {
+  SetNotificationRequest* _this = reinterpret_cast< SetNotificationRequest* >(object);
+  (void)_this;
+}
+void SetNotificationRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void SetNotificationRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* SetNotificationRequest::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const SetNotificationRequest& SetNotificationRequest::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_SetNotificationRequest.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SetNotificationRequest_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void SetNotificationRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:SetNotificationRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  secondary_service_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  remote_id_.ClearToEmpty();
+  service_uuid_.ClearToEmpty();
+  secondary_service_uuid_.ClearToEmpty();
+  characteristic_uuid_.ClearToEmpty();
   enable_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool SetNotificationRequest::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:SetNotificationRequest)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* SetNotificationRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "SetNotificationRequest.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string service_uuid = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "SetNotificationRequest.service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string secondary_service_uuid = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_secondary_service_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "SetNotificationRequest.secondary_service_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_secondary_service_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string characteristic_uuid = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_characteristic_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "SetNotificationRequest.characteristic_uuid"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_characteristic_uuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool enable = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &enable_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          enable_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:SetNotificationRequest)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:SetNotificationRequest)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void SetNotificationRequest::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:SetNotificationRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "SetNotificationRequest.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // string service_uuid = 2;
-  if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "SetNotificationRequest.service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->service_uuid(), output);
-  }
-
-  // string secondary_service_uuid = 3;
-  if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "SetNotificationRequest.secondary_service_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->secondary_service_uuid(), output);
-  }
-
-  // string characteristic_uuid = 4;
-  if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "SetNotificationRequest.characteristic_uuid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->characteristic_uuid(), output);
-  }
-
-  // bool enable = 5;
-  if (this->enable() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(5, this->enable(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:SetNotificationRequest)
-}
-
-::google::protobuf::uint8* SetNotificationRequest::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* SetNotificationRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:SetNotificationRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "SetNotificationRequest.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // string service_uuid = 2;
   if (this->service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->service_uuid().data(), static_cast<int>(this->service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_service_uuid().data(), static_cast<int>(this->_internal_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "SetNotificationRequest.service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_service_uuid(), target);
   }
 
   // string secondary_service_uuid = 3;
   if (this->secondary_service_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->secondary_service_uuid().data(), static_cast<int>(this->secondary_service_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_secondary_service_uuid().data(), static_cast<int>(this->_internal_secondary_service_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "SetNotificationRequest.secondary_service_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->secondary_service_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_secondary_service_uuid(), target);
   }
 
   // string characteristic_uuid = 4;
   if (this->characteristic_uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->characteristic_uuid().data(), static_cast<int>(this->characteristic_uuid().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_characteristic_uuid().data(), static_cast<int>(this->_internal_characteristic_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "SetNotificationRequest.characteristic_uuid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->characteristic_uuid(), target);
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_characteristic_uuid(), target);
   }
 
   // bool enable = 5;
   if (this->enable() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(5, this->enable(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(5, this->_internal_enable(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:SetNotificationRequest)
   return target;
@@ -9184,37 +6760,36 @@ size_t SetNotificationRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:SetNotificationRequest)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // string service_uuid = 2;
   if (this->service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_service_uuid());
   }
 
   // string secondary_service_uuid = 3;
   if (this->secondary_service_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->secondary_service_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_secondary_service_uuid());
   }
 
   // string characteristic_uuid = 4;
   if (this->characteristic_uuid().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->characteristic_uuid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_characteristic_uuid());
   }
 
   // bool enable = 5;
@@ -9222,59 +6797,42 @@ size_t SetNotificationRequest::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void SetNotificationRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SetNotificationRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const SetNotificationRequest* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const SetNotificationRequest>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SetNotificationRequest)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SetNotificationRequest)
-    MergeFrom(*source);
-  }
+void SetNotificationRequest::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const SetNotificationRequest*>(
+      &from));
 }
 
 void SetNotificationRequest::MergeFrom(const SetNotificationRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:SetNotificationRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.service_uuid().size() > 0) {
-
-    service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.service_uuid_);
+    _internal_set_service_uuid(from._internal_service_uuid());
   }
   if (from.secondary_service_uuid().size() > 0) {
-
-    secondary_service_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.secondary_service_uuid_);
+    _internal_set_secondary_service_uuid(from._internal_secondary_service_uuid());
   }
   if (from.characteristic_uuid().size() > 0) {
-
-    characteristic_uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.characteristic_uuid_);
+    _internal_set_characteristic_uuid(from._internal_characteristic_uuid());
   }
   if (from.enable() != 0) {
-    set_enable(from.enable());
+    _internal_set_enable(from._internal_enable());
   }
-}
-
-void SetNotificationRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SetNotificationRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void SetNotificationRequest::CopyFrom(const SetNotificationRequest& from) {
@@ -9288,251 +6846,191 @@ bool SetNotificationRequest::IsInitialized() const {
   return true;
 }
 
-void SetNotificationRequest::Swap(SetNotificationRequest* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void SetNotificationRequest::InternalSwap(SetNotificationRequest* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  service_uuid_.Swap(&other->service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  service_uuid_.Swap(&other->service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  secondary_service_uuid_.Swap(&other->secondary_service_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  characteristic_uuid_.Swap(&other->characteristic_uuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(enable_, other->enable_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata SetNotificationRequest::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string SetNotificationRequest::GetTypeName() const {
+  return "SetNotificationRequest";
 }
 
 
 // ===================================================================
 
-void SetNotificationResponse::InitAsDefaultInstance() {
-  ::_SetNotificationResponse_default_instance_._instance.get_mutable()->characteristic_ = const_cast< ::BluetoothCharacteristic*>(
-      ::BluetoothCharacteristic::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int SetNotificationResponse::kRemoteIdFieldNumber;
-const int SetNotificationResponse::kCharacteristicFieldNumber;
-const int SetNotificationResponse::kSuccessFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class SetNotificationResponse::_Internal {
+ public:
+  static const ::BluetoothCharacteristic& characteristic(const SetNotificationResponse* msg);
+};
 
-SetNotificationResponse::SetNotificationResponse()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_SetNotificationResponse.base);
+const ::BluetoothCharacteristic&
+SetNotificationResponse::_Internal::characteristic(const SetNotificationResponse* msg) {
+  return *msg->characteristic_;
+}
+SetNotificationResponse::SetNotificationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SetNotificationResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:SetNotificationResponse)
 }
 SetNotificationResponse::SetNotificationResponse(const SetNotificationResponse& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  if (from.has_characteristic()) {
+  if (from._internal_has_characteristic()) {
     characteristic_ = new ::BluetoothCharacteristic(*from.characteristic_);
   } else {
-    characteristic_ = NULL;
+    characteristic_ = nullptr;
   }
   success_ = from.success_;
   // @@protoc_insertion_point(copy_constructor:SetNotificationResponse)
 }
 
 void SetNotificationResponse::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&characteristic_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&success_) -
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SetNotificationResponse_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&characteristic_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
       reinterpret_cast<char*>(&characteristic_)) + sizeof(success_));
 }
 
 SetNotificationResponse::~SetNotificationResponse() {
   // @@protoc_insertion_point(destructor:SetNotificationResponse)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void SetNotificationResponse::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete characteristic_;
 }
 
+void SetNotificationResponse::ArenaDtor(void* object) {
+  SetNotificationResponse* _this = reinterpret_cast< SetNotificationResponse* >(object);
+  (void)_this;
+}
+void SetNotificationResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void SetNotificationResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* SetNotificationResponse::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const SetNotificationResponse& SetNotificationResponse::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_SetNotificationResponse.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SetNotificationResponse_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void SetNotificationResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:SetNotificationResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && characteristic_ != NULL) {
+  remote_id_.ClearToEmpty();
+  if (GetArena() == nullptr && characteristic_ != nullptr) {
     delete characteristic_;
   }
-  characteristic_ = NULL;
+  characteristic_ = nullptr;
   success_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool SetNotificationResponse::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:SetNotificationResponse)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* SetNotificationResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "SetNotificationResponse.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // .BluetoothCharacteristic characteristic = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_characteristic()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_characteristic(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // bool success = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &success_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:SetNotificationResponse)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:SetNotificationResponse)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void SetNotificationResponse::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:SetNotificationResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "SetNotificationResponse.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // .BluetoothCharacteristic characteristic = 2;
-  if (this->has_characteristic()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->_internal_characteristic(), output);
-  }
-
-  // bool success = 3;
-  if (this->success() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->success(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:SetNotificationResponse)
-}
-
-::google::protobuf::uint8* SetNotificationResponse::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* SetNotificationResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:SetNotificationResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "SetNotificationResponse.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // .BluetoothCharacteristic characteristic = 2;
   if (this->has_characteristic()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        2, this->_internal_characteristic(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::characteristic(this), target, stream);
   }
 
   // bool success = 3;
   if (this->success() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->success(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_success(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:SetNotificationResponse)
   return target;
@@ -9542,22 +7040,21 @@ size_t SetNotificationResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:SetNotificationResponse)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // .BluetoothCharacteristic characteristic = 2;
   if (this->has_characteristic()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *characteristic_);
   }
 
@@ -9566,50 +7063,36 @@ size_t SetNotificationResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void SetNotificationResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SetNotificationResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const SetNotificationResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const SetNotificationResponse>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SetNotificationResponse)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SetNotificationResponse)
-    MergeFrom(*source);
-  }
+void SetNotificationResponse::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const SetNotificationResponse*>(
+      &from));
 }
 
 void SetNotificationResponse::MergeFrom(const SetNotificationResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:SetNotificationResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.has_characteristic()) {
-    mutable_characteristic()->::BluetoothCharacteristic::MergeFrom(from.characteristic());
+    _internal_mutable_characteristic()->::BluetoothCharacteristic::MergeFrom(from._internal_characteristic());
   }
   if (from.success() != 0) {
-    set_success(from.success());
+    _internal_set_success(from._internal_success());
   }
-}
-
-void SetNotificationResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SetNotificationResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void SetNotificationResponse::CopyFrom(const SetNotificationResponse& from) {
@@ -9623,217 +7106,175 @@ bool SetNotificationResponse::IsInitialized() const {
   return true;
 }
 
-void SetNotificationResponse::Swap(SetNotificationResponse* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void SetNotificationResponse::InternalSwap(SetNotificationResponse* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(characteristic_, other->characteristic_);
-  swap(success_, other->success_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SetNotificationResponse, success_)
+      + sizeof(SetNotificationResponse::success_)
+      - PROTOBUF_FIELD_OFFSET(SetNotificationResponse, characteristic_)>(
+          reinterpret_cast<char*>(&characteristic_),
+          reinterpret_cast<char*>(&other->characteristic_));
 }
 
-::google::protobuf::Metadata SetNotificationResponse::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string SetNotificationResponse::GetTypeName() const {
+  return "SetNotificationResponse";
 }
 
 
 // ===================================================================
 
-void OnCharacteristicChanged::InitAsDefaultInstance() {
-  ::_OnCharacteristicChanged_default_instance_._instance.get_mutable()->characteristic_ = const_cast< ::BluetoothCharacteristic*>(
-      ::BluetoothCharacteristic::internal_default_instance());
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int OnCharacteristicChanged::kRemoteIdFieldNumber;
-const int OnCharacteristicChanged::kCharacteristicFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class OnCharacteristicChanged::_Internal {
+ public:
+  static const ::BluetoothCharacteristic& characteristic(const OnCharacteristicChanged* msg);
+};
 
-OnCharacteristicChanged::OnCharacteristicChanged()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_OnCharacteristicChanged.base);
+const ::BluetoothCharacteristic&
+OnCharacteristicChanged::_Internal::characteristic(const OnCharacteristicChanged* msg) {
+  return *msg->characteristic_;
+}
+OnCharacteristicChanged::OnCharacteristicChanged(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:OnCharacteristicChanged)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:OnCharacteristicChanged)
 }
 OnCharacteristicChanged::OnCharacteristicChanged(const OnCharacteristicChanged& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
-  if (from.has_characteristic()) {
+  if (from._internal_has_characteristic()) {
     characteristic_ = new ::BluetoothCharacteristic(*from.characteristic_);
   } else {
-    characteristic_ = NULL;
+    characteristic_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:OnCharacteristicChanged)
 }
 
 void OnCharacteristicChanged::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  characteristic_ = NULL;
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_OnCharacteristicChanged_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  characteristic_ = nullptr;
 }
 
 OnCharacteristicChanged::~OnCharacteristicChanged() {
   // @@protoc_insertion_point(destructor:OnCharacteristicChanged)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void OnCharacteristicChanged::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete characteristic_;
 }
 
+void OnCharacteristicChanged::ArenaDtor(void* object) {
+  OnCharacteristicChanged* _this = reinterpret_cast< OnCharacteristicChanged* >(object);
+  (void)_this;
+}
+void OnCharacteristicChanged::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void OnCharacteristicChanged::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* OnCharacteristicChanged::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const OnCharacteristicChanged& OnCharacteristicChanged::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_OnCharacteristicChanged.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_OnCharacteristicChanged_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void OnCharacteristicChanged::Clear() {
 // @@protoc_insertion_point(message_clear_start:OnCharacteristicChanged)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && characteristic_ != NULL) {
+  remote_id_.ClearToEmpty();
+  if (GetArena() == nullptr && characteristic_ != nullptr) {
     delete characteristic_;
   }
-  characteristic_ = NULL;
-  _internal_metadata_.Clear();
+  characteristic_ = nullptr;
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool OnCharacteristicChanged::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:OnCharacteristicChanged)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* OnCharacteristicChanged::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "OnCharacteristicChanged.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // .BluetoothCharacteristic characteristic = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_characteristic()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_characteristic(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:OnCharacteristicChanged)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:OnCharacteristicChanged)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void OnCharacteristicChanged::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:OnCharacteristicChanged)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "OnCharacteristicChanged.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // .BluetoothCharacteristic characteristic = 2;
-  if (this->has_characteristic()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->_internal_characteristic(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:OnCharacteristicChanged)
-}
-
-::google::protobuf::uint8* OnCharacteristicChanged::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* OnCharacteristicChanged::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:OnCharacteristicChanged)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "OnCharacteristicChanged.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // .BluetoothCharacteristic characteristic = 2;
   if (this->has_characteristic()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        2, this->_internal_characteristic(), deterministic, target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::characteristic(this), target, stream);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:OnCharacteristicChanged)
   return target;
@@ -9843,66 +7284,51 @@ size_t OnCharacteristicChanged::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:OnCharacteristicChanged)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // .BluetoothCharacteristic characteristic = 2;
   if (this->has_characteristic()) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *characteristic_);
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void OnCharacteristicChanged::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:OnCharacteristicChanged)
-  GOOGLE_DCHECK_NE(&from, this);
-  const OnCharacteristicChanged* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const OnCharacteristicChanged>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:OnCharacteristicChanged)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:OnCharacteristicChanged)
-    MergeFrom(*source);
-  }
+void OnCharacteristicChanged::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const OnCharacteristicChanged*>(
+      &from));
 }
 
 void OnCharacteristicChanged::MergeFrom(const OnCharacteristicChanged& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:OnCharacteristicChanged)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.has_characteristic()) {
-    mutable_characteristic()->::BluetoothCharacteristic::MergeFrom(from.characteristic());
+    _internal_mutable_characteristic()->::BluetoothCharacteristic::MergeFrom(from._internal_characteristic());
   }
-}
-
-void OnCharacteristicChanged::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:OnCharacteristicChanged)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void OnCharacteristicChanged::CopyFrom(const OnCharacteristicChanged& from) {
@@ -9916,208 +7342,157 @@ bool OnCharacteristicChanged::IsInitialized() const {
   return true;
 }
 
-void OnCharacteristicChanged::Swap(OnCharacteristicChanged* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void OnCharacteristicChanged::InternalSwap(OnCharacteristicChanged* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(characteristic_, other->characteristic_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata OnCharacteristicChanged::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string OnCharacteristicChanged::GetTypeName() const {
+  return "OnCharacteristicChanged";
 }
 
 
 // ===================================================================
 
-void DeviceStateResponse::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int DeviceStateResponse::kRemoteIdFieldNumber;
-const int DeviceStateResponse::kStateFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class DeviceStateResponse::_Internal {
+ public:
+};
 
-DeviceStateResponse::DeviceStateResponse()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_DeviceStateResponse.base);
+DeviceStateResponse::DeviceStateResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:DeviceStateResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:DeviceStateResponse)
 }
 DeviceStateResponse::DeviceStateResponse(const DeviceStateResponse& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
   state_ = from.state_;
   // @@protoc_insertion_point(copy_constructor:DeviceStateResponse)
 }
 
 void DeviceStateResponse::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DeviceStateResponse_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   state_ = 0;
 }
 
 DeviceStateResponse::~DeviceStateResponse() {
   // @@protoc_insertion_point(destructor:DeviceStateResponse)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void DeviceStateResponse::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void DeviceStateResponse::ArenaDtor(void* object) {
+  DeviceStateResponse* _this = reinterpret_cast< DeviceStateResponse* >(object);
+  (void)_this;
+}
+void DeviceStateResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void DeviceStateResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* DeviceStateResponse::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const DeviceStateResponse& DeviceStateResponse::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_DeviceStateResponse.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DeviceStateResponse_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void DeviceStateResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:DeviceStateResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  remote_id_.ClearToEmpty();
   state_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool DeviceStateResponse::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:DeviceStateResponse)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* DeviceStateResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "DeviceStateResponse.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // .DeviceStateResponse.BluetoothDeviceState state = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          set_state(static_cast< ::DeviceStateResponse_BluetoothDeviceState >(value));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_state(static_cast<::DeviceStateResponse_BluetoothDeviceState>(val));
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:DeviceStateResponse)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:DeviceStateResponse)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void DeviceStateResponse::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:DeviceStateResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "DeviceStateResponse.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // .DeviceStateResponse.BluetoothDeviceState state = 2;
-  if (this->state() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      2, this->state(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:DeviceStateResponse)
-}
-
-::google::protobuf::uint8* DeviceStateResponse::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* DeviceStateResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:DeviceStateResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "DeviceStateResponse.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // .DeviceStateResponse.BluetoothDeviceState state = 2;
   if (this->state() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      2, this->state(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_state(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:DeviceStateResponse)
   return target;
@@ -10127,65 +7502,50 @@ size_t DeviceStateResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:DeviceStateResponse)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // .DeviceStateResponse.BluetoothDeviceState state = 2;
   if (this->state() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->state());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void DeviceStateResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:DeviceStateResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const DeviceStateResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const DeviceStateResponse>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DeviceStateResponse)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:DeviceStateResponse)
-    MergeFrom(*source);
-  }
+void DeviceStateResponse::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const DeviceStateResponse*>(
+      &from));
 }
 
 void DeviceStateResponse::MergeFrom(const DeviceStateResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:DeviceStateResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.state() != 0) {
-    set_state(from.state());
+    _internal_set_state(from._internal_state());
   }
-}
-
-void DeviceStateResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:DeviceStateResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void DeviceStateResponse::CopyFrom(const DeviceStateResponse& from) {
@@ -10199,164 +7559,135 @@ bool DeviceStateResponse::IsInitialized() const {
   return true;
 }
 
-void DeviceStateResponse::Swap(DeviceStateResponse* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void DeviceStateResponse::InternalSwap(DeviceStateResponse* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(state_, other->state_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata DeviceStateResponse::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string DeviceStateResponse::GetTypeName() const {
+  return "DeviceStateResponse";
 }
 
 
 // ===================================================================
 
-void ConnectedDevicesResponse::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ConnectedDevicesResponse::kDevicesFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class ConnectedDevicesResponse::_Internal {
+ public:
+};
 
-ConnectedDevicesResponse::ConnectedDevicesResponse()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_ConnectedDevicesResponse.base);
+ConnectedDevicesResponse::ConnectedDevicesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena),
+  devices_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:ConnectedDevicesResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:ConnectedDevicesResponse)
 }
 ConnectedDevicesResponse::ConnectedDevicesResponse(const ConnectedDevicesResponse& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
       devices_(from.devices_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:ConnectedDevicesResponse)
 }
 
 void ConnectedDevicesResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ConnectedDevicesResponse_flutterblue_2eproto.base);
 }
 
 ConnectedDevicesResponse::~ConnectedDevicesResponse() {
   // @@protoc_insertion_point(destructor:ConnectedDevicesResponse)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void ConnectedDevicesResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void ConnectedDevicesResponse::ArenaDtor(void* object) {
+  ConnectedDevicesResponse* _this = reinterpret_cast< ConnectedDevicesResponse* >(object);
+  (void)_this;
+}
+void ConnectedDevicesResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ConnectedDevicesResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* ConnectedDevicesResponse::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const ConnectedDevicesResponse& ConnectedDevicesResponse::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_ConnectedDevicesResponse.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ConnectedDevicesResponse_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void ConnectedDevicesResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:ConnectedDevicesResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   devices_.Clear();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool ConnectedDevicesResponse::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ConnectedDevicesResponse)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* ConnectedDevicesResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // repeated .BluetoothDevice devices = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_devices()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_devices(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:ConnectedDevicesResponse)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:ConnectedDevicesResponse)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void ConnectedDevicesResponse::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ConnectedDevicesResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated .BluetoothDevice devices = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->devices_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1,
-      this->devices(static_cast<int>(i)),
-      output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ConnectedDevicesResponse)
-}
-
-::google::protobuf::uint8* ConnectedDevicesResponse::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* ConnectedDevicesResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:ConnectedDevicesResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // repeated .BluetoothDevice devices = 1;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->devices_size()); i < n; i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        1, this->devices(static_cast<int>(i)), deterministic, target);
+      n = static_cast<unsigned int>(this->_internal_devices_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_devices(i), target, stream);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:ConnectedDevicesResponse)
   return target;
@@ -10366,57 +7697,39 @@ size_t ConnectedDevicesResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:ConnectedDevicesResponse)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // repeated .BluetoothDevice devices = 1;
-  {
-    unsigned int count = static_cast<unsigned int>(this->devices_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->devices(static_cast<int>(i)));
-    }
+  total_size += 1UL * this->_internal_devices_size();
+  for (const auto& msg : this->devices_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void ConnectedDevicesResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ConnectedDevicesResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ConnectedDevicesResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const ConnectedDevicesResponse>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ConnectedDevicesResponse)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ConnectedDevicesResponse)
-    MergeFrom(*source);
-  }
+void ConnectedDevicesResponse::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ConnectedDevicesResponse*>(
+      &from));
 }
 
 void ConnectedDevicesResponse::MergeFrom(const ConnectedDevicesResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:ConnectedDevicesResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   devices_.MergeFrom(from.devices_);
-}
-
-void ConnectedDevicesResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ConnectedDevicesResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void ConnectedDevicesResponse::CopyFrom(const ConnectedDevicesResponse& from) {
@@ -10430,203 +7743,154 @@ bool ConnectedDevicesResponse::IsInitialized() const {
   return true;
 }
 
-void ConnectedDevicesResponse::Swap(ConnectedDevicesResponse* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void ConnectedDevicesResponse::InternalSwap(ConnectedDevicesResponse* other) {
   using std::swap;
-  CastToBase(&devices_)->InternalSwap(CastToBase(&other->devices_));
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  devices_.InternalSwap(&other->devices_);
 }
 
-::google::protobuf::Metadata ConnectedDevicesResponse::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string ConnectedDevicesResponse::GetTypeName() const {
+  return "ConnectedDevicesResponse";
 }
 
 
 // ===================================================================
 
-void MtuSizeRequest::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MtuSizeRequest::kRemoteIdFieldNumber;
-const int MtuSizeRequest::kMtuFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class MtuSizeRequest::_Internal {
+ public:
+};
 
-MtuSizeRequest::MtuSizeRequest()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_MtuSizeRequest.base);
+MtuSizeRequest::MtuSizeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:MtuSizeRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MtuSizeRequest)
 }
 MtuSizeRequest::MtuSizeRequest(const MtuSizeRequest& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
   mtu_ = from.mtu_;
   // @@protoc_insertion_point(copy_constructor:MtuSizeRequest)
 }
 
 void MtuSizeRequest::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_MtuSizeRequest_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   mtu_ = 0u;
 }
 
 MtuSizeRequest::~MtuSizeRequest() {
   // @@protoc_insertion_point(destructor:MtuSizeRequest)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void MtuSizeRequest::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void MtuSizeRequest::ArenaDtor(void* object) {
+  MtuSizeRequest* _this = reinterpret_cast< MtuSizeRequest* >(object);
+  (void)_this;
+}
+void MtuSizeRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void MtuSizeRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* MtuSizeRequest::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const MtuSizeRequest& MtuSizeRequest::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_MtuSizeRequest.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_MtuSizeRequest_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void MtuSizeRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:MtuSizeRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  remote_id_.ClearToEmpty();
   mtu_ = 0u;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool MtuSizeRequest::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:MtuSizeRequest)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* MtuSizeRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "MtuSizeRequest.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // uint32 mtu = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &mtu_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          mtu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:MtuSizeRequest)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:MtuSizeRequest)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void MtuSizeRequest::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:MtuSizeRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "MtuSizeRequest.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // uint32 mtu = 2;
-  if (this->mtu() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->mtu(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:MtuSizeRequest)
-}
-
-::google::protobuf::uint8* MtuSizeRequest::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* MtuSizeRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:MtuSizeRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "MtuSizeRequest.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // uint32 mtu = 2;
   if (this->mtu() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->mtu(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_mtu(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:MtuSizeRequest)
   return target;
@@ -10636,66 +7900,51 @@ size_t MtuSizeRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:MtuSizeRequest)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // uint32 mtu = 2;
   if (this->mtu() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->mtu());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_mtu());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void MtuSizeRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:MtuSizeRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const MtuSizeRequest* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const MtuSizeRequest>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:MtuSizeRequest)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:MtuSizeRequest)
-    MergeFrom(*source);
-  }
+void MtuSizeRequest::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const MtuSizeRequest*>(
+      &from));
 }
 
 void MtuSizeRequest::MergeFrom(const MtuSizeRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:MtuSizeRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.mtu() != 0) {
-    set_mtu(from.mtu());
+    _internal_set_mtu(from._internal_mtu());
   }
-}
-
-void MtuSizeRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:MtuSizeRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void MtuSizeRequest::CopyFrom(const MtuSizeRequest& from) {
@@ -10709,205 +7958,155 @@ bool MtuSizeRequest::IsInitialized() const {
   return true;
 }
 
-void MtuSizeRequest::Swap(MtuSizeRequest* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void MtuSizeRequest::InternalSwap(MtuSizeRequest* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(mtu_, other->mtu_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata MtuSizeRequest::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string MtuSizeRequest::GetTypeName() const {
+  return "MtuSizeRequest";
 }
 
 
 // ===================================================================
 
-void MtuSizeResponse::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MtuSizeResponse::kRemoteIdFieldNumber;
-const int MtuSizeResponse::kMtuFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class MtuSizeResponse::_Internal {
+ public:
+};
 
-MtuSizeResponse::MtuSizeResponse()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_flutterblue_2eproto::scc_info_MtuSizeResponse.base);
+MtuSizeResponse::MtuSizeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:MtuSizeResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MtuSizeResponse)
 }
 MtuSizeResponse::MtuSizeResponse(const MtuSizeResponse& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.remote_id().size() > 0) {
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_remote_id().empty()) {
+    remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_remote_id(), 
+      GetArena());
   }
   mtu_ = from.mtu_;
   // @@protoc_insertion_point(copy_constructor:MtuSizeResponse)
 }
 
 void MtuSizeResponse::SharedCtor() {
-  remote_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_MtuSizeResponse_flutterblue_2eproto.base);
+  remote_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   mtu_ = 0u;
 }
 
 MtuSizeResponse::~MtuSizeResponse() {
   // @@protoc_insertion_point(destructor:MtuSizeResponse)
   SharedDtor();
+  _internal_metadata_.Delete<std::string>();
 }
 
 void MtuSizeResponse::SharedDtor() {
-  remote_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  remote_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void MtuSizeResponse::ArenaDtor(void* object) {
+  MtuSizeResponse* _this = reinterpret_cast< MtuSizeResponse* >(object);
+  (void)_this;
+}
+void MtuSizeResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void MtuSizeResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* MtuSizeResponse::descriptor() {
-  ::protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const MtuSizeResponse& MtuSizeResponse::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_flutterblue_2eproto::scc_info_MtuSizeResponse.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_MtuSizeResponse_flutterblue_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void MtuSizeResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:MtuSizeResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  remote_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  remote_id_.ClearToEmpty();
   mtu_ = 0u;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<std::string>();
 }
 
-bool MtuSizeResponse::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:MtuSizeResponse)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* MtuSizeResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string remote_id = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_remote_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "MtuSizeResponse.remote_id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_remote_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // uint32 mtu = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &mtu_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          mtu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<std::string>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:MtuSizeResponse)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:MtuSizeResponse)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void MtuSizeResponse::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:MtuSizeResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string remote_id = 1;
-  if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "MtuSizeResponse.remote_id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->remote_id(), output);
-  }
-
-  // uint32 mtu = 2;
-  if (this->mtu() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->mtu(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:MtuSizeResponse)
-}
-
-::google::protobuf::uint8* MtuSizeResponse::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* MtuSizeResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:MtuSizeResponse)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->remote_id().data(), static_cast<int>(this->remote_id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_remote_id().data(), static_cast<int>(this->_internal_remote_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "MtuSizeResponse.remote_id");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->remote_id(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_remote_id(), target);
   }
 
   // uint32 mtu = 2;
   if (this->mtu() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->mtu(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_mtu(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:MtuSizeResponse)
   return target;
@@ -10917,66 +8116,51 @@ size_t MtuSizeResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:MtuSizeResponse)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string remote_id = 1;
   if (this->remote_id().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->remote_id());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_remote_id());
   }
 
   // uint32 mtu = 2;
   if (this->mtu() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->mtu());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_mtu());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void MtuSizeResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:MtuSizeResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const MtuSizeResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const MtuSizeResponse>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:MtuSizeResponse)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:MtuSizeResponse)
-    MergeFrom(*source);
-  }
+void MtuSizeResponse::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const MtuSizeResponse*>(
+      &from));
 }
 
 void MtuSizeResponse::MergeFrom(const MtuSizeResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:MtuSizeResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.remote_id().size() > 0) {
-
-    remote_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.remote_id_);
+    _internal_set_remote_id(from._internal_remote_id());
   }
   if (from.mtu() != 0) {
-    set_mtu(from.mtu());
+    _internal_set_mtu(from._internal_mtu());
   }
-}
-
-void MtuSizeResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:MtuSizeResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
 }
 
 void MtuSizeResponse::CopyFrom(const MtuSizeResponse& from) {
@@ -10990,115 +8174,108 @@ bool MtuSizeResponse::IsInitialized() const {
   return true;
 }
 
-void MtuSizeResponse::Swap(MtuSizeResponse* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void MtuSizeResponse::InternalSwap(MtuSizeResponse* other) {
   using std::swap;
-  remote_id_.Swap(&other->remote_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<std::string>(&other->_internal_metadata_);
+  remote_id_.Swap(&other->remote_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(mtu_, other->mtu_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata MtuSizeResponse::GetMetadata() const {
-  protobuf_flutterblue_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_flutterblue_2eproto::file_level_metadata[kIndexInFileMessages];
+std::string MtuSizeResponse::GetTypeName() const {
+  return "MtuSizeResponse";
 }
 
 
 // @@protoc_insertion_point(namespace_scope)
-namespace google {
-namespace protobuf {
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::Int32Value* Arena::CreateMaybeMessage< ::Int32Value >(Arena* arena) {
-  return Arena::CreateInternal< ::Int32Value >(arena);
+PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::Int32Value* Arena::CreateMaybeMessage< ::Int32Value >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Int32Value >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::BluetoothState* Arena::CreateMaybeMessage< ::BluetoothState >(Arena* arena) {
-  return Arena::CreateInternal< ::BluetoothState >(arena);
+template<> PROTOBUF_NOINLINE ::BluetoothState* Arena::CreateMaybeMessage< ::BluetoothState >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::BluetoothState >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::AdvertisementData_ManufacturerDataEntry_DoNotUse* Arena::CreateMaybeMessage< ::AdvertisementData_ManufacturerDataEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateInternal< ::AdvertisementData_ManufacturerDataEntry_DoNotUse >(arena);
+template<> PROTOBUF_NOINLINE ::AdvertisementData_ManufacturerDataEntry_DoNotUse* Arena::CreateMaybeMessage< ::AdvertisementData_ManufacturerDataEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::AdvertisementData_ManufacturerDataEntry_DoNotUse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::AdvertisementData_ServiceDataEntry_DoNotUse* Arena::CreateMaybeMessage< ::AdvertisementData_ServiceDataEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateInternal< ::AdvertisementData_ServiceDataEntry_DoNotUse >(arena);
+template<> PROTOBUF_NOINLINE ::AdvertisementData_ServiceDataEntry_DoNotUse* Arena::CreateMaybeMessage< ::AdvertisementData_ServiceDataEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::AdvertisementData_ServiceDataEntry_DoNotUse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::AdvertisementData* Arena::CreateMaybeMessage< ::AdvertisementData >(Arena* arena) {
-  return Arena::CreateInternal< ::AdvertisementData >(arena);
+template<> PROTOBUF_NOINLINE ::AdvertisementData* Arena::CreateMaybeMessage< ::AdvertisementData >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::AdvertisementData >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ScanSettings* Arena::CreateMaybeMessage< ::ScanSettings >(Arena* arena) {
-  return Arena::CreateInternal< ::ScanSettings >(arena);
+template<> PROTOBUF_NOINLINE ::ScanSettings* Arena::CreateMaybeMessage< ::ScanSettings >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ScanSettings >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ScanResult* Arena::CreateMaybeMessage< ::ScanResult >(Arena* arena) {
-  return Arena::CreateInternal< ::ScanResult >(arena);
+template<> PROTOBUF_NOINLINE ::ScanResult* Arena::CreateMaybeMessage< ::ScanResult >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ScanResult >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ConnectRequest* Arena::CreateMaybeMessage< ::ConnectRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::ConnectRequest >(arena);
+template<> PROTOBUF_NOINLINE ::ConnectRequest* Arena::CreateMaybeMessage< ::ConnectRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ConnectRequest >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::BluetoothDevice* Arena::CreateMaybeMessage< ::BluetoothDevice >(Arena* arena) {
-  return Arena::CreateInternal< ::BluetoothDevice >(arena);
+template<> PROTOBUF_NOINLINE ::BluetoothDevice* Arena::CreateMaybeMessage< ::BluetoothDevice >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::BluetoothDevice >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::BluetoothService* Arena::CreateMaybeMessage< ::BluetoothService >(Arena* arena) {
-  return Arena::CreateInternal< ::BluetoothService >(arena);
+template<> PROTOBUF_NOINLINE ::BluetoothService* Arena::CreateMaybeMessage< ::BluetoothService >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::BluetoothService >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::BluetoothCharacteristic* Arena::CreateMaybeMessage< ::BluetoothCharacteristic >(Arena* arena) {
-  return Arena::CreateInternal< ::BluetoothCharacteristic >(arena);
+template<> PROTOBUF_NOINLINE ::BluetoothCharacteristic* Arena::CreateMaybeMessage< ::BluetoothCharacteristic >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::BluetoothCharacteristic >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::BluetoothDescriptor* Arena::CreateMaybeMessage< ::BluetoothDescriptor >(Arena* arena) {
-  return Arena::CreateInternal< ::BluetoothDescriptor >(arena);
+template<> PROTOBUF_NOINLINE ::BluetoothDescriptor* Arena::CreateMaybeMessage< ::BluetoothDescriptor >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::BluetoothDescriptor >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::CharacteristicProperties* Arena::CreateMaybeMessage< ::CharacteristicProperties >(Arena* arena) {
-  return Arena::CreateInternal< ::CharacteristicProperties >(arena);
+template<> PROTOBUF_NOINLINE ::CharacteristicProperties* Arena::CreateMaybeMessage< ::CharacteristicProperties >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::CharacteristicProperties >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DiscoverServicesResult* Arena::CreateMaybeMessage< ::DiscoverServicesResult >(Arena* arena) {
-  return Arena::CreateInternal< ::DiscoverServicesResult >(arena);
+template<> PROTOBUF_NOINLINE ::DiscoverServicesResult* Arena::CreateMaybeMessage< ::DiscoverServicesResult >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::DiscoverServicesResult >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ReadCharacteristicRequest* Arena::CreateMaybeMessage< ::ReadCharacteristicRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::ReadCharacteristicRequest >(arena);
+template<> PROTOBUF_NOINLINE ::ReadCharacteristicRequest* Arena::CreateMaybeMessage< ::ReadCharacteristicRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ReadCharacteristicRequest >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ReadCharacteristicResponse* Arena::CreateMaybeMessage< ::ReadCharacteristicResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::ReadCharacteristicResponse >(arena);
+template<> PROTOBUF_NOINLINE ::ReadCharacteristicResponse* Arena::CreateMaybeMessage< ::ReadCharacteristicResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ReadCharacteristicResponse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ReadDescriptorRequest* Arena::CreateMaybeMessage< ::ReadDescriptorRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::ReadDescriptorRequest >(arena);
+template<> PROTOBUF_NOINLINE ::ReadDescriptorRequest* Arena::CreateMaybeMessage< ::ReadDescriptorRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ReadDescriptorRequest >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ReadDescriptorResponse* Arena::CreateMaybeMessage< ::ReadDescriptorResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::ReadDescriptorResponse >(arena);
+template<> PROTOBUF_NOINLINE ::ReadDescriptorResponse* Arena::CreateMaybeMessage< ::ReadDescriptorResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ReadDescriptorResponse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::WriteCharacteristicRequest* Arena::CreateMaybeMessage< ::WriteCharacteristicRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::WriteCharacteristicRequest >(arena);
+template<> PROTOBUF_NOINLINE ::WriteCharacteristicRequest* Arena::CreateMaybeMessage< ::WriteCharacteristicRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::WriteCharacteristicRequest >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::WriteCharacteristicResponse* Arena::CreateMaybeMessage< ::WriteCharacteristicResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::WriteCharacteristicResponse >(arena);
+template<> PROTOBUF_NOINLINE ::WriteCharacteristicResponse* Arena::CreateMaybeMessage< ::WriteCharacteristicResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::WriteCharacteristicResponse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::WriteDescriptorRequest* Arena::CreateMaybeMessage< ::WriteDescriptorRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::WriteDescriptorRequest >(arena);
+template<> PROTOBUF_NOINLINE ::WriteDescriptorRequest* Arena::CreateMaybeMessage< ::WriteDescriptorRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::WriteDescriptorRequest >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::WriteDescriptorResponse* Arena::CreateMaybeMessage< ::WriteDescriptorResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::WriteDescriptorResponse >(arena);
+template<> PROTOBUF_NOINLINE ::WriteDescriptorResponse* Arena::CreateMaybeMessage< ::WriteDescriptorResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::WriteDescriptorResponse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::SetNotificationRequest* Arena::CreateMaybeMessage< ::SetNotificationRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::SetNotificationRequest >(arena);
+template<> PROTOBUF_NOINLINE ::SetNotificationRequest* Arena::CreateMaybeMessage< ::SetNotificationRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::SetNotificationRequest >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::SetNotificationResponse* Arena::CreateMaybeMessage< ::SetNotificationResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::SetNotificationResponse >(arena);
+template<> PROTOBUF_NOINLINE ::SetNotificationResponse* Arena::CreateMaybeMessage< ::SetNotificationResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::SetNotificationResponse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::OnCharacteristicChanged* Arena::CreateMaybeMessage< ::OnCharacteristicChanged >(Arena* arena) {
-  return Arena::CreateInternal< ::OnCharacteristicChanged >(arena);
+template<> PROTOBUF_NOINLINE ::OnCharacteristicChanged* Arena::CreateMaybeMessage< ::OnCharacteristicChanged >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OnCharacteristicChanged >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::DeviceStateResponse* Arena::CreateMaybeMessage< ::DeviceStateResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::DeviceStateResponse >(arena);
+template<> PROTOBUF_NOINLINE ::DeviceStateResponse* Arena::CreateMaybeMessage< ::DeviceStateResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::DeviceStateResponse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ConnectedDevicesResponse* Arena::CreateMaybeMessage< ::ConnectedDevicesResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::ConnectedDevicesResponse >(arena);
+template<> PROTOBUF_NOINLINE ::ConnectedDevicesResponse* Arena::CreateMaybeMessage< ::ConnectedDevicesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ConnectedDevicesResponse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::MtuSizeRequest* Arena::CreateMaybeMessage< ::MtuSizeRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::MtuSizeRequest >(arena);
+template<> PROTOBUF_NOINLINE ::MtuSizeRequest* Arena::CreateMaybeMessage< ::MtuSizeRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::MtuSizeRequest >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::MtuSizeResponse* Arena::CreateMaybeMessage< ::MtuSizeResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::MtuSizeResponse >(arena);
+template<> PROTOBUF_NOINLINE ::MtuSizeResponse* Arena::CreateMaybeMessage< ::MtuSizeResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::MtuSizeResponse >(arena);
 }
-}  // namespace protobuf
-}  // namespace google
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
+#include <google/protobuf/port_undef.inc>

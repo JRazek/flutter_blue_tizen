@@ -1,4 +1,3 @@
-#include <BluetoothState.h>
 #include <BluetoothManager.h>
 
 #include <system_info.h>
@@ -56,14 +55,15 @@ namespace btu{
         BluetoothState bluetoothState;
         if(ret == BT_ERROR_NONE){
             if(adapter_state == BT_ADAPTER_ENABLED)
-                bluetoothState = BluetoothState::ON;
+                bluetoothState.set_state(BluetoothState_State_ON);
             else
-                bluetoothState = BluetoothState::OFF;
-        }else if(ret == BT_ERROR_NOT_INITIALIZED){
-            bluetoothState = BluetoothState::UNINITIALIZED;
-        }else{
-            bluetoothState = BluetoothState::UNKNOWN;
+                bluetoothState.set_state(BluetoothState_State_OFF);
         }
+        else if(ret == BT_ERROR_NOT_INITIALIZED)
+            bluetoothState.set_state(BluetoothState_State_UNAVAILABLE);
+        else
+            bluetoothState.set_state(BluetoothState_State_UNKNOWN);
+        
         return bluetoothState;
     }
 
@@ -96,3 +96,4 @@ namespace btu{
     }
 
 } // namespace btu
+

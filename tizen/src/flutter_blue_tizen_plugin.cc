@@ -15,9 +15,9 @@
 #include <string>
 
 #include <BluetoothManager.h>
-#include <BluetoothState.h>
 #include <Logger.h>
 
+#include <flutterblue.pb.h>
 
 namespace {
 
@@ -58,8 +58,11 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
         btlog::Logger::setLogLevel(logLevel);
         result->Success(flutter::EncodableValue(true));
     }
+    else if(method_call.method_name() == "state"){
+        result->Success(flutter::EncodableValue(bluetoothManager.getBluetoothState().SerializeAsString()));
+    }
     else if(method_call.method_name() == "isOn"){
-        result->Success(flutter::EncodableValue((bluetoothManager.getBluetoothState() == btu::BluetoothState::ON)));
+        result->Success(flutter::EncodableValue((bluetoothManager.getBluetoothState().state() == BluetoothState_State::BluetoothState_State_ON)));
     }
     else if(method_call.method_name() == "startScan"){
         bluetoothManager.startBluetoothDeviceDiscovery();
@@ -69,7 +72,7 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
         result->Success(flutter::EncodableValue(NULL));
     }
     else if(method_call.method_name() == "getConnectedDevices"){
-
+        
     }
     else if(method_call.method_name() == "connect"){
       
