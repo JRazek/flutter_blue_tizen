@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
-  Stream<BluetoothState> b = flutterBlue.state;
-  flutterBlue.scanResults;
-  flutterBlue.startScan();
+
+  bool t = await flutterBlue.isOn;
+  Future f = await flutterBlue.startScan();
+
+  debugPrint("Here1232123212312312312312312");
+  debugPrint(t.toString());
   // debugPrint("AVAILABLE " + flutterBlue.isAvailable.toString());
   runApp(const MyApp());
-  flutterBlue.setLogLevel(LogLevel.error);
+  // flutterBlue.setLogLevel(LogLevel.error);
 }
 
 class MyApp extends StatefulWidget {

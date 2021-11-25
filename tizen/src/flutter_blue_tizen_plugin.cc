@@ -8,6 +8,8 @@
 #include <flutter/method_channel.h>
 #include <flutter/plugin_registrar.h>
 #include <flutter/standard_method_codec.h>
+#include <flutter/event_stream_handler_functions.h>
+#include <flutter/event_channel.h>
 
 #include <map>
 #include <memory>
@@ -23,15 +25,17 @@ namespace {
 
 class FlutterBlueTizenPlugin : public flutter::Plugin {
  public:
+  const static inline std::string channel_name = "plugins.pauldemarco.com/flutter_blue/";
   static void RegisterWithRegistrar(flutter::PluginRegistrar *registrar) {
-    auto channel =
-        std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-            registrar->messenger(), "plugins.pauldemarco.com/flutter_blue/methods",
-            &flutter::StandardMethodCodec::GetInstance());
+    auto methodChannel =
+        std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(registrar->messenger(), (channel_name + "methods"), &flutter::StandardMethodCodec::GetInstance());
+
+    auto eventChannel = 
+        std::make_unique<flutter::EventChannel<flutter::EncodableValue>>(registrar->messenger(), (channel_name + "state"), &flutter::StandardMethodCodec::GetInstance());
 
     auto plugin = std::make_unique<FlutterBlueTizenPlugin>();
 
-    channel->SetMethodCallHandler(
+    methodChannel->SetMethodCallHandler(
         [plugin_pointer = plugin.get()](const auto &call, auto result) {
           plugin_pointer->HandleMethodCall(call, std::move(result));
         });
@@ -56,7 +60,7 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
     else if(method_call.method_name() == "setLogLevel" && std::holds_alternative<int>(args)){
         log_priority logLevel = static_cast<log_priority>(std::get<int>(args));
         btlog::Logger::setLogLevel(logLevel);
-        result->Success(flutter::EncodableValue(true));
+        result->Success(flutter::EncodableValue(NULL));
     }
     else if(method_call.method_name() == "state"){
         result->Success(flutter::EncodableValue(bluetoothManager.getBluetoothState().SerializeAsString()));
@@ -66,6 +70,11 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
     }
     else if(method_call.method_name() == "startScan"){
         bluetoothManager.startBluetoothDeviceDiscovery();
+        ///wait until scan is complete here!
+        // result->Success(flutter::EncodableValue(NULL));
+        btlog::Logger::log(btlog::LogLevel::DEBUG, "HERE!!!!!");
+
+
     }
     else if(method_call.method_name() == "stopScan"){
         bluetoothManager.stopBluetoothDeviceDiscovery();
@@ -102,8 +111,6 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
 }  // namespace
 
 void FlutterBlueTizenPluginRegisterWithRegistrar(
-    FlutterDesktopPluginRegistrarRef registrar) {
-  FlutterBlueTizenPlugin::RegisterWithRegistrar(
-      flutter::PluginRegistrarManager::GetInstance()
-          ->GetRegistrar<flutter::PluginRegistrar>(registrar));
+    FlutterDesktopPluginRegistrarRef registrar) { 
+      FlutterBlueTizenPlugin::RegisterWithRegistrar(flutter::PluginRegistrarManager::GetInstance()->GetRegistrar<flutter::PluginRegistrar>(registrar));
 }
