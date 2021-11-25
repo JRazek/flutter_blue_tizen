@@ -35,10 +35,22 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
 
     auto plugin = std::make_unique<FlutterBlueTizenPlugin>();
 
-    methodChannel->SetMethodCallHandler(
-        [plugin_pointer = plugin.get()](const auto &call, auto result) {
+    methodChannel->SetMethodCallHandler([plugin_pointer = plugin.get()] (const auto &call, auto result) {
           plugin_pointer->HandleMethodCall(call, std::move(result));
         });
+
+    auto eventChannelHandler = std::make_unique<flutter::StreamHandlerFunctions<>>(
+        [](const flutter::EncodableValue *arguments, std::unique_ptr<flutter::EventSink<>> &&events){
+          btlog::Logger::log(btlog::LogLevel::DEBUG, "on listen!");
+          return nullptr;
+        },
+        [](const flutter::EncodableValue *arguments) -> std::unique_ptr<flutter::StreamHandlerError<>> {
+          btlog::Logger::log(btlog::LogLevel::DEBUG, "on cancel!");
+          return nullptr;
+        }
+    );
+
+    eventChannel->SetStreamHandler(std::move(eventChannelHandler));
 
     registrar->AddPlugin(std::move(plugin));
   }
@@ -50,6 +62,8 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
   {}
 
   virtual ~FlutterBlueTizenPlugin() {}
+
+  // void handleEventCall(const flutter::Event<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
 
  private:
   void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
