@@ -3,7 +3,9 @@
 #include <system_info.h>
 #include <Logger.h>
 #include <LogLevel.h>
+
 #include <bluetooth.h>
+
 
 #include <flutterblue.pb.h>
 
@@ -11,7 +13,8 @@ namespace btu{
     using LogLevel = btlog::LogLevel;
     using Logger = btlog::Logger;
 
-    BluetoothManager::BluetoothManager() noexcept{
+    BluetoothManager::BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept:
+    methodChannel(_methodChannel){
         if(!getBluetoothAvailability()){
             Logger::log(LogLevel::ERROR, "Bluetooth is not available on this device!");
             return;
@@ -90,19 +93,21 @@ namespace btu{
             bluetoothManager.addDiscoveryResult(*discovery_info);
         }
     }
-    void BluetoothManager::addDiscoveryResult(bt_adapter_device_discovery_info_s& discovery_info) noexcept{
-        std::scoped_lock lock(discoveryResults.mut);
-        auto& p = discoveryResults.var.emplace_back();
-        
-        ScanResult& scanResult = p.first;
-        BluetoothDevice& bluetoothDevice = p.second;
-
+    void BluetoothManager::addDiscoveryResult(bt_adapter_device_discovery_info_s& discovery_info) noexcept{        
+        //[TODO] TEST THIS FUNCTION
+        ScanResult scanResult;
+        BluetoothDevice bluetoothDevice;
 
         bluetoothDevice.set_remote_id(discovery_info.remote_address);
         bluetoothDevice.set_name(discovery_info.remote_name);
-        bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);//[TODO]
+        bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);//[TODO] ??
 
         scanResult.set_allocated_device(&bluetoothDevice);
+        scanResult.set_rssi(discovery_info.rssi);
+
+        std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
+        scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
+        methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
     }
 
     SafeType<std::vector<BluetoothDevice>>& BluetoothManager::getConnectedDevices() noexcept{

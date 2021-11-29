@@ -3,9 +3,12 @@
 
 #include <bluetooth.h>
 
+#include <flutter/method_channel.h>
+#include <flutter/encodable_value.h>
+
 #include <vector>
 #include <mutex>
-#include <dlog.h>
+#include <memory>
 
 class BluetoothState;
 class BluetoothDevice;
@@ -17,15 +20,14 @@ namespace btu{
         T var;
         std::mutex mut;
     };
-
+    using MethodChannel = flutter::MethodChannel<flutter::EncodableValue>;
     class BluetoothManager{
         SafeType<bt_adapter_state_e> adapterState;
-        SafeType<std::vector<std::pair<ScanResult, BluetoothDevice>>> discoveryResults; ///[TODO] stream to do 
         SafeType<std::vector<BluetoothDevice>> connectedDevices;
-
+        std::shared_ptr<MethodChannel> methodChannel;
     public:
 
-        BluetoothManager() noexcept;
+        BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;
         virtual ~BluetoothManager() noexcept;
         
         /**

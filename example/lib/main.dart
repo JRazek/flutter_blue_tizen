@@ -6,7 +6,14 @@ void main() async {
   FlutterBlue flutterBlue = FlutterBlue.instance;
 
   bool t = await flutterBlue.isOn;
-  Future f = await flutterBlue.startScan();
+  Future f = flutterBlue.startScan();
+
+  flutterBlue.scanResults.listen((data) {
+    if (data.isNotEmpty) {
+      ScanResult result = data.last;
+      debugPrint("scanned result - " + result.device.name);
+    }
+  });
 
   debugPrint("Here1232123212312312312312312");
   debugPrint(t.toString());
