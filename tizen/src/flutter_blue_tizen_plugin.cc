@@ -44,8 +44,6 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
 
   virtual ~FlutterBlueTizenPlugin() {}
 
-  // void handleEventCall(const flutter::Event<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
-
  private:
   void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
     const flutter::EncodableValue& args = *method_call.arguments();
@@ -75,10 +73,12 @@ class FlutterBlueTizenPlugin : public flutter::Plugin {
     else if(method_call.method_name() == "getConnectedDevices"){
         ConnectedDevicesResponse response;
         auto& p = bluetoothManager.getConnectedDevices();
-        std::scoped_lock lock(p.mut);
-        for(const auto& dev : p.var){
-          BluetoothDevice* bluetoothDevice = response.add_devices();
-          *bluetoothDevice = dev;
+        {
+          std::scoped_lock lock(p.mut);
+          for(const auto& dev : p.var){
+            BluetoothDevice* bluetoothDevice = response.add_devices();
+            *bluetoothDevice = dev;
+          }
         }
         //[TODO] TEST THIS FUNCTION
         std::vector<u_int8_t> encoded(response.ByteSizeLong());
