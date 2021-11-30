@@ -49,7 +49,7 @@ namespace btu{
         
         void stopBluetoothDeviceScanLE() noexcept;
         
-        static void adapterDeviceDiscoveryStateChangedCallbackLE(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept;
+        static void adapterDeviceDiscoveryStateChangedCallbackLE(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data);
 
         bool adapterIsScanningLE() const noexcept;
 
@@ -58,7 +58,7 @@ namespace btu{
          * 
          * @param discovery_info 
          */
-        void notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s& discovery_info) noexcept;
+        void notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s* discovery_info);
 
 
         //////////////////////////

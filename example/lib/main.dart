@@ -5,15 +5,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
   flutterBlue.setLogLevel(LogLevel.error);
-  flutterBlue.startScan(timeout: const Duration(seconds: 10));
+  flutterBlue.startScan();
 
-  // flutterBlue.scanResults.listen((results) {
-  //   for (ScanResult r in results) {
-  //     debugPrint('${r.device.name} found! rssi: ${r.rssi}');
-  //   }
-  // });
+  flutterBlue.scanResults.listen((results) {
+    for (ScanResult r in results) {
+      debugPrint('${r.device.name} found! rssi: ${r.rssi}');
+    }
+  });
 
-  // flutterBlue.stopScan();
+  flutterBlue.stopScan();
   runApp(const MyApp());
 }
 

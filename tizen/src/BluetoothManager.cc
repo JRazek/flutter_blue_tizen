@@ -71,7 +71,7 @@ namespace btu{
     
 
     void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
-        int res = bt_adapter_le_start_scan(BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE, this);
+        int res = bt_adapter_le_start_scan(&BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE, this);
         if(res){
             Logger::log(LogLevel::ERROR, "scanning start failed with " + std::to_string(res));
         }
@@ -89,24 +89,27 @@ namespace btu{
         }
     }
 
-    void BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept{
+    void BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) {
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        bluetoothManager.notifyDiscoveryResultLE(*discovery_info);
+        bluetoothManager.notifyDiscoveryResultLE(discovery_info);
         Logger::log(LogLevel::DEBUG, "FOUND A NEW DEVICE");
     }
 
-    void BluetoothManager::notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s& discovery_info) noexcept{        
+    void BluetoothManager::notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s* discovery_info){        
         //[TODO] TEST THIS FUNCTION
+        Logger::log(LogLevel::DEBUG, "here..121.");
+
         ScanResult scanResult;
         BluetoothDevice bluetoothDevice;
 
-        bluetoothDevice.set_remote_id(discovery_info.remote_address);
-        bluetoothDevice.set_name(discovery_info.adv_data);
-        bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);//[TODO] ??
+        // bluetoothDevice.set_remote_id(discovery_info.remote_address);
+        // std::string advData(discovery_info.adv_data, discovery_info.adv_data_len);
+        // bluetoothDevice.set_name(std::move(advData));
+        // bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);//[TODO] ??
 
-        scanResult.set_allocated_device(&bluetoothDevice);
-        scanResult.set_rssi(discovery_info.rssi);
-
+        // scanResult.set_rssi(discovery_info.rssi);
+        // scanResult.set_allocated_device(&bluetoothDevice);
+        //sigabrt here!!
         std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
         scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
         methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
