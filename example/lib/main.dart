@@ -4,18 +4,16 @@ import 'package:flutter_blue/flutter_blue.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
-  // flutterBlue.
-  // await flutterBlue.stopScan();
   flutterBlue.setLogLevel(LogLevel.error);
-  flutterBlue.startScan(timeout: const Duration(seconds: 3));
-  // flutterBlue.scanResults;
-  // flutterBlue.scanResults.listen((data) {
-  //   debugPrint("devices found - " + data.length.toString());
-  // });
-  // List<BluetoothDevice> l = await flutterBlue.connectedDevices;
+  flutterBlue.startScan(timeout: const Duration(seconds: 10));
 
-  // debugPrint("Here1232123212312312312312312");
-  // debugPrint((await flutterBlue.isAvailable).toString());
+  // flutterBlue.scanResults.listen((results) {
+  //   for (ScanResult r in results) {
+  //     debugPrint('${r.device.name} found! rssi: ${r.rssi}');
+  //   }
+  // });
+
+  // flutterBlue.stopScan();
   runApp(const MyApp());
 }
 

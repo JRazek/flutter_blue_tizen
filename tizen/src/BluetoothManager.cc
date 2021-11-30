@@ -15,23 +15,12 @@ namespace btu{
 
     BluetoothManager::BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept:
     methodChannel(_methodChannel){
-        if(!getBluetoothAvailability()){
+        if(!getBluetoothAvailabilityLE()){
             Logger::log(LogLevel::ERROR, "Bluetooth is not available on this device!");
             return;
         }
         if(bt_initialize() != BT_ERROR_NONE){
             Logger::log(LogLevel::ERROR, "[bt_initialize] failed");
-            return;
-        }
-
-        int res = bt_adapter_set_state_changed_cb(BluetoothManager::adapterStateChangedCallback, this);
-        if(res != BT_ERROR_NONE){
-            Logger::log(LogLevel::ERROR, "could not set adapter state callback function! err_code: " + std::to_string(res));
-            return;
-        }
-        res = bt_adapter_set_device_discovery_state_changed_cb(BluetoothManager::adapterDeviceDiscoveryStateChangedCallback, this);
-        if(res != BT_ERROR_NONE){
-            Logger::log(LogLevel::ERROR, "could not set discovery callback! err_code: " + std::to_string(res));
             return;
         }
         Logger::log(LogLevel::DEBUG, "All callbacks successfully initialized.");
@@ -43,9 +32,9 @@ namespace btu{
         }
     }
 
-    bool BluetoothManager::getBluetoothAvailability() noexcept{
+    bool BluetoothManager::getBluetoothAvailabilityLE() noexcept{
         bool state;
-        int ret = system_info_get_platform_bool("http://tizen.org/feature/network.bluetooth", &state);
+        int ret = system_info_get_platform_bool("http://tizen.org/feature/network.bluetooth.le", &state);
         if(ret != SYSTEM_INFO_ERROR_NONE){
             Logger::log(LogLevel::ERROR, "failed fetching bluetooth data!");
         }
@@ -79,56 +68,40 @@ namespace btu{
         std::scoped_lock lock(adapterState.mut);
         adapterState.var = _state;
     }
+    
 
-    void BluetoothManager::startBluetoothDeviceDiscovery() const noexcept{
-        bool state;
-        int res = bt_adapter_is_discovering(&state);
-        if(res != BT_ERROR_NONE){
-            Logger::log(LogLevel::ERROR, "error during running scan!");
-        }
-        if(!state){
-            res = bt_adapter_start_device_discovery();
-            if(res == BT_ERROR_NOW_IN_PROGRESS){
-                Logger::log(LogLevel::DEBUG, "scan already running. skipping.");
-            }else if(res != BT_ERROR_NONE){
-                Logger::log(LogLevel::ERROR, "error during running scan!");
-            }
+    void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
+        int res = bt_adapter_le_start_scan(BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE, this);
+        if(res){
+            Logger::log(LogLevel::ERROR, "scanning start failed with " + std::to_string(res));
         }
     }   
 
-    void BluetoothManager::stopBluetoothDeviceDiscovery() const noexcept{
-        int res = bt_adapter_stop_device_discovery();
+    void BluetoothManager::stopBluetoothDeviceScanLE() noexcept{
+        int res = bt_adapter_le_stop_scan();
         if(res != BT_ERROR_NONE){
             if(res == BT_ERROR_NOT_INITIALIZED)
-                Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_INITIALIZED" );
+                Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_INITIALIZED");
+            else if(res == BT_ERROR_NOT_IN_PROGRESS)
+                Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_IN_PROGRESS");
             else 
                 Logger::log(LogLevel::ERROR, "error in disabling scan. " + std::to_string(res));
         }
-            
-
-        Logger::log(LogLevel::DEBUG, "stopping scan...");
     }
 
-    void BluetoothManager::adapterDeviceDiscoveryStateChangedCallback(int result, bt_adapter_device_discovery_state_e discovery_state, bt_adapter_device_discovery_info_s *discovery_info, void* user_data) noexcept{
+    void BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept{
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        Logger::log(LogLevel::DEBUG, "Callback im here :DD.");
-
-        if(discovery_state == BT_ADAPTER_DEVICE_DISCOVERY_FOUND){
-            bluetoothManager.addDiscoveryResult(*discovery_info);
-            Logger::log(LogLevel::DEBUG, "FOUND A NEW DEVICE");
-        }else if(discovery_state == BT_ADAPTER_DEVICE_DISCOVERY_FINISHED){
-            Logger::log(LogLevel::DEBUG, "BT_ADAPTER_DEVICE_DISCOVERY_FINISHED");
-        }else{
-            Logger::log(LogLevel::DEBUG, "BT_ADAPTER_DEVICE_DISCOVERY_STARTED");
-        }
+        bluetoothManager.notifyDiscoveryResultLE(*discovery_info);
+        Logger::log(LogLevel::DEBUG, "FOUND A NEW DEVICE");
     }
-    void BluetoothManager::addDiscoveryResult(bt_adapter_device_discovery_info_s& discovery_info) noexcept{        
+
+    void BluetoothManager::notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s& discovery_info) noexcept{        
         //[TODO] TEST THIS FUNCTION
         ScanResult scanResult;
         BluetoothDevice bluetoothDevice;
 
         bluetoothDevice.set_remote_id(discovery_info.remote_address);
-        bluetoothDevice.set_name(discovery_info.remote_name);
+        bluetoothDevice.set_name(discovery_info.adv_data);
         bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);//[TODO] ??
 
         scanResult.set_allocated_device(&bluetoothDevice);
@@ -140,7 +113,7 @@ namespace btu{
         Logger::log(LogLevel::DEBUG, "sent new scan result to flutter.");
     }
 
-    SafeType<std::vector<BluetoothDevice>>& BluetoothManager::getConnectedDevices() noexcept{
+    SafeType<std::vector<BluetoothDevice>>& BluetoothManager::getConnectedDevicesLE() noexcept{
         return connectedDevices;
     }
 
