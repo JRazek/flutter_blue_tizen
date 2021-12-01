@@ -10,6 +10,8 @@
 #include <flutterblue.pb.h>
 
 namespace btu{
+
+    AdvertisementData advertisementDataBuildFromRaw(char* dataRaw, int dataLength);
     using LogLevel = btlog::LogLevel;
     using Logger = btlog::Logger;
 
@@ -114,7 +116,7 @@ namespace btu{
         if(discoveredDevicesAddresses.find(address) == discoveredDevicesAddresses.end()){
             ScanResult scanResult;
             BluetoothDevice* bluetoothDevice = new BluetoothDevice();
-            AdvertisementData* advertisementData = new AdvertisementData();
+            AdvertisementData* advertisementData = new AdvertisementData(advertisementDataBuildFromRaw(discovery_info.adv_data, discovery_info.adv_data_len));
             bluetoothDevice->set_allocated_name(new std::string(address));
             
             scanResult.set_allocated_advertisement_data(advertisementData);
@@ -131,8 +133,9 @@ namespace btu{
         return connectedDevices;
     }
     
-    AdvertisementData advertisementDataBuildFromRaw(char* dataRaw){
-        
+    AdvertisementData advertisementDataBuildFromRaw(char* dataRaw, int dataLength){ 
+        //[TODO] DESERIALIZE
+        return AdvertisementData();
     }
 } // namespace btu
 
