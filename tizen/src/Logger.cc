@@ -1,7 +1,6 @@
 #include <Logger.h>
 #include <LogLevel.h>
 
-
 namespace btlog{
     void Logger::log(LogLevel level, const std::string& mess) noexcept{
         if(level >= logLevel){
@@ -32,7 +31,7 @@ namespace btlog{
                     p = log_priority::DLOG_DEBUG;
                     break;
             }
-            
+            std::scoped_lock l(m);
             dlog_print(p, logTag.c_str(), mess.c_str(), "");
         }
     }

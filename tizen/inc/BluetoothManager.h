@@ -10,6 +10,7 @@
 #include <mutex>
 #include <memory>
 #include <condition_variable>
+#include <unordered_set>
 
 class BluetoothState;
 class BluetoothDevice;
@@ -35,6 +36,7 @@ namespace btu{
 
         SafeType<bool> scanningInProgress{false};
 
+        std::unordered_set<std::string> discoveredDevicesAddresses;
     public:
 
         BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;
@@ -58,7 +60,7 @@ namespace btu{
          * 
          * @param discovery_info 
          */
-        void notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s* discovery_info);
+        void notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s& discovery_info);
 
 
         //////////////////////////

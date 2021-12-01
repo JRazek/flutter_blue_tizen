@@ -71,54 +71,68 @@ namespace btu{
     
 
     void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
-        int res = bt_adapter_le_start_scan(&BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE, this);
-        if(res){
+        // int res =  bt_adapter_le_set_scan_mode()
+        bool isDiscovering;  
+        int res = bt_adapter_le_is_discovering(&isDiscovering);
+        if(isDiscovering)
+            stopBluetoothDeviceScanLE();
+        if(!res){
+            discoveredDevicesAddresses.clear();
+            res = bt_adapter_le_start_scan(&BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE, this);
+        }else
             Logger::log(LogLevel::ERROR, "scanning start failed with " + std::to_string(res));
-        }
+               
     }   
 
     void BluetoothManager::stopBluetoothDeviceScanLE() noexcept{
-        int res = bt_adapter_le_stop_scan();
-        if(res != BT_ERROR_NONE){
-            if(res == BT_ERROR_NOT_INITIALIZED)
-                Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_INITIALIZED");
-            else if(res == BT_ERROR_NOT_IN_PROGRESS)
-                Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_IN_PROGRESS");
-            else 
-                Logger::log(LogLevel::ERROR, "error in disabling scan. " + std::to_string(res));
+        bool isDiscovering;
+        int res = bt_adapter_le_is_discovering(&isDiscovering);
+        if(isDiscovering){
+            res = bt_adapter_le_stop_scan();
+            if(res != BT_ERROR_NONE){
+                if(res == BT_ERROR_NOT_INITIALIZED)
+                    Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_INITIALIZED");
+                else if(res == BT_ERROR_NOT_IN_PROGRESS)
+                    Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_IN_PROGRESS");
+                else 
+                    Logger::log(LogLevel::ERROR, "error in disabling scan. " + std::to_string(res));
+            }
         }
     }
 
     void BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) {
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        bluetoothManager.notifyDiscoveryResultLE(discovery_info);
-        Logger::log(LogLevel::DEBUG, "FOUND A NEW DEVICE");
+        if(result)
+            Logger::log(LogLevel::ERROR, "NULLPTR IN CALL!");
+        else{
+            bluetoothManager.notifyDiscoveryResultLE(*discovery_info);
+        }
     }
 
-    void BluetoothManager::notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s* discovery_info){        
-        //[TODO] TEST THIS FUNCTION
-        Logger::log(LogLevel::DEBUG, "here..121.");
-
-        ScanResult scanResult;
-        BluetoothDevice bluetoothDevice;
-
-        // bluetoothDevice.set_remote_id(discovery_info.remote_address);
-        // std::string advData(discovery_info.adv_data, discovery_info.adv_data_len);
-        // bluetoothDevice.set_name(std::move(advData));
-        // bluetoothDevice.set_type(BluetoothDevice_Type_UNKNOWN);//[TODO] ??
-
-        // scanResult.set_rssi(discovery_info.rssi);
-        // scanResult.set_allocated_device(&bluetoothDevice);
-        //sigabrt here!!
-        std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
-        scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
-        methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
-        Logger::log(LogLevel::DEBUG, "sent new scan result to flutter.");
+    void BluetoothManager::notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s& discovery_info){        
+        std::string address(discovery_info.remote_address);
+        if(discoveredDevicesAddresses.find(address) == discoveredDevicesAddresses.end()){
+            ScanResult scanResult;
+            BluetoothDevice* bluetoothDevice = new BluetoothDevice();
+            AdvertisementData* advertisementData = new AdvertisementData();
+            bluetoothDevice->set_allocated_name(new std::string(address));
+            
+            scanResult.set_allocated_advertisement_data(advertisementData);
+            scanResult.set_allocated_device(bluetoothDevice);
+            std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
+            scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
+            discoveredDevicesAddresses.insert(address);
+            methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
+            Logger::log(LogLevel::DEBUG, "sent new scan result to flutter. " + address);
+        }
     }
 
     SafeType<std::vector<BluetoothDevice>>& BluetoothManager::getConnectedDevicesLE() noexcept{
         return connectedDevices;
     }
-
+    
+    AdvertisementData advertisementDataBuildFromRaw(char* dataRaw){
+        
+    }
 } // namespace btu
 
