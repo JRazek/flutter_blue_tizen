@@ -84,10 +84,11 @@ namespace btu{
         if(!res){
             std::scoped_lock lock(discoveredDevicesAddresses.mut);
             discoveredDevicesAddresses.var.clear();
+            btlog::Logger::log(btlog::LogLevel::DEBUG, "starting scan...");
             res = bt_adapter_le_start_scan(&BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE, this);
         }else
             Logger::log(LogLevel::ERROR, "scanning start failed with " + std::to_string(res));
-               
+        
     }   
 
     void BluetoothManager::stopBluetoothDeviceScanLE() noexcept{
@@ -102,7 +103,10 @@ namespace btu{
                     Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_IN_PROGRESS");
                 else 
                     Logger::log(LogLevel::ERROR, "error in disabling scan. " + std::to_string(res));
-            }
+            }else
+                btlog::Logger::log(btlog::LogLevel::DEBUG, "scan stopped.");
+        }else{
+            btlog::Logger::log(btlog::LogLevel::WARNING, "Cannot stop scan. It is not in progress!");
         }
     }
 
@@ -129,7 +133,6 @@ namespace btu{
                 bluetoothDevice->set_allocated_name(new std::string(name));
                 free(name);
             }
-            // bluetoothDevice->set_allocated_name(new std::string(name));
             bluetoothDevice->set_allocated_name(new std::string(address));
             bluetoothDevice->set_allocated_remote_id(new std::string(address));
             
@@ -140,17 +143,17 @@ namespace btu{
             std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
             scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
 
-            BluetoothDevice btTmp;
-            // btTmp.set_allocated_remote_id(new std::string(address));??? sigabrt
+            auto ret = discoveredDevicesAddresses.var.insert({address, BluetoothDevice()});//pointer instead!!
+            (*ret.first).second.set_allocated_remote_id(new std::string(address));
 
-            discoveredDevicesAddresses.var.insert({address, btTmp});//pointer instead!!
+            
             methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
             Logger::log(LogLevel::DEBUG, "sent new scan result to flutter. " + address);
         }
     }
 
     SafeType<std::unordered_map<std::string, BluetoothDevice>>& BluetoothManager::getConnectedDevicesLE() noexcept{
-        return connectedDevices.first;
+        return connectedDevices;
     }
     
     AdvertisementData advertisementDataBuildFromRaw(char* dataRaw, int dataLength){ 
@@ -159,20 +162,26 @@ namespace btu{
     }
 
     void BluetoothManager::connect(const ConnectRequest& connRequest) noexcept{
-        bt_device_create_bond(connRequest.remote_id().c_str());
+        // bt_device_create_bond(connRequest.remote_id().c_str());
         //wait for completion
-        std::unique_lock lock(connectedDevices.first.mut);
-        connectedDevices.second.wait(lock, [&](){
-            auto mp = connectedDevices.first.var;
-            return mp.find(connRequest.remote_id()) != mp.end();
-        });
+
+        Logger::log(LogLevel::DEBUG, "remote id is - " + connRequest.remote_id());
+
+        // std::unique_lock lock(pendingConnectionRequests.mut);
+
+        // auto& pending = pendingConnectionRequests.var[connRequest.remote_id()];
+        // pending.first.wait(lock, [&]() -> bool{
+        //    return pending.second;
+        // });
     }
     void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s *device_info, void *user_data) noexcept{
+        if(result){
+            Logger::log(LogLevel::ERROR, "FAILED TO CONNECT!");
+            return;
+        }
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        auto& mapp = bluetoothManager.connectedDevices.first;
-        auto& cv = bluetoothManager.connectedDevices.second;
-        BluetoothDevice bluetoothDevice;
-        // char* name;
+        std::scoped_lock lock(bluetoothManager.pendingConnectionRequests.mut);
+        // bluetoothManager.pendingConnectionRequests.var[device_info->bt_class.]
 
         // std::scoped_lock lock(mapp.mut);
         // mapp.var.insert({})

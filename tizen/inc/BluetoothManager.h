@@ -25,7 +25,9 @@ namespace btu{
     class BluetoothManager{
         SafeType<bt_adapter_state_e> adapterState;
 
-        std::pair<SafeType<std::unordered_map<std::string, BluetoothDevice>>, std::condition_variable> connectedDevices;
+        SafeType<std::unordered_map<std::string, BluetoothDevice>> connectedDevices;
+
+        SafeType<std::unordered_map<std::string, std::pair<std::condition_variable, bool>>> pendingConnectionRequests;
 
         std::shared_ptr<MethodChannel> methodChannel;
 

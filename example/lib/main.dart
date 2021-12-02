@@ -6,20 +6,22 @@ void main() async {
   FlutterBlue flutterBlue = FlutterBlue.instance;
   flutterBlue.setLogLevel(LogLevel.error);
   flutterBlue.startScan(
-    timeout: const Duration(seconds: 1),
     allowDuplicates: false,
   );
 
   // Listen to scan results
-  var subscription = flutterBlue.scanResults.listen((results) {
+
+  var subscription = flutterBlue.scanResults.listen((results) async {
     // do something with scan results
     if (results.isNotEmpty) {
-      debugPrint(
-          '${results.last.device.name} found! rssi: ${results.last.device.name}');
+      BluetoothDevice dev = results.last.device;
+      debugPrint('${dev.name} found! rssi: ${dev.name}');
+      dev.connect();
     }
   });
 
   // Stop scanning
+
   flutterBlue.stopScan();
   runApp(const MyApp());
 }

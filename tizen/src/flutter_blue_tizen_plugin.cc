@@ -44,7 +44,9 @@ namespace {
     bluetoothManager(methodChannel)
     {}
 
-    virtual ~FlutterBlueTizenPlugin() {}
+    virtual ~FlutterBlueTizenPlugin() {
+      google::protobuf::ShutdownProtobufLibrary();
+    }
 
   private:
     void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
@@ -66,7 +68,6 @@ namespace {
       else if(method_call.method_name() == "startScan"){
           ScanSettings scanSettings;
           bluetoothManager.startBluetoothDeviceScanLE(scanSettings);
-          btlog::Logger::log(btlog::LogLevel::DEBUG, "starting scan...");
           result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name() == "stopScan"){
@@ -86,8 +87,18 @@ namespace {
           //[TODO] TEST THIS FUNCTION
           result->Success(flutter::EncodableValue(encodeToVector(response)));
       }
-      else if(method_call.method_name() == "connect"){
+      else if(method_call.method_name() == "connect" && false){
         
+
+        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);//to fix!
+        ConnectRequest connectRequest;
+        bool res = connectRequest.ParseFromArray(encoded.data(), encoded.size());
+        if(res)
+          result->Error("could not deserialize request!");
+        
+        
+        bluetoothManager.connect(connectRequest);
+        result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name() == "disconnect"){
         
