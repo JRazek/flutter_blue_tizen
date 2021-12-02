@@ -80,7 +80,7 @@ namespace {
             std::scoped_lock lock(p.mut);
             for(const auto& dev : p.var){
               BluetoothDevice* bluetoothDevice = response.add_devices();
-              *bluetoothDevice = dev;
+              *bluetoothDevice = dev.second;
             }
           }
           //[TODO] TEST THIS FUNCTION

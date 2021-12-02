@@ -5,13 +5,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
   flutterBlue.setLogLevel(LogLevel.error);
-  flutterBlue.startScan(timeout: Duration(seconds: 4));
+  flutterBlue.startScan(
+    timeout: const Duration(seconds: 1),
+    allowDuplicates: false,
+  );
 
   // Listen to scan results
   var subscription = flutterBlue.scanResults.listen((results) {
     // do something with scan results
-    for (ScanResult r in results) {
-      print('${r.device.name} found! rssi: ${r.rssi}');
+    if (results.isNotEmpty) {
+      debugPrint(
+          '${results.last.device.name} found! rssi: ${results.last.device.name}');
     }
   });
 
