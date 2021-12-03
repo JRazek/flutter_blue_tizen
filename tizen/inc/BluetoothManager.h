@@ -1,5 +1,5 @@
-#ifndef BLUETOOTH_UTILS_H
-#define BLUETOOTH_UTILS_H
+#ifndef BLUETOOTH_MANAGER_H
+#define BLUETOOTH_MANAGER_H
 
 #include <bluetooth.h>
 
@@ -13,14 +13,8 @@
 #include <unordered_set>
 
 #include <flutterblue.pb.h>
-
+#include <Utils.h>
 namespace btu{
-    template<typename T>
-    struct SafeType{
-        T var;
-        std::mutex mut;
-    };
-
     using MethodChannel = flutter::MethodChannel<flutter::EncodableValue>;
     class BluetoothManager{
         SafeType<bt_adapter_state_e> adapterState;
@@ -30,8 +24,6 @@ namespace btu{
         SafeType<std::unordered_map<std::string, std::pair<std::condition_variable, bool>>> pendingConnectionRequests;
 
         std::shared_ptr<MethodChannel> methodChannel;
-
-        SafeType<bool> scanningInProgress{false};
 
         SafeType<std::unordered_map<std::string, BluetoothDevice>> discoveredDevicesAddresses;
     public:
@@ -74,4 +66,4 @@ namespace btu{
     };
 } // namespace btu
 
-#endif //BLUETOOTH_UTILS_H
+#endif //BLUETOOTH_MANAGER_H

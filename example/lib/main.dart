@@ -4,7 +4,7 @@ import 'package:flutter_blue/flutter_blue.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
-  flutterBlue.setLogLevel(LogLevel.error);
+  // flutterBlue.setLogLevel(LogLevel.alert);
   flutterBlue.startScan(
     allowDuplicates: false,
   );

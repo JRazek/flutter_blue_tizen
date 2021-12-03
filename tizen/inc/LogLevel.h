@@ -3,13 +3,14 @@
 
 namespace btlog{
     enum class LogLevel{
-        VERBOSE = 0,
-        DEBUG = 1,
-        INFO = 2,
-        WARNING = 3,
-        ERROR = 4,
-        FATAL = 5,
-        SILENT = 6
+        EMERGENCY,
+        ALERT,
+        CRITICAL,
+        ERROR,
+        WARNING,
+        NOTICE,
+        INFO,
+        DEBUG,
     };
 }
 #endif //LOG_LEVEL_H

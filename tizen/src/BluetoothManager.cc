@@ -9,7 +9,6 @@
 
 
 namespace btu{
-
     AdvertisementData advertisementDataBuildFromRaw(char* dataRaw, int dataLength);
     using LogLevel = btlog::LogLevel;
     using Logger = btlog::Logger;
@@ -74,7 +73,6 @@ namespace btu{
         adapterState.var = _state;
     }
     
-
     void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
         // int res =  bt_adapter_le_set_scan_mode()
         bool isDiscovering;  
@@ -118,6 +116,7 @@ namespace btu{
             bluetoothManager.notifyDiscoveryResultLE(*discovery_info);
         }
     }
+
     void BluetoothManager::notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s& discovery_info){        
         std::string address(discovery_info.remote_address);
         std::scoped_lock lock(discoveredDevicesAddresses.mut);
@@ -136,7 +135,6 @@ namespace btu{
             bluetoothDevice->set_allocated_name(new std::string(address));
             bluetoothDevice->set_allocated_remote_id(new std::string(address));
             
-            
             scanResult.set_allocated_advertisement_data(advertisementData);
             scanResult.set_allocated_device(bluetoothDevice);
             scanResult.set_rssi(discovery_info.rssi);
@@ -146,7 +144,6 @@ namespace btu{
             auto ret = discoveredDevicesAddresses.var.insert({address, BluetoothDevice()});//pointer instead!!
             (*ret.first).second.set_allocated_remote_id(new std::string(address));
 
-            
             methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
             Logger::log(LogLevel::DEBUG, "sent new scan result to flutter. " + address);
         }

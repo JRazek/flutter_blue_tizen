@@ -19,7 +19,6 @@
 #include <flutterblue.pb.h>
 
 namespace {
-
   static std::vector<u_int8_t> encodeToVector(const google::protobuf::MessageLite& messageLite);
   
   class FlutterBlueTizenPlugin : public flutter::Plugin {
@@ -55,7 +54,7 @@ namespace {
           result->Success(flutter::EncodableValue(bluetoothManager.getBluetoothAvailabilityLE()));
       }
       else if(method_call.method_name() == "setLogLevel" && std::holds_alternative<int>(args)){
-          log_priority logLevel = static_cast<log_priority>(std::get<int>(args));
+          btlog::LogLevel logLevel = static_cast<btlog::LogLevel>(std::get<int>(args));
           btlog::Logger::setLogLevel(logLevel);
           result->Success(flutter::EncodableValue(NULL));
       }
@@ -87,18 +86,22 @@ namespace {
           //[TODO] TEST THIS FUNCTION
           result->Success(flutter::EncodableValue(encodeToVector(response)));
       }
-      else if(method_call.method_name() == "connect" && false){
+      else if(method_call.method_name() == "connect"){
         
 
+        btlog::Logger::log(btlog::LogLevel::DEBUG, "here1");
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);//to fix!
         ConnectRequest connectRequest;
-        bool res = connectRequest.ParseFromArray(encoded.data(), encoded.size());
-        if(res)
+        // bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
+        btlog::Logger::log(btlog::LogLevel::DEBUG, "size serialized = " + std::to_string(encoded.size()));
+        bool ok = false;
+        if(!ok)
           result->Error("could not deserialize request!");
+        else
+          result->Success(flutter::EncodableValue(NULL));
+
         
-        
-        bluetoothManager.connect(connectRequest);
-        result->Success(flutter::EncodableValue(NULL));
+        // bluetoothManager.connect(connectRequest);
       }
       else if(method_call.method_name() == "disconnect"){
         
