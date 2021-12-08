@@ -127,4 +127,6 @@ namespace {
 
 void FlutterBlueTizenPluginRegisterWithRegistrar(FlutterDesktopPluginRegistrarRef registrar) { 
       FlutterBlueTizenPlugin::RegisterWithRegistrar(flutter::PluginRegistrarManager::GetInstance()->GetRegistrar<flutter::PluginRegistrar>(registrar));
+      BluetoothDevice btl;
+      btl.set_name("name");
 }

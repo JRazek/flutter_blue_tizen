@@ -121,30 +121,7 @@ namespace btu{
         std::string address(discovery_info.remote_address);
         std::scoped_lock lock(discoveredDevicesAddresses.mut);
         if(discoveredDevicesAddresses.var.find(address) == discoveredDevicesAddresses.var.end()){
-            ScanResult scanResult;
-            BluetoothDevice* bluetoothDevice = new BluetoothDevice();
-            AdvertisementData* advertisementData = new AdvertisementData(advertisementDataBuildFromRaw(discovery_info.adv_data, discovery_info.adv_data_len));
-            char* name;
-            int res = bt_adapter_le_get_scan_result_device_name(&discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &name);
-            if(res){
-                Logger::log(LogLevel::ERROR, "Could not fetch device name!");
-            }else{
-                bluetoothDevice->set_allocated_name(new std::string(name));
-                free(name);
-            }
-            bluetoothDevice->set_allocated_name(new std::string(address));
-            bluetoothDevice->set_allocated_remote_id(new std::string(address));
-            
-            scanResult.set_allocated_advertisement_data(advertisementData);
-            scanResult.set_allocated_device(bluetoothDevice);
-            scanResult.set_rssi(discovery_info.rssi);
-            std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
-            scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
-
-            auto ret = discoveredDevicesAddresses.var.insert({address, BluetoothDevice()});//pointer instead!!
-            (*ret.first).second.set_allocated_remote_id(new std::string(address));
-
-            methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
+            //in registrar now.
             Logger::log(LogLevel::DEBUG, "sent new scan result to flutter. " + address);
         }
     }
