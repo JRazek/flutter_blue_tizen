@@ -146,7 +146,7 @@ namespace btu{
         // auto& pending = pendingConnectionRequests.var[connRequest.remote_id()];
         // pending.first.wait(lock, [&]() -> bool{
         //    return pending.second;
-        // });
+        // });;
     }
     void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s *device_info, void *user_data) noexcept{
         if(result){
