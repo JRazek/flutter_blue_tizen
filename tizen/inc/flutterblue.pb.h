@@ -5735,7 +5735,7 @@ inline const std::string& BluetoothDevice::_internal_remote_id() const {
 }
 inline void BluetoothDevice::_internal_set_remote_id(const std::string& value) {
   
-  remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+  remote_id_.Set(nullptr, value, GetArena());
 }
 inline void BluetoothDevice::set_remote_id(std::string&& value) {
   
@@ -5807,7 +5807,7 @@ inline void BluetoothDevice::set_name(std::string&& value) {
 inline void BluetoothDevice::set_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
-  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  name_.Set(nullptr, ::std::string(value), GetArena());
   // @@protoc_insertion_point(field_set_char:BluetoothDevice.name)
 }
 inline void BluetoothDevice::set_name(const char* value,

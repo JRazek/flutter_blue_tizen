@@ -25,7 +25,7 @@ namespace btu{
 
         std::shared_ptr<MethodChannel> methodChannel;
 
-        SafeType<std::unordered_map<std::string, BluetoothDevice>> discoveredDevicesAddresses;
+        SafeType<std::unordered_map<std::string, const BluetoothDevice *>> discoveredDevicesAddresses;
     public:
 
         BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;

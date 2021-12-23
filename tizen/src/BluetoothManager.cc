@@ -5,6 +5,7 @@
 #include <LogLevel.h>
 
 #include <bluetooth.h>
+#include <tizen.h>
 
 
 
@@ -85,8 +86,10 @@ namespace btu{
             btlog::Logger::log(btlog::LogLevel::DEBUG, "starting scan...");
             res = bt_adapter_le_start_scan(&BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE, this);
         }
-        if(res)
-            Logger::log(LogLevel::ERROR, "scanning start failed with " + std::to_string(res));
+        if(res){
+            std::string err=get_error_message(res);
+            Logger::log(LogLevel::ERROR, "scanning start failed with " + err);
+        }
         
     }   
 
@@ -95,13 +98,9 @@ namespace btu{
         int res = bt_adapter_le_is_discovering(&isDiscovering);
         if(isDiscovering){
             res = bt_adapter_le_stop_scan();
-            if(res != BT_ERROR_NONE){
-                if(res == BT_ERROR_NOT_INITIALIZED)
-                    Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_INITIALIZED");
-                else if(res == BT_ERROR_NOT_IN_PROGRESS)
-                    Logger::log(LogLevel::ERROR, "error in disabling scan. BT_ERROR_NOT_IN_PROGRESS");
-                else 
-                    Logger::log(LogLevel::ERROR, "error in disabling scan. " + std::to_string(res));
+            if(res){
+                std::string err=get_error_message(res);
+                Logger::log(LogLevel::ERROR, "disabling scan failed with " + err);
             }else
                 btlog::Logger::log(btlog::LogLevel::DEBUG, "scan stopped.");
         }else{
@@ -128,13 +127,14 @@ namespace btu{
             char* name;
             int res = bt_adapter_le_get_scan_result_device_name(&discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &name);
             if(res){
-                Logger::log(LogLevel::ERROR, "Could not fetch device name!");
+                std::string err=get_error_message(res);
+                Logger::log(LogLevel::ERROR, "fetching device name failed with " + err);
             }else{
-                bluetoothDevice->set_allocated_name(new std::string(name));
+                bluetoothDevice->set_name(name);
                 free(name);
             }
-            bluetoothDevice->set_allocated_name(new std::string(address));
-            bluetoothDevice->set_allocated_remote_id(new std::string(address));
+            // bluetoothDevice->set_name(address);
+            bluetoothDevice->set_remote_id(address);
             
             scanResult.set_allocated_advertisement_data(advertisementData);
             scanResult.set_allocated_device(bluetoothDevice);
@@ -142,8 +142,7 @@ namespace btu{
             std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
             scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
 
-            auto ret = discoveredDevicesAddresses.var.insert({address, BluetoothDevice()});//pointer instead!!
-            (*ret.first).second.set_allocated_remote_id(new std::string(address));
+            discoveredDevicesAddresses.var.insert({address, bluetoothDevice});//pointer instead!!
 
             methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
             Logger::log(LogLevel::DEBUG, "sent new scan result to flutter. " + address);
