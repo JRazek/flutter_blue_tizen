@@ -87,14 +87,11 @@ namespace {
           result->Success(flutter::EncodableValue(encodeToVector(response)));
       }
       else if(method_call.method_name() == "connect"){
-        
-
         btlog::Logger::log(btlog::LogLevel::DEBUG, "here1");
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);//to fix!
         ConnectRequest connectRequest;
-        // bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
+        bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
         btlog::Logger::log(btlog::LogLevel::DEBUG, "size serialized = " + std::to_string(encoded.size()));
-        bool ok = false;
         if(!ok)
           result->Error("could not deserialize request!");
         else
