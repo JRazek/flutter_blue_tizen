@@ -84,7 +84,8 @@ namespace btu{
             discoveredDevicesAddresses.var.clear();
             btlog::Logger::log(btlog::LogLevel::DEBUG, "starting scan...");
             res = bt_adapter_le_start_scan(&BluetoothManager::adapterDeviceDiscoveryStateChangedCallbackLE, this);
-        }else
+        }
+        if(res)
             Logger::log(LogLevel::ERROR, "scanning start failed with " + std::to_string(res));
         
     }   
