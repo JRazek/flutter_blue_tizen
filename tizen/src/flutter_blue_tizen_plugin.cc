@@ -88,20 +88,19 @@ namespace {
       }
       else if(method_call.method_name() == "connect"){
         #ifndef NDEBUG
-        btlog::Logger::log(btlog::LogLevel::DEBUG, "test connect");
-        bluetoothManager.testConnect();
-        result->Success(flutter::EncodableValue(NULL));
-        #else
-        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);//to fix!
-        ConnectRequest connectRequest;
-        bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
-        btlog::Logger::log(btlog::LogLevel::DEBUG, "size serialized = " + std::to_string(encoded.size()));
-        bluetoothManager.connect(connectRequest);
-        if(!ok)
-          result->Error("could not deserialize request!");
-        else
+          btlog::Logger::log(btlog::LogLevel::DEBUG, "test connect");
+          bluetoothManager.testConnect();
           result->Success(flutter::EncodableValue(NULL));
-
+        #else
+          std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);//to fix!
+          ConnectRequest connectRequest;
+          bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
+          btlog::Logger::log(btlog::LogLevel::DEBUG, "size serialized = " + std::to_string(encoded.size()));
+          bluetoothManager.connect(connectRequest);
+          if(!ok)
+            result->Error("could not deserialize request!");
+          else
+            result->Success(flutter::EncodableValue(NULL));
         #endif
         
       }
