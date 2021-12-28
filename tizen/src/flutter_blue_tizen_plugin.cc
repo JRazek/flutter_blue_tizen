@@ -96,6 +96,7 @@ namespace {
         ConnectRequest connectRequest;
         bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
         btlog::Logger::log(btlog::LogLevel::DEBUG, "size serialized = " + std::to_string(encoded.size()));
+        bluetoothManager.connect(connectRequest);
         if(!ok)
           result->Error("could not deserialize request!");
         else
@@ -103,7 +104,6 @@ namespace {
 
         #endif
         
-        // bluetoothManager.connect(connectRequest);
       }
       else if(method_call.method_name() == "disconnect"){
         
