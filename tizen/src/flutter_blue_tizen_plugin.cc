@@ -86,8 +86,12 @@ namespace {
           //[TODO] TEST THIS FUNCTION
           result->Success(flutter::EncodableValue(encodeToVector(response)));
       }
-      else if(method_call.method_name() == "connect"&&false){
-        btlog::Logger::log(btlog::LogLevel::DEBUG, "here1");
+      else if(method_call.method_name() == "connect"){
+        #ifndef NDEBUG
+        btlog::Logger::log(btlog::LogLevel::DEBUG, "test connect");
+        bluetoothManager.testConnect();
+        result->Success(flutter::EncodableValue(NULL));
+        #else
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);//to fix!
         ConnectRequest connectRequest;
         bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
@@ -97,6 +101,7 @@ namespace {
         else
           result->Success(flutter::EncodableValue(NULL));
 
+        #endif
         
         // bluetoothManager.connect(connectRequest);
       }
@@ -124,11 +129,4 @@ namespace {
 
 void FlutterBlueTizenPluginRegisterWithRegistrar(FlutterDesktopPluginRegistrarRef registrar) { 
       FlutterBlueTizenPlugin::RegisterWithRegistrar(flutter::PluginRegistrarManager::GetInstance()->GetRegistrar<flutter::PluginRegistrar>(registrar));
-      BluetoothDevice btl;
-      btl.set_name("name");
-      std::vector<uint8_t> encodable(btl.ByteSizeLong());
-      btl.SerializeToArray(encodable.data(), btl.ByteSizeLong());
-
-      BluetoothDevice decoded;
-      bool ok = decoded.ParseFromArray(encodable.data(), encodable.size());
 }

@@ -5650,7 +5650,7 @@ inline const std::string& ConnectRequest::_internal_remote_id() const {
 }
 inline void ConnectRequest::_internal_set_remote_id(const std::string& value) {
   
-  remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+  remote_id_.Set(nullptr, value, GetArena());
 }
 inline void ConnectRequest::set_remote_id(std::string&& value) {
   

@@ -63,6 +63,11 @@ namespace btu{
         void setAdapterState(bt_adapter_state_e state) noexcept;
 
         SafeType<std::unordered_map<std::string, BluetoothDevice>>& getConnectedDevicesLE() noexcept;
+
+        #ifndef NDEBUG
+        void testConnect();
+        #endif
+
     };
 } // namespace btu
 

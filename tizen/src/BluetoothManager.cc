@@ -159,29 +159,53 @@ namespace btu{
     }
 
     void BluetoothManager::connect(const ConnectRequest& connRequest) noexcept{
-        // bt_device_create_bond(connRequest.remote_id().c_str());
-        //wait for completion
+        bt_device_create_bond(connRequest.remote_id().c_str());
 
         Logger::log(LogLevel::DEBUG, "remote id is - " + connRequest.remote_id());
 
-        // std::unique_lock lock(pendingConnectionRequests.mut);
+        std::unique_lock lock(pendingConnectionRequests.mut);
 
-        // auto& pending = pendingConnectionRequests.var[connRequest.remote_id()];
-        // pending.first.wait(lock, [&]() -> bool{
-        //    return pending.second;
-        // });
+        //wait for completion
+        auto& pending = pendingConnectionRequests.var[connRequest.remote_id()];
+        pending.first.wait(lock, [&]() -> bool{
+           return pending.second;
+        });
+
+        Logger::log(LogLevel::DEBUG, "connection request released!");
     }
-    void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s *device_info, void *user_data) noexcept{
-        if(result){
+    void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept{
+            Logger::log(LogLevel::DEBUG, "callback with remote_address="+std::string(device_info->remote_address));
+        if(!result){
+            BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
+            std::scoped_lock lock(bluetoothManager.pendingConnectionRequests.mut);
+            
+            Logger::log(LogLevel::DEBUG, "connected to device - "+std::string(device_info->remote_address));
+            //remote_id==remote_address
+            auto& mapp=bluetoothManager.pendingConnectionRequests.var;
+            if(mapp.find(device_info->remote_address)!=mapp.end()){
+                auto& p=mapp[device_info->remote_address];
+                p.second=true;
+                p.first.notify_one();
+            }
+        }else{
             Logger::log(LogLevel::ERROR, "FAILED TO CONNECT!");
-            return;
         }
-        BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        std::scoped_lock lock(bluetoothManager.pendingConnectionRequests.mut);
-        // bluetoothManager.pendingConnectionRequests.var[device_info->bt_class.]
-
-        // std::scoped_lock lock(mapp.mut);
-        // mapp.var.insert({})
     }
+
+    #ifndef NDEBUG
+    void BluetoothManager::testConnect(){
+        static std::once_flag flag;
+        std::call_once(flag, [&](){
+            ConnectRequest request;
+            std::string remoteID;
+            {
+                std::scoped_lock lock(discoveredDevicesAddresses.mut);
+                remoteID=(*discoveredDevicesAddresses.var.begin()).first;
+            }
+            request.set_remote_id(remoteID);
+            connect(request);
+        });
+    }
+    #endif
 } // namespace btu
 

@@ -16,12 +16,12 @@ void main() async {
     if (results.isNotEmpty) {
       BluetoothDevice dev = results.last.device;
       debugPrint('${dev.name} found! rssi: ${dev.name}');
-      dev.connect(); //method that fails.
+      await dev.connect(); //method that fails.
+      debugPrint('connect done');
     }
   });
 
   // Stop scanning
-  debugPrint("started app!");
   flutterBlue.stopScan();
   runApp(const MyApp());
 }
