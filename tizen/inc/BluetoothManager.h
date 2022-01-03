@@ -26,6 +26,8 @@ namespace btu{
         std::shared_ptr<MethodChannel> methodChannel;
 
         SafeType<std::unordered_map<std::string, const BluetoothDevice *>> discoveredDevicesAddresses;
+
+        SafeType<bt_advertiser_h> advertisingHandler={nullptr};
     public:
 
         BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;
@@ -41,6 +43,8 @@ namespace btu{
         void stopBluetoothDeviceScanLE() noexcept;
         
         static void adapterDeviceDiscoveryStateChangedCallbackLE(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data);
+        
+        static void adapterAdvertisingStateChangedCallbackLE(int result, bt_advertiser_h advertiser, bt_adapter_le_advertising_state_e adv_state, void *user_data);
 
         bool adapterIsScanningLE() const noexcept;
 
@@ -55,6 +59,7 @@ namespace btu{
          */
         void notifyDiscoveryResultLE(const bt_adapter_le_device_scan_result_info_s& discovery_info);
 
+        void startAdvertising() noexcept;
 
         //////////////////////////
         BluetoothState getBluetoothState() const noexcept;

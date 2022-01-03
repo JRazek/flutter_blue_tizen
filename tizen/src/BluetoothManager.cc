@@ -10,7 +10,6 @@
 
 
 namespace btu{
-    AdvertisementData advertisementDataBuildFromRaw(char* dataRaw, int dataLength);
     using LogLevel = btlog::LogLevel;
     using Logger = btlog::Logger;
 
@@ -123,15 +122,32 @@ namespace btu{
         if(discoveredDevicesAddresses.var.find(address) == discoveredDevicesAddresses.var.end()){
             ScanResult scanResult;
             BluetoothDevice* bluetoothDevice = new BluetoothDevice();
-            AdvertisementData* advertisementData = new AdvertisementData(advertisementDataBuildFromRaw(discovery_info.adv_data, discovery_info.adv_data_len));
+            AdvertisementData* advertisementData = new AdvertisementData();
+
             char* name;
-            int res = bt_adapter_le_get_scan_result_device_name(&discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &name);
+            int res = bt_adapter_le_get_scan_result_device_name(&discovery_info, BT_ADAPTER_LE_PACKET_ADVERTISING, &name);
             if(res){
                 std::string err=get_error_message(res);
                 Logger::log(LogLevel::ERROR, "fetching device name failed with " + err);
             }else{
                 bluetoothDevice->set_name(name);
                 free(name);
+            }
+
+            char** uuids;
+            int uuidsCount;
+            res = bt_adapter_le_get_scan_result_service_uuids(&discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &uuids, &uuidsCount);
+            if(res){
+                std::string err=get_error_message(res);
+                Logger::log(LogLevel::ERROR, "fetching device uuids failed with " + err);
+            }else{
+                bluetoothDevice->set_name(name);
+                for(int i=0;i<uuidsCount;i++){
+                    std::string uuid(uuids[i]);
+                    free(uuids[i]);
+                    Logger::log(LogLevel::DEBUG, "fetched scan service uuid " + uuid);
+                }
+                free(uuids);
             }
             // bluetoothDevice->set_name(address);
             bluetoothDevice->set_remote_id(address);
@@ -152,13 +168,9 @@ namespace btu{
     SafeType<std::unordered_map<std::string, BluetoothDevice>>& BluetoothManager::getConnectedDevicesLE() noexcept{
         return connectedDevices;
     }
-    
-    AdvertisementData advertisementDataBuildFromRaw(char* dataRaw, int dataLength){ 
-        //[TODO] DESERIALIZE
-        return AdvertisementData();
-    }
 
     void BluetoothManager::connect(const ConnectRequest& connRequest) noexcept{
+        using namespace std::literals;
         bt_device_create_bond(connRequest.remote_id().c_str());
 
         Logger::log(LogLevel::DEBUG, "remote id is - " + connRequest.remote_id());
@@ -167,34 +179,66 @@ namespace btu{
 
         //wait for completion
         auto& pending = pendingConnectionRequests.var[connRequest.remote_id()];
+        auto timeout=std::chrono::steady_clock::now()+2s;
         pending.first.wait(lock, [&]() -> bool{
            return pending.second;
         });
 
-        Logger::log(LogLevel::DEBUG, "connection request released!");
+        if(!pending.second){
+            pendingConnectionRequests.var.erase(connRequest.remote_id());
+        }    
+        Logger::log(LogLevel::DEBUG, "connection request released. Device found status="+std::to_string(pending.second));
     }
     void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept{
-            Logger::log(LogLevel::DEBUG, "callback with remote_address="+std::string(device_info->remote_address));
-        if(!result){
-            BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-            std::scoped_lock lock(bluetoothManager.pendingConnectionRequests.mut);
-            
-            Logger::log(LogLevel::DEBUG, "connected to device - "+std::string(device_info->remote_address));
-            //remote_id==remote_address
-            auto& mapp=bluetoothManager.pendingConnectionRequests.var;
-            if(mapp.find(device_info->remote_address)!=mapp.end()){
-                auto& p=mapp[device_info->remote_address];
-                p.second=true;
-                p.first.notify_one();
-            }
-        }else{
+        Logger::log(LogLevel::DEBUG, "callback with remote_address="+std::string(device_info->remote_address));
+        if(result){
             Logger::log(LogLevel::ERROR, "FAILED TO CONNECT!");
+        }
+        BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
+        std::scoped_lock lock(bluetoothManager.pendingConnectionRequests.mut);
+        
+        Logger::log(LogLevel::DEBUG, "connected to device - "+std::string(device_info->remote_address));
+        //remote_id==remote_address
+        auto& mapp=bluetoothManager.pendingConnectionRequests.var;
+        if(mapp.find(device_info->remote_address)!=mapp.end()){
+            auto& p=mapp[device_info->remote_address];
+            p.second=true;
+            p.first.notify_one();
         }
     }
 
+    void BluetoothManager::startAdvertising() noexcept{
+        std::scoped_lock lock(advertisingHandler.mut);
+        auto& handle=advertisingHandler.var;
+        int res=bt_adapter_le_create_advertiser(&handle);//[TODO - destroy the handle!]
+        if(res){
+            std::string err=get_error_message(res);
+            Logger::log(LogLevel::ERROR, "crating advertiser failed with " + err);
+        }
+        res=bt_adapter_le_add_advertising_service_uuid(handle, BT_ADAPTER_LE_PACKET_ADVERTISING, "3bf5fc18-6c3c-11ec-90d6-0242ac120003");
+        if(res){
+            std::string err=get_error_message(res);
+            Logger::log(LogLevel::ERROR, "setting advertising uuids failed with " + err);
+        }
+        res=bt_adapter_le_start_advertising_new(handle, &BluetoothManager::adapterAdvertisingStateChangedCallbackLE, this);
+        if(res){
+            std::string err=get_error_message(res);
+            Logger::log(LogLevel::ERROR, "starting advertising failed with " + err);
+        }
+    }
+
+    void BluetoothManager::adapterAdvertisingStateChangedCallbackLE(int result, bt_advertiser_h advertiser, bt_adapter_le_advertising_state_e adv_state, void *user_data){
+        BluetoothManager& bluetoothManager=*static_cast<BluetoothManager *>(user_data);
+        std::scoped_lock lock(bluetoothManager.advertisingHandler.mut);
+        auto& handle=bluetoothManager.advertisingHandler.var;
+        Logger::log(LogLevel::DEBUG, "state of advertising handler changed to " + std::string(adv_state==BT_ADAPTER_LE_ADVERTISING_STARTED ? "STARTED" : "STOPPED"));
+
+    }
+    
     #ifndef NDEBUG
     void BluetoothManager::testConnect(){
         static std::once_flag flag;
+        // const char* remoteAddress="D0:1B:49:81:35:A7";
         std::call_once(flag, [&](){
             ConnectRequest request;
             std::string remoteID;
@@ -203,6 +247,8 @@ namespace btu{
                 remoteID=(*discoveredDevicesAddresses.var.begin()).first;
             }
             request.set_remote_id(remoteID);
+
+            // request.set_remote_id(remoteAddress);
             connect(request);
         });
     }
