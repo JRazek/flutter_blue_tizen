@@ -113,12 +113,6 @@ namespace {
 
         result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "deviceState"){
-        
-      }
-      else if(method_call.method_name() == "discoverServices"){
-        
-      }
       else {
         result->NotImplemented();
       }
