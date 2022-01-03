@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
+class BluetoothHelper {}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
   // flutterBlue.setLogLevel(LogLevel.alert);
-  flutterBlue.startScan(
-    allowDuplicates: false,
-  );
-
-  // Listen to scan results
+  flutterBlue.startScan();
 
   var subscription = flutterBlue.scanResults.listen((results) async {
     // do something with scan results
     if (results.isNotEmpty) {
       BluetoothDevice dev = results.last.device;
       debugPrint('${dev.name} found! rssi: ${dev.name}');
-      await dev.connect(); //method that fails.
-      debugPrint('connect done');
+      dev.connect();
+      // debugPrint('connect done');
     }
   });
 
   // Stop scanning
-  flutterBlue.stopScan();
+  // flutterBlue.stopScan();
   runApp(const MyApp());
 }
 

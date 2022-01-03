@@ -88,7 +88,6 @@ namespace {
       }
       else if(method_call.method_name() == "connect"){
         #ifndef NDEBUG
-          btlog::Logger::log(btlog::LogLevel::DEBUG, "test connect");
           bluetoothManager.testConnect();
           result->Success(flutter::EncodableValue(NULL));
         #else
@@ -105,7 +104,14 @@ namespace {
         
       }
       else if(method_call.method_name() == "disconnect"){
-        
+        #define NDEBUG
+        #ifdef NDEBUG
+          std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
+          std::string deviceID(encoded.begin(), encoded.end());
+          
+        #endif
+
+        result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name() == "deviceState"){
         

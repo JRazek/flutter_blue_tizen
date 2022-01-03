@@ -19,11 +19,15 @@ namespace btu{
             Logger::log(LogLevel::ERROR, "Bluetooth is not available on this device!");
             return;
         }
-        if(bt_initialize() != BT_ERROR_NONE){
+        if(!bt_initialize()){
             Logger::log(LogLevel::ERROR, "[bt_initialize] failed");
             return;
         }
-        if(bt_device_set_bond_created_cb(&BluetoothManager::deviceConnectedCallback, this) != BT_ERROR_NONE){
+        if(!bt_device_set_bond_created_cb(&BluetoothManager::deviceConnectedCallback, this)){
+            Logger::log(LogLevel::ERROR, "[bt_device_set_bond_created_cb] failed");
+            return;
+        }
+        if(!bt_device_set_service_searched_cb(&BluetoothManager::serviceSearchCallback, this)){
             Logger::log(LogLevel::ERROR, "[bt_device_set_bond_created_cb] failed");
             return;
         }
@@ -74,11 +78,8 @@ namespace btu{
     }
     
     void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
-        // int res =  bt_adapter_le_set_scan_mode()
-        bool isDiscovering;  
-        int res = bt_adapter_le_is_discovering(&isDiscovering);
-        if(isDiscovering)
-            stopBluetoothDeviceScanLE();
+        stopBluetoothDeviceScanLE();
+        int res = bt_adapter_le_set_scan_mode(BT_ADAPTER_LE_SCAN_MODE_BALANCED);
         if(!res){
             std::scoped_lock lock(discoveredDevicesAddresses.mut);
             discoveredDevicesAddresses.var.clear();
@@ -89,21 +90,28 @@ namespace btu{
             std::string err=get_error_message(res);
             Logger::log(LogLevel::ERROR, "scanning start failed with " + err);
         }
-        
     }   
 
     void BluetoothManager::stopBluetoothDeviceScanLE() noexcept{
-        bool isDiscovering;
-        int res = bt_adapter_le_is_discovering(&isDiscovering);
-        if(isDiscovering){
-            res = bt_adapter_le_stop_scan();
-            if(res){
-                std::string err=get_error_message(res);
-                Logger::log(LogLevel::ERROR, "disabling scan failed with " + err);
-            }else
-                btlog::Logger::log(btlog::LogLevel::DEBUG, "scan stopped.");
+        static std::mutex m;
+        std::scoped_lock lock(m);
+        auto btState=getBluetoothState().state();
+        if(btState==BluetoothState_State_ON){
+            bool isDiscovering;
+            int res = bt_adapter_le_is_discovering(&isDiscovering);
+            if(!res && isDiscovering){
+                res = bt_adapter_le_stop_scan();
+                if(res){
+                    std::string err=get_error_message(res);
+                    Logger::log(LogLevel::ERROR, "disabling scan failed with " + err);
+                    Logger::log(LogLevel::ERROR, "is Discovering=" + std::to_string(isDiscovering));
+                }else
+                    btlog::Logger::log(btlog::LogLevel::DEBUG, "scan stopped.");
+            }else{
+                btlog::Logger::log(btlog::LogLevel::WARNING, "Cannot stop scan. It is not in progress!");
+            }
         }else{
-            btlog::Logger::log(btlog::LogLevel::WARNING, "Cannot stop scan. It is not in progress!");
+            Logger::log(LogLevel::ERROR, "bluetooth adapter state="+std::to_string(btState));
         }
     }
 
@@ -125,11 +133,8 @@ namespace btu{
             AdvertisementData* advertisementData = new AdvertisementData();
 
             char* name;
-            int res = bt_adapter_le_get_scan_result_device_name(&discovery_info, BT_ADAPTER_LE_PACKET_ADVERTISING, &name);
-            if(res){
-                std::string err=get_error_message(res);
-                Logger::log(LogLevel::ERROR, "fetching device name failed with " + err);
-            }else{
+            int res = bt_adapter_le_get_scan_result_device_name(&discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &name);
+            if(!res){
                 bluetoothDevice->set_name(name);
                 free(name);
             }
@@ -137,10 +142,7 @@ namespace btu{
             char** uuids;
             int uuidsCount;
             res = bt_adapter_le_get_scan_result_service_uuids(&discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &uuids, &uuidsCount);
-            if(res){
-                std::string err=get_error_message(res);
-                Logger::log(LogLevel::ERROR, "fetching device uuids failed with " + err);
-            }else{
+            if(!res){
                 bluetoothDevice->set_name(name);
                 for(int i=0;i<uuidsCount;i++){
                     std::string uuid(uuids[i]);
@@ -158,7 +160,7 @@ namespace btu{
             std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
             scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
 
-            discoveredDevicesAddresses.var.insert({address, bluetoothDevice});//pointer instead!!
+            discoveredDevicesAddresses.var.insert({address, bluetoothDevice});
 
             methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
             Logger::log(LogLevel::DEBUG, "sent new scan result to flutter. " + address);
@@ -170,24 +172,44 @@ namespace btu{
     }
 
     void BluetoothManager::connect(const ConnectRequest& connRequest) noexcept{
-        using namespace std::literals;
-        bt_device_create_bond(connRequest.remote_id().c_str());
+        std::unique_lock lockConn(connectedDevices.mut);
+        if(connectedDevices.var.find(connRequest.remote_id())==connectedDevices.var.end()){
+            using namespace std::literals;
+            bt_device_create_bond(connRequest.remote_id().c_str());
 
-        Logger::log(LogLevel::DEBUG, "remote id is - " + connRequest.remote_id());
+            Logger::log(LogLevel::DEBUG, "remote id is - " + connRequest.remote_id());
+            
+            std::unique_lock lock(pendingConnectionRequests.mut);
+            //wait for completion
+            
+            auto& pending = pendingConnectionRequests.var[connRequest.remote_id()];
+            auto timeout=std::chrono::steady_clock::now()+5s;
+            pending.first.wait_until(lock, timeout, [&]() -> bool{
+                return pending.second;
+            });
 
-        std::unique_lock lock(pendingConnectionRequests.mut);
+            if(!pending.second)
+                Logger::log(LogLevel::WARNING, "failed on connecting to device: "+connRequest.remote_id());
+            else
+                connectedDevices.var[connRequest.remote_id()];
 
-        //wait for completion
-        auto& pending = pendingConnectionRequests.var[connRequest.remote_id()];
-        auto timeout=std::chrono::steady_clock::now()+2s;
-        pending.first.wait(lock, [&]() -> bool{
-           return pending.second;
-        });
-
-        if(!pending.second){
             pendingConnectionRequests.var.erase(connRequest.remote_id());
-        }    
-        Logger::log(LogLevel::DEBUG, "connection request released. Device found status="+std::to_string(pending.second));
+            Logger::log(LogLevel::DEBUG, "connection request released. Device found status="+std::to_string(pending.second));
+        }else{
+            Logger::log(LogLevel::WARNING, "requested connection to already connected device! - "+connRequest.remote_id());
+        }
+    }
+    void BluetoothManager::disconnect(const std::string& deviceID) noexcept{
+        std::scoped_lock lock(pendingConnectionRequests.mut);
+        if(connectedDevices.var.find(deviceID)!=connectedDevices.var.end()){
+            auto& pending=pendingConnectionRequests.var[deviceID];
+            pending.second=false;
+            pending.first.notify_one();
+        }else{
+            std::scoped_lock lock(connectedDevices.mut);
+            pendingConnectionRequests.var.erase(deviceID);
+            connectedDevices.var.erase(deviceID);
+        }
     }
     void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept{
         Logger::log(LogLevel::DEBUG, "callback with remote_address="+std::string(device_info->remote_address));
@@ -235,11 +257,28 @@ namespace btu{
 
     }
     
+    void BluetoothManager::serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept{
+        int res = bt_device_start_service_search(bluetoothDevice.remote_id().c_str());
+        if(res){
+            std::string err=get_error_message(res);
+            Logger::log(LogLevel::ERROR, "device service search failed with " + err);
+        }
+    }
+
+    void BluetoothManager::serviceSearchCallback(int result, bt_device_sdp_info_s* services, void* user_data) noexcept{
+        BluetoothManager& bluetoothManager=*static_cast<BluetoothManager *>(user_data);
+        Logger::log(LogLevel::DEBUG, "discovered services for " + std::string(services->remote_address));
+
+        for(int i=0;i<services->service_count;i++){
+
+        }
+    }
+
     #ifndef NDEBUG
     void BluetoothManager::testConnect(){
         static std::once_flag flag;
-        // const char* remoteAddress="D0:1B:49:81:35:A7";
         std::call_once(flag, [&](){
+            btlog::Logger::log(btlog::LogLevel::DEBUG, "test connect");
             ConnectRequest request;
             std::string remoteID;
             {
@@ -247,11 +286,10 @@ namespace btu{
                 remoteID=(*discoveredDevicesAddresses.var.begin()).first;
             }
             request.set_remote_id(remoteID);
-
-            // request.set_remote_id(remoteAddress);
             connect(request);
         });
     }
     #endif
+    
 } // namespace btu
 

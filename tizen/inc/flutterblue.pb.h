@@ -5654,20 +5654,19 @@ inline void ConnectRequest::_internal_set_remote_id(const std::string& value) {
 }
 inline void ConnectRequest::set_remote_id(std::string&& value) {
   
-  remote_id_.Set(
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  remote_id_.Set(nullptr, ::std::move(value), GetArena());
   // @@protoc_insertion_point(field_set_rvalue:ConnectRequest.remote_id)
 }
 inline void ConnectRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
-  remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  remote_id_.Set(nullptr, ::std::string(value), GetArena());
   // @@protoc_insertion_point(field_set_char:ConnectRequest.remote_id)
 }
 inline void ConnectRequest::set_remote_id(const char* value,
     size_t size) {
   
-  remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+  remote_id_.Set(nullptr, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
   // @@protoc_insertion_point(field_set_pointer:ConnectRequest.remote_id)
 }

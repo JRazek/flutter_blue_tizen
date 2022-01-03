@@ -50,7 +50,13 @@ namespace btu{
 
         void connect(const ConnectRequest& connRequest) noexcept;
 
-        static void deviceConnectedCallback(int result, bt_device_info_s *device_info, void *user_data) noexcept;
+        void disconnect(const std::string& deviceID) noexcept;
+
+        static void deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept;
+
+        void serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept;
+
+        static void serviceSearchCallback(int result, bt_device_sdp_info_s* device_info, void* user_data) noexcept;
 
         /**
          * @brief thread safe
