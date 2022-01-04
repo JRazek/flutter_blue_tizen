@@ -50,7 +50,7 @@ namespace btu{
     }
 
     BluetoothState BluetoothManager::getBluetoothState() const noexcept{
-        /* Check whether the Bluetooth adapter is enabled */
+        /* Checks whether the Bluetooth adapter is enabled */
         bt_adapter_state_e adapter_state;
         int ret = bt_adapter_get_state(&adapter_state);
         BluetoothState bluetoothState;
@@ -78,7 +78,6 @@ namespace btu{
     }
     
     void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
-        stopBluetoothDeviceScanLE();
         int res = bt_adapter_le_set_scan_mode(BT_ADAPTER_LE_SCAN_MODE_BALANCED);
         if(!res){
             std::scoped_lock lock(discoveredDevicesAddresses.mut);
@@ -90,7 +89,7 @@ namespace btu{
             std::string err=get_error_message(res);
             Logger::log(LogLevel::ERROR, "scanning start failed with " + err);
         }
-    }   
+    }
 
     void BluetoothManager::stopBluetoothDeviceScanLE() noexcept{
         static std::mutex m;

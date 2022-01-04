@@ -40,6 +40,10 @@ namespace btu{
         
         void startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept;
         
+        /**
+         * @brief this is an atomic function
+         * 
+         */
         void stopBluetoothDeviceScanLE() noexcept;
         
         static void adapterDeviceDiscoveryStateChangedCallbackLE(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data);
@@ -52,6 +56,9 @@ namespace btu{
 
         void disconnect(const std::string& deviceID) noexcept;
 
+        /**
+         * @brief this is an atomic callback function
+         */
         static void deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept;
 
         void serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept;

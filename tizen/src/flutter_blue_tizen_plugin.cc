@@ -113,6 +113,14 @@ namespace {
 
         result->Success(flutter::EncodableValue(NULL));
       }
+      else if(method_call.method_name() == "deviceState"){
+        #ifndef NDEBUG
+          std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
+          BluetoothDevice btl;
+          btl.ParseFromArray(encoded.data(), encoded.size());
+        #endif
+        result->Success(flutter::EncodableValue(NULL));
+      }
       else {
         result->NotImplemented();
       }
