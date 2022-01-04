@@ -5806,7 +5806,7 @@ inline void BluetoothDevice::set_name(std::string&& value) {
 inline void BluetoothDevice::set_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
-  name_.Set(nullptr, ::std::string(value), GetArena());
+  name_.Set(PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
   // @@protoc_insertion_point(field_set_char:BluetoothDevice.name)
 }
 inline void BluetoothDevice::set_name(const char* value,
