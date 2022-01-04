@@ -21,7 +21,8 @@ namespace btu{
 
         SafeType<std::unordered_map<std::string, BluetoothDevice>> connectedDevices;
 
-        SafeType<std::unordered_map<std::string, std::pair<std::condition_variable, bool>>> pendingConnectionRequests;
+        SafeType<std::unordered_map<std::string, std::pair<std::condition_variable, bool>>> pendingConnectRequests;
+        SafeType<std::unordered_map<std::string, std::pair<std::condition_variable, bool>>> pendingDisconnectRequests;
 
         std::shared_ptr<MethodChannel> methodChannel;
 
@@ -52,17 +53,45 @@ namespace btu{
 
         bool adapterIsScanningLE() const noexcept;
 
+        /**
+         * @brief 
+         * 
+            NOT TESTED!
+         */
         void connect(const ConnectRequest& connRequest) noexcept;
 
+        /**
+         * @brief 
+         * 
+            NOT TESTED!
+         */
         void disconnect(const std::string& deviceID) noexcept;
 
         /**
          * @brief this is an atomic callback function
+            NOT TESTED!
          */
         static void deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept;
 
+        /**
+         * @brief 
+         * 
+            NOT TESTED!
+         */
+        static void deviceDisconnectedCallback(int result, char* remote_address, void* user_data) noexcept;
+
+        /**
+         * @brief 
+         * 
+            NOT TESTED!
+         */
         void serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept;
 
+        /**
+         * @brief 
+         * 
+            NOT TESTED!
+         */
         static void serviceSearchCallback(int result, bt_device_sdp_info_s* device_info, void* user_data) noexcept;
 
         /**
