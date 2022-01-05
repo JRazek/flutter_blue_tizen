@@ -75,14 +75,12 @@ namespace {
       }
       else if(method_call.method_name() == "getConnectedDevices"){
           ConnectedDevicesResponse response;
-          auto& p = bluetoothManager.getConnectedDevicesLE();
-          {
-            std::scoped_lock lock(p.mut);
-            for(const auto& dev : p.var){
-              BluetoothDevice* bluetoothDevice = response.add_devices();
-              *bluetoothDevice = dev.second;
-            }
+          auto p = bluetoothManager.getConnectedProtoBluetoothDevices();
+
+          for(const auto& dev : p){
+            *response.add_devices()=dev;
           }
+          
           //[TODO] TEST THIS FUNCTION
           result->Success(flutter::EncodableValue(encodeToVector(response)));
       }

@@ -14,7 +14,7 @@ void main() async {
     if (results.isNotEmpty) {
       BluetoothDevice dev = results.last.device;
       debugPrint('${dev.name} found! rssi: ${dev.name}');
-      // dev.connect();
+      dev.connect();
       // debugPrint('connect done');
     }
   });

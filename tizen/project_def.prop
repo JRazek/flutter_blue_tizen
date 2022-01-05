@@ -16,7 +16,7 @@ USER_CPP_UNDEFS =
 
 # Compiler flags
 USER_CFLAGS_MISC =
-USER_CPPFLAGS_MISC = 
+USER_CPPFLAGS_MISC = std=c++2b
 
 # User includes
 USER_INC_DIRS = inc src include
