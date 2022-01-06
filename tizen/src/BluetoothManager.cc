@@ -121,8 +121,8 @@ namespace btu{
             std::string macAddress=discovery_info->remote_address;
             std::scoped_lock lock(bluetoothManager.bluetoothDevices.mut, bluetoothManager.scanAllowDuplicates.mut);
             auto& device=bluetoothManager.bluetoothDevices.var[macAddress];
-            device.setAddress(macAddress);
-            device.setState(State::SCANNED);
+            device.address()=macAddress;
+            device.state()=State::SCANNED;
             if(bluetoothManager.scanAllowDuplicates.var || device.cProtoBluetoothDevices().empty()){
                 device.protoBluetoothDevices().emplace_back();
                             
@@ -252,7 +252,7 @@ namespace btu{
         std::scoped_lock lock(bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         for(const auto& e:bluetoothDevices.var){
-            if(e.second.getState()==State::CONNECTED){
+            if(e.second.cState()==State::CONNECTED){
                 auto& vec=e.second.cProtoBluetoothDevices();
                 protoBD.insert(protoBD.end(), vec.cbegin(), vec.cend());
             }

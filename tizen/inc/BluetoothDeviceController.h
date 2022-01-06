@@ -22,12 +22,13 @@ namespace btu{
         BluetoothDeviceController(){
             _state=State::DEFAULT;
         }
-        void setAddress(const std::string& address){ _address=address; }
-        std::string address(){ return _address; }
-        State getState() const noexcept{ return _state; }
-        void setState(State state){ _state=state; }
+        
+        auto& address() noexcept { return _address; }
+        const auto& cAddress() const noexcept { return _address; }
+        auto& state() noexcept{ return _state; }
+        const auto& cState() const noexcept{ return _state; }
         auto& protoBluetoothDevices(){ return _protoBluetoothDevices; }
-        const auto& cProtoBluetoothDevices() const { return _protoBluetoothDevices; }
+        const auto& cProtoBluetoothDevices() const noexcept { return _protoBluetoothDevices; }
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H
