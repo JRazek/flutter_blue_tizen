@@ -66,6 +66,8 @@ namespace {
       }
       else if(method_call.method_name() == "startScan"){
           ScanSettings scanSettings;
+          std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
+          scanSettings.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager.startBluetoothDeviceScanLE(scanSettings);
           result->Success(flutter::EncodableValue(NULL));
       }
@@ -95,12 +97,12 @@ namespace {
         else
           result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "disconnect"){
+      else if(method_call.method_name() == "disconnect"&&false){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         std::string deviceID(encoded.begin(), encoded.end());
         result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "deviceState"){
+      else if(method_call.method_name() == "deviceState"&&false){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         BluetoothDevice btl;
         btl.ParseFromArray(encoded.data(), encoded.size());

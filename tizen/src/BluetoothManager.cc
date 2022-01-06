@@ -82,6 +82,11 @@ namespace btu{
     }
     
     void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
+        std::scoped_lock l(bluetoothDevices.mut, scanAllowDuplicates.mut);
+        bluetoothDevices.var.clear();        
+        scanAllowDuplicates.var=scanSettings.allow_duplicates();        
+        Logger::log(LogLevel::DEBUG, "allowDuplicates="+std::to_string(scanAllowDuplicates.var));
+
         int res = bt_adapter_le_set_scan_mode(BT_ADAPTER_LE_SCAN_MODE_BALANCED);
         //remove from bluetooth Devices all devices with status==Scanned
 
@@ -93,7 +98,7 @@ namespace btu{
             bt_adapter_le_scan_filter_create(&filters[i]);
             bt_adapter_le_scan_filter_set_device_address(filters[i], uuid.c_str());
         }
-        // res=bt_adapter_le_scan_filter_create();
+
         if(!res){
             btlog::Logger::log(btlog::LogLevel::DEBUG, "starting scan...");
             res = bt_adapter_le_start_scan(&BluetoothManager::scanCallback, this);
@@ -114,32 +119,33 @@ namespace btu{
             Logger::log(LogLevel::ERROR, "NULLPTR IN CALL!");
         else{
             std::string macAddress=discovery_info->remote_address;
-            std::scoped_lock lock(bluetoothManager.bluetoothDevices.mut);
+            std::scoped_lock lock(bluetoothManager.bluetoothDevices.mut, bluetoothManager.scanAllowDuplicates.mut);
             auto& device=bluetoothManager.bluetoothDevices.var[macAddress];
             device.setAddress(macAddress);
             device.setState(State::SCANNED);
-            if(!bluetoothManager.scanAllowDuplicates==true || device.scanCount()==0)
-                device.scanCount()++;
-                
-            auto& protoDev=device.protoBluetoothDevice();
-            char* name;
-            result=bt_adapter_le_get_scan_result_device_name(discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &name);
-            if(!result){
-                protoDev.set_name(name);
-                free(name);
+            if(bluetoothManager.scanAllowDuplicates.var || device.cProtoBluetoothDevices().empty()){
+                device.protoBluetoothDevices().emplace_back();
+                            
+                auto& protoDev=device.protoBluetoothDevices().back();
+                char* name;
+                result=bt_adapter_le_get_scan_result_device_name(discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &name);
+                if(!result){
+                    protoDev.set_name(name);
+                    free(name);
+                }
+                protoDev.set_remote_id(macAddress);
+
+                ScanResult scanResult;
+                scanResult.set_rssi(discovery_info->rssi);
+                AdvertisementData* advertisement_data=new AdvertisementData();
+                //decode advertisment data here...[TODO]
+                scanResult.set_allocated_advertisement_data(advertisement_data);
+                scanResult.set_allocated_device(new BluetoothDevice(protoDev));
+
+                std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
+                scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
+                bluetoothManager.methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
             }
-            protoDev.set_remote_id(macAddress);
-
-            ScanResult scanResult;
-            scanResult.set_rssi(discovery_info->rssi);
-            AdvertisementData* advertisement_data=new AdvertisementData();
-            //decode advertisment data here...[TODO]
-            scanResult.set_allocated_advertisement_data(advertisement_data);
-            scanResult.set_allocated_device(new BluetoothDevice(protoDev));
-
-            std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
-            scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
-            bluetoothManager.methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
         }
     }
 
@@ -247,9 +253,8 @@ namespace btu{
         using State=BluetoothDeviceController::State;
         for(const auto& e:bluetoothDevices.var){
             if(e.second.getState()==State::CONNECTED){
-                for(int i=0;i<e.second.cScanCount();i++){
-                    protoBD.push_back(e.second.cProtoBluetoothDevice());
-                }
+                auto& vec=e.second.cProtoBluetoothDevices();
+                protoBD.insert(protoBD.end(), vec.cbegin(), vec.cend());
             }
         }
         return protoBD;

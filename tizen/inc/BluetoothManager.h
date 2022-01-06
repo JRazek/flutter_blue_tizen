@@ -33,7 +33,7 @@ namespace btu{
          SafeType<bt_advertiser_h> advertisingHandler={nullptr};
     public:
 
-         bool scanAllowDuplicates;
+         SafeType<bool> scanAllowDuplicates;
          BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;
          virtual ~BluetoothManager() noexcept;
          BluetoothManager(const BluetoothManager& bluetoothManager)=delete;

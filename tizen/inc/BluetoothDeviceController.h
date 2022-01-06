@@ -8,10 +8,9 @@ namespace btu{
     public:
         enum class State;
     private:
-        BluetoothDevice _protoBluetoothDevice;
+        std::vector<BluetoothDevice> _protoBluetoothDevices;
         State _state;
         std::string _address;
-        int _scanCount;//number of duplicated values if allow duplicates==true
     public:
         std::condition_variable cv;
         enum class State{
@@ -22,16 +21,13 @@ namespace btu{
         
         BluetoothDeviceController(){
             _state=State::DEFAULT;
-            _scanCount=0;
         }
         void setAddress(const std::string& address){ _address=address; }
         std::string address(){ return _address; }
         State getState() const noexcept{ return _state; }
         void setState(State state){ _state=state; }
-        BluetoothDevice& protoBluetoothDevice(){ return _protoBluetoothDevice; }
-        const BluetoothDevice& cProtoBluetoothDevice() const { return _protoBluetoothDevice; }
-        int& scanCount(){ return _scanCount; }
-        const int& cScanCount() const { return _scanCount; }
+        auto& protoBluetoothDevices(){ return _protoBluetoothDevices; }
+        const auto& cProtoBluetoothDevices() const { return _protoBluetoothDevices; }
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H
