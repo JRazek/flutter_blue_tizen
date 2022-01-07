@@ -7,20 +7,22 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
   // flutterBlue.setLogLevel(LogLevel.alert);
-  flutterBlue.startScan(allowDuplicates: false);
-
+  List<ScanResult> scanResults = <ScanResult>[];
   var subscription = flutterBlue.scanResults.listen((results) async {
     // do something with scan results
     if (results.isNotEmpty) {
-      BluetoothDevice dev = results.last.device;
-      debugPrint('${dev.name} found! rssi: ${dev.name}');
-      // dev.connect();
+      // BluetoothDevice dev = results.last.device;
+      // debugPrint('${dev.name} found! rssi: ${dev.name}');
       // debugPrint('connect done');
+      scanResults.add(results.last);
     }
   });
-
-  flutterBlue.stopScan();
-
+  await flutterBlue.startScan(timeout: const Duration(seconds: 10));
+  debugPrint("here bros");
+  for (var sc in scanResults) {
+    var dev = sc.device;
+    debugPrint('${dev.name} found! rssi: ${sc.rssi}');
+  }
   // Stop scanning
   runApp(const MyApp());
 }

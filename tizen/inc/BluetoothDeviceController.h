@@ -16,15 +16,17 @@ namespace btu{
         State _state;
         std::string _address;
         std::mutex operationM;
-        bool isConnected;
+        std::condition_variable cv;
     public:
         enum class State{
             DEFAULT,
             SCANNED,
             CONNECTED,
-            CONNECTION_FAILED,
+            CONNECTING,
+            DISCONNECTED,
+            DISCONNECTING,
         };
-        std::condition_variable cv;
+
         
         BluetoothDeviceController() noexcept;
         ~BluetoothDeviceController() noexcept;

@@ -9,8 +9,7 @@ namespace btu {
     _state(State::DEFAULT){}
 
     BluetoothDeviceController::~BluetoothDeviceController() noexcept{
-        if(isConnected) disconnect();
-
+        if(_state==State::CONNECTED) disconnect(); 
     }
 
     auto BluetoothDeviceController::address() noexcept -> decltype(_address)& { return _address; }
@@ -21,34 +20,52 @@ namespace btu {
     auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
 
     auto BluetoothDeviceController::connect(const ConnectRequest& connReq) noexcept -> void {
-        std::scoped_lock lock(operationM);
-        if(!isConnected && _state==State::SCANNED){
+        using namespace std::literals;
+        std::unique_lock lock(operationM);
+        if(_state==State::SCANNED){
+            Logger::log(LogLevel::DEBUG, "connecting to device "+_address);
             int res=bt_gatt_connect(_address.c_str(), connReq.android_auto_connect());
-            isConnected=true;
+            _state=State::CONNECTING;
+            auto timeout=std::chrono::steady_clock::now()+5s;
+            cv.wait_until(lock, timeout, [&]() -> bool{
+                return _state!=State::CONNECTING;
+            });
+            if(_state!=State::CONNECTED){
+                Logger::log(LogLevel::DEBUG, "connecting to device failed! "+_address);
+            }
         }else{
             Logger::log(LogLevel::ERROR, "already connected to device "+_address);
         }
     }
     auto BluetoothDeviceController::disconnect() noexcept -> void {
-        std::scoped_lock lock(operationM);
-        if(isConnected){
-            isConnected=false;
-
+        std::unique_lock lock(operationM);
+        if(_state==State::CONNECTED){
+            _state=State::DISCONNECTING;
+            int res=bt_gatt_disconnect(_address.c_str());//should wait here unitl disconnected callback is done.
+            cv.wait(lock, [&]() -> bool{
+                return _state!=State::DISCONNECTING;
+            });
         }else{
             Logger::log(LogLevel::ERROR, "cannot disconnect. Device not connected "+_address);
         }
     }
     auto BluetoothDeviceController::connectionStateCallback(int res, bool connected, const char* remote_address, void* user_data) noexcept -> void{
-        if(!res){
-            BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-            std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
-            auto& device=bluetoothManager.bluetoothDevices().var[remote_address];
-            std::scoped_lock devLock(device.operationM);
-            device.state()=(connected ? State::CONNECTED : State::CONNECTION_FAILED);
+        BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
+        std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
+        auto& device=bluetoothManager.bluetoothDevices().var[remote_address];
+        
+        std::scoped_lock devLock(device.operationM);
+        if(!res && connected && device.cState()==State::CONNECTING){
+            device.state()=State::CONNECTED;
             Logger::log(LogLevel::DEBUG, "connected to device "+device.cAddress());
         }else{
-            std::string err=get_error_message(res);
-            Logger::log(LogLevel::ERROR, "device service search failed with " + err);
+            device.state()=State::DISCONNECTED;
+            Logger::log(LogLevel::DEBUG, "disconnected from device"+device.cAddress());
         }
+        if(res){
+            std::string err=get_error_message(res);
+            Logger::log(LogLevel::ERROR, "connectionStateCallback " + err);
+        }
+        device.cv.notify_one();
     }
 };

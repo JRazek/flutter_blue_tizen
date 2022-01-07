@@ -15,12 +15,13 @@
 
 #include <BluetoothManager.h>
 #include <Logger.h>
+#include <BluetoothDeviceController.h>
 
 #include <flutterblue.pb.h>
 
 namespace {
-  static std::vector<u_int8_t> encodeToVector(const google::protobuf::MessageLite& messageLite);
-  
+  static auto encodeToVector(const google::protobuf::MessageLite& messageLite) noexcept -> std::vector<u_int8_t>;
+  static auto fromLocalState(const btu::BluetoothDeviceController::State& s) -> DeviceStateResponse_BluetoothDeviceState;
   class FlutterBlueTizenPlugin : public flutter::Plugin {
   public:
     const static inline std::string channel_name = "plugins.pauldemarco.com/flutter_blue/";
@@ -102,11 +103,16 @@ namespace {
         std::string deviceID(encoded.begin(), encoded.end());
         result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "deviceState"&&false){
-        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
-        BluetoothDevice btl;
-        btl.ParseFromArray(encoded.data(), encoded.size());
-        result->Success(flutter::EncodableValue(NULL));
+      else if(method_call.method_name() == "deviceState"){
+        std::string deviceID = std::get<std::string>(args);
+        std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
+        const auto& device=bluetoothManager.bluetoothDevices().var[deviceID];
+
+        DeviceStateResponse res;
+        res.set_remote_id(device.cAddress());
+        res.set_state(fromLocalState(device.cState()));
+
+        result->Success(flutter::EncodableValue(encodeToVector(res)));
       }
       else {
         result->NotImplemented();
@@ -114,13 +120,24 @@ namespace {
     }
   };
 
-  static std::vector<u_int8_t> encodeToVector(const google::protobuf::MessageLite& messageLite){
+  static auto encodeToVector(const google::protobuf::MessageLite& messageLite) noexcept -> std::vector<u_int8_t>{
     std::vector<u_int8_t> encoded(messageLite.ByteSizeLong());
     messageLite.SerializeToArray(encoded.data(), messageLite.ByteSizeLong());
     return encoded;
-  } 
+  }
+  static auto fromLocalState(const btu::BluetoothDeviceController::State& s) -> DeviceStateResponse_BluetoothDeviceState{
+    using State=btu::BluetoothDeviceController::State;
+    switch (s){
+      case State::CONNECTED: return DeviceStateResponse_BluetoothDeviceState_CONNECTED;
+      case State::CONNECTING: return DeviceStateResponse_BluetoothDeviceState_CONNECTING;
+      case State::DISCONNECTED: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
+      case State::DISCONNECTING: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTING;
+      default: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
+    }
+  }
 }  // namespace
 
 void FlutterBlueTizenPluginRegisterWithRegistrar(FlutterDesktopPluginRegistrarRef registrar) { 
       FlutterBlueTizenPlugin::RegisterWithRegistrar(flutter::PluginRegistrarManager::GetInstance()->GetRegistrar<flutter::PluginRegistrar>(registrar));
 }
+
