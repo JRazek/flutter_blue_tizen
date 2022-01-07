@@ -35,6 +35,10 @@ namespace btu{
             Logger::log(LogLevel::ERROR, "[bt_device_set_bond_destroyed_cb] failed");
             return;
         }
+        if(!bt_gatt_set_connection_state_changed_cb(&BluetoothDeviceController::connectionStateCallback, this)){
+            Logger::log(LogLevel::ERROR, "[bt_device_set_bond_destroyed_cb] failed");
+            return;
+        }
         Logger::log(LogLevel::DEBUG, "All callbacks successfully initialized.");
     }
 
@@ -74,16 +78,13 @@ namespace btu{
 
     void BluetoothManager::adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept{
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        bluetoothManager.setAdapterState(adapter_state);
-    }
-    void BluetoothManager::setAdapterState(bt_adapter_state_e _state) noexcept{
-        std::scoped_lock lock(adapterState.mut);
-        adapterState.var = _state;
+        std::scoped_lock lock(bluetoothManager.adapterState.mut);
+        bluetoothManager.adapterState.var = adapter_state;
     }
     
     void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
-        std::scoped_lock l(bluetoothDevices.mut, scanAllowDuplicates.mut);
-        bluetoothDevices.var.clear();        
+        std::scoped_lock l(_bluetoothDevices.mut, scanAllowDuplicates.mut);
+        _bluetoothDevices.var.clear();        
         scanAllowDuplicates.var=scanSettings.allow_duplicates();        
         Logger::log(LogLevel::DEBUG, "allowDuplicates="+std::to_string(scanAllowDuplicates.var));
 
@@ -119,8 +120,8 @@ namespace btu{
             Logger::log(LogLevel::ERROR, "NULLPTR IN CALL!");
         else{
             std::string macAddress=discovery_info->remote_address;
-            std::scoped_lock lock(bluetoothManager.bluetoothDevices.mut, bluetoothManager.scanAllowDuplicates.mut);
-            auto& device=bluetoothManager.bluetoothDevices.var[macAddress];
+            std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut, bluetoothManager.scanAllowDuplicates.mut);
+            auto& device=bluetoothManager._bluetoothDevices.var[macAddress];
             device.address()=macAddress;
             device.state()=State::SCANNED;
             if(bluetoothManager.scanAllowDuplicates.var || device.cProtoBluetoothDevices().empty()){
@@ -173,9 +174,9 @@ namespace btu{
     }
 
     void BluetoothManager::connect(const ConnectRequest& connRequest) noexcept{
-        std::unique_lock lock(bluetoothDevices.mut);
+        std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
-        auto& device=bluetoothDevices.var[connRequest.remote_id()];
+        auto& device=_bluetoothDevices.var[connRequest.remote_id()];
         device.connect(connRequest);
     }
     void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept{
@@ -186,8 +187,8 @@ namespace btu{
 
     void BluetoothManager::disconnect(const std::string& deviceID) noexcept{
         using namespace std::literals;
-        std::unique_lock lock(bluetoothDevices.mut);
-        auto& device=bluetoothDevices.var[deviceID];
+        std::unique_lock lock(_bluetoothDevices.mut);
+        auto& device=_bluetoothDevices.var[deviceID];
         using State=BluetoothDeviceController::State;
         auto timeout=std::chrono::steady_clock::now()+5s;
  
@@ -249,9 +250,9 @@ namespace btu{
 
     std::vector<BluetoothDevice> BluetoothManager::getConnectedProtoBluetoothDevices() noexcept{
         std::vector<BluetoothDevice> protoBD;
-        std::scoped_lock lock(bluetoothDevices.mut);
+        std::scoped_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
-        for(const auto& e:bluetoothDevices.var){
+        for(const auto& e:_bluetoothDevices.var){
             if(e.second.cState()==State::CONNECTED){
                 auto& vec=e.second.cProtoBluetoothDevices();
                 protoBD.insert(protoBD.end(), vec.cbegin(), vec.cend());
@@ -259,5 +260,11 @@ namespace btu{
         }
         return protoBD;
     }
+
+
+    auto BluetoothManager::bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&{
+        return _bluetoothDevices;
+    }
+
 } // namespace btu
 

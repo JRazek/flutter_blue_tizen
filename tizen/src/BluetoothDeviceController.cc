@@ -1,5 +1,6 @@
 #include <BluetoothDeviceController.h>
 #include <Logger.h>
+#include <BluetoothManager.h>
 
 #include <mutex>
 namespace btu {
@@ -37,7 +38,17 @@ namespace btu {
             Logger::log(LogLevel::ERROR, "cannot disconnect. Device not connected "+_address);
         }
     }
-    auto BluetoothDeviceController::connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void{
-        //remote_address->this... somehow...
+    auto BluetoothDeviceController::connectionStateCallback(int res, bool connected, const char* remote_address, void* user_data) noexcept -> void{
+        if(!res){
+            BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
+            std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
+            auto& device=bluetoothManager.bluetoothDevices().var[remote_address];
+            std::scoped_lock devLock(device.operationM);
+            device.state()=(connected ? State::CONNECTED : State::CONNECTION_FAILED);
+            Logger::log(LogLevel::DEBUG, "connected to device "+device.cAddress());
+        }else{
+            std::string err=get_error_message(res);
+            Logger::log(LogLevel::ERROR, "device service search failed with " + err);
+        }
     }
 };

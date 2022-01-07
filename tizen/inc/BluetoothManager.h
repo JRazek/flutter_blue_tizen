@@ -25,7 +25,7 @@ namespace btu{
           * @brief key - MAC address of the device
           * 
           */
-         SafeType<std::unordered_map<std::string, BluetoothDeviceController>> bluetoothDevices;
+         SafeType<std::unordered_map<std::string, BluetoothDeviceController>> _bluetoothDevices;
 
 
          std::shared_ptr<MethodChannel> methodChannel;
@@ -104,9 +104,9 @@ namespace btu{
          BluetoothState getBluetoothState() const noexcept;
 
          static void adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept;
-         void setAdapterState(bt_adapter_state_e state) noexcept;
 
          std::vector<BluetoothDevice> getConnectedProtoBluetoothDevices() noexcept;
+         auto bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&;
     };
 } // namespace btu
 

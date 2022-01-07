@@ -22,6 +22,7 @@ namespace btu{
             DEFAULT,
             SCANNED,
             CONNECTED,
+            CONNECTION_FAILED,
         };
         std::condition_variable cv;
         
