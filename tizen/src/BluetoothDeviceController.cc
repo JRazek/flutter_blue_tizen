@@ -5,13 +5,9 @@
 namespace btu {
     using namespace btlog;
     BluetoothDeviceController::BluetoothDeviceController() noexcept:
-    _state(State::DEFAULT),
-    gattServerHandle({nullptr, false}){}
+    _state(State::DEFAULT){}
 
     BluetoothDeviceController::~BluetoothDeviceController() noexcept{
-        std::scoped_lock lock(gattServerHandle.mut);
-        auto& handle=gattServerHandle.var.first;
-        const auto& isConnected=gattServerHandle.var.second;
         if(isConnected) disconnect();
 
     }
@@ -23,28 +19,25 @@ namespace btu {
     auto BluetoothDeviceController::protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
     auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
 
-    auto BluetoothDeviceController::connect() -> void {
-        std::scoped_lock lock(gattServerHandle.mut);
-        auto& handle=gattServerHandle.var.first;
-        auto& isConnected=gattServerHandle.var.second;
-        if(!isConnected){
-            int res=bt_gatt_server_create(&handle);
+    auto BluetoothDeviceController::connect(const ConnectRequest& connReq) noexcept -> void {
+        std::scoped_lock lock(operationM);
+        if(!isConnected && _state==State::SCANNED){
+            int res=bt_gatt_connect(_address.c_str(), connReq.android_auto_connect());
             isConnected=true;
         }else{
             Logger::log(LogLevel::ERROR, "already connected to device "+_address);
         }
     }
-    auto BluetoothDeviceController::disconnect() -> void {
-        std::scoped_lock lock(gattServerHandle.mut);
-        auto& handle=gattServerHandle.var.first;
-        auto& isConnected=gattServerHandle.var.second;
+    auto BluetoothDeviceController::disconnect() noexcept -> void {
+        std::scoped_lock lock(operationM);
         if(isConnected){
-            int res=bt_gatt_service_destroy(handle);
             isConnected=false;
 
         }else{
             Logger::log(LogLevel::ERROR, "cannot disconnect. Device not connected "+_address);
         }
     }
-
+    auto BluetoothDeviceController::connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void{
+        //remote_address->this... somehow...
+    }
 };

@@ -15,8 +15,8 @@ namespace btu{
         std::vector<BluetoothDevice> _protoBluetoothDevices;
         State _state;
         std::string _address;
-
-        SafeType<std::pair<bt_gatt_h, bool>> gattServerHandle;//handle, created/not created
+        std::mutex operationM;
+        bool isConnected;
     public:
         enum class State{
             DEFAULT,
@@ -34,8 +34,10 @@ namespace btu{
         auto cState() const noexcept -> const decltype(_state)&;
         auto protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&;
         auto cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&;
-        auto connect() -> void;
-        auto disconnect() -> void
+        auto connect(const ConnectRequest& connReq) noexcept -> void;
+        auto disconnect() noexcept -> void;
+
+        static auto connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void;
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H

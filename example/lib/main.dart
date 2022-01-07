@@ -7,14 +7,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
   // flutterBlue.setLogLevel(LogLevel.alert);
-  flutterBlue.startScan();
+  flutterBlue.startScan(allowDuplicates: false);
 
   var subscription = flutterBlue.scanResults.listen((results) async {
     // do something with scan results
     if (results.isNotEmpty) {
       BluetoothDevice dev = results.last.device;
       debugPrint('${dev.name} found! rssi: ${dev.name}');
-      dev.connect();
+      // dev.connect();
       // debugPrint('connect done');
     }
   });

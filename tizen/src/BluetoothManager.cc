@@ -176,7 +176,7 @@ namespace btu{
         std::unique_lock lock(bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         auto& device=bluetoothDevices.var[connRequest.remote_id()];
-        device.connect();
+        device.connect(connRequest);
     }
     void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept{
         Logger::log(LogLevel::DEBUG, "callback with remote_address="+std::string(device_info->remote_address));
