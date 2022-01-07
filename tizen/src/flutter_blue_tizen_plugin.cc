@@ -51,7 +51,7 @@ namespace {
     void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
       const flutter::EncodableValue& args = *method_call.arguments();
       if(method_call.method_name() == "isAvailable"){
-          result->Success(flutter::EncodableValue(bluetoothManager.getBluetoothAvailabilityLE()));
+          result->Success(flutter::EncodableValue(bluetoothManager.isBLEAvailable()));
       }
       else if(method_call.method_name() == "setLogLevel" && std::holds_alternative<int>(args)){
           btlog::LogLevel logLevel = static_cast<btlog::LogLevel>(std::get<int>(args));
@@ -59,10 +59,10 @@ namespace {
           result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name() == "state"){
-          result->Success(flutter::EncodableValue(encodeToVector(bluetoothManager.getBluetoothState())));
+          result->Success(flutter::EncodableValue(encodeToVector(bluetoothManager.bluetoothState())));
       }
       else if(method_call.method_name() == "isOn"){
-          result->Success(flutter::EncodableValue((bluetoothManager.getBluetoothState().state() == BluetoothState_State::BluetoothState_State_ON)));
+          result->Success(flutter::EncodableValue((bluetoothManager.bluetoothState().state() == BluetoothState_State::BluetoothState_State_ON)));
       }
       else if(method_call.method_name() == "startScan"){
           ScanSettings scanSettings;

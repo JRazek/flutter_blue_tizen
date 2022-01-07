@@ -23,90 +23,32 @@ namespace btu{
 
          /**
           * @brief key - MAC address of the device
-          * 
           */
          SafeType<std::unordered_map<std::string, BluetoothDeviceController>> _bluetoothDevices;
 
 
          std::shared_ptr<MethodChannel> methodChannel;
+         SafeType<bool> _scanAllowDuplicates;
 
-         SafeType<bt_advertiser_h> advertisingHandler={nullptr};
     public:
-
-         SafeType<bool> scanAllowDuplicates;
+         
          BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;
          virtual ~BluetoothManager() noexcept;
          BluetoothManager(const BluetoothManager& bluetoothManager)=delete;
          
-         /**
-            * @brief checks if the bluetooth is available on the device
-            */
-         static bool getBluetoothAvailabilityLE() noexcept;
-         
-         void startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept;
-         
-         /**
-            * @brief this is an atomic function
-            * 
-            */
-         void stopBluetoothDeviceScanLE() noexcept;
-         
-         static void scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data);
-         
-         static void adapterAdvertisingStateChangedCallbackLE(int result, bt_advertiser_h advertiser, bt_adapter_le_advertising_state_e adv_state, void *user_data);
-
-         bool adapterIsScanningLE() const noexcept;
-
-         /**
-            * @brief 
-            * 
-               NOT TESTED!
-            */
-         void connect(const ConnectRequest& connRequest) noexcept;
-
-         /**
-            * @brief 
-            * 
-               NOT TESTED!
-            */
-         void disconnect(const std::string& deviceID) noexcept;
-
-         /**
-            * @brief this is an atomic callback function
-               NOT TESTED!
-            */
-         static void deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept;
-
-         /**
-            * @brief 
-            * 
-               NOT TESTED!
-            */
-         static void deviceDisconnectedCallback(int result, char* remote_address, void* user_data) noexcept;
-
-         /**
-            * @brief 
-            * 
-               NOT TESTED!
-            */
-         void serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept;
-
-         /**
-            * @brief 
-            * 
-               NOT TESTED!
-            */
-         static void serviceSearchCallback(int result, bt_device_sdp_info_s* device_info, void* user_data) noexcept;
-
-         void startAdvertising() noexcept;
-
-         //////////////////////////
-         BluetoothState getBluetoothState() const noexcept;
-
-         static void adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept;
-
-         std::vector<BluetoothDevice> getConnectedProtoBluetoothDevices() noexcept;
+         auto startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept -> void;
+         auto stopBluetoothDeviceScanLE() noexcept -> void;
+         auto connect(const ConnectRequest& connRequest) noexcept -> void;
+         auto disconnect(const std::string& deviceID) noexcept -> void;
+         auto serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept -> void;
+         auto bluetoothState() const noexcept -> BluetoothState;
+         auto getConnectedProtoBluetoothDevices() noexcept -> std::vector<BluetoothDevice>;
          auto bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&;
+
+         static auto isBLEAvailable() noexcept -> bool;
+         static auto scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept -> void;
+         static auto serviceSearchCallback(int result, bt_device_sdp_info_s* device_info, void* user_data) noexcept -> void;
+         static auto adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void;
     };
 } // namespace btu
 

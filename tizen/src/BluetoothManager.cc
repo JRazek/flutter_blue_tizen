@@ -15,7 +15,7 @@ namespace btu{
 
     BluetoothManager::BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept:
     methodChannel(_methodChannel){
-        if(!getBluetoothAvailabilityLE()){
+        if(!isBLEAvailable()){
             Logger::log(LogLevel::ERROR, "Bluetooth is not available on this device!");
             return;
         }
@@ -23,16 +23,8 @@ namespace btu{
             Logger::log(LogLevel::ERROR, "[bt_initialize] failed");
             return;
         }
-        if(!bt_device_set_bond_created_cb(&BluetoothManager::deviceConnectedCallback, this)){
-            Logger::log(LogLevel::ERROR, "[bt_device_set_bond_created_cb] failed");
-            return;
-        }
         if(!bt_device_set_service_searched_cb(&BluetoothManager::serviceSearchCallback, this)){
             Logger::log(LogLevel::ERROR, "[bt_device_set_service_searched_cb] failed");
-            return;
-        }
-        if(!bt_device_set_bond_destroyed_cb(&BluetoothManager::deviceDisconnectedCallback, this)){
-            Logger::log(LogLevel::ERROR, "[bt_device_set_bond_destroyed_cb] failed");
             return;
         }
         if(!bt_gatt_set_connection_state_changed_cb(&BluetoothDeviceController::connectionStateCallback, this)){
@@ -48,7 +40,7 @@ namespace btu{
         }
     }
 
-    bool BluetoothManager::getBluetoothAvailabilityLE() noexcept{
+    auto BluetoothManager::isBLEAvailable() noexcept -> bool{
         bool state;
         int ret = system_info_get_platform_bool("http://tizen.org/feature/network.bluetooth.le", &state);
         if(ret != SYSTEM_INFO_ERROR_NONE){
@@ -57,36 +49,36 @@ namespace btu{
         return state;
     }
 
-    BluetoothState BluetoothManager::getBluetoothState() const noexcept{
+    auto BluetoothManager::bluetoothState() const noexcept -> BluetoothState{
         /* Checks whether the Bluetooth adapter is enabled */
         bt_adapter_state_e adapter_state;
         int ret = bt_adapter_get_state(&adapter_state);
-        BluetoothState bluetoothState;
+        BluetoothState bts;
         if(ret == BT_ERROR_NONE){
             if(adapter_state == BT_ADAPTER_ENABLED)
-                bluetoothState.set_state(BluetoothState_State_ON);
+                bts.set_state(BluetoothState_State_ON);
             else
-                bluetoothState.set_state(BluetoothState_State_OFF);
+                bts.set_state(BluetoothState_State_OFF);
         }
         else if(ret == BT_ERROR_NOT_INITIALIZED)
-            bluetoothState.set_state(BluetoothState_State_UNAVAILABLE);
+            bts.set_state(BluetoothState_State_UNAVAILABLE);
         else
-            bluetoothState.set_state(BluetoothState_State_UNKNOWN);
+            bts.set_state(BluetoothState_State_UNKNOWN);
         
-        return bluetoothState;
+        return bts;
     }
 
-    void BluetoothManager::adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept{
+    auto BluetoothManager::adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void{
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
         std::scoped_lock lock(bluetoothManager.adapterState.mut);
         bluetoothManager.adapterState.var = adapter_state;
     }
     
-    void BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept{
-        std::scoped_lock l(_bluetoothDevices.mut, scanAllowDuplicates.mut);
+    auto BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept -> void{
+        std::scoped_lock l(_bluetoothDevices.mut, _scanAllowDuplicates.mut);
         _bluetoothDevices.var.clear();        
-        scanAllowDuplicates.var=scanSettings.allow_duplicates();        
-        Logger::log(LogLevel::DEBUG, "allowDuplicates="+std::to_string(scanAllowDuplicates.var));
+        _scanAllowDuplicates.var=scanSettings.allow_duplicates();        
+        Logger::log(LogLevel::DEBUG, "allowDuplicates="+std::to_string(_scanAllowDuplicates.var));
 
         int res = bt_adapter_le_set_scan_mode(BT_ADAPTER_LE_SCAN_MODE_BALANCED);
         //remove from bluetooth Devices all devices with status==Scanned
@@ -113,18 +105,18 @@ namespace btu{
         }
     }
 
-    void BluetoothManager::scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) {
+    auto BluetoothManager::scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept -> void{
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
         using State=BluetoothDeviceController::State;
         if(result)
             Logger::log(LogLevel::ERROR, "NULLPTR IN CALL!");
         else{
             std::string macAddress=discovery_info->remote_address;
-            std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut, bluetoothManager.scanAllowDuplicates.mut);
+            std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut, bluetoothManager._scanAllowDuplicates.mut);
             auto& device=bluetoothManager._bluetoothDevices.var[macAddress];
             device.address()=macAddress;
             device.state()=State::SCANNED;
-            if(bluetoothManager.scanAllowDuplicates.var || device.cProtoBluetoothDevices().empty()){
+            if(bluetoothManager._scanAllowDuplicates.var || device.cProtoBluetoothDevices().empty()){
                 device.protoBluetoothDevices().emplace_back();
                             
                 auto& protoDev=device.protoBluetoothDevices().back();
@@ -150,10 +142,10 @@ namespace btu{
         }
     }
 
-    void BluetoothManager::stopBluetoothDeviceScanLE() noexcept{
+    auto BluetoothManager::stopBluetoothDeviceScanLE() noexcept -> void{
         static std::mutex m;
         std::scoped_lock lock(m);
-        auto btState=getBluetoothState().state();
+        auto btState=bluetoothState().state();
         if(btState==BluetoothState_State_ON){
             bool isDiscovering;
             int res = bt_adapter_le_is_discovering(&isDiscovering);
@@ -173,19 +165,14 @@ namespace btu{
         }
     }
 
-    void BluetoothManager::connect(const ConnectRequest& connRequest) noexcept{
+    auto BluetoothManager::connect(const ConnectRequest& connRequest) noexcept -> void{
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         auto& device=_bluetoothDevices.var[connRequest.remote_id()];
         device.connect(connRequest);
     }
-    void BluetoothManager::deviceConnectedCallback(int result, bt_device_info_s* device_info, void* user_data) noexcept{
-        Logger::log(LogLevel::DEBUG, "callback with remote_address="+std::string(device_info->remote_address));
-        using State=BluetoothDeviceController::State;
-        
-    }
 
-    void BluetoothManager::disconnect(const std::string& deviceID) noexcept{
+    auto BluetoothManager::disconnect(const std::string& deviceID) noexcept -> void{
         using namespace std::literals;
         std::unique_lock lock(_bluetoothDevices.mut);
         auto& device=_bluetoothDevices.var[deviceID];
@@ -193,45 +180,8 @@ namespace btu{
         auto timeout=std::chrono::steady_clock::now()+5s;
  
     }
-    void BluetoothManager::deviceDisconnectedCallback(int res, char* remote_address, void* user_data) noexcept{
-        if(!res){
-            BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
 
-        }else{
-            std::string err=get_error_message(res);
-            Logger::log(LogLevel::ERROR, "crating advertiser failed with " + err);
-        }
-    }
-
-    void BluetoothManager::startAdvertising() noexcept{
-        std::scoped_lock lock(advertisingHandler.mut);
-        auto& handle=advertisingHandler.var;
-        int res=bt_adapter_le_create_advertiser(&handle);//[TODO - destroy the handle!]
-        if(res){
-            std::string err=get_error_message(res);
-            Logger::log(LogLevel::ERROR, "crating advertiser failed with " + err);
-        }
-        res=bt_adapter_le_add_advertising_service_uuid(handle, BT_ADAPTER_LE_PACKET_ADVERTISING, "3bf5fc18-6c3c-11ec-90d6-0242ac120003");
-        if(res){
-            std::string err=get_error_message(res);
-            Logger::log(LogLevel::ERROR, "setting advertising uuids failed with " + err);
-        }
-        res=bt_adapter_le_start_advertising_new(handle, &BluetoothManager::adapterAdvertisingStateChangedCallbackLE, this);
-        if(res){
-            std::string err=get_error_message(res);
-            Logger::log(LogLevel::ERROR, "starting advertising failed with " + err);
-        }
-    }
-
-    void BluetoothManager::adapterAdvertisingStateChangedCallbackLE(int result, bt_advertiser_h advertiser, bt_adapter_le_advertising_state_e adv_state, void *user_data){
-        BluetoothManager& bluetoothManager=*static_cast<BluetoothManager *>(user_data);
-        std::scoped_lock lock(bluetoothManager.advertisingHandler.mut);
-        auto& handle=bluetoothManager.advertisingHandler.var;
-        Logger::log(LogLevel::DEBUG, "state of advertising handler changed to " + std::string(adv_state==BT_ADAPTER_LE_ADVERTISING_STARTED ? "STARTED" : "STOPPED"));
-
-    }
-    
-    void BluetoothManager::serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept{
+    auto BluetoothManager::serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept -> void{
         int res = bt_device_start_service_search(bluetoothDevice.remote_id().c_str());
         if(res){
             std::string err=get_error_message(res);
@@ -239,7 +189,7 @@ namespace btu{
         }
     }
 
-    void BluetoothManager::serviceSearchCallback(int result, bt_device_sdp_info_s* services, void* user_data) noexcept{
+    auto BluetoothManager::serviceSearchCallback(int result, bt_device_sdp_info_s* services, void* user_data) noexcept -> void{
         BluetoothManager& bluetoothManager=*static_cast<BluetoothManager *>(user_data);
         Logger::log(LogLevel::DEBUG, "discovered services for " + std::string(services->remote_address));
 
@@ -248,7 +198,7 @@ namespace btu{
         }
     }
 
-    std::vector<BluetoothDevice> BluetoothManager::getConnectedProtoBluetoothDevices() noexcept{
+    auto BluetoothManager::getConnectedProtoBluetoothDevices() noexcept -> std::vector<BluetoothDevice>{
         std::vector<BluetoothDevice> protoBD;
         std::scoped_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
@@ -262,9 +212,6 @@ namespace btu{
     }
 
 
-    auto BluetoothManager::bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&{
-        return _bluetoothDevices;
-    }
-
+    auto BluetoothManager::bluetoothDevices() noexcept -> decltype(_bluetoothDevices)& { return _bluetoothDevices;}
 } // namespace btu
 
