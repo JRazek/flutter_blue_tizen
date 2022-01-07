@@ -16,7 +16,7 @@ namespace btu{
         State _state;
         std::string _address;
 
-        SafeType<bt_gatt_h> gattHandle;
+        SafeType<std::pair<bt_gatt_h, bool>> gattServerHandle;//handle, created/not created
     public:
         enum class State{
             DEFAULT,
@@ -26,7 +26,8 @@ namespace btu{
         std::condition_variable cv;
         
         BluetoothDeviceController() noexcept :
-        _state(State::DEFAULT)
+        _state(State::DEFAULT),
+        gattServerHandle({nullptr, false})
         {}
         auto address() noexcept -> decltype(_address)&;
         auto cAddress() const noexcept -> const decltype(_address)&;

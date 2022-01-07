@@ -8,6 +8,10 @@ namespace btu{
     struct SafeType{
         T var;
         std::mutex mut;
+
+        SafeType(const T& t):var(t){}
+        SafeType(T&& t):var(std::move(t)){}
+        SafeType():var(T()){}
     };
 }
 #endif

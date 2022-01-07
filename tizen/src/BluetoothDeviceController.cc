@@ -1,4 +1,5 @@
 #include <BluetoothDeviceController.h>
+#include <Logger.h>
 
 #include <mutex>
 namespace btu {
@@ -9,9 +10,13 @@ namespace btu {
     auto BluetoothDeviceController::protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&{ return _protoBluetoothDevices; }
     auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&{ return _protoBluetoothDevices; }
 
-    auto BluetoothDeviceController::connect() -> void{
-        std::scoped_lock lock(gattHandle.mut);
-        auto& handle=gattHandle.var;
+    auto BluetoothDeviceController::connect() -> void {
+        std::scoped_lock lock(gattServerHandle.mut);
+        auto& handle=gattServerHandle.var.first;
+        auto isConnected=gattServerHandle.var.second;
+        if(!isConnected){
+            int res=bt_gatt_server_create(&handle);
+        }
 
     }
 
