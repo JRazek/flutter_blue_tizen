@@ -25,10 +25,9 @@ namespace btu{
         };
         std::condition_variable cv;
         
-        BluetoothDeviceController() noexcept :
-        _state(State::DEFAULT),
-        gattServerHandle({nullptr, false})
-        {}
+        BluetoothDeviceController() noexcept;
+        ~BluetoothDeviceController() noexcept;
+
         auto address() noexcept -> decltype(_address)&;
         auto cAddress() const noexcept -> const decltype(_address)&;
         auto state() noexcept -> decltype(_state)&;
@@ -36,6 +35,7 @@ namespace btu{
         auto protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&;
         auto cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&;
         auto connect() -> void;
+        auto disconnect() -> void
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H
