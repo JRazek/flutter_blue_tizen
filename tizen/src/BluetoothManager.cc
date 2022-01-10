@@ -17,7 +17,7 @@ namespace btu{
 
     BluetoothManager::BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept:
     methodChannel(_methodChannel){
-        if(isBLEAvailable()){
+        if(!isBLEAvailable()){
             Logger::log(LogLevel::ERROR, "Bluetooth is not available on this device!");
             return;
         }
