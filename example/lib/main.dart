@@ -9,6 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
   // flutterBlue.setLogLevel(LogLevel.alert);
+  await flutterBlue.stopScan();
   List<ScanResult> scanResults = <ScanResult>[];
   var subscription = flutterBlue.scanResults.listen((results) async {
     // do something with scan results
@@ -16,6 +17,10 @@ void main() async {
       var dev = results.last.device;
       var sc = results.last;
       debugPrint('${dev.name}, local_name: ${sc.advertisementData.localName}');
+      // if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
+      //   debugPrint("herreeeeee");
+      // }
+      dev.connect();
       scanResults.add(results.last);
     }
   });
@@ -24,7 +29,7 @@ void main() async {
   for (var sc in scanResults) {
     var dev = sc.device;
     debugPrint('${dev.name}, local_name: ${sc.advertisementData.localName}');
-
+    if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") dev.connect();
     // dev.connect();
   }
   // Stop scanning
