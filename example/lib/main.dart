@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
@@ -11,19 +13,22 @@ void main() async {
   var subscription = flutterBlue.scanResults.listen((results) async {
     // do something with scan results
     if (results.isNotEmpty) {
-      // BluetoothDevice dev = results.last.device;
-      // debugPrint('${dev.name} found! rssi: ${dev.name}');
-      // debugPrint('connect done');
+      var dev = results.last.device;
+      var sc = results.last;
+      debugPrint('${dev.name}, local_name: ${sc.advertisementData.localName}');
       scanResults.add(results.last);
     }
   });
-  await flutterBlue.startScan(timeout: const Duration(seconds: 10));
-  debugPrint("here bros");
+  flutterBlue.startScan();
+
   for (var sc in scanResults) {
     var dev = sc.device;
-    debugPrint('${dev.name} found! rssi: ${sc.rssi}');
+    debugPrint('${dev.name}, local_name: ${sc.advertisementData.localName}');
+
+    // dev.connect();
   }
   // Stop scanning
+  debugPrint("hello");
   runApp(const MyApp());
 }
 

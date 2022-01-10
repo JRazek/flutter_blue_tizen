@@ -88,19 +88,20 @@ namespace {
           result->Success(flutter::EncodableValue(encodeToVector(response)));
       }
       else if(method_call.method_name() == "connect"){
-        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);//to fix!
+        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         ConnectRequest connectRequest;
         bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
-        btlog::Logger::log(btlog::LogLevel::DEBUG, "size serialized = " + std::to_string(encoded.size()));
+        
         bluetoothManager.connect(connectRequest);
         if(!ok)
           result->Error("could not deserialize request!");
         else
           result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "disconnect"&&false){
-        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
-        std::string deviceID(encoded.begin(), encoded.end());
+      else if(method_call.method_name() == "disconnect"){
+        std::string deviceID = std::get<std::string>(args);
+
+        bluetoothManager.disconnect(deviceID);
         result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name() == "deviceState"){

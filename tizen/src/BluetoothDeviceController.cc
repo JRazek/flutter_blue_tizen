@@ -26,46 +26,37 @@ namespace btu {
             Logger::log(LogLevel::DEBUG, "connecting to device "+_address);
             int res=bt_gatt_connect(_address.c_str(), connReq.android_auto_connect());
             _state=State::CONNECTING;
-            auto timeout=std::chrono::steady_clock::now()+5s;
-            cv.wait_until(lock, timeout, [&]() -> bool{
-                return _state!=State::CONNECTING;
-            });
-            if(_state!=State::CONNECTED){
-                Logger::log(LogLevel::DEBUG, "connecting to device failed! "+_address);
-            }
+
         }else{
             Logger::log(LogLevel::ERROR, "already connected to device "+_address);
         }
     }
     auto BluetoothDeviceController::disconnect() noexcept -> void {
         std::unique_lock lock(operationM);
-        if(_state==State::CONNECTED){
+        if(_state==State::CONNECTED || _state==State::CONNECTING){
             _state=State::DISCONNECTING;
-            int res=bt_gatt_disconnect(_address.c_str());//should wait here unitl disconnected callback is done.
-            cv.wait(lock, [&]() -> bool{
-                return _state!=State::DISCONNECTING;
-            });
+            int res=bt_gatt_disconnect(_address.c_str());
         }else{
             Logger::log(LogLevel::ERROR, "cannot disconnect. Device not connected "+_address);
         }
     }
     auto BluetoothDeviceController::connectionStateCallback(int res, bool connected, const char* remote_address, void* user_data) noexcept -> void{
+        Logger::log(LogLevel::DEBUG, "callback called!");
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
         std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
         auto& device=bluetoothManager.bluetoothDevices().var[remote_address];
-        
         std::scoped_lock devLock(device.operationM);
-        if(!res && connected && device.cState()==State::CONNECTING){
-            device.state()=State::CONNECTED;
-            Logger::log(LogLevel::DEBUG, "connected to device "+device.cAddress());
+        if(!res){
+            if(connected && device.cState()==State::CONNECTING){
+                device.state()=State::CONNECTED;
+                Logger::log(LogLevel::DEBUG, "connected to device "+device.cAddress());
+            }else{
+                device.state()=State::DISCONNECTED;
+                Logger::log(LogLevel::DEBUG, "disconnected from device"+device.cAddress());
+            }
         }else{
-            device.state()=State::DISCONNECTED;
-            Logger::log(LogLevel::DEBUG, "disconnected from device"+device.cAddress());
-        }
-        if(res){
             std::string err=get_error_message(res);
             Logger::log(LogLevel::ERROR, "connectionStateCallback " + err);
         }
-        device.cv.notify_one();
     }
 };
