@@ -17,20 +17,20 @@ namespace btu{
 
     BluetoothManager::BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept:
     methodChannel(_methodChannel){
-        if(!isBLEAvailable()){
+        if(isBLEAvailable()){
             Logger::log(LogLevel::ERROR, "Bluetooth is not available on this device!");
             return;
         }
-        if(!bt_initialize()){
+        if(bt_initialize()){
             Logger::log(LogLevel::ERROR, "[bt_initialize] failed");
             return;
         }
-        if(!bt_device_set_service_searched_cb(&BluetoothManager::serviceSearchCallback, this)){
-            Logger::log(LogLevel::ERROR, "[bt_device_set_service_searched_cb] failed");
+        if(bt_gatt_set_connection_state_changed_cb(&BluetoothDeviceController::connectionStateCallback, this)) {
+            Logger::log(LogLevel::ERROR, "[bt_device_set_bond_destroyed_cb] failed");
             return;
         }
-        if(!bt_gatt_set_connection_state_changed_cb(&BluetoothDeviceController::connectionStateCallback, this)) {
-            Logger::log(LogLevel::ERROR, "[bt_device_set_bond_destroyed_cb] failed");
+        if(bt_device_set_service_searched_cb(&BluetoothManager::serviceSearchCallback, this)){
+            Logger::log(LogLevel::ERROR, "[bt_device_set_service_searched_cb] failed");
             return;
         }
         Logger::log(LogLevel::DEBUG, "All callbacks successfully initialized.");
@@ -134,7 +134,7 @@ namespace btu{
                 scanResult.set_rssi(discovery_info->rssi);
                 AdvertisementData* advertisement_data=new AdvertisementData();
                 decodeAdvertisementData(discovery_info->adv_data, *advertisement_data, discovery_info->adv_data_len);
-                Logger::log(LogLevel::WARNING, std::to_string(discovery_info->adv_data_len));
+                // Logger::log(LogLevel::WARNING, std::to_string(discovery_info->adv_data_len));
                 //decode advertisment data here...[TODO]
                 scanResult.set_allocated_advertisement_data(advertisement_data);
                 scanResult.set_allocated_device(new BluetoothDevice(protoDev));
@@ -233,7 +233,7 @@ namespace btu{
                 case 0x08:{
                     if(!longNameSet) {
                         adv.set_local_name(packetsData+start+2, ad_len-1);
-                        Logger::log(LogLevel::DEBUG, "local name was set");
+                        // Logger::log(LogLevel::DEBUG, "local name was set");
                     }
                     
                     if(type==0x09) longNameSet=true;
@@ -244,15 +244,15 @@ namespace btu{
                 }
                 default: break;
             }
-            Logger::log(LogLevel::DEBUG, "found type of packet:len="+std::to_string(type)+":"+std::to_string(ad_len));
+            // Logger::log(LogLevel::DEBUG, "found type of packet:len="+std::to_string(type)+":"+std::to_string(ad_len));
             // Logger::log(LogLevel::DEBUG, "dataLen="+std::to_string(dataLen));
             start+=ad_len+1;
         }
-        std::string tmps="";
-        for(int i=0;i<dataLen;i++){
-            tmps+=std::to_string(packetsData[i])+", ";
-        }
-        Logger::log(LogLevel::DEBUG, tmps);
+        // std::string tmps="";
+        // for(int i=0;i<dataLen;i++){
+        //     tmps+=std::to_string(packetsData[i])+", ";
+        // }
+        // Logger::log(LogLevel::DEBUG, tmps);
     }
 
 } // namespace btu

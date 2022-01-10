@@ -9,7 +9,7 @@
 
 namespace btlog{
     class Logger{
-        inline static btu::SafeType<LogLevel> logLevel;
+        inline static btu::SafeType<LogLevel> logLevel{LogLevel::DEBUG};
         inline static std::string logTag = "FlutterBlueTizenPlugin";
         inline static std::mutex m;
     public:
