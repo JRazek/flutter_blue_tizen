@@ -13,8 +13,9 @@ namespace btlog{
         inline static std::string logTag = "FlutterBlueTizenPlugin";
         inline static std::mutex m;
     public:
-        static void setLogLevel(LogLevel _logLevel) noexcept;
-        static void log(LogLevel level, const std::string& mess) noexcept;
+        static auto setLogLevel(LogLevel _logLevel) noexcept -> void;
+        static auto log(LogLevel level, const std::string& mess) noexcept -> void;
+        static auto showResultError(std::string componentName, int res) -> void;
     };
 } // namespace btlog
 

@@ -2,7 +2,7 @@
 #include <LogLevel.h>
 
 namespace btlog{
-    void Logger::log(LogLevel messLevel, const std::string& mess) noexcept{
+    auto Logger::log(LogLevel messLevel, const std::string& mess) noexcept -> void {
         if(messLevel <= logLevel.var){
             log_priority p;
             switch (messLevel){
@@ -38,9 +38,16 @@ namespace btlog{
             dlog_print(p, logTag.c_str(), mess.c_str(), "");
         }
     }
-    void Logger::setLogLevel(LogLevel _logLevel) noexcept{
+    auto Logger::setLogLevel(LogLevel _logLevel) noexcept -> void {
         std::scoped_lock lock(logLevel.mut);
         logLevel.var = _logLevel;
         log(LogLevel::DEBUG, "set log level to =  " + std::to_string(static_cast<int>(logLevel.var)));
     }
+    auto Logger::showResultError(std::string componentName, int res) -> void{
+        if(res){
+            std::string err=get_error_message(res);
+            Logger::log(LogLevel::ERROR, "["+componentName+"] failed with "+err);
+        }
+    }
+
 }

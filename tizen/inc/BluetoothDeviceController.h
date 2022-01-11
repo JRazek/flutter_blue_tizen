@@ -12,10 +12,17 @@ namespace btu{
     public:
         enum class State;
     private:
+        /**
+         * @brief all attributes are depentent on this mutex
+         * 
+         */
+        std::mutex operationM;
+
         std::vector<BluetoothDevice> _protoBluetoothDevices;
         State _state;
         std::string _address;
-        std::mutex operationM;
+        bt_gatt_client_h _clientHandle;
+
         std::condition_variable cv;
     public:
         enum class State{
