@@ -21,7 +21,6 @@ namespace btu {
         Logger::showResultError("bt_gatt_client_destroy", res);
     }
 
-    auto BluetoothDeviceController::address() noexcept -> decltype(_address)& { return _address; }
     auto BluetoothDeviceController::cAddress() const noexcept -> const decltype(_address)& { return _address; }
     auto BluetoothDeviceController::state() noexcept -> decltype(_state)& { return _state; }
     auto BluetoothDeviceController::cState() const noexcept -> const decltype(_state)& { return _state; }

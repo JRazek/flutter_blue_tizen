@@ -35,10 +35,10 @@ namespace btu{
         };
 
         
-        BluetoothDeviceController() noexcept;
+        BluetoothDeviceController(const std::string& address) noexcept;
+        BluetoothDeviceController(const char* address) noexcept;
         ~BluetoothDeviceController() noexcept;
 
-        auto address() noexcept -> decltype(_address)&;
         auto cAddress() const noexcept -> const decltype(_address)&;
         auto state() noexcept -> decltype(_state)&;
         auto cState() const noexcept -> const decltype(_state)&;
