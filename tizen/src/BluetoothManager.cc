@@ -222,21 +222,27 @@ namespace btu{
     0x08 = Shortened Local Name
     */
     auto decodeAdvertisementData(char* packetsData, AdvertisementData& adv, int dataLen) -> void {
-        using byte=u_int8_t;
+        using byte=char;
         int start=0;
         bool longNameSet=false;
         while(start<dataLen){
             byte ad_len=packetsData[start]&0xFFu;
             byte type=packetsData[start+1]&0xFFu;
+
+            byte* packet=packetsData+start+2;
             switch(type){
                 case 0x09:
                 case 0x08:{
                     if(!longNameSet) {
-                        adv.set_local_name(packetsData+start+2, ad_len-1);
+                        adv.set_local_name(packet, ad_len-1);
                         // Logger::log(LogLevel::DEBUG, "local name was set");
                     }
                     
                     if(type==0x09) longNameSet=true;
+                    break;
+                }
+                case 0x01:{
+                    adv.set_connectable(*packet & 0x3);
                     break;
                 }
                 case 0xFF:{
