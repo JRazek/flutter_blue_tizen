@@ -107,11 +107,11 @@ namespace {
       else if(method_call.method_name() == "deviceState"){
         std::string deviceID = std::get<std::string>(args);
         std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
-        const auto& device=bluetoothManager.bluetoothDevices().var[deviceID];
+        const auto& device=(*bluetoothManager.bluetoothDevices().var.find(deviceID)).second;
 
         DeviceStateResponse res;
-        res.set_remote_id(device.cAddress());
-        res.set_state(fromLocalState(device.cState()));
+        res.set_remote_id(device->cAddress());
+        res.set_state(fromLocalState(device->cState()));
 
         result->Success(flutter::EncodableValue(encodeToVector(res)));
       }

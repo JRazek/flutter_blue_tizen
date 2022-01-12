@@ -21,9 +21,9 @@ namespace btu{
         std::vector<BluetoothDevice> _protoBluetoothDevices;
         State _state;
         std::string _address;
-        bt_gatt_client_h _clientHandle;
 
         std::condition_variable cv;
+
     public:
         enum class State{
             DEFAULT,
@@ -39,6 +39,8 @@ namespace btu{
         BluetoothDeviceController(const char* address) noexcept;
         ~BluetoothDeviceController() noexcept;
 
+        BluetoothDeviceController(const BluetoothDeviceController& address)=delete;
+        
         auto cAddress() const noexcept -> const decltype(_address)&;
         auto state() noexcept -> decltype(_state)&;
         auto cState() const noexcept -> const decltype(_state)&;

@@ -20,16 +20,19 @@ void main() async {
       // if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
       //   debugPrint("herreeeeee");
       // }
-      dev.connect();
+      // dev.connect();
       scanResults.add(results.last);
     }
   });
-  flutterBlue.startScan();
+  await flutterBlue.startScan(timeout: const Duration(seconds: 5));
 
   for (var sc in scanResults) {
     var dev = sc.device;
-    debugPrint('${dev.name}, local_name: ${sc.advertisementData.localName}');
-    if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") dev.connect();
+    if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
+      debugPrint('connecting to: ${sc.advertisementData.localName}');
+      await dev.connect(autoConnect: false);
+      debugPrint('released connect');
+    }
     // dev.connect();
   }
   // Stop scanning

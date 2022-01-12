@@ -14,42 +14,42 @@
 
 #include <flutterblue.pb.h>
 #include <Utils.h>
-#include <BluetoothDeviceController.h>
 
 namespace btu{
-    using MethodChannel = flutter::MethodChannel<flutter::EncodableValue>;
-    class BluetoothManager{
-         SafeType<bt_adapter_state_e> adapterState;
+     class BluetoothDeviceController;
+     using MethodChannel = flutter::MethodChannel<flutter::EncodableValue>;
+     class BluetoothManager{
+          SafeType<bt_adapter_state_e> adapterState;
 
-         /**
-          * @brief key - MAC address of the device
-          */
-         SafeType<std::unordered_map<std::string, BluetoothDeviceController>> _bluetoothDevices;
+          /**
+               * @brief key - MAC address of the device
+               */
+          SafeType<std::unordered_map<std::string, std::shared_ptr<BluetoothDeviceController>>> _bluetoothDevices;
 
 
-         std::shared_ptr<MethodChannel> methodChannel;
-         SafeType<bool> _scanAllowDuplicates;
+          std::shared_ptr<MethodChannel> methodChannel;
+          SafeType<bool> _scanAllowDuplicates;
 
-    public:
-         
-         BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;
-         virtual ~BluetoothManager() noexcept;
-         BluetoothManager(const BluetoothManager& bluetoothManager)=delete;
-         
-         auto startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept -> void;
-         auto stopBluetoothDeviceScanLE() noexcept -> void;
-         auto connect(const ConnectRequest& connRequest) noexcept -> void;
-         auto disconnect(const std::string& deviceID) noexcept -> void;
-         auto serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept -> void;
-         auto bluetoothState() const noexcept -> BluetoothState;
-         auto getConnectedProtoBluetoothDevices() noexcept -> std::vector<BluetoothDevice>;
-         auto bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&;
+     public:
+          
+          BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;
+          virtual ~BluetoothManager() noexcept;
+          BluetoothManager(const BluetoothManager& bluetoothManager)=delete;
+          
+          auto startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept -> void;
+          auto stopBluetoothDeviceScanLE() noexcept -> void;
+          auto connect(const ConnectRequest& connRequest) noexcept -> void;
+          auto disconnect(const std::string& deviceID) noexcept -> void;
+          auto serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept -> void;
+          auto bluetoothState() const noexcept -> BluetoothState;
+          auto getConnectedProtoBluetoothDevices() noexcept -> std::vector<BluetoothDevice>;
+          auto bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&;
 
-         static auto isBLEAvailable() noexcept -> bool;
-         static auto scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept -> void;
-         static auto serviceSearchCallback(int result, bt_device_sdp_info_s* device_info, void* user_data) noexcept -> void;
-         static auto adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void;
-    };
+          static auto isBLEAvailable() noexcept -> bool;
+          static auto scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept -> void;
+          static auto serviceSearchCallback(int result, bt_device_sdp_info_s* device_info, void* user_data) noexcept -> void;
+          static auto adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void;
+     };
 } // namespace btu
 
 #endif //BLUETOOTH_MANAGER_H

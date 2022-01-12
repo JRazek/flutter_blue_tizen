@@ -7,6 +7,7 @@
 #include <bluetooth.h>
 #include <tizen.h>
 
+#include <BluetoothDeviceController.h>
 
 
 namespace btu{
@@ -115,13 +116,17 @@ namespace btu{
         else{
             std::string macAddress=discovery_info->remote_address;
             std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut, bluetoothManager._scanAllowDuplicates.mut);
-            auto& device=bluetoothManager._bluetoothDevices.var[macAddress];
-            device.address()=macAddress;
-            device.state()=State::SCANNED;
-            if(bluetoothManager._scanAllowDuplicates.var || device.cProtoBluetoothDevices().empty()){
-                device.protoBluetoothDevices().emplace_back();
+            std::shared_ptr<BluetoothDeviceController> device;
+            if(bluetoothManager._bluetoothDevices.var.find(macAddress)==bluetoothManager._bluetoothDevices.var.end())
+                device=(*(bluetoothManager._bluetoothDevices.var.insert({macAddress, std::make_shared<BluetoothDeviceController>(macAddress)}).first)).second;
+            else
+                device=(*bluetoothManager._bluetoothDevices.var.find(macAddress)).second;
+                
+            device->state()=State::SCANNED;
+            if(bluetoothManager._scanAllowDuplicates.var || device->cProtoBluetoothDevices().empty()){
+                device->protoBluetoothDevices().emplace_back();
                             
-                auto& protoDev=device.protoBluetoothDevices().back();
+                auto& protoDev=device->protoBluetoothDevices().back();
                 char* name;
                 result=bt_adapter_le_get_scan_result_device_name(discovery_info, BT_ADAPTER_LE_PACKET_SCAN_RESPONSE, &name);
                 if(!result){
@@ -172,15 +177,15 @@ namespace btu{
     auto BluetoothManager::connect(const ConnectRequest& connRequest) noexcept -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
-        auto& device=_bluetoothDevices.var[connRequest.remote_id()];
-        device.connect(connRequest);
+        auto device=(*_bluetoothDevices.var.find(connRequest.remote_id())).second;
+        device->connect(connRequest);
     }
 
     auto BluetoothManager::disconnect(const std::string& deviceID) noexcept -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
-        auto& device=_bluetoothDevices.var[deviceID];
-        device.disconnect();
+        auto device=(*_bluetoothDevices.var.find(deviceID)).second;
+        device->disconnect();
     }
 
     auto BluetoothManager::serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept -> void {
@@ -205,8 +210,8 @@ namespace btu{
         std::scoped_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         for(const auto& e:_bluetoothDevices.var){
-            if(e.second.cState()==State::CONNECTED){
-                auto& vec=e.second.cProtoBluetoothDevices();
+            if(e.second->cState()==State::CONNECTED){
+                auto& vec=e.second->cProtoBluetoothDevices();
                 protoBD.insert(protoBD.end(), vec.cbegin(), vec.cend());
             }
         }
