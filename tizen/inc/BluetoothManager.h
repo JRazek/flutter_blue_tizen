@@ -3,31 +3,26 @@
 
 #include <bluetooth.h>
 
-#include <flutter/method_channel.h>
-#include <flutter/encodable_value.h>
-
 #include <vector>
 #include <mutex>
 #include <memory>
 #include <condition_variable>
 #include <unordered_set>
 
-#include <flutterblue.pb.h>
 #include <Utils.h>
 
 namespace btu{
      class BluetoothDeviceController;
-     using MethodChannel = flutter::MethodChannel<flutter::EncodableValue>;
      class BluetoothManager{
           SafeType<bt_adapter_state_e> adapterState;
 
           /**
-               * @brief key - MAC address of the device
-               */
+          * @brief key - MAC address of the device
+          */
           SafeType<std::unordered_map<std::string, std::shared_ptr<BluetoothDeviceController>>> _bluetoothDevices;
 
 
-          std::shared_ptr<MethodChannel> methodChannel;
+          std::shared_ptr<MethodChannel> _methodChannel;
           SafeType<bool> _scanAllowDuplicates;
 
      public:

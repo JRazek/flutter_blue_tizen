@@ -1,9 +1,15 @@
-
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <flutter/method_channel.h>
+#include <flutter/encodable_value.h>
+#include <flutterblue.pb.h>
+
 #include <mutex>
 namespace btu{
+
+    using MethodChannel = flutter::MethodChannel<flutter::EncodableValue>;
+
     template<typename T>
     struct SafeType{
         T var;

@@ -16,6 +16,7 @@
 #include <BluetoothManager.h>
 #include <Logger.h>
 #include <BluetoothDeviceController.h>
+#include <NotificationsHandler.h>
 
 #include <flutterblue.pb.h>
 
@@ -25,7 +26,9 @@ namespace {
   class FlutterBlueTizenPlugin : public flutter::Plugin {
   public:
     const static inline std::string channel_name = "plugins.pauldemarco.com/flutter_blue/";
+    
     static inline std::shared_ptr<flutter::MethodChannel<flutter::EncodableValue>> methodChannel;
+
     static void RegisterWithRegistrar(flutter::PluginRegistrar *registrar) {
       methodChannel = std::make_shared<flutter::MethodChannel<flutter::EncodableValue>>(registrar->messenger(), (channel_name + "methods"), &flutter::StandardMethodCodec::GetInstance());
 
@@ -39,9 +42,10 @@ namespace {
     }
 
     btu::BluetoothManager bluetoothManager;
-
+    btu::NotificationsHandler notificationsHandler;
     FlutterBlueTizenPlugin():
-    bluetoothManager(methodChannel)
+    bluetoothManager(methodChannel),
+    notificationsHandler(methodChannel)
     {}
 
     virtual ~FlutterBlueTizenPlugin() {

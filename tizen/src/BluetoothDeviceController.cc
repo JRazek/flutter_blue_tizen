@@ -30,16 +30,6 @@ namespace btu {
             _state=State::CONNECTING;
             int res=bt_gatt_connect(_address.c_str(), false);
             Logger::showResultError("bt_gatt_connect", res);
-
-            auto timeout=std::chrono::system_clock::now()+5s;
-            cv.wait_until(lock, timeout, [&](){
-                return _state!=State::CONNECTING;
-            });
-            if(_state==State::CONNECTED){
-                Logger::log(LogLevel::DEBUG, "connected to device "+_address);
-            }else{
-                Logger::log(LogLevel::WARNING, "connection failed "+_address);
-            }
         }else if(_state==State::CONNECTED){
             Logger::log(LogLevel::WARNING, "already connected to device "+_address);
         }else{
@@ -50,7 +40,7 @@ namespace btu {
         Logger::log(LogLevel::DEBUG, "explicit disconnect call");
         std::unique_lock lock(operationM);
         if(_state==State::CONNECTED || _state==State::CONNECTING){
-            _state=State::DISCONNECTED;
+            _state=State::DISCONNECTING;
             int res=bt_gatt_disconnect(_address.c_str());
             Logger::showResultError("bt_gatt_disconnect", res);
         }else{
@@ -69,12 +59,10 @@ namespace btu {
             std::scoped_lock devLock(device->operationM);
             if(connected && device->cState()==State::CONNECTING){
                 device->state()=State::CONNECTED;
-                device->cv.notify_one();
             }else{
-                Logger::log(LogLevel::DEBUG, "state="+std::to_string((int)device->cState()));
                 device->state()=State::DISCONNECTED;
-                Logger::log(LogLevel::DEBUG, "disconnected from device "+device->cAddress());
             }
+            //notify about the state.
         }
     }
 };
