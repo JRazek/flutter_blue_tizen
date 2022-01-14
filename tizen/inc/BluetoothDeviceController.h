@@ -40,7 +40,6 @@ namespace btu{
         
         auto cAddress() const noexcept -> const decltype(_address)&;
         auto state() noexcept -> State;
-        // auto cState() const noexcept -> const decltype(_state)&;
         auto protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&;
         auto cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&;
         auto connect(const ConnectRequest& connReq) noexcept -> void;

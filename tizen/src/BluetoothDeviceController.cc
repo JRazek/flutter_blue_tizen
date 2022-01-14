@@ -30,10 +30,8 @@ namespace btu {
         Logger::showResultError("bt_device_is_profile_connected", res);
         return (isConnected ? State::CONNECTED : State::DISCONNECTED); 
     }
-    // auto BluetoothDeviceController::cState() const noexcept -> const decltype(_state)& { return _state; }
     auto BluetoothDeviceController::protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
     auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
-
     auto BluetoothDeviceController::connect(const ConnectRequest& connReq) noexcept -> void {
         using namespace std::literals;
         std::unique_lock lock(operationM);
@@ -77,7 +75,7 @@ namespace btu {
     
     namespace{
         static SafeType<std::unordered_map<std::string, bt_gatt_client_h>> gatt_clients;
-    }   
+    }
     auto BluetoothDeviceController::getGattClient(const std::string& address) noexcept -> bt_gatt_client_h {
         std::scoped_lock lock(gatt_clients.mut);
         auto it=gatt_clients.var.find(address);
