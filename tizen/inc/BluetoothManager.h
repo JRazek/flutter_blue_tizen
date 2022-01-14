@@ -10,24 +10,23 @@
 #include <unordered_set>
 
 #include <Utils.h>
+#include <NotificationsHandler.h>
 
 namespace btu{
      class BluetoothDeviceController;
      class BluetoothManager{
           SafeType<bt_adapter_state_e> adapterState;
-
           /**
           * @brief key - MAC address of the device
           */
           SafeType<std::unordered_map<std::string, std::shared_ptr<BluetoothDeviceController>>> _bluetoothDevices;
 
-
-          std::shared_ptr<MethodChannel> _methodChannel;
+          NotificationsHandler& _notificationsHandler;
           SafeType<bool> _scanAllowDuplicates;
 
      public:
           
-          BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept;
+          BluetoothManager(NotificationsHandler& notificationsHandler) noexcept;
           virtual ~BluetoothManager() noexcept;
           BluetoothManager(const BluetoothManager& bluetoothManager)=delete;
           

@@ -16,8 +16,8 @@ namespace btu{
     auto decodeAdvertisementData(char* packetsData, AdvertisementData& adv, int dataLen) -> void;
 
 
-    BluetoothManager::BluetoothManager(std::shared_ptr<MethodChannel> _methodChannel) noexcept:
-    _methodChannel(_methodChannel){
+    BluetoothManager::BluetoothManager(NotificationsHandler& notificationsHandler) noexcept:
+    _notificationsHandler(notificationsHandler){
         if(!isBLEAvailable()){
             Logger::log(LogLevel::ERROR, "Bluetooth is not available on this device!");
             return;
@@ -38,9 +38,7 @@ namespace btu{
     }
 
     BluetoothManager::~BluetoothManager() noexcept{
-        if(bt_deinitialize() != BT_ERROR_NONE){
-            Logger::log(LogLevel::ERROR, "[bt_deinitialize] failed");
-        }
+
     }
 
     auto BluetoothManager::isBLEAvailable() noexcept -> bool{
@@ -118,11 +116,10 @@ namespace btu{
             std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut, bluetoothManager._scanAllowDuplicates.mut);
             std::shared_ptr<BluetoothDeviceController> device;
             if(bluetoothManager._bluetoothDevices.var.find(macAddress)==bluetoothManager._bluetoothDevices.var.end())
-                device=(*(bluetoothManager._bluetoothDevices.var.insert({macAddress, std::make_shared<BluetoothDeviceController>(macAddress)}).first)).second;
+                device=(*(bluetoothManager._bluetoothDevices.var.insert({macAddress, std::make_shared<BluetoothDeviceController>(macAddress, bluetoothManager._notificationsHandler)}).first)).second;
             else
                 device=(*bluetoothManager._bluetoothDevices.var.find(macAddress)).second;
                 
-            device->state()=State::SCANNED;
             if(bluetoothManager._scanAllowDuplicates.var || device->cProtoBluetoothDevices().empty()){
                 device->protoBluetoothDevices().emplace_back();
                             
@@ -144,9 +141,7 @@ namespace btu{
                 scanResult.set_allocated_advertisement_data(advertisement_data);
                 scanResult.set_allocated_device(new BluetoothDevice(protoDev));
 
-                std::vector<uint8_t> encodable(scanResult.ByteSizeLong());
-                scanResult.SerializeToArray(encodable.data(), scanResult.ByteSizeLong());
-                bluetoothManager._methodChannel->InvokeMethod("ScanResult", std::make_unique<flutter::EncodableValue>(encodable));
+                bluetoothManager._notificationsHandler.notifyUIThread("ScanResult", scanResult);
             }
         }
     }
@@ -210,7 +205,7 @@ namespace btu{
         std::scoped_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         for(const auto& e:_bluetoothDevices.var){
-            if(e.second->cState()==State::CONNECTED){
+            if(e.second->state()==State::CONNECTED){
                 auto& vec=e.second->cProtoBluetoothDevices();
                 protoBD.insert(protoBD.end(), vec.cbegin(), vec.cend());
             }

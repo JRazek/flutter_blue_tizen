@@ -1,13 +1,13 @@
 #ifndef BLUETOOTH_DEVICE_CONTROLLER_H
 #define BLUETOOTH_DEVICE_CONTROLLER_H
 #include <flutterblue.pb.h>
-#include <Utils.h>
 
 #include <condition_variable>
 
 #include <bluetooth.h>
 
 namespace btu{
+    class NotificationsHandler;
     class BluetoothDeviceController{
     public:
         enum class State;
@@ -19,31 +19,30 @@ namespace btu{
         std::mutex operationM;
 
         std::vector<BluetoothDevice> _protoBluetoothDevices;
-        State _state;
         std::string _address;
 
         std::condition_variable cv;
 
+        NotificationsHandler& _notificationsHandler;
+
+        bool _isConnecting;
+        bool _isDisconnecting;
     public:
         enum class State{
-            DEFAULT,
-            SCANNED,
             CONNECTED,
-            CONNECTING,
             DISCONNECTED,
-            DISCONNECTING,
         };
 
         
-        BluetoothDeviceController(const std::string& address) noexcept;
-        BluetoothDeviceController(const char* address) noexcept;
+        BluetoothDeviceController(const std::string& address, NotificationsHandler& notificationsHandler) noexcept;
+        BluetoothDeviceController(const char* address, NotificationsHandler& notificationsHandler) noexcept;
         ~BluetoothDeviceController() noexcept;
 
         BluetoothDeviceController(const BluetoothDeviceController& address)=delete;
         
         auto cAddress() const noexcept -> const decltype(_address)&;
-        auto state() noexcept -> decltype(_state)&;
-        auto cState() const noexcept -> const decltype(_state)&;
+        auto state() noexcept -> State;
+        // auto cState() const noexcept -> const decltype(_state)&;
         auto protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&;
         auto cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&;
         auto connect(const ConnectRequest& connReq) noexcept -> void;
