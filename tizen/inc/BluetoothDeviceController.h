@@ -47,6 +47,8 @@ namespace btu{
         auto disconnect() noexcept -> void;
 
         static auto connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void;
+        static auto getGattClient(const std::string& address) noexcept -> bt_gatt_client_h;
+        static auto destroyGattClientIfExists(const std::string& address) noexcept -> void;
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H

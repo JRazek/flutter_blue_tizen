@@ -74,4 +74,34 @@ namespace btu {
             }
         }
     }
+    
+    namespace{
+        static SafeType<std::unordered_map<std::string, bt_gatt_client_h>> gatt_clients;
+    }   
+    auto BluetoothDeviceController::getGattClient(const std::string& address) noexcept -> bt_gatt_client_h {
+        std::scoped_lock lock(gatt_clients.mut);
+        auto it=gatt_clients.var.find(address);
+        bt_gatt_client_h client=nullptr;
+
+        if(it==gatt_clients.var.end()){
+            int res=bt_gatt_client_create(address.c_str(), &client);
+            Logger::showResultError("bt_gatt_client_create", res);
+            if(res==BT_ERROR_NONE || res==BT_ERROR_ALREADY_DONE){
+                gatt_clients.var.emplace(address, client);
+                Logger::log(LogLevel::DEBUG, "creating new gatt client for "+address);
+            };
+        }else{
+            client=it->second;   
+            Logger::log(LogLevel::DEBUG, "gatt client already exists. Returning for "+address);
+        }
+        return client;
+    }
+    auto BluetoothDeviceController::destroyGattClientIfExists(const std::string& address) noexcept -> void {
+        std::scoped_lock lock(gatt_clients.mut);
+        auto it=gatt_clients.var.find(address);
+        if(it!=gatt_clients.var.end()){
+            Logger::log(LogLevel::DEBUG, "destroying gatt client for "+address);
+            gatt_clients.var.erase(address);
+        }
+    }
 };
