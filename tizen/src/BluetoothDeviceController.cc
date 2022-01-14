@@ -40,7 +40,6 @@ namespace btu {
         if(state()==State::DISCONNECTED){
             int res=bt_gatt_connect(_address.c_str(), false);
             Logger::showResultError("bt_gatt_connect", res);
-            _isConnecting=true;
         }else{
             Logger::log(LogLevel::WARNING, "already connected to device "+_address);
         }
@@ -51,7 +50,6 @@ namespace btu {
         if(state()==State::CONNECTED){
             int res=bt_gatt_disconnect(_address.c_str());
             Logger::showResultError("bt_gatt_disconnect", res);
-            _isDisconnecting=true;
         }else{
             Logger::log(LogLevel::WARNING, "cannot disconnect. Device not connected "+_address);
         }
@@ -68,9 +66,6 @@ namespace btu {
             if(ptr!=bluetoothManager.bluetoothDevices().var.end()){
                 auto device=(*ptr).second;
                 std::scoped_lock devLock(device->operationM);
-
-                if(connected) device->_isConnecting=false;
-                else device->_isDisconnecting=false;
 
                 DeviceStateResponse devState;
                 devState.set_remote_id(device->cAddress());

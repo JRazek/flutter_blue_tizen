@@ -25,8 +25,6 @@ namespace btu{
 
         NotificationsHandler& _notificationsHandler;
 
-        bool _isConnecting;
-        bool _isDisconnecting;
     public:
         enum class State{
             CONNECTED,
