@@ -110,13 +110,6 @@ namespace btu {
     auto BluetoothDeviceController::discoverServices() noexcept -> void {
         std::scoped_lock lock(operationM);
         Logger::log(LogLevel::DEBUG, "debug-1");
-
-        int res;
         auto services=getProtoServices(getGattClient(_address));
-        if(!res){
-
-            //device._notificationsHandler.notifyUIThread("DiscoverServicesResult", );
-        }
-
     }
 };
