@@ -30,7 +30,9 @@ void main() async {
     var dev = sc.device;
     if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
       debugPrint('connecting to: ${sc.advertisementData.localName}');
+      await dev.disconnect();
       await dev.connect(autoConnect: false);
+      dev.discoverServices();
       debugPrint('released connect');
     }
     // dev.connect();

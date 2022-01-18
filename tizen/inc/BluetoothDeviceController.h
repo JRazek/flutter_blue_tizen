@@ -19,8 +19,10 @@ namespace btu{
         std::mutex operationM;
 
         std::vector<BluetoothDevice> _protoBluetoothDevices;
-        std::string _address;
+        
+        std::vector<BluetoothService> _protoBluetoothServices;
 
+        std::string _address;
         std::condition_variable cv;
 
         NotificationsHandler& _notificationsHandler;
@@ -48,6 +50,8 @@ namespace btu{
         static auto connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void;
         static auto getGattClient(const std::string& address) noexcept -> bt_gatt_client_h;
         static auto destroyGattClientIfExists(const std::string& address) noexcept -> void;
+
+        auto discoverServices() noexcept -> void;
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H

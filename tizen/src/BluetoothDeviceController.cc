@@ -17,8 +17,9 @@ namespace btu {
     _notificationsHandler(notificationsHandler)
     {}
 
-    BluetoothDeviceController::~BluetoothDeviceController() noexcept{
+    BluetoothDeviceController::~BluetoothDeviceController() noexcept {
         if(state()==State::CONNECTED) disconnect();
+        destroyGattClientIfExists(_address);
         Logger::log(LogLevel::DEBUG, "reporting destroy!");
     }
 
@@ -52,12 +53,12 @@ namespace btu {
             Logger::log(LogLevel::WARNING, "cannot disconnect. Device not connected "+_address);
         }
     }
-    auto BluetoothDeviceController::connectionStateCallback(int res, bool connected, const char* remote_address, void* user_data) noexcept -> void{
+    auto BluetoothDeviceController::connectionStateCallback(int res, bool connected, const char* remote_address, void* user_data) noexcept -> void {
         std::string err=get_error_message(res);
         Logger::log(LogLevel::DEBUG, "callback called for device "+std::string(remote_address)+" with state="+std::to_string(connected)+" and result="+err);
         
         if(!res){
-            BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
+            auto& bluetoothManager=*static_cast<BluetoothManager*> (user_data);
             std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
             auto ptr=bluetoothManager.bluetoothDevices().var.find(remote_address);
             //when disconnect is called from destructor, this callback can be invoked when the object is already destroyed.
@@ -72,8 +73,8 @@ namespace btu {
             }
         }
     }
-    
-    namespace{
+
+    namespace {
         static SafeType<std::unordered_map<std::string, bt_gatt_client_h>> gatt_clients;
     }
     auto BluetoothDeviceController::getGattClient(const std::string& address) noexcept -> bt_gatt_client_h {
@@ -99,7 +100,61 @@ namespace btu {
         auto it=gatt_clients.var.find(address);
         if(it!=gatt_clients.var.end()){
             Logger::log(LogLevel::DEBUG, "destroying gatt client for "+address);
+            bt_gatt_client_destroy(it->second);
             gatt_clients.var.erase(address);
         }
+    }
+
+    
+
+    auto BluetoothDeviceController::discoverServices() noexcept -> void {
+        std::scoped_lock lock(operationM);
+        Logger::log(LogLevel::DEBUG, "debug-1");
+
+        int res=bt_gatt_client_foreach_services(getGattClient(_address), 
+        [](int total, int index, bt_gatt_h service_handle, void* user_data) -> bool {
+            Logger::log(LogLevel::DEBUG, "debug0");
+            static std::unordered_map<std::string, DiscoverServicesResult> result;
+            auto& device=*static_cast<BluetoothDeviceController *>(user_data);
+        
+            Logger::log(LogLevel::DEBUG, "debug1");
+
+            char* uuid=nullptr;
+            int res=bt_gatt_get_uuid(service_handle, &uuid);
+            Logger::showResultError("bt_gatt_get_uuid services", res);
+            Logger::log(LogLevel::DEBUG, "debug2");
+            
+            if(!res && uuid){
+
+                Logger::log(LogLevel::DEBUG, "debug3");
+                BluetoothService& service=device._protoBluetoothServices.emplace_back();
+                
+                service.set_uuid(uuid);
+                Logger::log(LogLevel::DEBUG, "debug4");
+                free(uuid);     
+
+                res=bt_gatt_service_foreach_characteristics(service_handle, 
+                [](int total, int index, bt_gatt_h characteristic_handle, void* user_data) -> bool{
+                    auto& service=*static_cast<BluetoothService *>(user_data);
+                    char* uuid=nullptr;
+                    int res=bt_gatt_get_uuid(characteristic_handle, &uuid);
+                    Logger::showResultError("bt_gatt_get_uuid characteristics", res);
+                    // service.set_is_primary(false);//how to get bt_gatt_service_type_e??
+
+                    if(!res && uuid){
+                        service.set_uuid(uuid);
+                        free(uuid);
+                    }
+                    return true;
+                }, &service);
+            }
+            return true;
+        }, this);
+        Logger::showResultError("bt_gatt_service_foreach_included_services", res);
+        if(!res){
+
+            //device._notificationsHandler.notifyUIThread("DiscoverServicesResult", );
+        }
+
     }
 };

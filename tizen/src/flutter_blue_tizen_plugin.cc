@@ -112,13 +112,27 @@ namespace {
       else if(method_call.method_name() == "deviceState"){
         std::string deviceID = std::get<std::string>(args);
         std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
-        const auto& device=(*bluetoothManager.bluetoothDevices().var.find(deviceID)).second;
+        auto it=bluetoothManager.bluetoothDevices().var.find(deviceID);
+        if(it!=bluetoothManager.bluetoothDevices().var.end()){
+          auto& device=(*it).second;
 
-        DeviceStateResponse res;
-        res.set_remote_id(device->cAddress());
-        res.set_state(btu::localToProtoDeviceState(device->state()));
+          DeviceStateResponse res;
+          res.set_remote_id(device->cAddress());
+          res.set_state(btu::localToProtoDeviceState(device->state()));
 
-        result->Success(flutter::EncodableValue(btu::messageToVector(res)));
+          result->Success(flutter::EncodableValue(btu::messageToVector(res)));
+        } else result->Error("device not available");
+      }
+      else if(method_call.method_name() == "discoverServices"){
+        std::string deviceID = std::get<std::string>(args);
+        std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
+        auto it=bluetoothManager.bluetoothDevices().var.find(deviceID);
+        if(it!=bluetoothManager.bluetoothDevices().var.end()){
+          auto& device=it->second;
+          device->discoverServices();
+          result->Success(flutter::EncodableValue(NULL));
+
+        } else result->Error("device not available");
       }
       else {
         result->NotImplemented();
