@@ -111,46 +111,8 @@ namespace btu {
         std::scoped_lock lock(operationM);
         Logger::log(LogLevel::DEBUG, "debug-1");
 
-        int res=bt_gatt_client_foreach_services(getGattClient(_address), 
-        [](int total, int index, bt_gatt_h service_handle, void* user_data) -> bool {
-            Logger::log(LogLevel::DEBUG, "debug0");
-            static std::unordered_map<std::string, DiscoverServicesResult> result;
-            auto& device=*static_cast<BluetoothDeviceController *>(user_data);
-        
-            Logger::log(LogLevel::DEBUG, "debug1");
-
-            char* uuid=nullptr;
-            int res=bt_gatt_get_uuid(service_handle, &uuid);
-            Logger::showResultError("bt_gatt_get_uuid services", res);
-            Logger::log(LogLevel::DEBUG, "debug2");
-            
-            if(!res && uuid){
-
-                Logger::log(LogLevel::DEBUG, "debug3");
-                BluetoothService& service=device._protoBluetoothServices.emplace_back();
-                
-                service.set_uuid(uuid);
-                Logger::log(LogLevel::DEBUG, "debug4");
-                free(uuid);     
-
-                res=bt_gatt_service_foreach_characteristics(service_handle, 
-                [](int total, int index, bt_gatt_h characteristic_handle, void* user_data) -> bool{
-                    auto& service=*static_cast<BluetoothService *>(user_data);
-                    char* uuid=nullptr;
-                    int res=bt_gatt_get_uuid(characteristic_handle, &uuid);
-                    Logger::showResultError("bt_gatt_get_uuid characteristics", res);
-                    // service.set_is_primary(false);//how to get bt_gatt_service_type_e??
-
-                    if(!res && uuid){
-                        service.set_uuid(uuid);
-                        free(uuid);
-                    }
-                    return true;
-                }, &service);
-            }
-            return true;
-        }, this);
-        Logger::showResultError("bt_gatt_service_foreach_included_services", res);
+        int res;
+        auto services=getProtoServices(getGattClient(_address));
         if(!res){
 
             //device._notificationsHandler.notifyUIThread("DiscoverServicesResult", );

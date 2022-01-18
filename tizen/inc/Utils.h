@@ -20,20 +20,14 @@ namespace btu{
         SafeType(T&& t):var(std::move(t)){}
         SafeType():var(T()){}
     };
-    static auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> DeviceStateResponse_BluetoothDeviceState{
-        using State=btu::BluetoothDeviceController::State;
-        switch (s){
-            case State::CONNECTED: return DeviceStateResponse_BluetoothDeviceState_CONNECTED;
-            // case State::CONNECTING: return DeviceStateResponse_BluetoothDeviceState_CONNECTING;
-            case State::DISCONNECTED: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
-            // case State::DISCONNECTING: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTING;
-            default: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
-        }
-    }
-    static auto messageToVector(const google::protobuf::MessageLite& messageLite) noexcept -> std::vector<u_int8_t>{
-        std::vector<u_int8_t> encoded(messageLite.ByteSizeLong());
-        messageLite.SerializeToArray(encoded.data(), messageLite.ByteSizeLong());
-        return encoded;
-    }
+    
+    auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> DeviceStateResponse_BluetoothDeviceState;
+    
+    auto messageToVector(const google::protobuf::MessageLite& messageLite) noexcept -> std::vector<u_int8_t>;
+
+    auto getProtoServices(bt_gatt_client_h handle) -> std::vector<BluetoothService>;
+    
+    auto getProtoCharacteristics(bt_gatt_h service_handle) -> std::vector<BluetoothCharacteristic>;
+    
 }
 #endif
