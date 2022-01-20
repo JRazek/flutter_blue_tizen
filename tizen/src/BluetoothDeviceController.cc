@@ -104,12 +104,8 @@ namespace btu {
             gatt_clients.var.erase(address);
         }
     }
-
-    
-
     auto BluetoothDeviceController::discoverServices() noexcept -> void {
         std::scoped_lock lock(operationM);
-        Logger::log(LogLevel::DEBUG, "debug-1");
         auto services=getProtoServices(getGattClient(_address));
     }
 };

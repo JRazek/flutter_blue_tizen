@@ -28,6 +28,9 @@ namespace btu{
     auto getProtoServices(bt_gatt_client_h handle) -> std::vector<BluetoothService>;
     
     auto getProtoCharacteristics(bt_gatt_h service_handle) -> std::vector<BluetoothCharacteristic>;
+
+    auto getProtoCharacteristicProperties(int properties) -> CharacteristicProperties;
     
+    auto getProtoDescriptors(bt_gatt_h characteristic_handle) -> std::vector<BluetoothDescriptor>;
 }
 #endif

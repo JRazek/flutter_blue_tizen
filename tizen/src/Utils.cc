@@ -71,15 +71,22 @@ namespace btu{
                 int properties;
                 res=bt_gatt_characteristic_get_properties(characteristic_handle, &properties);
                 Logger::showResultError("bt_gatt_characteristic_get_properties", res);
+                Logger::log(LogLevel::DEBUG, "debug5");
+                auto descriptors=getProtoDescriptors(characteristic_handle);
+                for(auto& d : descriptors){
+                    d.set_characteristicuuid(characteristic.uuid());
+                    *characteristic.add_descriptors()=d;
+                }
+                int prop;
+                res=bt_gatt_characteristic_get_properties(characteristic_handle, &prop);
+                Logger::showResultError("bt_gatt_characteristic_get_properties", res);
 
-                // characteristic.set_allocated_properties()
+                if(!res){
+                    characteristic.set_allocated_properties(new CharacteristicProperties(getProtoCharacteristicProperties(prop)));
+                }
+                Logger::log(LogLevel::DEBUG, "debug6");
                 free(uuid);
             }
-
-            // res=bt_gatt_characteristic_foreach_descriptors(characteristic_handle, []
-            // (int total, int index, bt_gatt_h characteristic_handle, void* user_data) -> bool {
-
-            // }, )
 
             return true;
         }, &characteristics);
@@ -87,4 +94,46 @@ namespace btu{
 
         return characteristics;
     }
+
+    auto getProtoCharacteristicProperties(int properties) -> CharacteristicProperties {
+        CharacteristicProperties p;
+        p.set_broadcast((properties & 1) != 0);
+        p.set_read((properties & 2) != 0);
+        p.set_write_without_response((properties & 4) != 0);
+        p.set_write((properties & 8) != 0);
+        p.set_notify((properties & 16) != 0);
+        p.set_indicate((properties & 32) != 0);
+        p.set_authenticated_signed_writes((properties & 64) != 0);
+        p.set_extended_properties((properties & 128) != 0);
+        p.set_notify_encryption_required((properties & 256) != 0);
+        p.set_indicate_encryption_required((properties & 512) != 0);
+        
+        return p;
+    }
+
+    auto getProtoDescriptors(bt_gatt_h characteristic_handle) -> std::vector<BluetoothDescriptor> {
+        std::vector<BluetoothDescriptor> descriptors;
+        int res=bt_gatt_characteristic_foreach_descriptors(characteristic_handle,
+        [] (int total, int index, bt_gatt_h descriptor_handle, void* user_data) -> bool {
+            auto& descriptors=*static_cast<std::vector<BluetoothDescriptor> *>(user_data);
+            auto& descriptor=descriptors.emplace_back();
+
+            char* uuid=nullptr;
+            int res=bt_gatt_get_uuid(descriptor_handle, &uuid);
+
+            if(!res && uuid){
+                descriptor.set_uuid(uuid);
+
+                free(uuid);
+            }
+            Logger::log(LogLevel::DEBUG, "debug7");
+            return true;
+            
+        }, &descriptors);
+        Logger::showResultError("bt_gatt_characteristic_foreach_descriptors", res);
+
+        return descriptors;
+    }
+
+
 }
