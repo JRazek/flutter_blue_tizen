@@ -85,8 +85,8 @@ namespace {
           ConnectedDevicesResponse response;
           auto p = bluetoothManager.getConnectedProtoBluetoothDevices();
 
-          for(const auto& dev : p){
-            *response.add_devices()=dev;
+          for(auto& dev : p){
+            *response.add_devices()=std::move(dev);
           }
           
           //[TODO] TEST THIS FUNCTION

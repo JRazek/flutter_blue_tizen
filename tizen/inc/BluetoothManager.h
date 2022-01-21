@@ -40,8 +40,7 @@ namespace btu{
           auto bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&;
 
           static auto isBLEAvailable() noexcept -> bool;
-          static auto scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept -> void;
-          static auto serviceSearchCallback(int result, bt_device_sdp_info_s* device_info, void* user_data) noexcept -> void;
+          static auto scanCallback(int result, bt_adapter_le_device_scan_result_info_s* discovery_info, void* user_data) noexcept -> void;
           static auto adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void;
      };
 } // namespace btu

@@ -30,10 +30,6 @@ namespace btu{
             Logger::log(LogLevel::ERROR, "[bt_device_set_bond_destroyed_cb] failed");
             return;
         }
-        if(bt_device_set_service_searched_cb(&BluetoothManager::serviceSearchCallback, this)){
-            Logger::log(LogLevel::ERROR, "[bt_device_set_service_searched_cb] failed");
-            return;
-        }
         Logger::log(LogLevel::DEBUG, "All callbacks successfully initialized.");
     }
 
@@ -188,15 +184,6 @@ namespace btu{
         if(res){
             std::string err=get_error_message(res);
             Logger::log(LogLevel::ERROR, "device service search failed with " + err);
-        }
-    }
-
-    auto BluetoothManager::serviceSearchCallback(int result, bt_device_sdp_info_s* services, void* user_data) noexcept -> void {
-        BluetoothManager& bluetoothManager=*static_cast<BluetoothManager *>(user_data);
-        Logger::log(LogLevel::DEBUG, "discovered services for " + std::string(services->remote_address));
-
-        for(int i=0;i<services->service_count;i++){
-
         }
     }
 
