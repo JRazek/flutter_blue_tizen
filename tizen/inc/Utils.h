@@ -26,12 +26,15 @@ namespace btu{
     auto messageToVector(const google::protobuf::MessageLite& messageLite) noexcept -> std::vector<u_int8_t>;
 
     auto getProtoServices(bt_gatt_client_h handle) -> std::vector<BluetoothService>;
-    
+
+    auto getProtoIncludedServices(bt_gatt_h service_handle) -> std::vector<BluetoothService>;
     auto getProtoCharacteristics(bt_gatt_h service_handle) -> std::vector<BluetoothCharacteristic>;
     auto getProtoCharacteristicProperties(bt_gatt_h characteristic_handle) -> CharacteristicProperties;
     auto getProtoDescriptors(bt_gatt_h characteristic_handle) -> std::vector<BluetoothDescriptor>;
     auto getGattValue(bt_gatt_h handle) -> std::string;
     auto getGattUUID(bt_gatt_h handle) -> std::string;
+    auto getGattService(bt_gatt_client_h handle, const std::string& uuid) -> bt_gatt_h;
     auto getGattClientAddress(bt_gatt_client_h handle) -> std::string;
+    auto serviceForeachCallback(int total, int index, bt_gatt_h service_handle, void* user_data) -> bool;
 }
-#endif
+#endif //UTILS_H

@@ -24,56 +24,52 @@ namespace btu{
     auto getProtoServices(bt_gatt_client_h handle) -> std::vector<BluetoothService> {
         std::vector<BluetoothService> services;
 
-        int res=bt_gatt_client_foreach_services(handle, 
-        [](int total, int index, bt_gatt_h service_handle, void* user_data) -> bool {
-            auto& services=*static_cast<std::vector<BluetoothService> *>(user_data);
-
-            Logger::log(LogLevel::DEBUG, "debug3");
-            BluetoothService& service=services.emplace_back();
-            
-            service.set_uuid(getGattUUID(service_handle));
-            service.set_is_primary(false);
-            Logger::log(LogLevel::DEBUG, "debug4");
-
-            auto characteristics=getProtoCharacteristics(service_handle);
-
-            for(auto& c : characteristics){
-                *service.add_characteristics()=std::move(c);
-            }
-        
-            return true;
-        }, &services);
-
+        int res=bt_gatt_client_foreach_services(handle, &serviceForeachCallback, &services);
+        Logger::showResultError("bt_gatt_client_foreach_services", res);
         std::string remoteID;
 
-        for(auto& service : services){
-            service.set_remote_id(getGattClientAddress(handle).c_str());
-            
-            for(int i=0;i<service.characteristics_size();i++){
-                auto& characteristic=*service.mutable_characteristics(i);
-                characteristic.set_remote_id(service.remote_id());
-                if(!service.is_primary()){
-                    characteristic.set_secondaryserviceuuid(service.uuid());
+        if(!res){
+            for(auto& service : services){
+                service.set_remote_id(getGattClientAddress(handle).c_str());
+
+                auto includedServices=getProtoIncludedServices(getGattService(handle, service.uuid()));
+                for(auto& is : includedServices){
+                    *service.add_included_services()=std::move(is);
                 }
-                characteristic.set_serviceuuid(service.uuid());
-                Logger::log(LogLevel::DEBUG, "set_serviceuuid.set_uuid - "+characteristic.serviceuuid());
-                characteristic.set_value("test1");
 
-                for(int j=0;j<characteristic.descriptors_size(); j++){
-                    auto& descriptor=*characteristic.mutable_descriptors(j);
+                for(int i=0;i<service.characteristics_size();i++){
+                    auto& characteristic=*service.mutable_characteristics(i);
+                    characteristic.set_remote_id(service.remote_id());
+                    if(!service.is_primary()){
+                        characteristic.set_secondaryserviceuuid(service.uuid());
+                    }
+                    characteristic.set_serviceuuid(service.uuid());
+                    Logger::log(LogLevel::DEBUG, "set_serviceuuid.set_uuid - "+characteristic.serviceuuid());
 
-                    descriptor.set_remote_id(service.remote_id());
+                    for(int j=0;j<characteristic.descriptors_size(); j++){
+                        auto& descriptor=*characteristic.mutable_descriptors(j);
 
-                    descriptor.set_characteristicuuid(characteristic.uuid());
-                    descriptor.set_serviceuuid(service.uuid());
-                    descriptor.set_value("test2");
+                        descriptor.set_remote_id(service.remote_id());
+
+                        descriptor.set_characteristicuuid(characteristic.uuid());
+                        descriptor.set_serviceuuid(service.uuid());
+                    }
                 }
             }
         }
 
         return services;
     }
+    auto getProtoIncludedServices(bt_gatt_h service_handle) -> std::vector<BluetoothService> {
+        std::vector<BluetoothService> services;
 
+        Logger::log(LogLevel::DEBUG, "debug10");
+        int res=bt_gatt_service_foreach_included_services(service_handle, &serviceForeachCallback, &services);
+        Logger::showResultError("bt_gatt_service_foreach_included_services", res);
+        Logger::log(LogLevel::DEBUG, "debug11");
+
+        return services;
+    }
 
     auto getProtoCharacteristics(bt_gatt_h service_handle) -> std::vector<BluetoothCharacteristic> {
         std::vector<BluetoothCharacteristic> characteristics;
@@ -83,8 +79,7 @@ namespace btu{
             auto& characteristic=characteristics.emplace_back();
 
             characteristic.set_uuid(getGattUUID(characteristic_handle));
-            
-            Logger::log(LogLevel::DEBUG, "characteristic.set_uuid - "+characteristic.uuid());
+            characteristic.set_value(getGattValue(characteristic_handle));
 
             auto descriptors=getProtoDescriptors(characteristic_handle);
 
@@ -94,12 +89,10 @@ namespace btu{
             }
 
             characteristic.set_allocated_properties(new CharacteristicProperties(getProtoCharacteristicProperties(characteristic_handle)));
-            
-            Logger::log(LogLevel::DEBUG, "debug6");
-            
 
             return true;
         }, &characteristics);
+        Logger::showResultError("bt_gatt_service_foreach_characteristics", res);
 
         return characteristics;
     }
@@ -114,7 +107,6 @@ namespace btu{
             descriptor.set_uuid(getGattUUID(descriptor_handle));
             descriptor.set_value(getGattValue(descriptor_handle));
 
-            Logger::log(LogLevel::DEBUG, "debug7");
             return true;
             
         }, &descriptors);
@@ -144,7 +136,7 @@ namespace btu{
     }
 
     /**
-     * @brief Get the value of Gatt descriptor, characteristic or service
+     * @brief Get the value of Gatt descriptor, characteristic
      * 
      * @param handle 
      * @return std::string 
@@ -155,7 +147,7 @@ namespace btu{
         int length=0;
 
         int res=bt_gatt_get_value(handle, &value, &length);
-        Logger::showResultError("bt_gatt_characteristic_get_properties", res);
+        Logger::showResultError("bt_gatt_get_value", res);
         if(!res && value){
             result=std::string(value, length);
             free(value);
@@ -192,5 +184,30 @@ namespace btu{
             free(address);
         }
         return result;        
+    }
+
+    auto getGattService(bt_gatt_client_h handle, const std::string& uuid) -> bt_gatt_h {
+        bt_gatt_h result;
+        int res=bt_gatt_client_get_service(handle, uuid.c_str(), &result);
+        Logger::showResultError("bt_gatt_client_get_service", res);
+        
+        return result;
+    }
+
+    auto serviceForeachCallback(int total, int index, bt_gatt_h service_handle, void* user_data) -> bool {
+        auto& services=*static_cast<std::vector<BluetoothService> *>(user_data);
+
+        BluetoothService& service=services.emplace_back();
+        
+        service.set_uuid(getGattUUID(service_handle));
+        service.set_is_primary(false);
+
+        auto characteristics=getProtoCharacteristics(service_handle);
+
+        for(auto& c : characteristics){
+            *service.add_characteristics()=std::move(c);
+        }
+    
+        return true;
     }
 }
