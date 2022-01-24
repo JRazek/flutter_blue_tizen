@@ -1,5 +1,6 @@
 #include <Utils.h>
 #include <Logger.h>
+#include <GATT/BluetoothService.h>
 
 namespace btu{
     using namespace btlog;
