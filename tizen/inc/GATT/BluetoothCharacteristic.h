@@ -1,7 +1,7 @@
 #ifndef BLEUTOOTH_CHARACTERISTIC_H
 #define BLEUTOOTH_CHARACTERISTIC_H
 #include <BluetoothService.h>
-namespace btu{
+namespace btGatt{
     class BluetoothCharacteristic{
         bt_gatt_h _handle;
         std::weak_ptr<BluetoothService> _service;

@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <Utils.h>
 
-namespace btu{
+namespace btGatt{
     class BluetoothDeviceController;
     class BluetoothService{
     protected:
