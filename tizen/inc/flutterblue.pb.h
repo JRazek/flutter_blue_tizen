@@ -54,6 +54,8 @@ struct TableStruct_flutterblue_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
+namespace proto {
+namespace gen {
 class AdvertisementData;
 class AdvertisementDataDefaultTypeInternal;
 extern AdvertisementDataDefaultTypeInternal _AdvertisementData_default_instance_;
@@ -141,37 +143,41 @@ extern WriteDescriptorRequestDefaultTypeInternal _WriteDescriptorRequest_default
 class WriteDescriptorResponse;
 class WriteDescriptorResponseDefaultTypeInternal;
 extern WriteDescriptorResponseDefaultTypeInternal _WriteDescriptorResponse_default_instance_;
+}  // namespace gen
+}  // namespace proto
 PROTOBUF_NAMESPACE_OPEN
-template<> ::AdvertisementData* Arena::CreateMaybeMessage<::AdvertisementData>(Arena*);
-template<> ::AdvertisementData_ManufacturerDataEntry_DoNotUse* Arena::CreateMaybeMessage<::AdvertisementData_ManufacturerDataEntry_DoNotUse>(Arena*);
-template<> ::AdvertisementData_ServiceDataEntry_DoNotUse* Arena::CreateMaybeMessage<::AdvertisementData_ServiceDataEntry_DoNotUse>(Arena*);
-template<> ::BluetoothCharacteristic* Arena::CreateMaybeMessage<::BluetoothCharacteristic>(Arena*);
-template<> ::BluetoothDescriptor* Arena::CreateMaybeMessage<::BluetoothDescriptor>(Arena*);
-template<> ::BluetoothDevice* Arena::CreateMaybeMessage<::BluetoothDevice>(Arena*);
-template<> ::BluetoothService* Arena::CreateMaybeMessage<::BluetoothService>(Arena*);
-template<> ::BluetoothState* Arena::CreateMaybeMessage<::BluetoothState>(Arena*);
-template<> ::CharacteristicProperties* Arena::CreateMaybeMessage<::CharacteristicProperties>(Arena*);
-template<> ::ConnectRequest* Arena::CreateMaybeMessage<::ConnectRequest>(Arena*);
-template<> ::ConnectedDevicesResponse* Arena::CreateMaybeMessage<::ConnectedDevicesResponse>(Arena*);
-template<> ::DeviceStateResponse* Arena::CreateMaybeMessage<::DeviceStateResponse>(Arena*);
-template<> ::DiscoverServicesResult* Arena::CreateMaybeMessage<::DiscoverServicesResult>(Arena*);
-template<> ::Int32Value* Arena::CreateMaybeMessage<::Int32Value>(Arena*);
-template<> ::MtuSizeRequest* Arena::CreateMaybeMessage<::MtuSizeRequest>(Arena*);
-template<> ::MtuSizeResponse* Arena::CreateMaybeMessage<::MtuSizeResponse>(Arena*);
-template<> ::OnCharacteristicChanged* Arena::CreateMaybeMessage<::OnCharacteristicChanged>(Arena*);
-template<> ::ReadCharacteristicRequest* Arena::CreateMaybeMessage<::ReadCharacteristicRequest>(Arena*);
-template<> ::ReadCharacteristicResponse* Arena::CreateMaybeMessage<::ReadCharacteristicResponse>(Arena*);
-template<> ::ReadDescriptorRequest* Arena::CreateMaybeMessage<::ReadDescriptorRequest>(Arena*);
-template<> ::ReadDescriptorResponse* Arena::CreateMaybeMessage<::ReadDescriptorResponse>(Arena*);
-template<> ::ScanResult* Arena::CreateMaybeMessage<::ScanResult>(Arena*);
-template<> ::ScanSettings* Arena::CreateMaybeMessage<::ScanSettings>(Arena*);
-template<> ::SetNotificationRequest* Arena::CreateMaybeMessage<::SetNotificationRequest>(Arena*);
-template<> ::SetNotificationResponse* Arena::CreateMaybeMessage<::SetNotificationResponse>(Arena*);
-template<> ::WriteCharacteristicRequest* Arena::CreateMaybeMessage<::WriteCharacteristicRequest>(Arena*);
-template<> ::WriteCharacteristicResponse* Arena::CreateMaybeMessage<::WriteCharacteristicResponse>(Arena*);
-template<> ::WriteDescriptorRequest* Arena::CreateMaybeMessage<::WriteDescriptorRequest>(Arena*);
-template<> ::WriteDescriptorResponse* Arena::CreateMaybeMessage<::WriteDescriptorResponse>(Arena*);
+template<> ::proto::gen::AdvertisementData* Arena::CreateMaybeMessage<::proto::gen::AdvertisementData>(Arena*);
+template<> ::proto::gen::AdvertisementData_ManufacturerDataEntry_DoNotUse* Arena::CreateMaybeMessage<::proto::gen::AdvertisementData_ManufacturerDataEntry_DoNotUse>(Arena*);
+template<> ::proto::gen::AdvertisementData_ServiceDataEntry_DoNotUse* Arena::CreateMaybeMessage<::proto::gen::AdvertisementData_ServiceDataEntry_DoNotUse>(Arena*);
+template<> ::proto::gen::BluetoothCharacteristic* Arena::CreateMaybeMessage<::proto::gen::BluetoothCharacteristic>(Arena*);
+template<> ::proto::gen::BluetoothDescriptor* Arena::CreateMaybeMessage<::proto::gen::BluetoothDescriptor>(Arena*);
+template<> ::proto::gen::BluetoothDevice* Arena::CreateMaybeMessage<::proto::gen::BluetoothDevice>(Arena*);
+template<> ::proto::gen::BluetoothService* Arena::CreateMaybeMessage<::proto::gen::BluetoothService>(Arena*);
+template<> ::proto::gen::BluetoothState* Arena::CreateMaybeMessage<::proto::gen::BluetoothState>(Arena*);
+template<> ::proto::gen::CharacteristicProperties* Arena::CreateMaybeMessage<::proto::gen::CharacteristicProperties>(Arena*);
+template<> ::proto::gen::ConnectRequest* Arena::CreateMaybeMessage<::proto::gen::ConnectRequest>(Arena*);
+template<> ::proto::gen::ConnectedDevicesResponse* Arena::CreateMaybeMessage<::proto::gen::ConnectedDevicesResponse>(Arena*);
+template<> ::proto::gen::DeviceStateResponse* Arena::CreateMaybeMessage<::proto::gen::DeviceStateResponse>(Arena*);
+template<> ::proto::gen::DiscoverServicesResult* Arena::CreateMaybeMessage<::proto::gen::DiscoverServicesResult>(Arena*);
+template<> ::proto::gen::Int32Value* Arena::CreateMaybeMessage<::proto::gen::Int32Value>(Arena*);
+template<> ::proto::gen::MtuSizeRequest* Arena::CreateMaybeMessage<::proto::gen::MtuSizeRequest>(Arena*);
+template<> ::proto::gen::MtuSizeResponse* Arena::CreateMaybeMessage<::proto::gen::MtuSizeResponse>(Arena*);
+template<> ::proto::gen::OnCharacteristicChanged* Arena::CreateMaybeMessage<::proto::gen::OnCharacteristicChanged>(Arena*);
+template<> ::proto::gen::ReadCharacteristicRequest* Arena::CreateMaybeMessage<::proto::gen::ReadCharacteristicRequest>(Arena*);
+template<> ::proto::gen::ReadCharacteristicResponse* Arena::CreateMaybeMessage<::proto::gen::ReadCharacteristicResponse>(Arena*);
+template<> ::proto::gen::ReadDescriptorRequest* Arena::CreateMaybeMessage<::proto::gen::ReadDescriptorRequest>(Arena*);
+template<> ::proto::gen::ReadDescriptorResponse* Arena::CreateMaybeMessage<::proto::gen::ReadDescriptorResponse>(Arena*);
+template<> ::proto::gen::ScanResult* Arena::CreateMaybeMessage<::proto::gen::ScanResult>(Arena*);
+template<> ::proto::gen::ScanSettings* Arena::CreateMaybeMessage<::proto::gen::ScanSettings>(Arena*);
+template<> ::proto::gen::SetNotificationRequest* Arena::CreateMaybeMessage<::proto::gen::SetNotificationRequest>(Arena*);
+template<> ::proto::gen::SetNotificationResponse* Arena::CreateMaybeMessage<::proto::gen::SetNotificationResponse>(Arena*);
+template<> ::proto::gen::WriteCharacteristicRequest* Arena::CreateMaybeMessage<::proto::gen::WriteCharacteristicRequest>(Arena*);
+template<> ::proto::gen::WriteCharacteristicResponse* Arena::CreateMaybeMessage<::proto::gen::WriteCharacteristicResponse>(Arena*);
+template<> ::proto::gen::WriteDescriptorRequest* Arena::CreateMaybeMessage<::proto::gen::WriteDescriptorRequest>(Arena*);
+template<> ::proto::gen::WriteDescriptorResponse* Arena::CreateMaybeMessage<::proto::gen::WriteDescriptorResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
+namespace proto {
+namespace gen {
 
 enum BluetoothState_State : int {
   BluetoothState_State_UNKNOWN = 0,
@@ -269,7 +275,7 @@ bool DeviceStateResponse_BluetoothDeviceState_Parse(
 // ===================================================================
 
 class Int32Value PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:Int32Value) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.Int32Value) */ {
  public:
   inline Int32Value() : Int32Value(nullptr) {}
   virtual ~Int32Value();
@@ -349,7 +355,7 @@ class Int32Value PROTOBUF_FINAL :
   void InternalSwap(Int32Value* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Int32Value";
+    return "proto.gen.Int32Value";
   }
   protected:
   explicit Int32Value(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -376,7 +382,7 @@ class Int32Value PROTOBUF_FINAL :
   void _internal_set_value(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Int32Value)
+  // @@protoc_insertion_point(class_scope:proto.gen.Int32Value)
  private:
   class _Internal;
 
@@ -390,7 +396,7 @@ class Int32Value PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class BluetoothState PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:BluetoothState) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.BluetoothState) */ {
  public:
   inline BluetoothState() : BluetoothState(nullptr) {}
   virtual ~BluetoothState();
@@ -470,7 +476,7 @@ class BluetoothState PROTOBUF_FINAL :
   void InternalSwap(BluetoothState* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "BluetoothState";
+    return "proto.gen.BluetoothState";
   }
   protected:
   explicit BluetoothState(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -524,16 +530,16 @@ class BluetoothState PROTOBUF_FINAL :
   enum : int {
     kStateFieldNumber = 1,
   };
-  // .BluetoothState.State state = 1;
+  // .proto.gen.BluetoothState.State state = 1;
   void clear_state();
-  ::BluetoothState_State state() const;
-  void set_state(::BluetoothState_State value);
+  ::proto::gen::BluetoothState_State state() const;
+  void set_state(::proto::gen::BluetoothState_State value);
   private:
-  ::BluetoothState_State _internal_state() const;
-  void _internal_set_state(::BluetoothState_State value);
+  ::proto::gen::BluetoothState_State _internal_state() const;
+  void _internal_set_state(::proto::gen::BluetoothState_State value);
   public:
 
-  // @@protoc_insertion_point(class_scope:BluetoothState)
+  // @@protoc_insertion_point(class_scope:proto.gen.BluetoothState)
  private:
   class _Internal;
 
@@ -579,7 +585,7 @@ public:
   void MergeFrom(const AdvertisementData_ServiceDataEntry_DoNotUse& other);
   static const AdvertisementData_ServiceDataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const AdvertisementData_ServiceDataEntry_DoNotUse*>(&_AdvertisementData_ServiceDataEntry_DoNotUse_default_instance_); }
   static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "AdvertisementData.ServiceDataEntry.key");
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "proto.gen.AdvertisementData.ServiceDataEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
 };
@@ -587,7 +593,7 @@ public:
 // -------------------------------------------------------------------
 
 class AdvertisementData PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:AdvertisementData) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.AdvertisementData) */ {
  public:
   inline AdvertisementData() : AdvertisementData(nullptr) {}
   virtual ~AdvertisementData();
@@ -667,7 +673,7 @@ class AdvertisementData PROTOBUF_FINAL :
   void InternalSwap(AdvertisementData* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "AdvertisementData";
+    return "proto.gen.AdvertisementData";
   }
   protected:
   explicit AdvertisementData(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -765,23 +771,23 @@ class AdvertisementData PROTOBUF_FINAL :
   std::string* _internal_mutable_local_name();
   public:
 
-  // .Int32Value tx_power_level = 2;
+  // .proto.gen.Int32Value tx_power_level = 2;
   bool has_tx_power_level() const;
   private:
   bool _internal_has_tx_power_level() const;
   public:
   void clear_tx_power_level();
-  const ::Int32Value& tx_power_level() const;
-  ::Int32Value* release_tx_power_level();
-  ::Int32Value* mutable_tx_power_level();
-  void set_allocated_tx_power_level(::Int32Value* tx_power_level);
+  const ::proto::gen::Int32Value& tx_power_level() const;
+  ::proto::gen::Int32Value* release_tx_power_level();
+  ::proto::gen::Int32Value* mutable_tx_power_level();
+  void set_allocated_tx_power_level(::proto::gen::Int32Value* tx_power_level);
   private:
-  const ::Int32Value& _internal_tx_power_level() const;
-  ::Int32Value* _internal_mutable_tx_power_level();
+  const ::proto::gen::Int32Value& _internal_tx_power_level() const;
+  ::proto::gen::Int32Value* _internal_mutable_tx_power_level();
   public:
   void unsafe_arena_set_allocated_tx_power_level(
-      ::Int32Value* tx_power_level);
-  ::Int32Value* unsafe_arena_release_tx_power_level();
+      ::proto::gen::Int32Value* tx_power_level);
+  ::proto::gen::Int32Value* unsafe_arena_release_tx_power_level();
 
   // bool connectable = 3;
   void clear_connectable();
@@ -792,7 +798,7 @@ class AdvertisementData PROTOBUF_FINAL :
   void _internal_set_connectable(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:AdvertisementData)
+  // @@protoc_insertion_point(class_scope:proto.gen.AdvertisementData)
  private:
   class _Internal;
 
@@ -811,7 +817,7 @@ class AdvertisementData PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BYTES> service_data_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> service_uuids_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr local_name_;
-  ::Int32Value* tx_power_level_;
+  ::proto::gen::Int32Value* tx_power_level_;
   bool connectable_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
@@ -819,7 +825,7 @@ class AdvertisementData PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class ScanSettings PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:ScanSettings) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.ScanSettings) */ {
  public:
   inline ScanSettings() : ScanSettings(nullptr) {}
   virtual ~ScanSettings();
@@ -899,7 +905,7 @@ class ScanSettings PROTOBUF_FINAL :
   void InternalSwap(ScanSettings* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ScanSettings";
+    return "proto.gen.ScanSettings";
   }
   protected:
   explicit ScanSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -961,7 +967,7 @@ class ScanSettings PROTOBUF_FINAL :
   void _internal_set_allow_duplicates(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:ScanSettings)
+  // @@protoc_insertion_point(class_scope:proto.gen.ScanSettings)
  private:
   class _Internal;
 
@@ -977,7 +983,7 @@ class ScanSettings PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class ScanResult PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:ScanResult) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.ScanResult) */ {
  public:
   inline ScanResult() : ScanResult(nullptr) {}
   virtual ~ScanResult();
@@ -1057,7 +1063,7 @@ class ScanResult PROTOBUF_FINAL :
   void InternalSwap(ScanResult* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ScanResult";
+    return "proto.gen.ScanResult";
   }
   protected:
   explicit ScanResult(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1077,41 +1083,41 @@ class ScanResult PROTOBUF_FINAL :
     kAdvertisementDataFieldNumber = 2,
     kRssiFieldNumber = 3,
   };
-  // .BluetoothDevice device = 1;
+  // .proto.gen.BluetoothDevice device = 1;
   bool has_device() const;
   private:
   bool _internal_has_device() const;
   public:
   void clear_device();
-  const ::BluetoothDevice& device() const;
-  ::BluetoothDevice* release_device();
-  ::BluetoothDevice* mutable_device();
-  void set_allocated_device(::BluetoothDevice* device);
+  const ::proto::gen::BluetoothDevice& device() const;
+  ::proto::gen::BluetoothDevice* release_device();
+  ::proto::gen::BluetoothDevice* mutable_device();
+  void set_allocated_device(::proto::gen::BluetoothDevice* device);
   private:
-  const ::BluetoothDevice& _internal_device() const;
-  ::BluetoothDevice* _internal_mutable_device();
+  const ::proto::gen::BluetoothDevice& _internal_device() const;
+  ::proto::gen::BluetoothDevice* _internal_mutable_device();
   public:
   void unsafe_arena_set_allocated_device(
-      ::BluetoothDevice* device);
-  ::BluetoothDevice* unsafe_arena_release_device();
+      ::proto::gen::BluetoothDevice* device);
+  ::proto::gen::BluetoothDevice* unsafe_arena_release_device();
 
-  // .AdvertisementData advertisement_data = 2;
+  // .proto.gen.AdvertisementData advertisement_data = 2;
   bool has_advertisement_data() const;
   private:
   bool _internal_has_advertisement_data() const;
   public:
   void clear_advertisement_data();
-  const ::AdvertisementData& advertisement_data() const;
-  ::AdvertisementData* release_advertisement_data();
-  ::AdvertisementData* mutable_advertisement_data();
-  void set_allocated_advertisement_data(::AdvertisementData* advertisement_data);
+  const ::proto::gen::AdvertisementData& advertisement_data() const;
+  ::proto::gen::AdvertisementData* release_advertisement_data();
+  ::proto::gen::AdvertisementData* mutable_advertisement_data();
+  void set_allocated_advertisement_data(::proto::gen::AdvertisementData* advertisement_data);
   private:
-  const ::AdvertisementData& _internal_advertisement_data() const;
-  ::AdvertisementData* _internal_mutable_advertisement_data();
+  const ::proto::gen::AdvertisementData& _internal_advertisement_data() const;
+  ::proto::gen::AdvertisementData* _internal_mutable_advertisement_data();
   public:
   void unsafe_arena_set_allocated_advertisement_data(
-      ::AdvertisementData* advertisement_data);
-  ::AdvertisementData* unsafe_arena_release_advertisement_data();
+      ::proto::gen::AdvertisementData* advertisement_data);
+  ::proto::gen::AdvertisementData* unsafe_arena_release_advertisement_data();
 
   // int32 rssi = 3;
   void clear_rssi();
@@ -1122,15 +1128,15 @@ class ScanResult PROTOBUF_FINAL :
   void _internal_set_rssi(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:ScanResult)
+  // @@protoc_insertion_point(class_scope:proto.gen.ScanResult)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::BluetoothDevice* device_;
-  ::AdvertisementData* advertisement_data_;
+  ::proto::gen::BluetoothDevice* device_;
+  ::proto::gen::AdvertisementData* advertisement_data_;
   ::PROTOBUF_NAMESPACE_ID::int32 rssi_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
@@ -1138,7 +1144,7 @@ class ScanResult PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class ConnectRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:ConnectRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.ConnectRequest) */ {
  public:
   inline ConnectRequest() : ConnectRequest(nullptr) {}
   virtual ~ConnectRequest();
@@ -1218,7 +1224,7 @@ class ConnectRequest PROTOBUF_FINAL :
   void InternalSwap(ConnectRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ConnectRequest";
+    return "proto.gen.ConnectRequest";
   }
   protected:
   explicit ConnectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1262,7 +1268,7 @@ class ConnectRequest PROTOBUF_FINAL :
   void _internal_set_android_auto_connect(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:ConnectRequest)
+  // @@protoc_insertion_point(class_scope:proto.gen.ConnectRequest)
  private:
   class _Internal;
 
@@ -1277,7 +1283,7 @@ class ConnectRequest PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class BluetoothDevice PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:BluetoothDevice) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.BluetoothDevice) */ {
  public:
   inline BluetoothDevice() : BluetoothDevice(nullptr) {}
   virtual ~BluetoothDevice();
@@ -1357,7 +1363,7 @@ class BluetoothDevice PROTOBUF_FINAL :
   void InternalSwap(BluetoothDevice* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "BluetoothDevice";
+    return "proto.gen.BluetoothDevice";
   }
   protected:
   explicit BluetoothDevice(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1439,16 +1445,16 @@ class BluetoothDevice PROTOBUF_FINAL :
   std::string* _internal_mutable_name();
   public:
 
-  // .BluetoothDevice.Type type = 3;
+  // .proto.gen.BluetoothDevice.Type type = 3;
   void clear_type();
-  ::BluetoothDevice_Type type() const;
-  void set_type(::BluetoothDevice_Type value);
+  ::proto::gen::BluetoothDevice_Type type() const;
+  void set_type(::proto::gen::BluetoothDevice_Type value);
   private:
-  ::BluetoothDevice_Type _internal_type() const;
-  void _internal_set_type(::BluetoothDevice_Type value);
+  ::proto::gen::BluetoothDevice_Type _internal_type() const;
+  void _internal_set_type(::proto::gen::BluetoothDevice_Type value);
   public:
 
-  // @@protoc_insertion_point(class_scope:BluetoothDevice)
+  // @@protoc_insertion_point(class_scope:proto.gen.BluetoothDevice)
  private:
   class _Internal;
 
@@ -1464,7 +1470,7 @@ class BluetoothDevice PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class BluetoothService PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:BluetoothService) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.BluetoothService) */ {
  public:
   inline BluetoothService() : BluetoothService(nullptr) {}
   virtual ~BluetoothService();
@@ -1544,7 +1550,7 @@ class BluetoothService PROTOBUF_FINAL :
   void InternalSwap(BluetoothService* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "BluetoothService";
+    return "proto.gen.BluetoothService";
   }
   protected:
   explicit BluetoothService(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1566,40 +1572,40 @@ class BluetoothService PROTOBUF_FINAL :
     kRemoteIdFieldNumber = 2,
     kIsPrimaryFieldNumber = 3,
   };
-  // repeated .BluetoothCharacteristic characteristics = 4;
+  // repeated .proto.gen.BluetoothCharacteristic characteristics = 4;
   int characteristics_size() const;
   private:
   int _internal_characteristics_size() const;
   public:
   void clear_characteristics();
-  ::BluetoothCharacteristic* mutable_characteristics(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothCharacteristic >*
+  ::proto::gen::BluetoothCharacteristic* mutable_characteristics(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothCharacteristic >*
       mutable_characteristics();
   private:
-  const ::BluetoothCharacteristic& _internal_characteristics(int index) const;
-  ::BluetoothCharacteristic* _internal_add_characteristics();
+  const ::proto::gen::BluetoothCharacteristic& _internal_characteristics(int index) const;
+  ::proto::gen::BluetoothCharacteristic* _internal_add_characteristics();
   public:
-  const ::BluetoothCharacteristic& characteristics(int index) const;
-  ::BluetoothCharacteristic* add_characteristics();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothCharacteristic >&
+  const ::proto::gen::BluetoothCharacteristic& characteristics(int index) const;
+  ::proto::gen::BluetoothCharacteristic* add_characteristics();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothCharacteristic >&
       characteristics() const;
 
-  // repeated .BluetoothService included_services = 5;
+  // repeated .proto.gen.BluetoothService included_services = 5;
   int included_services_size() const;
   private:
   int _internal_included_services_size() const;
   public:
   void clear_included_services();
-  ::BluetoothService* mutable_included_services(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService >*
+  ::proto::gen::BluetoothService* mutable_included_services(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService >*
       mutable_included_services();
   private:
-  const ::BluetoothService& _internal_included_services(int index) const;
-  ::BluetoothService* _internal_add_included_services();
+  const ::proto::gen::BluetoothService& _internal_included_services(int index) const;
+  ::proto::gen::BluetoothService* _internal_add_included_services();
   public:
-  const ::BluetoothService& included_services(int index) const;
-  ::BluetoothService* add_included_services();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService >&
+  const ::proto::gen::BluetoothService& included_services(int index) const;
+  ::proto::gen::BluetoothService* add_included_services();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService >&
       included_services() const;
 
   // string uuid = 1;
@@ -1643,15 +1649,15 @@ class BluetoothService PROTOBUF_FINAL :
   void _internal_set_is_primary(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:BluetoothService)
+  // @@protoc_insertion_point(class_scope:proto.gen.BluetoothService)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothCharacteristic > characteristics_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService > included_services_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothCharacteristic > characteristics_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService > included_services_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uuid_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_id_;
   bool is_primary_;
@@ -1661,7 +1667,7 @@ class BluetoothService PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class BluetoothCharacteristic PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:BluetoothCharacteristic) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.BluetoothCharacteristic) */ {
  public:
   inline BluetoothCharacteristic() : BluetoothCharacteristic(nullptr) {}
   virtual ~BluetoothCharacteristic();
@@ -1741,7 +1747,7 @@ class BluetoothCharacteristic PROTOBUF_FINAL :
   void InternalSwap(BluetoothCharacteristic* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "BluetoothCharacteristic";
+    return "proto.gen.BluetoothCharacteristic";
   }
   protected:
   explicit BluetoothCharacteristic(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1765,22 +1771,22 @@ class BluetoothCharacteristic PROTOBUF_FINAL :
     kValueFieldNumber = 7,
     kPropertiesFieldNumber = 6,
   };
-  // repeated .BluetoothDescriptor descriptors = 5;
+  // repeated .proto.gen.BluetoothDescriptor descriptors = 5;
   int descriptors_size() const;
   private:
   int _internal_descriptors_size() const;
   public:
   void clear_descriptors();
-  ::BluetoothDescriptor* mutable_descriptors(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDescriptor >*
+  ::proto::gen::BluetoothDescriptor* mutable_descriptors(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDescriptor >*
       mutable_descriptors();
   private:
-  const ::BluetoothDescriptor& _internal_descriptors(int index) const;
-  ::BluetoothDescriptor* _internal_add_descriptors();
+  const ::proto::gen::BluetoothDescriptor& _internal_descriptors(int index) const;
+  ::proto::gen::BluetoothDescriptor* _internal_add_descriptors();
   public:
-  const ::BluetoothDescriptor& descriptors(int index) const;
-  ::BluetoothDescriptor* add_descriptors();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDescriptor >&
+  const ::proto::gen::BluetoothDescriptor& descriptors(int index) const;
+  ::proto::gen::BluetoothDescriptor* add_descriptors();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDescriptor >&
       descriptors() const;
 
   // string uuid = 1;
@@ -1863,45 +1869,45 @@ class BluetoothCharacteristic PROTOBUF_FINAL :
   std::string* _internal_mutable_value();
   public:
 
-  // .CharacteristicProperties properties = 6;
+  // .proto.gen.CharacteristicProperties properties = 6;
   bool has_properties() const;
   private:
   bool _internal_has_properties() const;
   public:
   void clear_properties();
-  const ::CharacteristicProperties& properties() const;
-  ::CharacteristicProperties* release_properties();
-  ::CharacteristicProperties* mutable_properties();
-  void set_allocated_properties(::CharacteristicProperties* properties);
+  const ::proto::gen::CharacteristicProperties& properties() const;
+  ::proto::gen::CharacteristicProperties* release_properties();
+  ::proto::gen::CharacteristicProperties* mutable_properties();
+  void set_allocated_properties(::proto::gen::CharacteristicProperties* properties);
   private:
-  const ::CharacteristicProperties& _internal_properties() const;
-  ::CharacteristicProperties* _internal_mutable_properties();
+  const ::proto::gen::CharacteristicProperties& _internal_properties() const;
+  ::proto::gen::CharacteristicProperties* _internal_mutable_properties();
   public:
   void unsafe_arena_set_allocated_properties(
-      ::CharacteristicProperties* properties);
-  ::CharacteristicProperties* unsafe_arena_release_properties();
+      ::proto::gen::CharacteristicProperties* properties);
+  ::proto::gen::CharacteristicProperties* unsafe_arena_release_properties();
 
-  // @@protoc_insertion_point(class_scope:BluetoothCharacteristic)
+  // @@protoc_insertion_point(class_scope:proto.gen.BluetoothCharacteristic)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDescriptor > descriptors_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDescriptor > descriptors_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uuid_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr serviceuuid_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr secondaryserviceuuid_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr value_;
-  ::CharacteristicProperties* properties_;
+  ::proto::gen::CharacteristicProperties* properties_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
 };
 // -------------------------------------------------------------------
 
 class BluetoothDescriptor PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:BluetoothDescriptor) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.BluetoothDescriptor) */ {
  public:
   inline BluetoothDescriptor() : BluetoothDescriptor(nullptr) {}
   virtual ~BluetoothDescriptor();
@@ -1981,7 +1987,7 @@ class BluetoothDescriptor PROTOBUF_FINAL :
   void InternalSwap(BluetoothDescriptor* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "BluetoothDescriptor";
+    return "proto.gen.BluetoothDescriptor";
   }
   protected:
   explicit BluetoothDescriptor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2083,7 +2089,7 @@ class BluetoothDescriptor PROTOBUF_FINAL :
   std::string* _internal_mutable_value();
   public:
 
-  // @@protoc_insertion_point(class_scope:BluetoothDescriptor)
+  // @@protoc_insertion_point(class_scope:proto.gen.BluetoothDescriptor)
  private:
   class _Internal;
 
@@ -2101,7 +2107,7 @@ class BluetoothDescriptor PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class CharacteristicProperties PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:CharacteristicProperties) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.CharacteristicProperties) */ {
  public:
   inline CharacteristicProperties() : CharacteristicProperties(nullptr) {}
   virtual ~CharacteristicProperties();
@@ -2181,7 +2187,7 @@ class CharacteristicProperties PROTOBUF_FINAL :
   void InternalSwap(CharacteristicProperties* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "CharacteristicProperties";
+    return "proto.gen.CharacteristicProperties";
   }
   protected:
   explicit CharacteristicProperties(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2298,7 +2304,7 @@ class CharacteristicProperties PROTOBUF_FINAL :
   void _internal_set_indicate_encryption_required(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:CharacteristicProperties)
+  // @@protoc_insertion_point(class_scope:proto.gen.CharacteristicProperties)
  private:
   class _Internal;
 
@@ -2321,7 +2327,7 @@ class CharacteristicProperties PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class DiscoverServicesResult PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:DiscoverServicesResult) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.DiscoverServicesResult) */ {
  public:
   inline DiscoverServicesResult() : DiscoverServicesResult(nullptr) {}
   virtual ~DiscoverServicesResult();
@@ -2401,7 +2407,7 @@ class DiscoverServicesResult PROTOBUF_FINAL :
   void InternalSwap(DiscoverServicesResult* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "DiscoverServicesResult";
+    return "proto.gen.DiscoverServicesResult";
   }
   protected:
   explicit DiscoverServicesResult(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2420,22 +2426,22 @@ class DiscoverServicesResult PROTOBUF_FINAL :
     kServicesFieldNumber = 2,
     kRemoteIdFieldNumber = 1,
   };
-  // repeated .BluetoothService services = 2;
+  // repeated .proto.gen.BluetoothService services = 2;
   int services_size() const;
   private:
   int _internal_services_size() const;
   public:
   void clear_services();
-  ::BluetoothService* mutable_services(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService >*
+  ::proto::gen::BluetoothService* mutable_services(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService >*
       mutable_services();
   private:
-  const ::BluetoothService& _internal_services(int index) const;
-  ::BluetoothService* _internal_add_services();
+  const ::proto::gen::BluetoothService& _internal_services(int index) const;
+  ::proto::gen::BluetoothService* _internal_add_services();
   public:
-  const ::BluetoothService& services(int index) const;
-  ::BluetoothService* add_services();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService >&
+  const ::proto::gen::BluetoothService& services(int index) const;
+  ::proto::gen::BluetoothService* add_services();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService >&
       services() const;
 
   // string remote_id = 1;
@@ -2454,14 +2460,14 @@ class DiscoverServicesResult PROTOBUF_FINAL :
   std::string* _internal_mutable_remote_id();
   public:
 
-  // @@protoc_insertion_point(class_scope:DiscoverServicesResult)
+  // @@protoc_insertion_point(class_scope:proto.gen.DiscoverServicesResult)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService > services_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService > services_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
@@ -2469,7 +2475,7 @@ class DiscoverServicesResult PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class ReadCharacteristicRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:ReadCharacteristicRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.ReadCharacteristicRequest) */ {
  public:
   inline ReadCharacteristicRequest() : ReadCharacteristicRequest(nullptr) {}
   virtual ~ReadCharacteristicRequest();
@@ -2549,7 +2555,7 @@ class ReadCharacteristicRequest PROTOBUF_FINAL :
   void InternalSwap(ReadCharacteristicRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ReadCharacteristicRequest";
+    return "proto.gen.ReadCharacteristicRequest";
   }
   protected:
   explicit ReadCharacteristicRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2634,7 +2640,7 @@ class ReadCharacteristicRequest PROTOBUF_FINAL :
   std::string* _internal_mutable_secondary_service_uuid();
   public:
 
-  // @@protoc_insertion_point(class_scope:ReadCharacteristicRequest)
+  // @@protoc_insertion_point(class_scope:proto.gen.ReadCharacteristicRequest)
  private:
   class _Internal;
 
@@ -2651,7 +2657,7 @@ class ReadCharacteristicRequest PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class ReadCharacteristicResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:ReadCharacteristicResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.ReadCharacteristicResponse) */ {
  public:
   inline ReadCharacteristicResponse() : ReadCharacteristicResponse(nullptr) {}
   virtual ~ReadCharacteristicResponse();
@@ -2731,7 +2737,7 @@ class ReadCharacteristicResponse PROTOBUF_FINAL :
   void InternalSwap(ReadCharacteristicResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ReadCharacteristicResponse";
+    return "proto.gen.ReadCharacteristicResponse";
   }
   protected:
   explicit ReadCharacteristicResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2766,25 +2772,25 @@ class ReadCharacteristicResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_remote_id();
   public:
 
-  // .BluetoothCharacteristic characteristic = 2;
+  // .proto.gen.BluetoothCharacteristic characteristic = 2;
   bool has_characteristic() const;
   private:
   bool _internal_has_characteristic() const;
   public:
   void clear_characteristic();
-  const ::BluetoothCharacteristic& characteristic() const;
-  ::BluetoothCharacteristic* release_characteristic();
-  ::BluetoothCharacteristic* mutable_characteristic();
-  void set_allocated_characteristic(::BluetoothCharacteristic* characteristic);
+  const ::proto::gen::BluetoothCharacteristic& characteristic() const;
+  ::proto::gen::BluetoothCharacteristic* release_characteristic();
+  ::proto::gen::BluetoothCharacteristic* mutable_characteristic();
+  void set_allocated_characteristic(::proto::gen::BluetoothCharacteristic* characteristic);
   private:
-  const ::BluetoothCharacteristic& _internal_characteristic() const;
-  ::BluetoothCharacteristic* _internal_mutable_characteristic();
+  const ::proto::gen::BluetoothCharacteristic& _internal_characteristic() const;
+  ::proto::gen::BluetoothCharacteristic* _internal_mutable_characteristic();
   public:
   void unsafe_arena_set_allocated_characteristic(
-      ::BluetoothCharacteristic* characteristic);
-  ::BluetoothCharacteristic* unsafe_arena_release_characteristic();
+      ::proto::gen::BluetoothCharacteristic* characteristic);
+  ::proto::gen::BluetoothCharacteristic* unsafe_arena_release_characteristic();
 
-  // @@protoc_insertion_point(class_scope:ReadCharacteristicResponse)
+  // @@protoc_insertion_point(class_scope:proto.gen.ReadCharacteristicResponse)
  private:
   class _Internal;
 
@@ -2792,14 +2798,14 @@ class ReadCharacteristicResponse PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_id_;
-  ::BluetoothCharacteristic* characteristic_;
+  ::proto::gen::BluetoothCharacteristic* characteristic_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
 };
 // -------------------------------------------------------------------
 
 class ReadDescriptorRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:ReadDescriptorRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.ReadDescriptorRequest) */ {
  public:
   inline ReadDescriptorRequest() : ReadDescriptorRequest(nullptr) {}
   virtual ~ReadDescriptorRequest();
@@ -2879,7 +2885,7 @@ class ReadDescriptorRequest PROTOBUF_FINAL :
   void InternalSwap(ReadDescriptorRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ReadDescriptorRequest";
+    return "proto.gen.ReadDescriptorRequest";
   }
   protected:
   explicit ReadDescriptorRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2981,7 +2987,7 @@ class ReadDescriptorRequest PROTOBUF_FINAL :
   std::string* _internal_mutable_characteristic_uuid();
   public:
 
-  // @@protoc_insertion_point(class_scope:ReadDescriptorRequest)
+  // @@protoc_insertion_point(class_scope:proto.gen.ReadDescriptorRequest)
  private:
   class _Internal;
 
@@ -2999,7 +3005,7 @@ class ReadDescriptorRequest PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class ReadDescriptorResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:ReadDescriptorResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.ReadDescriptorResponse) */ {
  public:
   inline ReadDescriptorResponse() : ReadDescriptorResponse(nullptr) {}
   virtual ~ReadDescriptorResponse();
@@ -3079,7 +3085,7 @@ class ReadDescriptorResponse PROTOBUF_FINAL :
   void InternalSwap(ReadDescriptorResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ReadDescriptorResponse";
+    return "proto.gen.ReadDescriptorResponse";
   }
   protected:
   explicit ReadDescriptorResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3114,25 +3120,25 @@ class ReadDescriptorResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_value();
   public:
 
-  // .ReadDescriptorRequest request = 1;
+  // .proto.gen.ReadDescriptorRequest request = 1;
   bool has_request() const;
   private:
   bool _internal_has_request() const;
   public:
   void clear_request();
-  const ::ReadDescriptorRequest& request() const;
-  ::ReadDescriptorRequest* release_request();
-  ::ReadDescriptorRequest* mutable_request();
-  void set_allocated_request(::ReadDescriptorRequest* request);
+  const ::proto::gen::ReadDescriptorRequest& request() const;
+  ::proto::gen::ReadDescriptorRequest* release_request();
+  ::proto::gen::ReadDescriptorRequest* mutable_request();
+  void set_allocated_request(::proto::gen::ReadDescriptorRequest* request);
   private:
-  const ::ReadDescriptorRequest& _internal_request() const;
-  ::ReadDescriptorRequest* _internal_mutable_request();
+  const ::proto::gen::ReadDescriptorRequest& _internal_request() const;
+  ::proto::gen::ReadDescriptorRequest* _internal_mutable_request();
   public:
   void unsafe_arena_set_allocated_request(
-      ::ReadDescriptorRequest* request);
-  ::ReadDescriptorRequest* unsafe_arena_release_request();
+      ::proto::gen::ReadDescriptorRequest* request);
+  ::proto::gen::ReadDescriptorRequest* unsafe_arena_release_request();
 
-  // @@protoc_insertion_point(class_scope:ReadDescriptorResponse)
+  // @@protoc_insertion_point(class_scope:proto.gen.ReadDescriptorResponse)
  private:
   class _Internal;
 
@@ -3140,14 +3146,14 @@ class ReadDescriptorResponse PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr value_;
-  ::ReadDescriptorRequest* request_;
+  ::proto::gen::ReadDescriptorRequest* request_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
 };
 // -------------------------------------------------------------------
 
 class WriteCharacteristicRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:WriteCharacteristicRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.WriteCharacteristicRequest) */ {
  public:
   inline WriteCharacteristicRequest() : WriteCharacteristicRequest(nullptr) {}
   virtual ~WriteCharacteristicRequest();
@@ -3227,7 +3233,7 @@ class WriteCharacteristicRequest PROTOBUF_FINAL :
   void InternalSwap(WriteCharacteristicRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "WriteCharacteristicRequest";
+    return "proto.gen.WriteCharacteristicRequest";
   }
   protected:
   explicit WriteCharacteristicRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3356,16 +3362,16 @@ class WriteCharacteristicRequest PROTOBUF_FINAL :
   std::string* _internal_mutable_value();
   public:
 
-  // .WriteCharacteristicRequest.WriteType write_type = 5;
+  // .proto.gen.WriteCharacteristicRequest.WriteType write_type = 5;
   void clear_write_type();
-  ::WriteCharacteristicRequest_WriteType write_type() const;
-  void set_write_type(::WriteCharacteristicRequest_WriteType value);
+  ::proto::gen::WriteCharacteristicRequest_WriteType write_type() const;
+  void set_write_type(::proto::gen::WriteCharacteristicRequest_WriteType value);
   private:
-  ::WriteCharacteristicRequest_WriteType _internal_write_type() const;
-  void _internal_set_write_type(::WriteCharacteristicRequest_WriteType value);
+  ::proto::gen::WriteCharacteristicRequest_WriteType _internal_write_type() const;
+  void _internal_set_write_type(::proto::gen::WriteCharacteristicRequest_WriteType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:WriteCharacteristicRequest)
+  // @@protoc_insertion_point(class_scope:proto.gen.WriteCharacteristicRequest)
  private:
   class _Internal;
 
@@ -3384,7 +3390,7 @@ class WriteCharacteristicRequest PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class WriteCharacteristicResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:WriteCharacteristicResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.WriteCharacteristicResponse) */ {
  public:
   inline WriteCharacteristicResponse() : WriteCharacteristicResponse(nullptr) {}
   virtual ~WriteCharacteristicResponse();
@@ -3464,7 +3470,7 @@ class WriteCharacteristicResponse PROTOBUF_FINAL :
   void InternalSwap(WriteCharacteristicResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "WriteCharacteristicResponse";
+    return "proto.gen.WriteCharacteristicResponse";
   }
   protected:
   explicit WriteCharacteristicResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3483,23 +3489,23 @@ class WriteCharacteristicResponse PROTOBUF_FINAL :
     kRequestFieldNumber = 1,
     kSuccessFieldNumber = 2,
   };
-  // .WriteCharacteristicRequest request = 1;
+  // .proto.gen.WriteCharacteristicRequest request = 1;
   bool has_request() const;
   private:
   bool _internal_has_request() const;
   public:
   void clear_request();
-  const ::WriteCharacteristicRequest& request() const;
-  ::WriteCharacteristicRequest* release_request();
-  ::WriteCharacteristicRequest* mutable_request();
-  void set_allocated_request(::WriteCharacteristicRequest* request);
+  const ::proto::gen::WriteCharacteristicRequest& request() const;
+  ::proto::gen::WriteCharacteristicRequest* release_request();
+  ::proto::gen::WriteCharacteristicRequest* mutable_request();
+  void set_allocated_request(::proto::gen::WriteCharacteristicRequest* request);
   private:
-  const ::WriteCharacteristicRequest& _internal_request() const;
-  ::WriteCharacteristicRequest* _internal_mutable_request();
+  const ::proto::gen::WriteCharacteristicRequest& _internal_request() const;
+  ::proto::gen::WriteCharacteristicRequest* _internal_mutable_request();
   public:
   void unsafe_arena_set_allocated_request(
-      ::WriteCharacteristicRequest* request);
-  ::WriteCharacteristicRequest* unsafe_arena_release_request();
+      ::proto::gen::WriteCharacteristicRequest* request);
+  ::proto::gen::WriteCharacteristicRequest* unsafe_arena_release_request();
 
   // bool success = 2;
   void clear_success();
@@ -3510,14 +3516,14 @@ class WriteCharacteristicResponse PROTOBUF_FINAL :
   void _internal_set_success(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:WriteCharacteristicResponse)
+  // @@protoc_insertion_point(class_scope:proto.gen.WriteCharacteristicResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::WriteCharacteristicRequest* request_;
+  ::proto::gen::WriteCharacteristicRequest* request_;
   bool success_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
@@ -3525,7 +3531,7 @@ class WriteCharacteristicResponse PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class WriteDescriptorRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:WriteDescriptorRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.WriteDescriptorRequest) */ {
  public:
   inline WriteDescriptorRequest() : WriteDescriptorRequest(nullptr) {}
   virtual ~WriteDescriptorRequest();
@@ -3605,7 +3611,7 @@ class WriteDescriptorRequest PROTOBUF_FINAL :
   void InternalSwap(WriteDescriptorRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "WriteDescriptorRequest";
+    return "proto.gen.WriteDescriptorRequest";
   }
   protected:
   explicit WriteDescriptorRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3724,7 +3730,7 @@ class WriteDescriptorRequest PROTOBUF_FINAL :
   std::string* _internal_mutable_value();
   public:
 
-  // @@protoc_insertion_point(class_scope:WriteDescriptorRequest)
+  // @@protoc_insertion_point(class_scope:proto.gen.WriteDescriptorRequest)
  private:
   class _Internal;
 
@@ -3743,7 +3749,7 @@ class WriteDescriptorRequest PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class WriteDescriptorResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:WriteDescriptorResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.WriteDescriptorResponse) */ {
  public:
   inline WriteDescriptorResponse() : WriteDescriptorResponse(nullptr) {}
   virtual ~WriteDescriptorResponse();
@@ -3823,7 +3829,7 @@ class WriteDescriptorResponse PROTOBUF_FINAL :
   void InternalSwap(WriteDescriptorResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "WriteDescriptorResponse";
+    return "proto.gen.WriteDescriptorResponse";
   }
   protected:
   explicit WriteDescriptorResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3842,23 +3848,23 @@ class WriteDescriptorResponse PROTOBUF_FINAL :
     kRequestFieldNumber = 1,
     kSuccessFieldNumber = 2,
   };
-  // .WriteDescriptorRequest request = 1;
+  // .proto.gen.WriteDescriptorRequest request = 1;
   bool has_request() const;
   private:
   bool _internal_has_request() const;
   public:
   void clear_request();
-  const ::WriteDescriptorRequest& request() const;
-  ::WriteDescriptorRequest* release_request();
-  ::WriteDescriptorRequest* mutable_request();
-  void set_allocated_request(::WriteDescriptorRequest* request);
+  const ::proto::gen::WriteDescriptorRequest& request() const;
+  ::proto::gen::WriteDescriptorRequest* release_request();
+  ::proto::gen::WriteDescriptorRequest* mutable_request();
+  void set_allocated_request(::proto::gen::WriteDescriptorRequest* request);
   private:
-  const ::WriteDescriptorRequest& _internal_request() const;
-  ::WriteDescriptorRequest* _internal_mutable_request();
+  const ::proto::gen::WriteDescriptorRequest& _internal_request() const;
+  ::proto::gen::WriteDescriptorRequest* _internal_mutable_request();
   public:
   void unsafe_arena_set_allocated_request(
-      ::WriteDescriptorRequest* request);
-  ::WriteDescriptorRequest* unsafe_arena_release_request();
+      ::proto::gen::WriteDescriptorRequest* request);
+  ::proto::gen::WriteDescriptorRequest* unsafe_arena_release_request();
 
   // bool success = 2;
   void clear_success();
@@ -3869,14 +3875,14 @@ class WriteDescriptorResponse PROTOBUF_FINAL :
   void _internal_set_success(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:WriteDescriptorResponse)
+  // @@protoc_insertion_point(class_scope:proto.gen.WriteDescriptorResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::WriteDescriptorRequest* request_;
+  ::proto::gen::WriteDescriptorRequest* request_;
   bool success_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
@@ -3884,7 +3890,7 @@ class WriteDescriptorResponse PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class SetNotificationRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:SetNotificationRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.SetNotificationRequest) */ {
  public:
   inline SetNotificationRequest() : SetNotificationRequest(nullptr) {}
   virtual ~SetNotificationRequest();
@@ -3964,7 +3970,7 @@ class SetNotificationRequest PROTOBUF_FINAL :
   void InternalSwap(SetNotificationRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "SetNotificationRequest";
+    return "proto.gen.SetNotificationRequest";
   }
   protected:
   explicit SetNotificationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4059,7 +4065,7 @@ class SetNotificationRequest PROTOBUF_FINAL :
   void _internal_set_enable(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:SetNotificationRequest)
+  // @@protoc_insertion_point(class_scope:proto.gen.SetNotificationRequest)
  private:
   class _Internal;
 
@@ -4077,7 +4083,7 @@ class SetNotificationRequest PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class SetNotificationResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:SetNotificationResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.SetNotificationResponse) */ {
  public:
   inline SetNotificationResponse() : SetNotificationResponse(nullptr) {}
   virtual ~SetNotificationResponse();
@@ -4157,7 +4163,7 @@ class SetNotificationResponse PROTOBUF_FINAL :
   void InternalSwap(SetNotificationResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "SetNotificationResponse";
+    return "proto.gen.SetNotificationResponse";
   }
   protected:
   explicit SetNotificationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4193,23 +4199,23 @@ class SetNotificationResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_remote_id();
   public:
 
-  // .BluetoothCharacteristic characteristic = 2;
+  // .proto.gen.BluetoothCharacteristic characteristic = 2;
   bool has_characteristic() const;
   private:
   bool _internal_has_characteristic() const;
   public:
   void clear_characteristic();
-  const ::BluetoothCharacteristic& characteristic() const;
-  ::BluetoothCharacteristic* release_characteristic();
-  ::BluetoothCharacteristic* mutable_characteristic();
-  void set_allocated_characteristic(::BluetoothCharacteristic* characteristic);
+  const ::proto::gen::BluetoothCharacteristic& characteristic() const;
+  ::proto::gen::BluetoothCharacteristic* release_characteristic();
+  ::proto::gen::BluetoothCharacteristic* mutable_characteristic();
+  void set_allocated_characteristic(::proto::gen::BluetoothCharacteristic* characteristic);
   private:
-  const ::BluetoothCharacteristic& _internal_characteristic() const;
-  ::BluetoothCharacteristic* _internal_mutable_characteristic();
+  const ::proto::gen::BluetoothCharacteristic& _internal_characteristic() const;
+  ::proto::gen::BluetoothCharacteristic* _internal_mutable_characteristic();
   public:
   void unsafe_arena_set_allocated_characteristic(
-      ::BluetoothCharacteristic* characteristic);
-  ::BluetoothCharacteristic* unsafe_arena_release_characteristic();
+      ::proto::gen::BluetoothCharacteristic* characteristic);
+  ::proto::gen::BluetoothCharacteristic* unsafe_arena_release_characteristic();
 
   // bool success = 3;
   void clear_success();
@@ -4220,7 +4226,7 @@ class SetNotificationResponse PROTOBUF_FINAL :
   void _internal_set_success(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:SetNotificationResponse)
+  // @@protoc_insertion_point(class_scope:proto.gen.SetNotificationResponse)
  private:
   class _Internal;
 
@@ -4228,7 +4234,7 @@ class SetNotificationResponse PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_id_;
-  ::BluetoothCharacteristic* characteristic_;
+  ::proto::gen::BluetoothCharacteristic* characteristic_;
   bool success_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
@@ -4236,7 +4242,7 @@ class SetNotificationResponse PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class OnCharacteristicChanged PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:OnCharacteristicChanged) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.OnCharacteristicChanged) */ {
  public:
   inline OnCharacteristicChanged() : OnCharacteristicChanged(nullptr) {}
   virtual ~OnCharacteristicChanged();
@@ -4316,7 +4322,7 @@ class OnCharacteristicChanged PROTOBUF_FINAL :
   void InternalSwap(OnCharacteristicChanged* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "OnCharacteristicChanged";
+    return "proto.gen.OnCharacteristicChanged";
   }
   protected:
   explicit OnCharacteristicChanged(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4351,25 +4357,25 @@ class OnCharacteristicChanged PROTOBUF_FINAL :
   std::string* _internal_mutable_remote_id();
   public:
 
-  // .BluetoothCharacteristic characteristic = 2;
+  // .proto.gen.BluetoothCharacteristic characteristic = 2;
   bool has_characteristic() const;
   private:
   bool _internal_has_characteristic() const;
   public:
   void clear_characteristic();
-  const ::BluetoothCharacteristic& characteristic() const;
-  ::BluetoothCharacteristic* release_characteristic();
-  ::BluetoothCharacteristic* mutable_characteristic();
-  void set_allocated_characteristic(::BluetoothCharacteristic* characteristic);
+  const ::proto::gen::BluetoothCharacteristic& characteristic() const;
+  ::proto::gen::BluetoothCharacteristic* release_characteristic();
+  ::proto::gen::BluetoothCharacteristic* mutable_characteristic();
+  void set_allocated_characteristic(::proto::gen::BluetoothCharacteristic* characteristic);
   private:
-  const ::BluetoothCharacteristic& _internal_characteristic() const;
-  ::BluetoothCharacteristic* _internal_mutable_characteristic();
+  const ::proto::gen::BluetoothCharacteristic& _internal_characteristic() const;
+  ::proto::gen::BluetoothCharacteristic* _internal_mutable_characteristic();
   public:
   void unsafe_arena_set_allocated_characteristic(
-      ::BluetoothCharacteristic* characteristic);
-  ::BluetoothCharacteristic* unsafe_arena_release_characteristic();
+      ::proto::gen::BluetoothCharacteristic* characteristic);
+  ::proto::gen::BluetoothCharacteristic* unsafe_arena_release_characteristic();
 
-  // @@protoc_insertion_point(class_scope:OnCharacteristicChanged)
+  // @@protoc_insertion_point(class_scope:proto.gen.OnCharacteristicChanged)
  private:
   class _Internal;
 
@@ -4377,14 +4383,14 @@ class OnCharacteristicChanged PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_id_;
-  ::BluetoothCharacteristic* characteristic_;
+  ::proto::gen::BluetoothCharacteristic* characteristic_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
 };
 // -------------------------------------------------------------------
 
 class DeviceStateResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:DeviceStateResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.DeviceStateResponse) */ {
  public:
   inline DeviceStateResponse() : DeviceStateResponse(nullptr) {}
   virtual ~DeviceStateResponse();
@@ -4464,7 +4470,7 @@ class DeviceStateResponse PROTOBUF_FINAL :
   void InternalSwap(DeviceStateResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "DeviceStateResponse";
+    return "proto.gen.DeviceStateResponse";
   }
   protected:
   explicit DeviceStateResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4529,16 +4535,16 @@ class DeviceStateResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_remote_id();
   public:
 
-  // .DeviceStateResponse.BluetoothDeviceState state = 2;
+  // .proto.gen.DeviceStateResponse.BluetoothDeviceState state = 2;
   void clear_state();
-  ::DeviceStateResponse_BluetoothDeviceState state() const;
-  void set_state(::DeviceStateResponse_BluetoothDeviceState value);
+  ::proto::gen::DeviceStateResponse_BluetoothDeviceState state() const;
+  void set_state(::proto::gen::DeviceStateResponse_BluetoothDeviceState value);
   private:
-  ::DeviceStateResponse_BluetoothDeviceState _internal_state() const;
-  void _internal_set_state(::DeviceStateResponse_BluetoothDeviceState value);
+  ::proto::gen::DeviceStateResponse_BluetoothDeviceState _internal_state() const;
+  void _internal_set_state(::proto::gen::DeviceStateResponse_BluetoothDeviceState value);
   public:
 
-  // @@protoc_insertion_point(class_scope:DeviceStateResponse)
+  // @@protoc_insertion_point(class_scope:proto.gen.DeviceStateResponse)
  private:
   class _Internal;
 
@@ -4553,7 +4559,7 @@ class DeviceStateResponse PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class ConnectedDevicesResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:ConnectedDevicesResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.ConnectedDevicesResponse) */ {
  public:
   inline ConnectedDevicesResponse() : ConnectedDevicesResponse(nullptr) {}
   virtual ~ConnectedDevicesResponse();
@@ -4633,7 +4639,7 @@ class ConnectedDevicesResponse PROTOBUF_FINAL :
   void InternalSwap(ConnectedDevicesResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ConnectedDevicesResponse";
+    return "proto.gen.ConnectedDevicesResponse";
   }
   protected:
   explicit ConnectedDevicesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4651,39 +4657,39 @@ class ConnectedDevicesResponse PROTOBUF_FINAL :
   enum : int {
     kDevicesFieldNumber = 1,
   };
-  // repeated .BluetoothDevice devices = 1;
+  // repeated .proto.gen.BluetoothDevice devices = 1;
   int devices_size() const;
   private:
   int _internal_devices_size() const;
   public:
   void clear_devices();
-  ::BluetoothDevice* mutable_devices(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDevice >*
+  ::proto::gen::BluetoothDevice* mutable_devices(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDevice >*
       mutable_devices();
   private:
-  const ::BluetoothDevice& _internal_devices(int index) const;
-  ::BluetoothDevice* _internal_add_devices();
+  const ::proto::gen::BluetoothDevice& _internal_devices(int index) const;
+  ::proto::gen::BluetoothDevice* _internal_add_devices();
   public:
-  const ::BluetoothDevice& devices(int index) const;
-  ::BluetoothDevice* add_devices();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDevice >&
+  const ::proto::gen::BluetoothDevice& devices(int index) const;
+  ::proto::gen::BluetoothDevice* add_devices();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDevice >&
       devices() const;
 
-  // @@protoc_insertion_point(class_scope:ConnectedDevicesResponse)
+  // @@protoc_insertion_point(class_scope:proto.gen.ConnectedDevicesResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDevice > devices_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDevice > devices_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_flutterblue_2eproto;
 };
 // -------------------------------------------------------------------
 
 class MtuSizeRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:MtuSizeRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.MtuSizeRequest) */ {
  public:
   inline MtuSizeRequest() : MtuSizeRequest(nullptr) {}
   virtual ~MtuSizeRequest();
@@ -4763,7 +4769,7 @@ class MtuSizeRequest PROTOBUF_FINAL :
   void InternalSwap(MtuSizeRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MtuSizeRequest";
+    return "proto.gen.MtuSizeRequest";
   }
   protected:
   explicit MtuSizeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4807,7 +4813,7 @@ class MtuSizeRequest PROTOBUF_FINAL :
   void _internal_set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MtuSizeRequest)
+  // @@protoc_insertion_point(class_scope:proto.gen.MtuSizeRequest)
  private:
   class _Internal;
 
@@ -4822,7 +4828,7 @@ class MtuSizeRequest PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class MtuSizeResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:MtuSizeResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::MessageLite /* @@protoc_insertion_point(class_definition:proto.gen.MtuSizeResponse) */ {
  public:
   inline MtuSizeResponse() : MtuSizeResponse(nullptr) {}
   virtual ~MtuSizeResponse();
@@ -4902,7 +4908,7 @@ class MtuSizeResponse PROTOBUF_FINAL :
   void InternalSwap(MtuSizeResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MtuSizeResponse";
+    return "proto.gen.MtuSizeResponse";
   }
   protected:
   explicit MtuSizeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4946,7 +4952,7 @@ class MtuSizeResponse PROTOBUF_FINAL :
   void _internal_set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MtuSizeResponse)
+  // @@protoc_insertion_point(class_scope:proto.gen.MtuSizeResponse)
  private:
   class _Internal;
 
@@ -4977,7 +4983,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 Int32Value::_internal_value() const {
   return value_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 Int32Value::value() const {
-  // @@protoc_insertion_point(field_get:Int32Value.value)
+  // @@protoc_insertion_point(field_get:proto.gen.Int32Value.value)
   return _internal_value();
 }
 inline void Int32Value::_internal_set_value(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -4986,31 +4992,31 @@ inline void Int32Value::_internal_set_value(::PROTOBUF_NAMESPACE_ID::int32 value
 }
 inline void Int32Value::set_value(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:Int32Value.value)
+  // @@protoc_insertion_point(field_set:proto.gen.Int32Value.value)
 }
 
 // -------------------------------------------------------------------
 
 // BluetoothState
 
-// .BluetoothState.State state = 1;
+// .proto.gen.BluetoothState.State state = 1;
 inline void BluetoothState::clear_state() {
   state_ = 0;
 }
-inline ::BluetoothState_State BluetoothState::_internal_state() const {
-  return static_cast< ::BluetoothState_State >(state_);
+inline ::proto::gen::BluetoothState_State BluetoothState::_internal_state() const {
+  return static_cast< ::proto::gen::BluetoothState_State >(state_);
 }
-inline ::BluetoothState_State BluetoothState::state() const {
-  // @@protoc_insertion_point(field_get:BluetoothState.state)
+inline ::proto::gen::BluetoothState_State BluetoothState::state() const {
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothState.state)
   return _internal_state();
 }
-inline void BluetoothState::_internal_set_state(::BluetoothState_State value) {
+inline void BluetoothState::_internal_set_state(::proto::gen::BluetoothState_State value) {
   
   state_ = value;
 }
-inline void BluetoothState::set_state(::BluetoothState_State value) {
+inline void BluetoothState::set_state(::proto::gen::BluetoothState_State value) {
   _internal_set_state(value);
-  // @@protoc_insertion_point(field_set:BluetoothState.state)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothState.state)
 }
 
 // -------------------------------------------------------------------
@@ -5026,15 +5032,15 @@ inline void AdvertisementData::clear_local_name() {
   local_name_.ClearToEmpty();
 }
 inline const std::string& AdvertisementData::local_name() const {
-  // @@protoc_insertion_point(field_get:AdvertisementData.local_name)
+  // @@protoc_insertion_point(field_get:proto.gen.AdvertisementData.local_name)
   return _internal_local_name();
 }
 inline void AdvertisementData::set_local_name(const std::string& value) {
   _internal_set_local_name(value);
-  // @@protoc_insertion_point(field_set:AdvertisementData.local_name)
+  // @@protoc_insertion_point(field_set:proto.gen.AdvertisementData.local_name)
 }
 inline std::string* AdvertisementData::mutable_local_name() {
-  // @@protoc_insertion_point(field_mutable:AdvertisementData.local_name)
+  // @@protoc_insertion_point(field_mutable:proto.gen.AdvertisementData.local_name)
   return _internal_mutable_local_name();
 }
 inline const std::string& AdvertisementData::_internal_local_name() const {
@@ -5048,27 +5054,27 @@ inline void AdvertisementData::set_local_name(std::string&& value) {
   
   local_name_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:AdvertisementData.local_name)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.AdvertisementData.local_name)
 }
 inline void AdvertisementData::set_local_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   local_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:AdvertisementData.local_name)
+  // @@protoc_insertion_point(field_set_char:proto.gen.AdvertisementData.local_name)
 }
 inline void AdvertisementData::set_local_name(const char* value,
     size_t size) {
   
   local_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:AdvertisementData.local_name)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.AdvertisementData.local_name)
 }
 inline std::string* AdvertisementData::_internal_mutable_local_name() {
   
   return local_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* AdvertisementData::release_local_name() {
-  // @@protoc_insertion_point(field_release:AdvertisementData.local_name)
+  // @@protoc_insertion_point(field_release:proto.gen.AdvertisementData.local_name)
   return local_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void AdvertisementData::set_allocated_local_name(std::string* local_name) {
@@ -5079,10 +5085,10 @@ inline void AdvertisementData::set_allocated_local_name(std::string* local_name)
   }
   local_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), local_name,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:AdvertisementData.local_name)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.AdvertisementData.local_name)
 }
 
-// .Int32Value tx_power_level = 2;
+// .proto.gen.Int32Value tx_power_level = 2;
 inline bool AdvertisementData::_internal_has_tx_power_level() const {
   return this != internal_default_instance() && tx_power_level_ != nullptr;
 }
@@ -5095,17 +5101,17 @@ inline void AdvertisementData::clear_tx_power_level() {
   }
   tx_power_level_ = nullptr;
 }
-inline const ::Int32Value& AdvertisementData::_internal_tx_power_level() const {
-  const ::Int32Value* p = tx_power_level_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Int32Value&>(
-      ::_Int32Value_default_instance_);
+inline const ::proto::gen::Int32Value& AdvertisementData::_internal_tx_power_level() const {
+  const ::proto::gen::Int32Value* p = tx_power_level_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::Int32Value&>(
+      ::proto::gen::_Int32Value_default_instance_);
 }
-inline const ::Int32Value& AdvertisementData::tx_power_level() const {
-  // @@protoc_insertion_point(field_get:AdvertisementData.tx_power_level)
+inline const ::proto::gen::Int32Value& AdvertisementData::tx_power_level() const {
+  // @@protoc_insertion_point(field_get:proto.gen.AdvertisementData.tx_power_level)
   return _internal_tx_power_level();
 }
 inline void AdvertisementData::unsafe_arena_set_allocated_tx_power_level(
-    ::Int32Value* tx_power_level) {
+    ::proto::gen::Int32Value* tx_power_level) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(tx_power_level_);
   }
@@ -5115,37 +5121,37 @@ inline void AdvertisementData::unsafe_arena_set_allocated_tx_power_level(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:AdvertisementData.tx_power_level)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.AdvertisementData.tx_power_level)
 }
-inline ::Int32Value* AdvertisementData::release_tx_power_level() {
+inline ::proto::gen::Int32Value* AdvertisementData::release_tx_power_level() {
   
-  ::Int32Value* temp = tx_power_level_;
+  ::proto::gen::Int32Value* temp = tx_power_level_;
   tx_power_level_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::Int32Value* AdvertisementData::unsafe_arena_release_tx_power_level() {
-  // @@protoc_insertion_point(field_release:AdvertisementData.tx_power_level)
+inline ::proto::gen::Int32Value* AdvertisementData::unsafe_arena_release_tx_power_level() {
+  // @@protoc_insertion_point(field_release:proto.gen.AdvertisementData.tx_power_level)
   
-  ::Int32Value* temp = tx_power_level_;
+  ::proto::gen::Int32Value* temp = tx_power_level_;
   tx_power_level_ = nullptr;
   return temp;
 }
-inline ::Int32Value* AdvertisementData::_internal_mutable_tx_power_level() {
+inline ::proto::gen::Int32Value* AdvertisementData::_internal_mutable_tx_power_level() {
   
   if (tx_power_level_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Int32Value>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::Int32Value>(GetArena());
     tx_power_level_ = p;
   }
   return tx_power_level_;
 }
-inline ::Int32Value* AdvertisementData::mutable_tx_power_level() {
-  // @@protoc_insertion_point(field_mutable:AdvertisementData.tx_power_level)
+inline ::proto::gen::Int32Value* AdvertisementData::mutable_tx_power_level() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.AdvertisementData.tx_power_level)
   return _internal_mutable_tx_power_level();
 }
-inline void AdvertisementData::set_allocated_tx_power_level(::Int32Value* tx_power_level) {
+inline void AdvertisementData::set_allocated_tx_power_level(::proto::gen::Int32Value* tx_power_level) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete tx_power_level_;
@@ -5162,7 +5168,7 @@ inline void AdvertisementData::set_allocated_tx_power_level(::Int32Value* tx_pow
     
   }
   tx_power_level_ = tx_power_level;
-  // @@protoc_insertion_point(field_set_allocated:AdvertisementData.tx_power_level)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.AdvertisementData.tx_power_level)
 }
 
 // bool connectable = 3;
@@ -5173,7 +5179,7 @@ inline bool AdvertisementData::_internal_connectable() const {
   return connectable_;
 }
 inline bool AdvertisementData::connectable() const {
-  // @@protoc_insertion_point(field_get:AdvertisementData.connectable)
+  // @@protoc_insertion_point(field_get:proto.gen.AdvertisementData.connectable)
   return _internal_connectable();
 }
 inline void AdvertisementData::_internal_set_connectable(bool value) {
@@ -5182,7 +5188,7 @@ inline void AdvertisementData::_internal_set_connectable(bool value) {
 }
 inline void AdvertisementData::set_connectable(bool value) {
   _internal_set_connectable(value);
-  // @@protoc_insertion_point(field_set:AdvertisementData.connectable)
+  // @@protoc_insertion_point(field_set:proto.gen.AdvertisementData.connectable)
 }
 
 // map<int32, bytes> manufacturer_data = 4;
@@ -5201,7 +5207,7 @@ AdvertisementData::_internal_manufacturer_data() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >&
 AdvertisementData::manufacturer_data() const {
-  // @@protoc_insertion_point(field_map:AdvertisementData.manufacturer_data)
+  // @@protoc_insertion_point(field_map:proto.gen.AdvertisementData.manufacturer_data)
   return _internal_manufacturer_data();
 }
 inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >*
@@ -5210,7 +5216,7 @@ AdvertisementData::_internal_mutable_manufacturer_data() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >*
 AdvertisementData::mutable_manufacturer_data() {
-  // @@protoc_insertion_point(field_mutable_map:AdvertisementData.manufacturer_data)
+  // @@protoc_insertion_point(field_mutable_map:proto.gen.AdvertisementData.manufacturer_data)
   return _internal_mutable_manufacturer_data();
 }
 
@@ -5230,7 +5236,7 @@ AdvertisementData::_internal_service_data() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
 AdvertisementData::service_data() const {
-  // @@protoc_insertion_point(field_map:AdvertisementData.service_data)
+  // @@protoc_insertion_point(field_map:proto.gen.AdvertisementData.service_data)
   return _internal_service_data();
 }
 inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
@@ -5239,7 +5245,7 @@ AdvertisementData::_internal_mutable_service_data() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
 AdvertisementData::mutable_service_data() {
-  // @@protoc_insertion_point(field_mutable_map:AdvertisementData.service_data)
+  // @@protoc_insertion_point(field_mutable_map:proto.gen.AdvertisementData.service_data)
   return _internal_mutable_service_data();
 }
 
@@ -5254,66 +5260,66 @@ inline void AdvertisementData::clear_service_uuids() {
   service_uuids_.Clear();
 }
 inline std::string* AdvertisementData::add_service_uuids() {
-  // @@protoc_insertion_point(field_add_mutable:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_add_mutable:proto.gen.AdvertisementData.service_uuids)
   return _internal_add_service_uuids();
 }
 inline const std::string& AdvertisementData::_internal_service_uuids(int index) const {
   return service_uuids_.Get(index);
 }
 inline const std::string& AdvertisementData::service_uuids(int index) const {
-  // @@protoc_insertion_point(field_get:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_get:proto.gen.AdvertisementData.service_uuids)
   return _internal_service_uuids(index);
 }
 inline std::string* AdvertisementData::mutable_service_uuids(int index) {
-  // @@protoc_insertion_point(field_mutable:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_mutable:proto.gen.AdvertisementData.service_uuids)
   return service_uuids_.Mutable(index);
 }
 inline void AdvertisementData::set_service_uuids(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_set:proto.gen.AdvertisementData.service_uuids)
   service_uuids_.Mutable(index)->assign(value);
 }
 inline void AdvertisementData::set_service_uuids(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_set:proto.gen.AdvertisementData.service_uuids)
   service_uuids_.Mutable(index)->assign(std::move(value));
 }
 inline void AdvertisementData::set_service_uuids(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   service_uuids_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_set_char:proto.gen.AdvertisementData.service_uuids)
 }
 inline void AdvertisementData::set_service_uuids(int index, const char* value, size_t size) {
   service_uuids_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.AdvertisementData.service_uuids)
 }
 inline std::string* AdvertisementData::_internal_add_service_uuids() {
   return service_uuids_.Add();
 }
 inline void AdvertisementData::add_service_uuids(const std::string& value) {
   service_uuids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_add:proto.gen.AdvertisementData.service_uuids)
 }
 inline void AdvertisementData::add_service_uuids(std::string&& value) {
   service_uuids_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_add:proto.gen.AdvertisementData.service_uuids)
 }
 inline void AdvertisementData::add_service_uuids(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   service_uuids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_add_char:proto.gen.AdvertisementData.service_uuids)
 }
 inline void AdvertisementData::add_service_uuids(const char* value, size_t size) {
   service_uuids_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_add_pointer:proto.gen.AdvertisementData.service_uuids)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 AdvertisementData::service_uuids() const {
-  // @@protoc_insertion_point(field_list:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_list:proto.gen.AdvertisementData.service_uuids)
   return service_uuids_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 AdvertisementData::mutable_service_uuids() {
-  // @@protoc_insertion_point(field_mutable_list:AdvertisementData.service_uuids)
+  // @@protoc_insertion_point(field_mutable_list:proto.gen.AdvertisementData.service_uuids)
   return &service_uuids_;
 }
 
@@ -5329,7 +5335,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 ScanSettings::_internal_android_scan_mode(
   return android_scan_mode_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 ScanSettings::android_scan_mode() const {
-  // @@protoc_insertion_point(field_get:ScanSettings.android_scan_mode)
+  // @@protoc_insertion_point(field_get:proto.gen.ScanSettings.android_scan_mode)
   return _internal_android_scan_mode();
 }
 inline void ScanSettings::_internal_set_android_scan_mode(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -5338,7 +5344,7 @@ inline void ScanSettings::_internal_set_android_scan_mode(::PROTOBUF_NAMESPACE_I
 }
 inline void ScanSettings::set_android_scan_mode(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_android_scan_mode(value);
-  // @@protoc_insertion_point(field_set:ScanSettings.android_scan_mode)
+  // @@protoc_insertion_point(field_set:proto.gen.ScanSettings.android_scan_mode)
 }
 
 // repeated string service_uuids = 2;
@@ -5352,66 +5358,66 @@ inline void ScanSettings::clear_service_uuids() {
   service_uuids_.Clear();
 }
 inline std::string* ScanSettings::add_service_uuids() {
-  // @@protoc_insertion_point(field_add_mutable:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_add_mutable:proto.gen.ScanSettings.service_uuids)
   return _internal_add_service_uuids();
 }
 inline const std::string& ScanSettings::_internal_service_uuids(int index) const {
   return service_uuids_.Get(index);
 }
 inline const std::string& ScanSettings::service_uuids(int index) const {
-  // @@protoc_insertion_point(field_get:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_get:proto.gen.ScanSettings.service_uuids)
   return _internal_service_uuids(index);
 }
 inline std::string* ScanSettings::mutable_service_uuids(int index) {
-  // @@protoc_insertion_point(field_mutable:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ScanSettings.service_uuids)
   return service_uuids_.Mutable(index);
 }
 inline void ScanSettings::set_service_uuids(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_set:proto.gen.ScanSettings.service_uuids)
   service_uuids_.Mutable(index)->assign(value);
 }
 inline void ScanSettings::set_service_uuids(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_set:proto.gen.ScanSettings.service_uuids)
   service_uuids_.Mutable(index)->assign(std::move(value));
 }
 inline void ScanSettings::set_service_uuids(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   service_uuids_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ScanSettings.service_uuids)
 }
 inline void ScanSettings::set_service_uuids(int index, const char* value, size_t size) {
   service_uuids_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ScanSettings.service_uuids)
 }
 inline std::string* ScanSettings::_internal_add_service_uuids() {
   return service_uuids_.Add();
 }
 inline void ScanSettings::add_service_uuids(const std::string& value) {
   service_uuids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_add:proto.gen.ScanSettings.service_uuids)
 }
 inline void ScanSettings::add_service_uuids(std::string&& value) {
   service_uuids_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_add:proto.gen.ScanSettings.service_uuids)
 }
 inline void ScanSettings::add_service_uuids(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   service_uuids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_add_char:proto.gen.ScanSettings.service_uuids)
 }
 inline void ScanSettings::add_service_uuids(const char* value, size_t size) {
   service_uuids_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_add_pointer:proto.gen.ScanSettings.service_uuids)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 ScanSettings::service_uuids() const {
-  // @@protoc_insertion_point(field_list:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_list:proto.gen.ScanSettings.service_uuids)
   return service_uuids_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 ScanSettings::mutable_service_uuids() {
-  // @@protoc_insertion_point(field_mutable_list:ScanSettings.service_uuids)
+  // @@protoc_insertion_point(field_mutable_list:proto.gen.ScanSettings.service_uuids)
   return &service_uuids_;
 }
 
@@ -5423,7 +5429,7 @@ inline bool ScanSettings::_internal_allow_duplicates() const {
   return allow_duplicates_;
 }
 inline bool ScanSettings::allow_duplicates() const {
-  // @@protoc_insertion_point(field_get:ScanSettings.allow_duplicates)
+  // @@protoc_insertion_point(field_get:proto.gen.ScanSettings.allow_duplicates)
   return _internal_allow_duplicates();
 }
 inline void ScanSettings::_internal_set_allow_duplicates(bool value) {
@@ -5432,14 +5438,14 @@ inline void ScanSettings::_internal_set_allow_duplicates(bool value) {
 }
 inline void ScanSettings::set_allow_duplicates(bool value) {
   _internal_set_allow_duplicates(value);
-  // @@protoc_insertion_point(field_set:ScanSettings.allow_duplicates)
+  // @@protoc_insertion_point(field_set:proto.gen.ScanSettings.allow_duplicates)
 }
 
 // -------------------------------------------------------------------
 
 // ScanResult
 
-// .BluetoothDevice device = 1;
+// .proto.gen.BluetoothDevice device = 1;
 inline bool ScanResult::_internal_has_device() const {
   return this != internal_default_instance() && device_ != nullptr;
 }
@@ -5452,17 +5458,17 @@ inline void ScanResult::clear_device() {
   }
   device_ = nullptr;
 }
-inline const ::BluetoothDevice& ScanResult::_internal_device() const {
-  const ::BluetoothDevice* p = device_;
-  return p != nullptr ? *p : reinterpret_cast<const ::BluetoothDevice&>(
-      ::_BluetoothDevice_default_instance_);
+inline const ::proto::gen::BluetoothDevice& ScanResult::_internal_device() const {
+  const ::proto::gen::BluetoothDevice* p = device_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::BluetoothDevice&>(
+      ::proto::gen::_BluetoothDevice_default_instance_);
 }
-inline const ::BluetoothDevice& ScanResult::device() const {
-  // @@protoc_insertion_point(field_get:ScanResult.device)
+inline const ::proto::gen::BluetoothDevice& ScanResult::device() const {
+  // @@protoc_insertion_point(field_get:proto.gen.ScanResult.device)
   return _internal_device();
 }
 inline void ScanResult::unsafe_arena_set_allocated_device(
-    ::BluetoothDevice* device) {
+    ::proto::gen::BluetoothDevice* device) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(device_);
   }
@@ -5472,37 +5478,37 @@ inline void ScanResult::unsafe_arena_set_allocated_device(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ScanResult.device)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.ScanResult.device)
 }
-inline ::BluetoothDevice* ScanResult::release_device() {
+inline ::proto::gen::BluetoothDevice* ScanResult::release_device() {
   
-  ::BluetoothDevice* temp = device_;
+  ::proto::gen::BluetoothDevice* temp = device_;
   device_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::BluetoothDevice* ScanResult::unsafe_arena_release_device() {
-  // @@protoc_insertion_point(field_release:ScanResult.device)
+inline ::proto::gen::BluetoothDevice* ScanResult::unsafe_arena_release_device() {
+  // @@protoc_insertion_point(field_release:proto.gen.ScanResult.device)
   
-  ::BluetoothDevice* temp = device_;
+  ::proto::gen::BluetoothDevice* temp = device_;
   device_ = nullptr;
   return temp;
 }
-inline ::BluetoothDevice* ScanResult::_internal_mutable_device() {
+inline ::proto::gen::BluetoothDevice* ScanResult::_internal_mutable_device() {
   
   if (device_ == nullptr) {
-    auto* p = CreateMaybeMessage<::BluetoothDevice>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::BluetoothDevice>(GetArena());
     device_ = p;
   }
   return device_;
 }
-inline ::BluetoothDevice* ScanResult::mutable_device() {
-  // @@protoc_insertion_point(field_mutable:ScanResult.device)
+inline ::proto::gen::BluetoothDevice* ScanResult::mutable_device() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.ScanResult.device)
   return _internal_mutable_device();
 }
-inline void ScanResult::set_allocated_device(::BluetoothDevice* device) {
+inline void ScanResult::set_allocated_device(::proto::gen::BluetoothDevice* device) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete device_;
@@ -5519,10 +5525,10 @@ inline void ScanResult::set_allocated_device(::BluetoothDevice* device) {
     
   }
   device_ = device;
-  // @@protoc_insertion_point(field_set_allocated:ScanResult.device)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ScanResult.device)
 }
 
-// .AdvertisementData advertisement_data = 2;
+// .proto.gen.AdvertisementData advertisement_data = 2;
 inline bool ScanResult::_internal_has_advertisement_data() const {
   return this != internal_default_instance() && advertisement_data_ != nullptr;
 }
@@ -5535,17 +5541,17 @@ inline void ScanResult::clear_advertisement_data() {
   }
   advertisement_data_ = nullptr;
 }
-inline const ::AdvertisementData& ScanResult::_internal_advertisement_data() const {
-  const ::AdvertisementData* p = advertisement_data_;
-  return p != nullptr ? *p : reinterpret_cast<const ::AdvertisementData&>(
-      ::_AdvertisementData_default_instance_);
+inline const ::proto::gen::AdvertisementData& ScanResult::_internal_advertisement_data() const {
+  const ::proto::gen::AdvertisementData* p = advertisement_data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::AdvertisementData&>(
+      ::proto::gen::_AdvertisementData_default_instance_);
 }
-inline const ::AdvertisementData& ScanResult::advertisement_data() const {
-  // @@protoc_insertion_point(field_get:ScanResult.advertisement_data)
+inline const ::proto::gen::AdvertisementData& ScanResult::advertisement_data() const {
+  // @@protoc_insertion_point(field_get:proto.gen.ScanResult.advertisement_data)
   return _internal_advertisement_data();
 }
 inline void ScanResult::unsafe_arena_set_allocated_advertisement_data(
-    ::AdvertisementData* advertisement_data) {
+    ::proto::gen::AdvertisementData* advertisement_data) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(advertisement_data_);
   }
@@ -5555,37 +5561,37 @@ inline void ScanResult::unsafe_arena_set_allocated_advertisement_data(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ScanResult.advertisement_data)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.ScanResult.advertisement_data)
 }
-inline ::AdvertisementData* ScanResult::release_advertisement_data() {
+inline ::proto::gen::AdvertisementData* ScanResult::release_advertisement_data() {
   
-  ::AdvertisementData* temp = advertisement_data_;
+  ::proto::gen::AdvertisementData* temp = advertisement_data_;
   advertisement_data_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::AdvertisementData* ScanResult::unsafe_arena_release_advertisement_data() {
-  // @@protoc_insertion_point(field_release:ScanResult.advertisement_data)
+inline ::proto::gen::AdvertisementData* ScanResult::unsafe_arena_release_advertisement_data() {
+  // @@protoc_insertion_point(field_release:proto.gen.ScanResult.advertisement_data)
   
-  ::AdvertisementData* temp = advertisement_data_;
+  ::proto::gen::AdvertisementData* temp = advertisement_data_;
   advertisement_data_ = nullptr;
   return temp;
 }
-inline ::AdvertisementData* ScanResult::_internal_mutable_advertisement_data() {
+inline ::proto::gen::AdvertisementData* ScanResult::_internal_mutable_advertisement_data() {
   
   if (advertisement_data_ == nullptr) {
-    auto* p = CreateMaybeMessage<::AdvertisementData>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::AdvertisementData>(GetArena());
     advertisement_data_ = p;
   }
   return advertisement_data_;
 }
-inline ::AdvertisementData* ScanResult::mutable_advertisement_data() {
-  // @@protoc_insertion_point(field_mutable:ScanResult.advertisement_data)
+inline ::proto::gen::AdvertisementData* ScanResult::mutable_advertisement_data() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.ScanResult.advertisement_data)
   return _internal_mutable_advertisement_data();
 }
-inline void ScanResult::set_allocated_advertisement_data(::AdvertisementData* advertisement_data) {
+inline void ScanResult::set_allocated_advertisement_data(::proto::gen::AdvertisementData* advertisement_data) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete advertisement_data_;
@@ -5602,7 +5608,7 @@ inline void ScanResult::set_allocated_advertisement_data(::AdvertisementData* ad
     
   }
   advertisement_data_ = advertisement_data;
-  // @@protoc_insertion_point(field_set_allocated:ScanResult.advertisement_data)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ScanResult.advertisement_data)
 }
 
 // int32 rssi = 3;
@@ -5613,7 +5619,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 ScanResult::_internal_rssi() const {
   return rssi_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 ScanResult::rssi() const {
-  // @@protoc_insertion_point(field_get:ScanResult.rssi)
+  // @@protoc_insertion_point(field_get:proto.gen.ScanResult.rssi)
   return _internal_rssi();
 }
 inline void ScanResult::_internal_set_rssi(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -5622,7 +5628,7 @@ inline void ScanResult::_internal_set_rssi(::PROTOBUF_NAMESPACE_ID::int32 value)
 }
 inline void ScanResult::set_rssi(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_rssi(value);
-  // @@protoc_insertion_point(field_set:ScanResult.rssi)
+  // @@protoc_insertion_point(field_set:proto.gen.ScanResult.rssi)
 }
 
 // -------------------------------------------------------------------
@@ -5634,15 +5640,15 @@ inline void ConnectRequest::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& ConnectRequest::remote_id() const {
-  // @@protoc_insertion_point(field_get:ConnectRequest.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.ConnectRequest.remote_id)
   return _internal_remote_id();
 }
 inline void ConnectRequest::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:ConnectRequest.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.ConnectRequest.remote_id)
 }
 inline std::string* ConnectRequest::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:ConnectRequest.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ConnectRequest.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& ConnectRequest::_internal_remote_id() const {
@@ -5656,27 +5662,27 @@ inline void ConnectRequest::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ConnectRequest.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ConnectRequest.remote_id)
 }
 inline void ConnectRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ConnectRequest.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ConnectRequest.remote_id)
 }
 inline void ConnectRequest::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ConnectRequest.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ConnectRequest.remote_id)
 }
 inline std::string* ConnectRequest::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ConnectRequest::release_remote_id() {
-  // @@protoc_insertion_point(field_release:ConnectRequest.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.ConnectRequest.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ConnectRequest::set_allocated_remote_id(std::string* remote_id) {
@@ -5687,7 +5693,7 @@ inline void ConnectRequest::set_allocated_remote_id(std::string* remote_id) {
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ConnectRequest.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ConnectRequest.remote_id)
 }
 
 // bool android_auto_connect = 2;
@@ -5698,7 +5704,7 @@ inline bool ConnectRequest::_internal_android_auto_connect() const {
   return android_auto_connect_;
 }
 inline bool ConnectRequest::android_auto_connect() const {
-  // @@protoc_insertion_point(field_get:ConnectRequest.android_auto_connect)
+  // @@protoc_insertion_point(field_get:proto.gen.ConnectRequest.android_auto_connect)
   return _internal_android_auto_connect();
 }
 inline void ConnectRequest::_internal_set_android_auto_connect(bool value) {
@@ -5707,7 +5713,7 @@ inline void ConnectRequest::_internal_set_android_auto_connect(bool value) {
 }
 inline void ConnectRequest::set_android_auto_connect(bool value) {
   _internal_set_android_auto_connect(value);
-  // @@protoc_insertion_point(field_set:ConnectRequest.android_auto_connect)
+  // @@protoc_insertion_point(field_set:proto.gen.ConnectRequest.android_auto_connect)
 }
 
 // -------------------------------------------------------------------
@@ -5719,15 +5725,15 @@ inline void BluetoothDevice::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& BluetoothDevice::remote_id() const {
-  // @@protoc_insertion_point(field_get:BluetoothDevice.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothDevice.remote_id)
   return _internal_remote_id();
 }
 inline void BluetoothDevice::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:BluetoothDevice.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothDevice.remote_id)
 }
 inline std::string* BluetoothDevice::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:BluetoothDevice.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothDevice.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& BluetoothDevice::_internal_remote_id() const {
@@ -5741,27 +5747,27 @@ inline void BluetoothDevice::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothDevice.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothDevice.remote_id)
 }
 inline void BluetoothDevice::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothDevice.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothDevice.remote_id)
 }
 inline void BluetoothDevice::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothDevice.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothDevice.remote_id)
 }
 inline std::string* BluetoothDevice::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothDevice::release_remote_id() {
-  // @@protoc_insertion_point(field_release:BluetoothDevice.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothDevice.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothDevice::set_allocated_remote_id(std::string* remote_id) {
@@ -5772,7 +5778,7 @@ inline void BluetoothDevice::set_allocated_remote_id(std::string* remote_id) {
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothDevice.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothDevice.remote_id)
 }
 
 // string name = 2;
@@ -5780,15 +5786,15 @@ inline void BluetoothDevice::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& BluetoothDevice::name() const {
-  // @@protoc_insertion_point(field_get:BluetoothDevice.name)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothDevice.name)
   return _internal_name();
 }
 inline void BluetoothDevice::set_name(const std::string& value) {
   _internal_set_name(value);
-  // @@protoc_insertion_point(field_set:BluetoothDevice.name)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothDevice.name)
 }
 inline std::string* BluetoothDevice::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:BluetoothDevice.name)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothDevice.name)
   return _internal_mutable_name();
 }
 inline const std::string& BluetoothDevice::_internal_name() const {
@@ -5802,27 +5808,27 @@ inline void BluetoothDevice::set_name(std::string&& value) {
   
   name_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothDevice.name)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothDevice.name)
 }
 inline void BluetoothDevice::set_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothDevice.name)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothDevice.name)
 }
 inline void BluetoothDevice::set_name(const char* value,
     size_t size) {
   
   name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothDevice.name)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothDevice.name)
 }
 inline std::string* BluetoothDevice::_internal_mutable_name() {
   
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothDevice::release_name() {
-  // @@protoc_insertion_point(field_release:BluetoothDevice.name)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothDevice.name)
   return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothDevice::set_allocated_name(std::string* name) {
@@ -5833,27 +5839,27 @@ inline void BluetoothDevice::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothDevice.name)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothDevice.name)
 }
 
-// .BluetoothDevice.Type type = 3;
+// .proto.gen.BluetoothDevice.Type type = 3;
 inline void BluetoothDevice::clear_type() {
   type_ = 0;
 }
-inline ::BluetoothDevice_Type BluetoothDevice::_internal_type() const {
-  return static_cast< ::BluetoothDevice_Type >(type_);
+inline ::proto::gen::BluetoothDevice_Type BluetoothDevice::_internal_type() const {
+  return static_cast< ::proto::gen::BluetoothDevice_Type >(type_);
 }
-inline ::BluetoothDevice_Type BluetoothDevice::type() const {
-  // @@protoc_insertion_point(field_get:BluetoothDevice.type)
+inline ::proto::gen::BluetoothDevice_Type BluetoothDevice::type() const {
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothDevice.type)
   return _internal_type();
 }
-inline void BluetoothDevice::_internal_set_type(::BluetoothDevice_Type value) {
+inline void BluetoothDevice::_internal_set_type(::proto::gen::BluetoothDevice_Type value) {
   
   type_ = value;
 }
-inline void BluetoothDevice::set_type(::BluetoothDevice_Type value) {
+inline void BluetoothDevice::set_type(::proto::gen::BluetoothDevice_Type value) {
   _internal_set_type(value);
-  // @@protoc_insertion_point(field_set:BluetoothDevice.type)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothDevice.type)
 }
 
 // -------------------------------------------------------------------
@@ -5865,15 +5871,15 @@ inline void BluetoothService::clear_uuid() {
   uuid_.ClearToEmpty();
 }
 inline const std::string& BluetoothService::uuid() const {
-  // @@protoc_insertion_point(field_get:BluetoothService.uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothService.uuid)
   return _internal_uuid();
 }
 inline void BluetoothService::set_uuid(const std::string& value) {
   _internal_set_uuid(value);
-  // @@protoc_insertion_point(field_set:BluetoothService.uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothService.uuid)
 }
 inline std::string* BluetoothService::mutable_uuid() {
-  // @@protoc_insertion_point(field_mutable:BluetoothService.uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothService.uuid)
   return _internal_mutable_uuid();
 }
 inline const std::string& BluetoothService::_internal_uuid() const {
@@ -5887,27 +5893,27 @@ inline void BluetoothService::set_uuid(std::string&& value) {
   
   uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothService.uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothService.uuid)
 }
 inline void BluetoothService::set_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothService.uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothService.uuid)
 }
 inline void BluetoothService::set_uuid(const char* value,
     size_t size) {
   
   uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothService.uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothService.uuid)
 }
 inline std::string* BluetoothService::_internal_mutable_uuid() {
   
   return uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothService::release_uuid() {
-  // @@protoc_insertion_point(field_release:BluetoothService.uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothService.uuid)
   return uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothService::set_allocated_uuid(std::string* uuid) {
@@ -5918,7 +5924,7 @@ inline void BluetoothService::set_allocated_uuid(std::string* uuid) {
   }
   uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothService.uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothService.uuid)
 }
 
 // string remote_id = 2;
@@ -5926,15 +5932,15 @@ inline void BluetoothService::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& BluetoothService::remote_id() const {
-  // @@protoc_insertion_point(field_get:BluetoothService.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothService.remote_id)
   return _internal_remote_id();
 }
 inline void BluetoothService::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:BluetoothService.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothService.remote_id)
 }
 inline std::string* BluetoothService::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:BluetoothService.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothService.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& BluetoothService::_internal_remote_id() const {
@@ -5948,27 +5954,27 @@ inline void BluetoothService::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothService.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothService.remote_id)
 }
 inline void BluetoothService::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothService.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothService.remote_id)
 }
 inline void BluetoothService::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothService.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothService.remote_id)
 }
 inline std::string* BluetoothService::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothService::release_remote_id() {
-  // @@protoc_insertion_point(field_release:BluetoothService.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothService.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothService::set_allocated_remote_id(std::string* remote_id) {
@@ -5979,7 +5985,7 @@ inline void BluetoothService::set_allocated_remote_id(std::string* remote_id) {
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothService.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothService.remote_id)
 }
 
 // bool is_primary = 3;
@@ -5990,7 +5996,7 @@ inline bool BluetoothService::_internal_is_primary() const {
   return is_primary_;
 }
 inline bool BluetoothService::is_primary() const {
-  // @@protoc_insertion_point(field_get:BluetoothService.is_primary)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothService.is_primary)
   return _internal_is_primary();
 }
 inline void BluetoothService::_internal_set_is_primary(bool value) {
@@ -5999,10 +6005,10 @@ inline void BluetoothService::_internal_set_is_primary(bool value) {
 }
 inline void BluetoothService::set_is_primary(bool value) {
   _internal_set_is_primary(value);
-  // @@protoc_insertion_point(field_set:BluetoothService.is_primary)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothService.is_primary)
 }
 
-// repeated .BluetoothCharacteristic characteristics = 4;
+// repeated .proto.gen.BluetoothCharacteristic characteristics = 4;
 inline int BluetoothService::_internal_characteristics_size() const {
   return characteristics_.size();
 }
@@ -6012,36 +6018,36 @@ inline int BluetoothService::characteristics_size() const {
 inline void BluetoothService::clear_characteristics() {
   characteristics_.Clear();
 }
-inline ::BluetoothCharacteristic* BluetoothService::mutable_characteristics(int index) {
-  // @@protoc_insertion_point(field_mutable:BluetoothService.characteristics)
+inline ::proto::gen::BluetoothCharacteristic* BluetoothService::mutable_characteristics(int index) {
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothService.characteristics)
   return characteristics_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothCharacteristic >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothCharacteristic >*
 BluetoothService::mutable_characteristics() {
-  // @@protoc_insertion_point(field_mutable_list:BluetoothService.characteristics)
+  // @@protoc_insertion_point(field_mutable_list:proto.gen.BluetoothService.characteristics)
   return &characteristics_;
 }
-inline const ::BluetoothCharacteristic& BluetoothService::_internal_characteristics(int index) const {
+inline const ::proto::gen::BluetoothCharacteristic& BluetoothService::_internal_characteristics(int index) const {
   return characteristics_.Get(index);
 }
-inline const ::BluetoothCharacteristic& BluetoothService::characteristics(int index) const {
-  // @@protoc_insertion_point(field_get:BluetoothService.characteristics)
+inline const ::proto::gen::BluetoothCharacteristic& BluetoothService::characteristics(int index) const {
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothService.characteristics)
   return _internal_characteristics(index);
 }
-inline ::BluetoothCharacteristic* BluetoothService::_internal_add_characteristics() {
+inline ::proto::gen::BluetoothCharacteristic* BluetoothService::_internal_add_characteristics() {
   return characteristics_.Add();
 }
-inline ::BluetoothCharacteristic* BluetoothService::add_characteristics() {
-  // @@protoc_insertion_point(field_add:BluetoothService.characteristics)
+inline ::proto::gen::BluetoothCharacteristic* BluetoothService::add_characteristics() {
+  // @@protoc_insertion_point(field_add:proto.gen.BluetoothService.characteristics)
   return _internal_add_characteristics();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothCharacteristic >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothCharacteristic >&
 BluetoothService::characteristics() const {
-  // @@protoc_insertion_point(field_list:BluetoothService.characteristics)
+  // @@protoc_insertion_point(field_list:proto.gen.BluetoothService.characteristics)
   return characteristics_;
 }
 
-// repeated .BluetoothService included_services = 5;
+// repeated .proto.gen.BluetoothService included_services = 5;
 inline int BluetoothService::_internal_included_services_size() const {
   return included_services_.size();
 }
@@ -6051,32 +6057,32 @@ inline int BluetoothService::included_services_size() const {
 inline void BluetoothService::clear_included_services() {
   included_services_.Clear();
 }
-inline ::BluetoothService* BluetoothService::mutable_included_services(int index) {
-  // @@protoc_insertion_point(field_mutable:BluetoothService.included_services)
+inline ::proto::gen::BluetoothService* BluetoothService::mutable_included_services(int index) {
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothService.included_services)
   return included_services_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService >*
 BluetoothService::mutable_included_services() {
-  // @@protoc_insertion_point(field_mutable_list:BluetoothService.included_services)
+  // @@protoc_insertion_point(field_mutable_list:proto.gen.BluetoothService.included_services)
   return &included_services_;
 }
-inline const ::BluetoothService& BluetoothService::_internal_included_services(int index) const {
+inline const ::proto::gen::BluetoothService& BluetoothService::_internal_included_services(int index) const {
   return included_services_.Get(index);
 }
-inline const ::BluetoothService& BluetoothService::included_services(int index) const {
-  // @@protoc_insertion_point(field_get:BluetoothService.included_services)
+inline const ::proto::gen::BluetoothService& BluetoothService::included_services(int index) const {
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothService.included_services)
   return _internal_included_services(index);
 }
-inline ::BluetoothService* BluetoothService::_internal_add_included_services() {
+inline ::proto::gen::BluetoothService* BluetoothService::_internal_add_included_services() {
   return included_services_.Add();
 }
-inline ::BluetoothService* BluetoothService::add_included_services() {
-  // @@protoc_insertion_point(field_add:BluetoothService.included_services)
+inline ::proto::gen::BluetoothService* BluetoothService::add_included_services() {
+  // @@protoc_insertion_point(field_add:proto.gen.BluetoothService.included_services)
   return _internal_add_included_services();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService >&
 BluetoothService::included_services() const {
-  // @@protoc_insertion_point(field_list:BluetoothService.included_services)
+  // @@protoc_insertion_point(field_list:proto.gen.BluetoothService.included_services)
   return included_services_;
 }
 
@@ -6089,15 +6095,15 @@ inline void BluetoothCharacteristic::clear_uuid() {
   uuid_.ClearToEmpty();
 }
 inline const std::string& BluetoothCharacteristic::uuid() const {
-  // @@protoc_insertion_point(field_get:BluetoothCharacteristic.uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothCharacteristic.uuid)
   return _internal_uuid();
 }
 inline void BluetoothCharacteristic::set_uuid(const std::string& value) {
   _internal_set_uuid(value);
-  // @@protoc_insertion_point(field_set:BluetoothCharacteristic.uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothCharacteristic.uuid)
 }
 inline std::string* BluetoothCharacteristic::mutable_uuid() {
-  // @@protoc_insertion_point(field_mutable:BluetoothCharacteristic.uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothCharacteristic.uuid)
   return _internal_mutable_uuid();
 }
 inline const std::string& BluetoothCharacteristic::_internal_uuid() const {
@@ -6111,27 +6117,27 @@ inline void BluetoothCharacteristic::set_uuid(std::string&& value) {
   
   uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothCharacteristic.uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothCharacteristic.uuid)
 }
 inline void BluetoothCharacteristic::set_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothCharacteristic.uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothCharacteristic.uuid)
 }
 inline void BluetoothCharacteristic::set_uuid(const char* value,
     size_t size) {
   
   uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothCharacteristic.uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothCharacteristic.uuid)
 }
 inline std::string* BluetoothCharacteristic::_internal_mutable_uuid() {
   
   return uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothCharacteristic::release_uuid() {
-  // @@protoc_insertion_point(field_release:BluetoothCharacteristic.uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothCharacteristic.uuid)
   return uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothCharacteristic::set_allocated_uuid(std::string* uuid) {
@@ -6142,7 +6148,7 @@ inline void BluetoothCharacteristic::set_allocated_uuid(std::string* uuid) {
   }
   uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothCharacteristic.uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothCharacteristic.uuid)
 }
 
 // string remote_id = 2;
@@ -6150,15 +6156,15 @@ inline void BluetoothCharacteristic::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& BluetoothCharacteristic::remote_id() const {
-  // @@protoc_insertion_point(field_get:BluetoothCharacteristic.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothCharacteristic.remote_id)
   return _internal_remote_id();
 }
 inline void BluetoothCharacteristic::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:BluetoothCharacteristic.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothCharacteristic.remote_id)
 }
 inline std::string* BluetoothCharacteristic::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:BluetoothCharacteristic.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothCharacteristic.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& BluetoothCharacteristic::_internal_remote_id() const {
@@ -6172,27 +6178,27 @@ inline void BluetoothCharacteristic::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothCharacteristic.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothCharacteristic.remote_id)
 }
 inline void BluetoothCharacteristic::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothCharacteristic.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothCharacteristic.remote_id)
 }
 inline void BluetoothCharacteristic::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothCharacteristic.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothCharacteristic.remote_id)
 }
 inline std::string* BluetoothCharacteristic::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothCharacteristic::release_remote_id() {
-  // @@protoc_insertion_point(field_release:BluetoothCharacteristic.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothCharacteristic.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothCharacteristic::set_allocated_remote_id(std::string* remote_id) {
@@ -6203,7 +6209,7 @@ inline void BluetoothCharacteristic::set_allocated_remote_id(std::string* remote
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothCharacteristic.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothCharacteristic.remote_id)
 }
 
 // string serviceUuid = 3;
@@ -6211,15 +6217,15 @@ inline void BluetoothCharacteristic::clear_serviceuuid() {
   serviceuuid_.ClearToEmpty();
 }
 inline const std::string& BluetoothCharacteristic::serviceuuid() const {
-  // @@protoc_insertion_point(field_get:BluetoothCharacteristic.serviceUuid)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothCharacteristic.serviceUuid)
   return _internal_serviceuuid();
 }
 inline void BluetoothCharacteristic::set_serviceuuid(const std::string& value) {
   _internal_set_serviceuuid(value);
-  // @@protoc_insertion_point(field_set:BluetoothCharacteristic.serviceUuid)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothCharacteristic.serviceUuid)
 }
 inline std::string* BluetoothCharacteristic::mutable_serviceuuid() {
-  // @@protoc_insertion_point(field_mutable:BluetoothCharacteristic.serviceUuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothCharacteristic.serviceUuid)
   return _internal_mutable_serviceuuid();
 }
 inline const std::string& BluetoothCharacteristic::_internal_serviceuuid() const {
@@ -6233,27 +6239,27 @@ inline void BluetoothCharacteristic::set_serviceuuid(std::string&& value) {
   
   serviceuuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothCharacteristic.serviceUuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothCharacteristic.serviceUuid)
 }
 inline void BluetoothCharacteristic::set_serviceuuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   serviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothCharacteristic.serviceUuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothCharacteristic.serviceUuid)
 }
 inline void BluetoothCharacteristic::set_serviceuuid(const char* value,
     size_t size) {
   
   serviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothCharacteristic.serviceUuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothCharacteristic.serviceUuid)
 }
 inline std::string* BluetoothCharacteristic::_internal_mutable_serviceuuid() {
   
   return serviceuuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothCharacteristic::release_serviceuuid() {
-  // @@protoc_insertion_point(field_release:BluetoothCharacteristic.serviceUuid)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothCharacteristic.serviceUuid)
   return serviceuuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothCharacteristic::set_allocated_serviceuuid(std::string* serviceuuid) {
@@ -6264,7 +6270,7 @@ inline void BluetoothCharacteristic::set_allocated_serviceuuid(std::string* serv
   }
   serviceuuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), serviceuuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothCharacteristic.serviceUuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothCharacteristic.serviceUuid)
 }
 
 // string secondaryServiceUuid = 4;
@@ -6272,15 +6278,15 @@ inline void BluetoothCharacteristic::clear_secondaryserviceuuid() {
   secondaryserviceuuid_.ClearToEmpty();
 }
 inline const std::string& BluetoothCharacteristic::secondaryserviceuuid() const {
-  // @@protoc_insertion_point(field_get:BluetoothCharacteristic.secondaryServiceUuid)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothCharacteristic.secondaryServiceUuid)
   return _internal_secondaryserviceuuid();
 }
 inline void BluetoothCharacteristic::set_secondaryserviceuuid(const std::string& value) {
   _internal_set_secondaryserviceuuid(value);
-  // @@protoc_insertion_point(field_set:BluetoothCharacteristic.secondaryServiceUuid)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothCharacteristic.secondaryServiceUuid)
 }
 inline std::string* BluetoothCharacteristic::mutable_secondaryserviceuuid() {
-  // @@protoc_insertion_point(field_mutable:BluetoothCharacteristic.secondaryServiceUuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothCharacteristic.secondaryServiceUuid)
   return _internal_mutable_secondaryserviceuuid();
 }
 inline const std::string& BluetoothCharacteristic::_internal_secondaryserviceuuid() const {
@@ -6294,27 +6300,27 @@ inline void BluetoothCharacteristic::set_secondaryserviceuuid(std::string&& valu
   
   secondaryserviceuuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothCharacteristic.secondaryServiceUuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothCharacteristic.secondaryServiceUuid)
 }
 inline void BluetoothCharacteristic::set_secondaryserviceuuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   secondaryserviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothCharacteristic.secondaryServiceUuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothCharacteristic.secondaryServiceUuid)
 }
 inline void BluetoothCharacteristic::set_secondaryserviceuuid(const char* value,
     size_t size) {
   
   secondaryserviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothCharacteristic.secondaryServiceUuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothCharacteristic.secondaryServiceUuid)
 }
 inline std::string* BluetoothCharacteristic::_internal_mutable_secondaryserviceuuid() {
   
   return secondaryserviceuuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothCharacteristic::release_secondaryserviceuuid() {
-  // @@protoc_insertion_point(field_release:BluetoothCharacteristic.secondaryServiceUuid)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothCharacteristic.secondaryServiceUuid)
   return secondaryserviceuuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothCharacteristic::set_allocated_secondaryserviceuuid(std::string* secondaryserviceuuid) {
@@ -6325,10 +6331,10 @@ inline void BluetoothCharacteristic::set_allocated_secondaryserviceuuid(std::str
   }
   secondaryserviceuuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), secondaryserviceuuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothCharacteristic.secondaryServiceUuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothCharacteristic.secondaryServiceUuid)
 }
 
-// repeated .BluetoothDescriptor descriptors = 5;
+// repeated .proto.gen.BluetoothDescriptor descriptors = 5;
 inline int BluetoothCharacteristic::_internal_descriptors_size() const {
   return descriptors_.size();
 }
@@ -6338,36 +6344,36 @@ inline int BluetoothCharacteristic::descriptors_size() const {
 inline void BluetoothCharacteristic::clear_descriptors() {
   descriptors_.Clear();
 }
-inline ::BluetoothDescriptor* BluetoothCharacteristic::mutable_descriptors(int index) {
-  // @@protoc_insertion_point(field_mutable:BluetoothCharacteristic.descriptors)
+inline ::proto::gen::BluetoothDescriptor* BluetoothCharacteristic::mutable_descriptors(int index) {
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothCharacteristic.descriptors)
   return descriptors_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDescriptor >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDescriptor >*
 BluetoothCharacteristic::mutable_descriptors() {
-  // @@protoc_insertion_point(field_mutable_list:BluetoothCharacteristic.descriptors)
+  // @@protoc_insertion_point(field_mutable_list:proto.gen.BluetoothCharacteristic.descriptors)
   return &descriptors_;
 }
-inline const ::BluetoothDescriptor& BluetoothCharacteristic::_internal_descriptors(int index) const {
+inline const ::proto::gen::BluetoothDescriptor& BluetoothCharacteristic::_internal_descriptors(int index) const {
   return descriptors_.Get(index);
 }
-inline const ::BluetoothDescriptor& BluetoothCharacteristic::descriptors(int index) const {
-  // @@protoc_insertion_point(field_get:BluetoothCharacteristic.descriptors)
+inline const ::proto::gen::BluetoothDescriptor& BluetoothCharacteristic::descriptors(int index) const {
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothCharacteristic.descriptors)
   return _internal_descriptors(index);
 }
-inline ::BluetoothDescriptor* BluetoothCharacteristic::_internal_add_descriptors() {
+inline ::proto::gen::BluetoothDescriptor* BluetoothCharacteristic::_internal_add_descriptors() {
   return descriptors_.Add();
 }
-inline ::BluetoothDescriptor* BluetoothCharacteristic::add_descriptors() {
-  // @@protoc_insertion_point(field_add:BluetoothCharacteristic.descriptors)
+inline ::proto::gen::BluetoothDescriptor* BluetoothCharacteristic::add_descriptors() {
+  // @@protoc_insertion_point(field_add:proto.gen.BluetoothCharacteristic.descriptors)
   return _internal_add_descriptors();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDescriptor >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDescriptor >&
 BluetoothCharacteristic::descriptors() const {
-  // @@protoc_insertion_point(field_list:BluetoothCharacteristic.descriptors)
+  // @@protoc_insertion_point(field_list:proto.gen.BluetoothCharacteristic.descriptors)
   return descriptors_;
 }
 
-// .CharacteristicProperties properties = 6;
+// .proto.gen.CharacteristicProperties properties = 6;
 inline bool BluetoothCharacteristic::_internal_has_properties() const {
   return this != internal_default_instance() && properties_ != nullptr;
 }
@@ -6380,17 +6386,17 @@ inline void BluetoothCharacteristic::clear_properties() {
   }
   properties_ = nullptr;
 }
-inline const ::CharacteristicProperties& BluetoothCharacteristic::_internal_properties() const {
-  const ::CharacteristicProperties* p = properties_;
-  return p != nullptr ? *p : reinterpret_cast<const ::CharacteristicProperties&>(
-      ::_CharacteristicProperties_default_instance_);
+inline const ::proto::gen::CharacteristicProperties& BluetoothCharacteristic::_internal_properties() const {
+  const ::proto::gen::CharacteristicProperties* p = properties_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::CharacteristicProperties&>(
+      ::proto::gen::_CharacteristicProperties_default_instance_);
 }
-inline const ::CharacteristicProperties& BluetoothCharacteristic::properties() const {
-  // @@protoc_insertion_point(field_get:BluetoothCharacteristic.properties)
+inline const ::proto::gen::CharacteristicProperties& BluetoothCharacteristic::properties() const {
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothCharacteristic.properties)
   return _internal_properties();
 }
 inline void BluetoothCharacteristic::unsafe_arena_set_allocated_properties(
-    ::CharacteristicProperties* properties) {
+    ::proto::gen::CharacteristicProperties* properties) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(properties_);
   }
@@ -6400,37 +6406,37 @@ inline void BluetoothCharacteristic::unsafe_arena_set_allocated_properties(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:BluetoothCharacteristic.properties)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.BluetoothCharacteristic.properties)
 }
-inline ::CharacteristicProperties* BluetoothCharacteristic::release_properties() {
+inline ::proto::gen::CharacteristicProperties* BluetoothCharacteristic::release_properties() {
   
-  ::CharacteristicProperties* temp = properties_;
+  ::proto::gen::CharacteristicProperties* temp = properties_;
   properties_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::CharacteristicProperties* BluetoothCharacteristic::unsafe_arena_release_properties() {
-  // @@protoc_insertion_point(field_release:BluetoothCharacteristic.properties)
+inline ::proto::gen::CharacteristicProperties* BluetoothCharacteristic::unsafe_arena_release_properties() {
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothCharacteristic.properties)
   
-  ::CharacteristicProperties* temp = properties_;
+  ::proto::gen::CharacteristicProperties* temp = properties_;
   properties_ = nullptr;
   return temp;
 }
-inline ::CharacteristicProperties* BluetoothCharacteristic::_internal_mutable_properties() {
+inline ::proto::gen::CharacteristicProperties* BluetoothCharacteristic::_internal_mutable_properties() {
   
   if (properties_ == nullptr) {
-    auto* p = CreateMaybeMessage<::CharacteristicProperties>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::CharacteristicProperties>(GetArena());
     properties_ = p;
   }
   return properties_;
 }
-inline ::CharacteristicProperties* BluetoothCharacteristic::mutable_properties() {
-  // @@protoc_insertion_point(field_mutable:BluetoothCharacteristic.properties)
+inline ::proto::gen::CharacteristicProperties* BluetoothCharacteristic::mutable_properties() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothCharacteristic.properties)
   return _internal_mutable_properties();
 }
-inline void BluetoothCharacteristic::set_allocated_properties(::CharacteristicProperties* properties) {
+inline void BluetoothCharacteristic::set_allocated_properties(::proto::gen::CharacteristicProperties* properties) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete properties_;
@@ -6447,7 +6453,7 @@ inline void BluetoothCharacteristic::set_allocated_properties(::CharacteristicPr
     
   }
   properties_ = properties;
-  // @@protoc_insertion_point(field_set_allocated:BluetoothCharacteristic.properties)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothCharacteristic.properties)
 }
 
 // bytes value = 7;
@@ -6455,15 +6461,15 @@ inline void BluetoothCharacteristic::clear_value() {
   value_.ClearToEmpty();
 }
 inline const std::string& BluetoothCharacteristic::value() const {
-  // @@protoc_insertion_point(field_get:BluetoothCharacteristic.value)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothCharacteristic.value)
   return _internal_value();
 }
 inline void BluetoothCharacteristic::set_value(const std::string& value) {
   _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:BluetoothCharacteristic.value)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothCharacteristic.value)
 }
 inline std::string* BluetoothCharacteristic::mutable_value() {
-  // @@protoc_insertion_point(field_mutable:BluetoothCharacteristic.value)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothCharacteristic.value)
   return _internal_mutable_value();
 }
 inline const std::string& BluetoothCharacteristic::_internal_value() const {
@@ -6477,27 +6483,27 @@ inline void BluetoothCharacteristic::set_value(std::string&& value) {
   
   value_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothCharacteristic.value)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothCharacteristic.value)
 }
 inline void BluetoothCharacteristic::set_value(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothCharacteristic.value)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothCharacteristic.value)
 }
 inline void BluetoothCharacteristic::set_value(const void* value,
     size_t size) {
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothCharacteristic.value)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothCharacteristic.value)
 }
 inline std::string* BluetoothCharacteristic::_internal_mutable_value() {
   
   return value_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothCharacteristic::release_value() {
-  // @@protoc_insertion_point(field_release:BluetoothCharacteristic.value)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothCharacteristic.value)
   return value_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothCharacteristic::set_allocated_value(std::string* value) {
@@ -6508,7 +6514,7 @@ inline void BluetoothCharacteristic::set_allocated_value(std::string* value) {
   }
   value_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothCharacteristic.value)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothCharacteristic.value)
 }
 
 // -------------------------------------------------------------------
@@ -6520,15 +6526,15 @@ inline void BluetoothDescriptor::clear_uuid() {
   uuid_.ClearToEmpty();
 }
 inline const std::string& BluetoothDescriptor::uuid() const {
-  // @@protoc_insertion_point(field_get:BluetoothDescriptor.uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothDescriptor.uuid)
   return _internal_uuid();
 }
 inline void BluetoothDescriptor::set_uuid(const std::string& value) {
   _internal_set_uuid(value);
-  // @@protoc_insertion_point(field_set:BluetoothDescriptor.uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothDescriptor.uuid)
 }
 inline std::string* BluetoothDescriptor::mutable_uuid() {
-  // @@protoc_insertion_point(field_mutable:BluetoothDescriptor.uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothDescriptor.uuid)
   return _internal_mutable_uuid();
 }
 inline const std::string& BluetoothDescriptor::_internal_uuid() const {
@@ -6542,27 +6548,27 @@ inline void BluetoothDescriptor::set_uuid(std::string&& value) {
   
   uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothDescriptor.uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothDescriptor.uuid)
 }
 inline void BluetoothDescriptor::set_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothDescriptor.uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothDescriptor.uuid)
 }
 inline void BluetoothDescriptor::set_uuid(const char* value,
     size_t size) {
   
   uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothDescriptor.uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothDescriptor.uuid)
 }
 inline std::string* BluetoothDescriptor::_internal_mutable_uuid() {
   
   return uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothDescriptor::release_uuid() {
-  // @@protoc_insertion_point(field_release:BluetoothDescriptor.uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothDescriptor.uuid)
   return uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothDescriptor::set_allocated_uuid(std::string* uuid) {
@@ -6573,7 +6579,7 @@ inline void BluetoothDescriptor::set_allocated_uuid(std::string* uuid) {
   }
   uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothDescriptor.uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothDescriptor.uuid)
 }
 
 // string remote_id = 2;
@@ -6581,15 +6587,15 @@ inline void BluetoothDescriptor::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& BluetoothDescriptor::remote_id() const {
-  // @@protoc_insertion_point(field_get:BluetoothDescriptor.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothDescriptor.remote_id)
   return _internal_remote_id();
 }
 inline void BluetoothDescriptor::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:BluetoothDescriptor.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothDescriptor.remote_id)
 }
 inline std::string* BluetoothDescriptor::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:BluetoothDescriptor.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothDescriptor.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& BluetoothDescriptor::_internal_remote_id() const {
@@ -6603,27 +6609,27 @@ inline void BluetoothDescriptor::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothDescriptor.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothDescriptor.remote_id)
 }
 inline void BluetoothDescriptor::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothDescriptor.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothDescriptor.remote_id)
 }
 inline void BluetoothDescriptor::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothDescriptor.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothDescriptor.remote_id)
 }
 inline std::string* BluetoothDescriptor::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothDescriptor::release_remote_id() {
-  // @@protoc_insertion_point(field_release:BluetoothDescriptor.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothDescriptor.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothDescriptor::set_allocated_remote_id(std::string* remote_id) {
@@ -6634,7 +6640,7 @@ inline void BluetoothDescriptor::set_allocated_remote_id(std::string* remote_id)
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothDescriptor.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothDescriptor.remote_id)
 }
 
 // string serviceUuid = 3;
@@ -6642,15 +6648,15 @@ inline void BluetoothDescriptor::clear_serviceuuid() {
   serviceuuid_.ClearToEmpty();
 }
 inline const std::string& BluetoothDescriptor::serviceuuid() const {
-  // @@protoc_insertion_point(field_get:BluetoothDescriptor.serviceUuid)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothDescriptor.serviceUuid)
   return _internal_serviceuuid();
 }
 inline void BluetoothDescriptor::set_serviceuuid(const std::string& value) {
   _internal_set_serviceuuid(value);
-  // @@protoc_insertion_point(field_set:BluetoothDescriptor.serviceUuid)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothDescriptor.serviceUuid)
 }
 inline std::string* BluetoothDescriptor::mutable_serviceuuid() {
-  // @@protoc_insertion_point(field_mutable:BluetoothDescriptor.serviceUuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothDescriptor.serviceUuid)
   return _internal_mutable_serviceuuid();
 }
 inline const std::string& BluetoothDescriptor::_internal_serviceuuid() const {
@@ -6664,27 +6670,27 @@ inline void BluetoothDescriptor::set_serviceuuid(std::string&& value) {
   
   serviceuuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothDescriptor.serviceUuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothDescriptor.serviceUuid)
 }
 inline void BluetoothDescriptor::set_serviceuuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   serviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothDescriptor.serviceUuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothDescriptor.serviceUuid)
 }
 inline void BluetoothDescriptor::set_serviceuuid(const char* value,
     size_t size) {
   
   serviceuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothDescriptor.serviceUuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothDescriptor.serviceUuid)
 }
 inline std::string* BluetoothDescriptor::_internal_mutable_serviceuuid() {
   
   return serviceuuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothDescriptor::release_serviceuuid() {
-  // @@protoc_insertion_point(field_release:BluetoothDescriptor.serviceUuid)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothDescriptor.serviceUuid)
   return serviceuuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothDescriptor::set_allocated_serviceuuid(std::string* serviceuuid) {
@@ -6695,7 +6701,7 @@ inline void BluetoothDescriptor::set_allocated_serviceuuid(std::string* serviceu
   }
   serviceuuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), serviceuuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothDescriptor.serviceUuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothDescriptor.serviceUuid)
 }
 
 // string characteristicUuid = 4;
@@ -6703,15 +6709,15 @@ inline void BluetoothDescriptor::clear_characteristicuuid() {
   characteristicuuid_.ClearToEmpty();
 }
 inline const std::string& BluetoothDescriptor::characteristicuuid() const {
-  // @@protoc_insertion_point(field_get:BluetoothDescriptor.characteristicUuid)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothDescriptor.characteristicUuid)
   return _internal_characteristicuuid();
 }
 inline void BluetoothDescriptor::set_characteristicuuid(const std::string& value) {
   _internal_set_characteristicuuid(value);
-  // @@protoc_insertion_point(field_set:BluetoothDescriptor.characteristicUuid)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothDescriptor.characteristicUuid)
 }
 inline std::string* BluetoothDescriptor::mutable_characteristicuuid() {
-  // @@protoc_insertion_point(field_mutable:BluetoothDescriptor.characteristicUuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothDescriptor.characteristicUuid)
   return _internal_mutable_characteristicuuid();
 }
 inline const std::string& BluetoothDescriptor::_internal_characteristicuuid() const {
@@ -6725,27 +6731,27 @@ inline void BluetoothDescriptor::set_characteristicuuid(std::string&& value) {
   
   characteristicuuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothDescriptor.characteristicUuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothDescriptor.characteristicUuid)
 }
 inline void BluetoothDescriptor::set_characteristicuuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   characteristicuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothDescriptor.characteristicUuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothDescriptor.characteristicUuid)
 }
 inline void BluetoothDescriptor::set_characteristicuuid(const char* value,
     size_t size) {
   
   characteristicuuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothDescriptor.characteristicUuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothDescriptor.characteristicUuid)
 }
 inline std::string* BluetoothDescriptor::_internal_mutable_characteristicuuid() {
   
   return characteristicuuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothDescriptor::release_characteristicuuid() {
-  // @@protoc_insertion_point(field_release:BluetoothDescriptor.characteristicUuid)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothDescriptor.characteristicUuid)
   return characteristicuuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothDescriptor::set_allocated_characteristicuuid(std::string* characteristicuuid) {
@@ -6756,7 +6762,7 @@ inline void BluetoothDescriptor::set_allocated_characteristicuuid(std::string* c
   }
   characteristicuuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), characteristicuuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothDescriptor.characteristicUuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothDescriptor.characteristicUuid)
 }
 
 // bytes value = 5;
@@ -6764,15 +6770,15 @@ inline void BluetoothDescriptor::clear_value() {
   value_.ClearToEmpty();
 }
 inline const std::string& BluetoothDescriptor::value() const {
-  // @@protoc_insertion_point(field_get:BluetoothDescriptor.value)
+  // @@protoc_insertion_point(field_get:proto.gen.BluetoothDescriptor.value)
   return _internal_value();
 }
 inline void BluetoothDescriptor::set_value(const std::string& value) {
   _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:BluetoothDescriptor.value)
+  // @@protoc_insertion_point(field_set:proto.gen.BluetoothDescriptor.value)
 }
 inline std::string* BluetoothDescriptor::mutable_value() {
-  // @@protoc_insertion_point(field_mutable:BluetoothDescriptor.value)
+  // @@protoc_insertion_point(field_mutable:proto.gen.BluetoothDescriptor.value)
   return _internal_mutable_value();
 }
 inline const std::string& BluetoothDescriptor::_internal_value() const {
@@ -6786,27 +6792,27 @@ inline void BluetoothDescriptor::set_value(std::string&& value) {
   
   value_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:BluetoothDescriptor.value)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.BluetoothDescriptor.value)
 }
 inline void BluetoothDescriptor::set_value(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:BluetoothDescriptor.value)
+  // @@protoc_insertion_point(field_set_char:proto.gen.BluetoothDescriptor.value)
 }
 inline void BluetoothDescriptor::set_value(const void* value,
     size_t size) {
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:BluetoothDescriptor.value)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.BluetoothDescriptor.value)
 }
 inline std::string* BluetoothDescriptor::_internal_mutable_value() {
   
   return value_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* BluetoothDescriptor::release_value() {
-  // @@protoc_insertion_point(field_release:BluetoothDescriptor.value)
+  // @@protoc_insertion_point(field_release:proto.gen.BluetoothDescriptor.value)
   return value_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void BluetoothDescriptor::set_allocated_value(std::string* value) {
@@ -6817,7 +6823,7 @@ inline void BluetoothDescriptor::set_allocated_value(std::string* value) {
   }
   value_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:BluetoothDescriptor.value)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.BluetoothDescriptor.value)
 }
 
 // -------------------------------------------------------------------
@@ -6832,7 +6838,7 @@ inline bool CharacteristicProperties::_internal_broadcast() const {
   return broadcast_;
 }
 inline bool CharacteristicProperties::broadcast() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.broadcast)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.broadcast)
   return _internal_broadcast();
 }
 inline void CharacteristicProperties::_internal_set_broadcast(bool value) {
@@ -6841,7 +6847,7 @@ inline void CharacteristicProperties::_internal_set_broadcast(bool value) {
 }
 inline void CharacteristicProperties::set_broadcast(bool value) {
   _internal_set_broadcast(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.broadcast)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.broadcast)
 }
 
 // bool read = 2;
@@ -6852,7 +6858,7 @@ inline bool CharacteristicProperties::_internal_read() const {
   return read_;
 }
 inline bool CharacteristicProperties::read() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.read)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.read)
   return _internal_read();
 }
 inline void CharacteristicProperties::_internal_set_read(bool value) {
@@ -6861,7 +6867,7 @@ inline void CharacteristicProperties::_internal_set_read(bool value) {
 }
 inline void CharacteristicProperties::set_read(bool value) {
   _internal_set_read(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.read)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.read)
 }
 
 // bool write_without_response = 3;
@@ -6872,7 +6878,7 @@ inline bool CharacteristicProperties::_internal_write_without_response() const {
   return write_without_response_;
 }
 inline bool CharacteristicProperties::write_without_response() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.write_without_response)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.write_without_response)
   return _internal_write_without_response();
 }
 inline void CharacteristicProperties::_internal_set_write_without_response(bool value) {
@@ -6881,7 +6887,7 @@ inline void CharacteristicProperties::_internal_set_write_without_response(bool 
 }
 inline void CharacteristicProperties::set_write_without_response(bool value) {
   _internal_set_write_without_response(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.write_without_response)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.write_without_response)
 }
 
 // bool write = 4;
@@ -6892,7 +6898,7 @@ inline bool CharacteristicProperties::_internal_write() const {
   return write_;
 }
 inline bool CharacteristicProperties::write() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.write)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.write)
   return _internal_write();
 }
 inline void CharacteristicProperties::_internal_set_write(bool value) {
@@ -6901,7 +6907,7 @@ inline void CharacteristicProperties::_internal_set_write(bool value) {
 }
 inline void CharacteristicProperties::set_write(bool value) {
   _internal_set_write(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.write)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.write)
 }
 
 // bool notify = 5;
@@ -6912,7 +6918,7 @@ inline bool CharacteristicProperties::_internal_notify() const {
   return notify_;
 }
 inline bool CharacteristicProperties::notify() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.notify)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.notify)
   return _internal_notify();
 }
 inline void CharacteristicProperties::_internal_set_notify(bool value) {
@@ -6921,7 +6927,7 @@ inline void CharacteristicProperties::_internal_set_notify(bool value) {
 }
 inline void CharacteristicProperties::set_notify(bool value) {
   _internal_set_notify(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.notify)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.notify)
 }
 
 // bool indicate = 6;
@@ -6932,7 +6938,7 @@ inline bool CharacteristicProperties::_internal_indicate() const {
   return indicate_;
 }
 inline bool CharacteristicProperties::indicate() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.indicate)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.indicate)
   return _internal_indicate();
 }
 inline void CharacteristicProperties::_internal_set_indicate(bool value) {
@@ -6941,7 +6947,7 @@ inline void CharacteristicProperties::_internal_set_indicate(bool value) {
 }
 inline void CharacteristicProperties::set_indicate(bool value) {
   _internal_set_indicate(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.indicate)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.indicate)
 }
 
 // bool authenticated_signed_writes = 7;
@@ -6952,7 +6958,7 @@ inline bool CharacteristicProperties::_internal_authenticated_signed_writes() co
   return authenticated_signed_writes_;
 }
 inline bool CharacteristicProperties::authenticated_signed_writes() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.authenticated_signed_writes)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.authenticated_signed_writes)
   return _internal_authenticated_signed_writes();
 }
 inline void CharacteristicProperties::_internal_set_authenticated_signed_writes(bool value) {
@@ -6961,7 +6967,7 @@ inline void CharacteristicProperties::_internal_set_authenticated_signed_writes(
 }
 inline void CharacteristicProperties::set_authenticated_signed_writes(bool value) {
   _internal_set_authenticated_signed_writes(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.authenticated_signed_writes)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.authenticated_signed_writes)
 }
 
 // bool extended_properties = 8;
@@ -6972,7 +6978,7 @@ inline bool CharacteristicProperties::_internal_extended_properties() const {
   return extended_properties_;
 }
 inline bool CharacteristicProperties::extended_properties() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.extended_properties)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.extended_properties)
   return _internal_extended_properties();
 }
 inline void CharacteristicProperties::_internal_set_extended_properties(bool value) {
@@ -6981,7 +6987,7 @@ inline void CharacteristicProperties::_internal_set_extended_properties(bool val
 }
 inline void CharacteristicProperties::set_extended_properties(bool value) {
   _internal_set_extended_properties(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.extended_properties)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.extended_properties)
 }
 
 // bool notify_encryption_required = 9;
@@ -6992,7 +6998,7 @@ inline bool CharacteristicProperties::_internal_notify_encryption_required() con
   return notify_encryption_required_;
 }
 inline bool CharacteristicProperties::notify_encryption_required() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.notify_encryption_required)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.notify_encryption_required)
   return _internal_notify_encryption_required();
 }
 inline void CharacteristicProperties::_internal_set_notify_encryption_required(bool value) {
@@ -7001,7 +7007,7 @@ inline void CharacteristicProperties::_internal_set_notify_encryption_required(b
 }
 inline void CharacteristicProperties::set_notify_encryption_required(bool value) {
   _internal_set_notify_encryption_required(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.notify_encryption_required)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.notify_encryption_required)
 }
 
 // bool indicate_encryption_required = 10;
@@ -7012,7 +7018,7 @@ inline bool CharacteristicProperties::_internal_indicate_encryption_required() c
   return indicate_encryption_required_;
 }
 inline bool CharacteristicProperties::indicate_encryption_required() const {
-  // @@protoc_insertion_point(field_get:CharacteristicProperties.indicate_encryption_required)
+  // @@protoc_insertion_point(field_get:proto.gen.CharacteristicProperties.indicate_encryption_required)
   return _internal_indicate_encryption_required();
 }
 inline void CharacteristicProperties::_internal_set_indicate_encryption_required(bool value) {
@@ -7021,7 +7027,7 @@ inline void CharacteristicProperties::_internal_set_indicate_encryption_required
 }
 inline void CharacteristicProperties::set_indicate_encryption_required(bool value) {
   _internal_set_indicate_encryption_required(value);
-  // @@protoc_insertion_point(field_set:CharacteristicProperties.indicate_encryption_required)
+  // @@protoc_insertion_point(field_set:proto.gen.CharacteristicProperties.indicate_encryption_required)
 }
 
 // -------------------------------------------------------------------
@@ -7033,15 +7039,15 @@ inline void DiscoverServicesResult::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& DiscoverServicesResult::remote_id() const {
-  // @@protoc_insertion_point(field_get:DiscoverServicesResult.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.DiscoverServicesResult.remote_id)
   return _internal_remote_id();
 }
 inline void DiscoverServicesResult::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:DiscoverServicesResult.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.DiscoverServicesResult.remote_id)
 }
 inline std::string* DiscoverServicesResult::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:DiscoverServicesResult.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.DiscoverServicesResult.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& DiscoverServicesResult::_internal_remote_id() const {
@@ -7055,27 +7061,27 @@ inline void DiscoverServicesResult::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:DiscoverServicesResult.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.DiscoverServicesResult.remote_id)
 }
 inline void DiscoverServicesResult::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:DiscoverServicesResult.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.DiscoverServicesResult.remote_id)
 }
 inline void DiscoverServicesResult::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:DiscoverServicesResult.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.DiscoverServicesResult.remote_id)
 }
 inline std::string* DiscoverServicesResult::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* DiscoverServicesResult::release_remote_id() {
-  // @@protoc_insertion_point(field_release:DiscoverServicesResult.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.DiscoverServicesResult.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void DiscoverServicesResult::set_allocated_remote_id(std::string* remote_id) {
@@ -7086,10 +7092,10 @@ inline void DiscoverServicesResult::set_allocated_remote_id(std::string* remote_
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:DiscoverServicesResult.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.DiscoverServicesResult.remote_id)
 }
 
-// repeated .BluetoothService services = 2;
+// repeated .proto.gen.BluetoothService services = 2;
 inline int DiscoverServicesResult::_internal_services_size() const {
   return services_.size();
 }
@@ -7099,32 +7105,32 @@ inline int DiscoverServicesResult::services_size() const {
 inline void DiscoverServicesResult::clear_services() {
   services_.Clear();
 }
-inline ::BluetoothService* DiscoverServicesResult::mutable_services(int index) {
-  // @@protoc_insertion_point(field_mutable:DiscoverServicesResult.services)
+inline ::proto::gen::BluetoothService* DiscoverServicesResult::mutable_services(int index) {
+  // @@protoc_insertion_point(field_mutable:proto.gen.DiscoverServicesResult.services)
   return services_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService >*
 DiscoverServicesResult::mutable_services() {
-  // @@protoc_insertion_point(field_mutable_list:DiscoverServicesResult.services)
+  // @@protoc_insertion_point(field_mutable_list:proto.gen.DiscoverServicesResult.services)
   return &services_;
 }
-inline const ::BluetoothService& DiscoverServicesResult::_internal_services(int index) const {
+inline const ::proto::gen::BluetoothService& DiscoverServicesResult::_internal_services(int index) const {
   return services_.Get(index);
 }
-inline const ::BluetoothService& DiscoverServicesResult::services(int index) const {
-  // @@protoc_insertion_point(field_get:DiscoverServicesResult.services)
+inline const ::proto::gen::BluetoothService& DiscoverServicesResult::services(int index) const {
+  // @@protoc_insertion_point(field_get:proto.gen.DiscoverServicesResult.services)
   return _internal_services(index);
 }
-inline ::BluetoothService* DiscoverServicesResult::_internal_add_services() {
+inline ::proto::gen::BluetoothService* DiscoverServicesResult::_internal_add_services() {
   return services_.Add();
 }
-inline ::BluetoothService* DiscoverServicesResult::add_services() {
-  // @@protoc_insertion_point(field_add:DiscoverServicesResult.services)
+inline ::proto::gen::BluetoothService* DiscoverServicesResult::add_services() {
+  // @@protoc_insertion_point(field_add:proto.gen.DiscoverServicesResult.services)
   return _internal_add_services();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothService >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothService >&
 DiscoverServicesResult::services() const {
-  // @@protoc_insertion_point(field_list:DiscoverServicesResult.services)
+  // @@protoc_insertion_point(field_list:proto.gen.DiscoverServicesResult.services)
   return services_;
 }
 
@@ -7137,15 +7143,15 @@ inline void ReadCharacteristicRequest::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& ReadCharacteristicRequest::remote_id() const {
-  // @@protoc_insertion_point(field_get:ReadCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadCharacteristicRequest.remote_id)
   return _internal_remote_id();
 }
 inline void ReadCharacteristicRequest::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:ReadCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadCharacteristicRequest.remote_id)
 }
 inline std::string* ReadCharacteristicRequest::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:ReadCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadCharacteristicRequest.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& ReadCharacteristicRequest::_internal_remote_id() const {
@@ -7159,27 +7165,27 @@ inline void ReadCharacteristicRequest::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadCharacteristicRequest.remote_id)
 }
 inline void ReadCharacteristicRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadCharacteristicRequest.remote_id)
 }
 inline void ReadCharacteristicRequest::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadCharacteristicRequest.remote_id)
 }
 inline std::string* ReadCharacteristicRequest::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadCharacteristicRequest::release_remote_id() {
-  // @@protoc_insertion_point(field_release:ReadCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadCharacteristicRequest.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadCharacteristicRequest::set_allocated_remote_id(std::string* remote_id) {
@@ -7190,7 +7196,7 @@ inline void ReadCharacteristicRequest::set_allocated_remote_id(std::string* remo
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadCharacteristicRequest.remote_id)
 }
 
 // string characteristic_uuid = 2;
@@ -7198,15 +7204,15 @@ inline void ReadCharacteristicRequest::clear_characteristic_uuid() {
   characteristic_uuid_.ClearToEmpty();
 }
 inline const std::string& ReadCharacteristicRequest::characteristic_uuid() const {
-  // @@protoc_insertion_point(field_get:ReadCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadCharacteristicRequest.characteristic_uuid)
   return _internal_characteristic_uuid();
 }
 inline void ReadCharacteristicRequest::set_characteristic_uuid(const std::string& value) {
   _internal_set_characteristic_uuid(value);
-  // @@protoc_insertion_point(field_set:ReadCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadCharacteristicRequest.characteristic_uuid)
 }
 inline std::string* ReadCharacteristicRequest::mutable_characteristic_uuid() {
-  // @@protoc_insertion_point(field_mutable:ReadCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadCharacteristicRequest.characteristic_uuid)
   return _internal_mutable_characteristic_uuid();
 }
 inline const std::string& ReadCharacteristicRequest::_internal_characteristic_uuid() const {
@@ -7220,27 +7226,27 @@ inline void ReadCharacteristicRequest::set_characteristic_uuid(std::string&& val
   
   characteristic_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadCharacteristicRequest.characteristic_uuid)
 }
 inline void ReadCharacteristicRequest::set_characteristic_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadCharacteristicRequest.characteristic_uuid)
 }
 inline void ReadCharacteristicRequest::set_characteristic_uuid(const char* value,
     size_t size) {
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadCharacteristicRequest.characteristic_uuid)
 }
 inline std::string* ReadCharacteristicRequest::_internal_mutable_characteristic_uuid() {
   
   return characteristic_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadCharacteristicRequest::release_characteristic_uuid() {
-  // @@protoc_insertion_point(field_release:ReadCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadCharacteristicRequest.characteristic_uuid)
   return characteristic_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadCharacteristicRequest::set_allocated_characteristic_uuid(std::string* characteristic_uuid) {
@@ -7251,7 +7257,7 @@ inline void ReadCharacteristicRequest::set_allocated_characteristic_uuid(std::st
   }
   characteristic_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), characteristic_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadCharacteristicRequest.characteristic_uuid)
 }
 
 // string service_uuid = 3;
@@ -7259,15 +7265,15 @@ inline void ReadCharacteristicRequest::clear_service_uuid() {
   service_uuid_.ClearToEmpty();
 }
 inline const std::string& ReadCharacteristicRequest::service_uuid() const {
-  // @@protoc_insertion_point(field_get:ReadCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadCharacteristicRequest.service_uuid)
   return _internal_service_uuid();
 }
 inline void ReadCharacteristicRequest::set_service_uuid(const std::string& value) {
   _internal_set_service_uuid(value);
-  // @@protoc_insertion_point(field_set:ReadCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadCharacteristicRequest.service_uuid)
 }
 inline std::string* ReadCharacteristicRequest::mutable_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:ReadCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadCharacteristicRequest.service_uuid)
   return _internal_mutable_service_uuid();
 }
 inline const std::string& ReadCharacteristicRequest::_internal_service_uuid() const {
@@ -7281,27 +7287,27 @@ inline void ReadCharacteristicRequest::set_service_uuid(std::string&& value) {
   
   service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadCharacteristicRequest.service_uuid)
 }
 inline void ReadCharacteristicRequest::set_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadCharacteristicRequest.service_uuid)
 }
 inline void ReadCharacteristicRequest::set_service_uuid(const char* value,
     size_t size) {
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadCharacteristicRequest.service_uuid)
 }
 inline std::string* ReadCharacteristicRequest::_internal_mutable_service_uuid() {
   
   return service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadCharacteristicRequest::release_service_uuid() {
-  // @@protoc_insertion_point(field_release:ReadCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadCharacteristicRequest.service_uuid)
   return service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadCharacteristicRequest::set_allocated_service_uuid(std::string* service_uuid) {
@@ -7312,7 +7318,7 @@ inline void ReadCharacteristicRequest::set_allocated_service_uuid(std::string* s
   }
   service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadCharacteristicRequest.service_uuid)
 }
 
 // string secondary_service_uuid = 4;
@@ -7320,15 +7326,15 @@ inline void ReadCharacteristicRequest::clear_secondary_service_uuid() {
   secondary_service_uuid_.ClearToEmpty();
 }
 inline const std::string& ReadCharacteristicRequest::secondary_service_uuid() const {
-  // @@protoc_insertion_point(field_get:ReadCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadCharacteristicRequest.secondary_service_uuid)
   return _internal_secondary_service_uuid();
 }
 inline void ReadCharacteristicRequest::set_secondary_service_uuid(const std::string& value) {
   _internal_set_secondary_service_uuid(value);
-  // @@protoc_insertion_point(field_set:ReadCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadCharacteristicRequest.secondary_service_uuid)
 }
 inline std::string* ReadCharacteristicRequest::mutable_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:ReadCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadCharacteristicRequest.secondary_service_uuid)
   return _internal_mutable_secondary_service_uuid();
 }
 inline const std::string& ReadCharacteristicRequest::_internal_secondary_service_uuid() const {
@@ -7342,27 +7348,27 @@ inline void ReadCharacteristicRequest::set_secondary_service_uuid(std::string&& 
   
   secondary_service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadCharacteristicRequest.secondary_service_uuid)
 }
 inline void ReadCharacteristicRequest::set_secondary_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadCharacteristicRequest.secondary_service_uuid)
 }
 inline void ReadCharacteristicRequest::set_secondary_service_uuid(const char* value,
     size_t size) {
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadCharacteristicRequest.secondary_service_uuid)
 }
 inline std::string* ReadCharacteristicRequest::_internal_mutable_secondary_service_uuid() {
   
   return secondary_service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadCharacteristicRequest::release_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_release:ReadCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadCharacteristicRequest.secondary_service_uuid)
   return secondary_service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadCharacteristicRequest::set_allocated_secondary_service_uuid(std::string* secondary_service_uuid) {
@@ -7373,7 +7379,7 @@ inline void ReadCharacteristicRequest::set_allocated_secondary_service_uuid(std:
   }
   secondary_service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), secondary_service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadCharacteristicRequest.secondary_service_uuid)
 }
 
 // -------------------------------------------------------------------
@@ -7385,15 +7391,15 @@ inline void ReadCharacteristicResponse::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& ReadCharacteristicResponse::remote_id() const {
-  // @@protoc_insertion_point(field_get:ReadCharacteristicResponse.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadCharacteristicResponse.remote_id)
   return _internal_remote_id();
 }
 inline void ReadCharacteristicResponse::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:ReadCharacteristicResponse.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadCharacteristicResponse.remote_id)
 }
 inline std::string* ReadCharacteristicResponse::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:ReadCharacteristicResponse.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadCharacteristicResponse.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& ReadCharacteristicResponse::_internal_remote_id() const {
@@ -7407,27 +7413,27 @@ inline void ReadCharacteristicResponse::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadCharacteristicResponse.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadCharacteristicResponse.remote_id)
 }
 inline void ReadCharacteristicResponse::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadCharacteristicResponse.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadCharacteristicResponse.remote_id)
 }
 inline void ReadCharacteristicResponse::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadCharacteristicResponse.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadCharacteristicResponse.remote_id)
 }
 inline std::string* ReadCharacteristicResponse::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadCharacteristicResponse::release_remote_id() {
-  // @@protoc_insertion_point(field_release:ReadCharacteristicResponse.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadCharacteristicResponse.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadCharacteristicResponse::set_allocated_remote_id(std::string* remote_id) {
@@ -7438,10 +7444,10 @@ inline void ReadCharacteristicResponse::set_allocated_remote_id(std::string* rem
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadCharacteristicResponse.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadCharacteristicResponse.remote_id)
 }
 
-// .BluetoothCharacteristic characteristic = 2;
+// .proto.gen.BluetoothCharacteristic characteristic = 2;
 inline bool ReadCharacteristicResponse::_internal_has_characteristic() const {
   return this != internal_default_instance() && characteristic_ != nullptr;
 }
@@ -7454,17 +7460,17 @@ inline void ReadCharacteristicResponse::clear_characteristic() {
   }
   characteristic_ = nullptr;
 }
-inline const ::BluetoothCharacteristic& ReadCharacteristicResponse::_internal_characteristic() const {
-  const ::BluetoothCharacteristic* p = characteristic_;
-  return p != nullptr ? *p : reinterpret_cast<const ::BluetoothCharacteristic&>(
-      ::_BluetoothCharacteristic_default_instance_);
+inline const ::proto::gen::BluetoothCharacteristic& ReadCharacteristicResponse::_internal_characteristic() const {
+  const ::proto::gen::BluetoothCharacteristic* p = characteristic_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::BluetoothCharacteristic&>(
+      ::proto::gen::_BluetoothCharacteristic_default_instance_);
 }
-inline const ::BluetoothCharacteristic& ReadCharacteristicResponse::characteristic() const {
-  // @@protoc_insertion_point(field_get:ReadCharacteristicResponse.characteristic)
+inline const ::proto::gen::BluetoothCharacteristic& ReadCharacteristicResponse::characteristic() const {
+  // @@protoc_insertion_point(field_get:proto.gen.ReadCharacteristicResponse.characteristic)
   return _internal_characteristic();
 }
 inline void ReadCharacteristicResponse::unsafe_arena_set_allocated_characteristic(
-    ::BluetoothCharacteristic* characteristic) {
+    ::proto::gen::BluetoothCharacteristic* characteristic) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(characteristic_);
   }
@@ -7474,37 +7480,37 @@ inline void ReadCharacteristicResponse::unsafe_arena_set_allocated_characteristi
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ReadCharacteristicResponse.characteristic)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.ReadCharacteristicResponse.characteristic)
 }
-inline ::BluetoothCharacteristic* ReadCharacteristicResponse::release_characteristic() {
+inline ::proto::gen::BluetoothCharacteristic* ReadCharacteristicResponse::release_characteristic() {
   
-  ::BluetoothCharacteristic* temp = characteristic_;
+  ::proto::gen::BluetoothCharacteristic* temp = characteristic_;
   characteristic_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::BluetoothCharacteristic* ReadCharacteristicResponse::unsafe_arena_release_characteristic() {
-  // @@protoc_insertion_point(field_release:ReadCharacteristicResponse.characteristic)
+inline ::proto::gen::BluetoothCharacteristic* ReadCharacteristicResponse::unsafe_arena_release_characteristic() {
+  // @@protoc_insertion_point(field_release:proto.gen.ReadCharacteristicResponse.characteristic)
   
-  ::BluetoothCharacteristic* temp = characteristic_;
+  ::proto::gen::BluetoothCharacteristic* temp = characteristic_;
   characteristic_ = nullptr;
   return temp;
 }
-inline ::BluetoothCharacteristic* ReadCharacteristicResponse::_internal_mutable_characteristic() {
+inline ::proto::gen::BluetoothCharacteristic* ReadCharacteristicResponse::_internal_mutable_characteristic() {
   
   if (characteristic_ == nullptr) {
-    auto* p = CreateMaybeMessage<::BluetoothCharacteristic>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::BluetoothCharacteristic>(GetArena());
     characteristic_ = p;
   }
   return characteristic_;
 }
-inline ::BluetoothCharacteristic* ReadCharacteristicResponse::mutable_characteristic() {
-  // @@protoc_insertion_point(field_mutable:ReadCharacteristicResponse.characteristic)
+inline ::proto::gen::BluetoothCharacteristic* ReadCharacteristicResponse::mutable_characteristic() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadCharacteristicResponse.characteristic)
   return _internal_mutable_characteristic();
 }
-inline void ReadCharacteristicResponse::set_allocated_characteristic(::BluetoothCharacteristic* characteristic) {
+inline void ReadCharacteristicResponse::set_allocated_characteristic(::proto::gen::BluetoothCharacteristic* characteristic) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete characteristic_;
@@ -7521,7 +7527,7 @@ inline void ReadCharacteristicResponse::set_allocated_characteristic(::Bluetooth
     
   }
   characteristic_ = characteristic;
-  // @@protoc_insertion_point(field_set_allocated:ReadCharacteristicResponse.characteristic)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadCharacteristicResponse.characteristic)
 }
 
 // -------------------------------------------------------------------
@@ -7533,15 +7539,15 @@ inline void ReadDescriptorRequest::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& ReadDescriptorRequest::remote_id() const {
-  // @@protoc_insertion_point(field_get:ReadDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadDescriptorRequest.remote_id)
   return _internal_remote_id();
 }
 inline void ReadDescriptorRequest::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:ReadDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadDescriptorRequest.remote_id)
 }
 inline std::string* ReadDescriptorRequest::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:ReadDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadDescriptorRequest.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& ReadDescriptorRequest::_internal_remote_id() const {
@@ -7555,27 +7561,27 @@ inline void ReadDescriptorRequest::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadDescriptorRequest.remote_id)
 }
 inline void ReadDescriptorRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadDescriptorRequest.remote_id)
 }
 inline void ReadDescriptorRequest::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadDescriptorRequest.remote_id)
 }
 inline std::string* ReadDescriptorRequest::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadDescriptorRequest::release_remote_id() {
-  // @@protoc_insertion_point(field_release:ReadDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadDescriptorRequest.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadDescriptorRequest::set_allocated_remote_id(std::string* remote_id) {
@@ -7586,7 +7592,7 @@ inline void ReadDescriptorRequest::set_allocated_remote_id(std::string* remote_i
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadDescriptorRequest.remote_id)
 }
 
 // string descriptor_uuid = 2;
@@ -7594,15 +7600,15 @@ inline void ReadDescriptorRequest::clear_descriptor_uuid() {
   descriptor_uuid_.ClearToEmpty();
 }
 inline const std::string& ReadDescriptorRequest::descriptor_uuid() const {
-  // @@protoc_insertion_point(field_get:ReadDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadDescriptorRequest.descriptor_uuid)
   return _internal_descriptor_uuid();
 }
 inline void ReadDescriptorRequest::set_descriptor_uuid(const std::string& value) {
   _internal_set_descriptor_uuid(value);
-  // @@protoc_insertion_point(field_set:ReadDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadDescriptorRequest.descriptor_uuid)
 }
 inline std::string* ReadDescriptorRequest::mutable_descriptor_uuid() {
-  // @@protoc_insertion_point(field_mutable:ReadDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadDescriptorRequest.descriptor_uuid)
   return _internal_mutable_descriptor_uuid();
 }
 inline const std::string& ReadDescriptorRequest::_internal_descriptor_uuid() const {
@@ -7616,27 +7622,27 @@ inline void ReadDescriptorRequest::set_descriptor_uuid(std::string&& value) {
   
   descriptor_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadDescriptorRequest.descriptor_uuid)
 }
 inline void ReadDescriptorRequest::set_descriptor_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   descriptor_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadDescriptorRequest.descriptor_uuid)
 }
 inline void ReadDescriptorRequest::set_descriptor_uuid(const char* value,
     size_t size) {
   
   descriptor_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadDescriptorRequest.descriptor_uuid)
 }
 inline std::string* ReadDescriptorRequest::_internal_mutable_descriptor_uuid() {
   
   return descriptor_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadDescriptorRequest::release_descriptor_uuid() {
-  // @@protoc_insertion_point(field_release:ReadDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadDescriptorRequest.descriptor_uuid)
   return descriptor_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadDescriptorRequest::set_allocated_descriptor_uuid(std::string* descriptor_uuid) {
@@ -7647,7 +7653,7 @@ inline void ReadDescriptorRequest::set_allocated_descriptor_uuid(std::string* de
   }
   descriptor_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), descriptor_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadDescriptorRequest.descriptor_uuid)
 }
 
 // string service_uuid = 3;
@@ -7655,15 +7661,15 @@ inline void ReadDescriptorRequest::clear_service_uuid() {
   service_uuid_.ClearToEmpty();
 }
 inline const std::string& ReadDescriptorRequest::service_uuid() const {
-  // @@protoc_insertion_point(field_get:ReadDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadDescriptorRequest.service_uuid)
   return _internal_service_uuid();
 }
 inline void ReadDescriptorRequest::set_service_uuid(const std::string& value) {
   _internal_set_service_uuid(value);
-  // @@protoc_insertion_point(field_set:ReadDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadDescriptorRequest.service_uuid)
 }
 inline std::string* ReadDescriptorRequest::mutable_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:ReadDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadDescriptorRequest.service_uuid)
   return _internal_mutable_service_uuid();
 }
 inline const std::string& ReadDescriptorRequest::_internal_service_uuid() const {
@@ -7677,27 +7683,27 @@ inline void ReadDescriptorRequest::set_service_uuid(std::string&& value) {
   
   service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadDescriptorRequest.service_uuid)
 }
 inline void ReadDescriptorRequest::set_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadDescriptorRequest.service_uuid)
 }
 inline void ReadDescriptorRequest::set_service_uuid(const char* value,
     size_t size) {
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadDescriptorRequest.service_uuid)
 }
 inline std::string* ReadDescriptorRequest::_internal_mutable_service_uuid() {
   
   return service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadDescriptorRequest::release_service_uuid() {
-  // @@protoc_insertion_point(field_release:ReadDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadDescriptorRequest.service_uuid)
   return service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadDescriptorRequest::set_allocated_service_uuid(std::string* service_uuid) {
@@ -7708,7 +7714,7 @@ inline void ReadDescriptorRequest::set_allocated_service_uuid(std::string* servi
   }
   service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadDescriptorRequest.service_uuid)
 }
 
 // string secondary_service_uuid = 4;
@@ -7716,15 +7722,15 @@ inline void ReadDescriptorRequest::clear_secondary_service_uuid() {
   secondary_service_uuid_.ClearToEmpty();
 }
 inline const std::string& ReadDescriptorRequest::secondary_service_uuid() const {
-  // @@protoc_insertion_point(field_get:ReadDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadDescriptorRequest.secondary_service_uuid)
   return _internal_secondary_service_uuid();
 }
 inline void ReadDescriptorRequest::set_secondary_service_uuid(const std::string& value) {
   _internal_set_secondary_service_uuid(value);
-  // @@protoc_insertion_point(field_set:ReadDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadDescriptorRequest.secondary_service_uuid)
 }
 inline std::string* ReadDescriptorRequest::mutable_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:ReadDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadDescriptorRequest.secondary_service_uuid)
   return _internal_mutable_secondary_service_uuid();
 }
 inline const std::string& ReadDescriptorRequest::_internal_secondary_service_uuid() const {
@@ -7738,27 +7744,27 @@ inline void ReadDescriptorRequest::set_secondary_service_uuid(std::string&& valu
   
   secondary_service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadDescriptorRequest.secondary_service_uuid)
 }
 inline void ReadDescriptorRequest::set_secondary_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadDescriptorRequest.secondary_service_uuid)
 }
 inline void ReadDescriptorRequest::set_secondary_service_uuid(const char* value,
     size_t size) {
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadDescriptorRequest.secondary_service_uuid)
 }
 inline std::string* ReadDescriptorRequest::_internal_mutable_secondary_service_uuid() {
   
   return secondary_service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadDescriptorRequest::release_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_release:ReadDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadDescriptorRequest.secondary_service_uuid)
   return secondary_service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadDescriptorRequest::set_allocated_secondary_service_uuid(std::string* secondary_service_uuid) {
@@ -7769,7 +7775,7 @@ inline void ReadDescriptorRequest::set_allocated_secondary_service_uuid(std::str
   }
   secondary_service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), secondary_service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadDescriptorRequest.secondary_service_uuid)
 }
 
 // string characteristic_uuid = 5;
@@ -7777,15 +7783,15 @@ inline void ReadDescriptorRequest::clear_characteristic_uuid() {
   characteristic_uuid_.ClearToEmpty();
 }
 inline const std::string& ReadDescriptorRequest::characteristic_uuid() const {
-  // @@protoc_insertion_point(field_get:ReadDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadDescriptorRequest.characteristic_uuid)
   return _internal_characteristic_uuid();
 }
 inline void ReadDescriptorRequest::set_characteristic_uuid(const std::string& value) {
   _internal_set_characteristic_uuid(value);
-  // @@protoc_insertion_point(field_set:ReadDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadDescriptorRequest.characteristic_uuid)
 }
 inline std::string* ReadDescriptorRequest::mutable_characteristic_uuid() {
-  // @@protoc_insertion_point(field_mutable:ReadDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadDescriptorRequest.characteristic_uuid)
   return _internal_mutable_characteristic_uuid();
 }
 inline const std::string& ReadDescriptorRequest::_internal_characteristic_uuid() const {
@@ -7799,27 +7805,27 @@ inline void ReadDescriptorRequest::set_characteristic_uuid(std::string&& value) 
   
   characteristic_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadDescriptorRequest.characteristic_uuid)
 }
 inline void ReadDescriptorRequest::set_characteristic_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadDescriptorRequest.characteristic_uuid)
 }
 inline void ReadDescriptorRequest::set_characteristic_uuid(const char* value,
     size_t size) {
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadDescriptorRequest.characteristic_uuid)
 }
 inline std::string* ReadDescriptorRequest::_internal_mutable_characteristic_uuid() {
   
   return characteristic_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadDescriptorRequest::release_characteristic_uuid() {
-  // @@protoc_insertion_point(field_release:ReadDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadDescriptorRequest.characteristic_uuid)
   return characteristic_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadDescriptorRequest::set_allocated_characteristic_uuid(std::string* characteristic_uuid) {
@@ -7830,14 +7836,14 @@ inline void ReadDescriptorRequest::set_allocated_characteristic_uuid(std::string
   }
   characteristic_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), characteristic_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadDescriptorRequest.characteristic_uuid)
 }
 
 // -------------------------------------------------------------------
 
 // ReadDescriptorResponse
 
-// .ReadDescriptorRequest request = 1;
+// .proto.gen.ReadDescriptorRequest request = 1;
 inline bool ReadDescriptorResponse::_internal_has_request() const {
   return this != internal_default_instance() && request_ != nullptr;
 }
@@ -7850,17 +7856,17 @@ inline void ReadDescriptorResponse::clear_request() {
   }
   request_ = nullptr;
 }
-inline const ::ReadDescriptorRequest& ReadDescriptorResponse::_internal_request() const {
-  const ::ReadDescriptorRequest* p = request_;
-  return p != nullptr ? *p : reinterpret_cast<const ::ReadDescriptorRequest&>(
-      ::_ReadDescriptorRequest_default_instance_);
+inline const ::proto::gen::ReadDescriptorRequest& ReadDescriptorResponse::_internal_request() const {
+  const ::proto::gen::ReadDescriptorRequest* p = request_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::ReadDescriptorRequest&>(
+      ::proto::gen::_ReadDescriptorRequest_default_instance_);
 }
-inline const ::ReadDescriptorRequest& ReadDescriptorResponse::request() const {
-  // @@protoc_insertion_point(field_get:ReadDescriptorResponse.request)
+inline const ::proto::gen::ReadDescriptorRequest& ReadDescriptorResponse::request() const {
+  // @@protoc_insertion_point(field_get:proto.gen.ReadDescriptorResponse.request)
   return _internal_request();
 }
 inline void ReadDescriptorResponse::unsafe_arena_set_allocated_request(
-    ::ReadDescriptorRequest* request) {
+    ::proto::gen::ReadDescriptorRequest* request) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(request_);
   }
@@ -7870,37 +7876,37 @@ inline void ReadDescriptorResponse::unsafe_arena_set_allocated_request(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ReadDescriptorResponse.request)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.ReadDescriptorResponse.request)
 }
-inline ::ReadDescriptorRequest* ReadDescriptorResponse::release_request() {
+inline ::proto::gen::ReadDescriptorRequest* ReadDescriptorResponse::release_request() {
   
-  ::ReadDescriptorRequest* temp = request_;
+  ::proto::gen::ReadDescriptorRequest* temp = request_;
   request_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::ReadDescriptorRequest* ReadDescriptorResponse::unsafe_arena_release_request() {
-  // @@protoc_insertion_point(field_release:ReadDescriptorResponse.request)
+inline ::proto::gen::ReadDescriptorRequest* ReadDescriptorResponse::unsafe_arena_release_request() {
+  // @@protoc_insertion_point(field_release:proto.gen.ReadDescriptorResponse.request)
   
-  ::ReadDescriptorRequest* temp = request_;
+  ::proto::gen::ReadDescriptorRequest* temp = request_;
   request_ = nullptr;
   return temp;
 }
-inline ::ReadDescriptorRequest* ReadDescriptorResponse::_internal_mutable_request() {
+inline ::proto::gen::ReadDescriptorRequest* ReadDescriptorResponse::_internal_mutable_request() {
   
   if (request_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ReadDescriptorRequest>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::ReadDescriptorRequest>(GetArena());
     request_ = p;
   }
   return request_;
 }
-inline ::ReadDescriptorRequest* ReadDescriptorResponse::mutable_request() {
-  // @@protoc_insertion_point(field_mutable:ReadDescriptorResponse.request)
+inline ::proto::gen::ReadDescriptorRequest* ReadDescriptorResponse::mutable_request() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadDescriptorResponse.request)
   return _internal_mutable_request();
 }
-inline void ReadDescriptorResponse::set_allocated_request(::ReadDescriptorRequest* request) {
+inline void ReadDescriptorResponse::set_allocated_request(::proto::gen::ReadDescriptorRequest* request) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete request_;
@@ -7917,7 +7923,7 @@ inline void ReadDescriptorResponse::set_allocated_request(::ReadDescriptorReques
     
   }
   request_ = request;
-  // @@protoc_insertion_point(field_set_allocated:ReadDescriptorResponse.request)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadDescriptorResponse.request)
 }
 
 // bytes value = 2;
@@ -7925,15 +7931,15 @@ inline void ReadDescriptorResponse::clear_value() {
   value_.ClearToEmpty();
 }
 inline const std::string& ReadDescriptorResponse::value() const {
-  // @@protoc_insertion_point(field_get:ReadDescriptorResponse.value)
+  // @@protoc_insertion_point(field_get:proto.gen.ReadDescriptorResponse.value)
   return _internal_value();
 }
 inline void ReadDescriptorResponse::set_value(const std::string& value) {
   _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:ReadDescriptorResponse.value)
+  // @@protoc_insertion_point(field_set:proto.gen.ReadDescriptorResponse.value)
 }
 inline std::string* ReadDescriptorResponse::mutable_value() {
-  // @@protoc_insertion_point(field_mutable:ReadDescriptorResponse.value)
+  // @@protoc_insertion_point(field_mutable:proto.gen.ReadDescriptorResponse.value)
   return _internal_mutable_value();
 }
 inline const std::string& ReadDescriptorResponse::_internal_value() const {
@@ -7947,27 +7953,27 @@ inline void ReadDescriptorResponse::set_value(std::string&& value) {
   
   value_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:ReadDescriptorResponse.value)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.ReadDescriptorResponse.value)
 }
 inline void ReadDescriptorResponse::set_value(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:ReadDescriptorResponse.value)
+  // @@protoc_insertion_point(field_set_char:proto.gen.ReadDescriptorResponse.value)
 }
 inline void ReadDescriptorResponse::set_value(const void* value,
     size_t size) {
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:ReadDescriptorResponse.value)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.ReadDescriptorResponse.value)
 }
 inline std::string* ReadDescriptorResponse::_internal_mutable_value() {
   
   return value_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* ReadDescriptorResponse::release_value() {
-  // @@protoc_insertion_point(field_release:ReadDescriptorResponse.value)
+  // @@protoc_insertion_point(field_release:proto.gen.ReadDescriptorResponse.value)
   return value_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void ReadDescriptorResponse::set_allocated_value(std::string* value) {
@@ -7978,7 +7984,7 @@ inline void ReadDescriptorResponse::set_allocated_value(std::string* value) {
   }
   value_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:ReadDescriptorResponse.value)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.ReadDescriptorResponse.value)
 }
 
 // -------------------------------------------------------------------
@@ -7990,15 +7996,15 @@ inline void WriteCharacteristicRequest::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& WriteCharacteristicRequest::remote_id() const {
-  // @@protoc_insertion_point(field_get:WriteCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteCharacteristicRequest.remote_id)
   return _internal_remote_id();
 }
 inline void WriteCharacteristicRequest::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:WriteCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteCharacteristicRequest.remote_id)
 }
 inline std::string* WriteCharacteristicRequest::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:WriteCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteCharacteristicRequest.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& WriteCharacteristicRequest::_internal_remote_id() const {
@@ -8012,27 +8018,27 @@ inline void WriteCharacteristicRequest::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteCharacteristicRequest.remote_id)
 }
 inline void WriteCharacteristicRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteCharacteristicRequest.remote_id)
 }
 inline void WriteCharacteristicRequest::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteCharacteristicRequest.remote_id)
 }
 inline std::string* WriteCharacteristicRequest::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteCharacteristicRequest::release_remote_id() {
-  // @@protoc_insertion_point(field_release:WriteCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteCharacteristicRequest.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteCharacteristicRequest::set_allocated_remote_id(std::string* remote_id) {
@@ -8043,7 +8049,7 @@ inline void WriteCharacteristicRequest::set_allocated_remote_id(std::string* rem
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteCharacteristicRequest.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteCharacteristicRequest.remote_id)
 }
 
 // string characteristic_uuid = 2;
@@ -8051,15 +8057,15 @@ inline void WriteCharacteristicRequest::clear_characteristic_uuid() {
   characteristic_uuid_.ClearToEmpty();
 }
 inline const std::string& WriteCharacteristicRequest::characteristic_uuid() const {
-  // @@protoc_insertion_point(field_get:WriteCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteCharacteristicRequest.characteristic_uuid)
   return _internal_characteristic_uuid();
 }
 inline void WriteCharacteristicRequest::set_characteristic_uuid(const std::string& value) {
   _internal_set_characteristic_uuid(value);
-  // @@protoc_insertion_point(field_set:WriteCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteCharacteristicRequest.characteristic_uuid)
 }
 inline std::string* WriteCharacteristicRequest::mutable_characteristic_uuid() {
-  // @@protoc_insertion_point(field_mutable:WriteCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteCharacteristicRequest.characteristic_uuid)
   return _internal_mutable_characteristic_uuid();
 }
 inline const std::string& WriteCharacteristicRequest::_internal_characteristic_uuid() const {
@@ -8073,27 +8079,27 @@ inline void WriteCharacteristicRequest::set_characteristic_uuid(std::string&& va
   
   characteristic_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteCharacteristicRequest.characteristic_uuid)
 }
 inline void WriteCharacteristicRequest::set_characteristic_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteCharacteristicRequest.characteristic_uuid)
 }
 inline void WriteCharacteristicRequest::set_characteristic_uuid(const char* value,
     size_t size) {
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteCharacteristicRequest.characteristic_uuid)
 }
 inline std::string* WriteCharacteristicRequest::_internal_mutable_characteristic_uuid() {
   
   return characteristic_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteCharacteristicRequest::release_characteristic_uuid() {
-  // @@protoc_insertion_point(field_release:WriteCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteCharacteristicRequest.characteristic_uuid)
   return characteristic_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteCharacteristicRequest::set_allocated_characteristic_uuid(std::string* characteristic_uuid) {
@@ -8104,7 +8110,7 @@ inline void WriteCharacteristicRequest::set_allocated_characteristic_uuid(std::s
   }
   characteristic_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), characteristic_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteCharacteristicRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteCharacteristicRequest.characteristic_uuid)
 }
 
 // string service_uuid = 3;
@@ -8112,15 +8118,15 @@ inline void WriteCharacteristicRequest::clear_service_uuid() {
   service_uuid_.ClearToEmpty();
 }
 inline const std::string& WriteCharacteristicRequest::service_uuid() const {
-  // @@protoc_insertion_point(field_get:WriteCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteCharacteristicRequest.service_uuid)
   return _internal_service_uuid();
 }
 inline void WriteCharacteristicRequest::set_service_uuid(const std::string& value) {
   _internal_set_service_uuid(value);
-  // @@protoc_insertion_point(field_set:WriteCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteCharacteristicRequest.service_uuid)
 }
 inline std::string* WriteCharacteristicRequest::mutable_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:WriteCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteCharacteristicRequest.service_uuid)
   return _internal_mutable_service_uuid();
 }
 inline const std::string& WriteCharacteristicRequest::_internal_service_uuid() const {
@@ -8134,27 +8140,27 @@ inline void WriteCharacteristicRequest::set_service_uuid(std::string&& value) {
   
   service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteCharacteristicRequest.service_uuid)
 }
 inline void WriteCharacteristicRequest::set_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteCharacteristicRequest.service_uuid)
 }
 inline void WriteCharacteristicRequest::set_service_uuid(const char* value,
     size_t size) {
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteCharacteristicRequest.service_uuid)
 }
 inline std::string* WriteCharacteristicRequest::_internal_mutable_service_uuid() {
   
   return service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteCharacteristicRequest::release_service_uuid() {
-  // @@protoc_insertion_point(field_release:WriteCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteCharacteristicRequest.service_uuid)
   return service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteCharacteristicRequest::set_allocated_service_uuid(std::string* service_uuid) {
@@ -8165,7 +8171,7 @@ inline void WriteCharacteristicRequest::set_allocated_service_uuid(std::string* 
   }
   service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteCharacteristicRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteCharacteristicRequest.service_uuid)
 }
 
 // string secondary_service_uuid = 4;
@@ -8173,15 +8179,15 @@ inline void WriteCharacteristicRequest::clear_secondary_service_uuid() {
   secondary_service_uuid_.ClearToEmpty();
 }
 inline const std::string& WriteCharacteristicRequest::secondary_service_uuid() const {
-  // @@protoc_insertion_point(field_get:WriteCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteCharacteristicRequest.secondary_service_uuid)
   return _internal_secondary_service_uuid();
 }
 inline void WriteCharacteristicRequest::set_secondary_service_uuid(const std::string& value) {
   _internal_set_secondary_service_uuid(value);
-  // @@protoc_insertion_point(field_set:WriteCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteCharacteristicRequest.secondary_service_uuid)
 }
 inline std::string* WriteCharacteristicRequest::mutable_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:WriteCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteCharacteristicRequest.secondary_service_uuid)
   return _internal_mutable_secondary_service_uuid();
 }
 inline const std::string& WriteCharacteristicRequest::_internal_secondary_service_uuid() const {
@@ -8195,27 +8201,27 @@ inline void WriteCharacteristicRequest::set_secondary_service_uuid(std::string&&
   
   secondary_service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteCharacteristicRequest.secondary_service_uuid)
 }
 inline void WriteCharacteristicRequest::set_secondary_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteCharacteristicRequest.secondary_service_uuid)
 }
 inline void WriteCharacteristicRequest::set_secondary_service_uuid(const char* value,
     size_t size) {
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteCharacteristicRequest.secondary_service_uuid)
 }
 inline std::string* WriteCharacteristicRequest::_internal_mutable_secondary_service_uuid() {
   
   return secondary_service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteCharacteristicRequest::release_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_release:WriteCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteCharacteristicRequest.secondary_service_uuid)
   return secondary_service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteCharacteristicRequest::set_allocated_secondary_service_uuid(std::string* secondary_service_uuid) {
@@ -8226,27 +8232,27 @@ inline void WriteCharacteristicRequest::set_allocated_secondary_service_uuid(std
   }
   secondary_service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), secondary_service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteCharacteristicRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteCharacteristicRequest.secondary_service_uuid)
 }
 
-// .WriteCharacteristicRequest.WriteType write_type = 5;
+// .proto.gen.WriteCharacteristicRequest.WriteType write_type = 5;
 inline void WriteCharacteristicRequest::clear_write_type() {
   write_type_ = 0;
 }
-inline ::WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::_internal_write_type() const {
-  return static_cast< ::WriteCharacteristicRequest_WriteType >(write_type_);
+inline ::proto::gen::WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::_internal_write_type() const {
+  return static_cast< ::proto::gen::WriteCharacteristicRequest_WriteType >(write_type_);
 }
-inline ::WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::write_type() const {
-  // @@protoc_insertion_point(field_get:WriteCharacteristicRequest.write_type)
+inline ::proto::gen::WriteCharacteristicRequest_WriteType WriteCharacteristicRequest::write_type() const {
+  // @@protoc_insertion_point(field_get:proto.gen.WriteCharacteristicRequest.write_type)
   return _internal_write_type();
 }
-inline void WriteCharacteristicRequest::_internal_set_write_type(::WriteCharacteristicRequest_WriteType value) {
+inline void WriteCharacteristicRequest::_internal_set_write_type(::proto::gen::WriteCharacteristicRequest_WriteType value) {
   
   write_type_ = value;
 }
-inline void WriteCharacteristicRequest::set_write_type(::WriteCharacteristicRequest_WriteType value) {
+inline void WriteCharacteristicRequest::set_write_type(::proto::gen::WriteCharacteristicRequest_WriteType value) {
   _internal_set_write_type(value);
-  // @@protoc_insertion_point(field_set:WriteCharacteristicRequest.write_type)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteCharacteristicRequest.write_type)
 }
 
 // bytes value = 6;
@@ -8254,15 +8260,15 @@ inline void WriteCharacteristicRequest::clear_value() {
   value_.ClearToEmpty();
 }
 inline const std::string& WriteCharacteristicRequest::value() const {
-  // @@protoc_insertion_point(field_get:WriteCharacteristicRequest.value)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteCharacteristicRequest.value)
   return _internal_value();
 }
 inline void WriteCharacteristicRequest::set_value(const std::string& value) {
   _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:WriteCharacteristicRequest.value)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteCharacteristicRequest.value)
 }
 inline std::string* WriteCharacteristicRequest::mutable_value() {
-  // @@protoc_insertion_point(field_mutable:WriteCharacteristicRequest.value)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteCharacteristicRequest.value)
   return _internal_mutable_value();
 }
 inline const std::string& WriteCharacteristicRequest::_internal_value() const {
@@ -8276,27 +8282,27 @@ inline void WriteCharacteristicRequest::set_value(std::string&& value) {
   
   value_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteCharacteristicRequest.value)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteCharacteristicRequest.value)
 }
 inline void WriteCharacteristicRequest::set_value(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteCharacteristicRequest.value)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteCharacteristicRequest.value)
 }
 inline void WriteCharacteristicRequest::set_value(const void* value,
     size_t size) {
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteCharacteristicRequest.value)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteCharacteristicRequest.value)
 }
 inline std::string* WriteCharacteristicRequest::_internal_mutable_value() {
   
   return value_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteCharacteristicRequest::release_value() {
-  // @@protoc_insertion_point(field_release:WriteCharacteristicRequest.value)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteCharacteristicRequest.value)
   return value_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteCharacteristicRequest::set_allocated_value(std::string* value) {
@@ -8307,14 +8313,14 @@ inline void WriteCharacteristicRequest::set_allocated_value(std::string* value) 
   }
   value_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteCharacteristicRequest.value)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteCharacteristicRequest.value)
 }
 
 // -------------------------------------------------------------------
 
 // WriteCharacteristicResponse
 
-// .WriteCharacteristicRequest request = 1;
+// .proto.gen.WriteCharacteristicRequest request = 1;
 inline bool WriteCharacteristicResponse::_internal_has_request() const {
   return this != internal_default_instance() && request_ != nullptr;
 }
@@ -8327,17 +8333,17 @@ inline void WriteCharacteristicResponse::clear_request() {
   }
   request_ = nullptr;
 }
-inline const ::WriteCharacteristicRequest& WriteCharacteristicResponse::_internal_request() const {
-  const ::WriteCharacteristicRequest* p = request_;
-  return p != nullptr ? *p : reinterpret_cast<const ::WriteCharacteristicRequest&>(
-      ::_WriteCharacteristicRequest_default_instance_);
+inline const ::proto::gen::WriteCharacteristicRequest& WriteCharacteristicResponse::_internal_request() const {
+  const ::proto::gen::WriteCharacteristicRequest* p = request_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::WriteCharacteristicRequest&>(
+      ::proto::gen::_WriteCharacteristicRequest_default_instance_);
 }
-inline const ::WriteCharacteristicRequest& WriteCharacteristicResponse::request() const {
-  // @@protoc_insertion_point(field_get:WriteCharacteristicResponse.request)
+inline const ::proto::gen::WriteCharacteristicRequest& WriteCharacteristicResponse::request() const {
+  // @@protoc_insertion_point(field_get:proto.gen.WriteCharacteristicResponse.request)
   return _internal_request();
 }
 inline void WriteCharacteristicResponse::unsafe_arena_set_allocated_request(
-    ::WriteCharacteristicRequest* request) {
+    ::proto::gen::WriteCharacteristicRequest* request) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(request_);
   }
@@ -8347,37 +8353,37 @@ inline void WriteCharacteristicResponse::unsafe_arena_set_allocated_request(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:WriteCharacteristicResponse.request)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.WriteCharacteristicResponse.request)
 }
-inline ::WriteCharacteristicRequest* WriteCharacteristicResponse::release_request() {
+inline ::proto::gen::WriteCharacteristicRequest* WriteCharacteristicResponse::release_request() {
   
-  ::WriteCharacteristicRequest* temp = request_;
+  ::proto::gen::WriteCharacteristicRequest* temp = request_;
   request_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::WriteCharacteristicRequest* WriteCharacteristicResponse::unsafe_arena_release_request() {
-  // @@protoc_insertion_point(field_release:WriteCharacteristicResponse.request)
+inline ::proto::gen::WriteCharacteristicRequest* WriteCharacteristicResponse::unsafe_arena_release_request() {
+  // @@protoc_insertion_point(field_release:proto.gen.WriteCharacteristicResponse.request)
   
-  ::WriteCharacteristicRequest* temp = request_;
+  ::proto::gen::WriteCharacteristicRequest* temp = request_;
   request_ = nullptr;
   return temp;
 }
-inline ::WriteCharacteristicRequest* WriteCharacteristicResponse::_internal_mutable_request() {
+inline ::proto::gen::WriteCharacteristicRequest* WriteCharacteristicResponse::_internal_mutable_request() {
   
   if (request_ == nullptr) {
-    auto* p = CreateMaybeMessage<::WriteCharacteristicRequest>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::WriteCharacteristicRequest>(GetArena());
     request_ = p;
   }
   return request_;
 }
-inline ::WriteCharacteristicRequest* WriteCharacteristicResponse::mutable_request() {
-  // @@protoc_insertion_point(field_mutable:WriteCharacteristicResponse.request)
+inline ::proto::gen::WriteCharacteristicRequest* WriteCharacteristicResponse::mutable_request() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteCharacteristicResponse.request)
   return _internal_mutable_request();
 }
-inline void WriteCharacteristicResponse::set_allocated_request(::WriteCharacteristicRequest* request) {
+inline void WriteCharacteristicResponse::set_allocated_request(::proto::gen::WriteCharacteristicRequest* request) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete request_;
@@ -8394,7 +8400,7 @@ inline void WriteCharacteristicResponse::set_allocated_request(::WriteCharacteri
     
   }
   request_ = request;
-  // @@protoc_insertion_point(field_set_allocated:WriteCharacteristicResponse.request)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteCharacteristicResponse.request)
 }
 
 // bool success = 2;
@@ -8405,7 +8411,7 @@ inline bool WriteCharacteristicResponse::_internal_success() const {
   return success_;
 }
 inline bool WriteCharacteristicResponse::success() const {
-  // @@protoc_insertion_point(field_get:WriteCharacteristicResponse.success)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteCharacteristicResponse.success)
   return _internal_success();
 }
 inline void WriteCharacteristicResponse::_internal_set_success(bool value) {
@@ -8414,7 +8420,7 @@ inline void WriteCharacteristicResponse::_internal_set_success(bool value) {
 }
 inline void WriteCharacteristicResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:WriteCharacteristicResponse.success)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteCharacteristicResponse.success)
 }
 
 // -------------------------------------------------------------------
@@ -8426,15 +8432,15 @@ inline void WriteDescriptorRequest::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& WriteDescriptorRequest::remote_id() const {
-  // @@protoc_insertion_point(field_get:WriteDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteDescriptorRequest.remote_id)
   return _internal_remote_id();
 }
 inline void WriteDescriptorRequest::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:WriteDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteDescriptorRequest.remote_id)
 }
 inline std::string* WriteDescriptorRequest::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:WriteDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteDescriptorRequest.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& WriteDescriptorRequest::_internal_remote_id() const {
@@ -8448,27 +8454,27 @@ inline void WriteDescriptorRequest::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteDescriptorRequest.remote_id)
 }
 inline void WriteDescriptorRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteDescriptorRequest.remote_id)
 }
 inline void WriteDescriptorRequest::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteDescriptorRequest.remote_id)
 }
 inline std::string* WriteDescriptorRequest::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteDescriptorRequest::release_remote_id() {
-  // @@protoc_insertion_point(field_release:WriteDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteDescriptorRequest.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteDescriptorRequest::set_allocated_remote_id(std::string* remote_id) {
@@ -8479,7 +8485,7 @@ inline void WriteDescriptorRequest::set_allocated_remote_id(std::string* remote_
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteDescriptorRequest.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteDescriptorRequest.remote_id)
 }
 
 // string descriptor_uuid = 2;
@@ -8487,15 +8493,15 @@ inline void WriteDescriptorRequest::clear_descriptor_uuid() {
   descriptor_uuid_.ClearToEmpty();
 }
 inline const std::string& WriteDescriptorRequest::descriptor_uuid() const {
-  // @@protoc_insertion_point(field_get:WriteDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteDescriptorRequest.descriptor_uuid)
   return _internal_descriptor_uuid();
 }
 inline void WriteDescriptorRequest::set_descriptor_uuid(const std::string& value) {
   _internal_set_descriptor_uuid(value);
-  // @@protoc_insertion_point(field_set:WriteDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteDescriptorRequest.descriptor_uuid)
 }
 inline std::string* WriteDescriptorRequest::mutable_descriptor_uuid() {
-  // @@protoc_insertion_point(field_mutable:WriteDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteDescriptorRequest.descriptor_uuid)
   return _internal_mutable_descriptor_uuid();
 }
 inline const std::string& WriteDescriptorRequest::_internal_descriptor_uuid() const {
@@ -8509,27 +8515,27 @@ inline void WriteDescriptorRequest::set_descriptor_uuid(std::string&& value) {
   
   descriptor_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteDescriptorRequest.descriptor_uuid)
 }
 inline void WriteDescriptorRequest::set_descriptor_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   descriptor_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteDescriptorRequest.descriptor_uuid)
 }
 inline void WriteDescriptorRequest::set_descriptor_uuid(const char* value,
     size_t size) {
   
   descriptor_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteDescriptorRequest.descriptor_uuid)
 }
 inline std::string* WriteDescriptorRequest::_internal_mutable_descriptor_uuid() {
   
   return descriptor_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteDescriptorRequest::release_descriptor_uuid() {
-  // @@protoc_insertion_point(field_release:WriteDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteDescriptorRequest.descriptor_uuid)
   return descriptor_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteDescriptorRequest::set_allocated_descriptor_uuid(std::string* descriptor_uuid) {
@@ -8540,7 +8546,7 @@ inline void WriteDescriptorRequest::set_allocated_descriptor_uuid(std::string* d
   }
   descriptor_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), descriptor_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteDescriptorRequest.descriptor_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteDescriptorRequest.descriptor_uuid)
 }
 
 // string service_uuid = 3;
@@ -8548,15 +8554,15 @@ inline void WriteDescriptorRequest::clear_service_uuid() {
   service_uuid_.ClearToEmpty();
 }
 inline const std::string& WriteDescriptorRequest::service_uuid() const {
-  // @@protoc_insertion_point(field_get:WriteDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteDescriptorRequest.service_uuid)
   return _internal_service_uuid();
 }
 inline void WriteDescriptorRequest::set_service_uuid(const std::string& value) {
   _internal_set_service_uuid(value);
-  // @@protoc_insertion_point(field_set:WriteDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteDescriptorRequest.service_uuid)
 }
 inline std::string* WriteDescriptorRequest::mutable_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:WriteDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteDescriptorRequest.service_uuid)
   return _internal_mutable_service_uuid();
 }
 inline const std::string& WriteDescriptorRequest::_internal_service_uuid() const {
@@ -8570,27 +8576,27 @@ inline void WriteDescriptorRequest::set_service_uuid(std::string&& value) {
   
   service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteDescriptorRequest.service_uuid)
 }
 inline void WriteDescriptorRequest::set_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteDescriptorRequest.service_uuid)
 }
 inline void WriteDescriptorRequest::set_service_uuid(const char* value,
     size_t size) {
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteDescriptorRequest.service_uuid)
 }
 inline std::string* WriteDescriptorRequest::_internal_mutable_service_uuid() {
   
   return service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteDescriptorRequest::release_service_uuid() {
-  // @@protoc_insertion_point(field_release:WriteDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteDescriptorRequest.service_uuid)
   return service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteDescriptorRequest::set_allocated_service_uuid(std::string* service_uuid) {
@@ -8601,7 +8607,7 @@ inline void WriteDescriptorRequest::set_allocated_service_uuid(std::string* serv
   }
   service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteDescriptorRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteDescriptorRequest.service_uuid)
 }
 
 // string secondary_service_uuid = 4;
@@ -8609,15 +8615,15 @@ inline void WriteDescriptorRequest::clear_secondary_service_uuid() {
   secondary_service_uuid_.ClearToEmpty();
 }
 inline const std::string& WriteDescriptorRequest::secondary_service_uuid() const {
-  // @@protoc_insertion_point(field_get:WriteDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteDescriptorRequest.secondary_service_uuid)
   return _internal_secondary_service_uuid();
 }
 inline void WriteDescriptorRequest::set_secondary_service_uuid(const std::string& value) {
   _internal_set_secondary_service_uuid(value);
-  // @@protoc_insertion_point(field_set:WriteDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteDescriptorRequest.secondary_service_uuid)
 }
 inline std::string* WriteDescriptorRequest::mutable_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:WriteDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteDescriptorRequest.secondary_service_uuid)
   return _internal_mutable_secondary_service_uuid();
 }
 inline const std::string& WriteDescriptorRequest::_internal_secondary_service_uuid() const {
@@ -8631,27 +8637,27 @@ inline void WriteDescriptorRequest::set_secondary_service_uuid(std::string&& val
   
   secondary_service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteDescriptorRequest.secondary_service_uuid)
 }
 inline void WriteDescriptorRequest::set_secondary_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteDescriptorRequest.secondary_service_uuid)
 }
 inline void WriteDescriptorRequest::set_secondary_service_uuid(const char* value,
     size_t size) {
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteDescriptorRequest.secondary_service_uuid)
 }
 inline std::string* WriteDescriptorRequest::_internal_mutable_secondary_service_uuid() {
   
   return secondary_service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteDescriptorRequest::release_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_release:WriteDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteDescriptorRequest.secondary_service_uuid)
   return secondary_service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteDescriptorRequest::set_allocated_secondary_service_uuid(std::string* secondary_service_uuid) {
@@ -8662,7 +8668,7 @@ inline void WriteDescriptorRequest::set_allocated_secondary_service_uuid(std::st
   }
   secondary_service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), secondary_service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteDescriptorRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteDescriptorRequest.secondary_service_uuid)
 }
 
 // string characteristic_uuid = 5;
@@ -8670,15 +8676,15 @@ inline void WriteDescriptorRequest::clear_characteristic_uuid() {
   characteristic_uuid_.ClearToEmpty();
 }
 inline const std::string& WriteDescriptorRequest::characteristic_uuid() const {
-  // @@protoc_insertion_point(field_get:WriteDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteDescriptorRequest.characteristic_uuid)
   return _internal_characteristic_uuid();
 }
 inline void WriteDescriptorRequest::set_characteristic_uuid(const std::string& value) {
   _internal_set_characteristic_uuid(value);
-  // @@protoc_insertion_point(field_set:WriteDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteDescriptorRequest.characteristic_uuid)
 }
 inline std::string* WriteDescriptorRequest::mutable_characteristic_uuid() {
-  // @@protoc_insertion_point(field_mutable:WriteDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteDescriptorRequest.characteristic_uuid)
   return _internal_mutable_characteristic_uuid();
 }
 inline const std::string& WriteDescriptorRequest::_internal_characteristic_uuid() const {
@@ -8692,27 +8698,27 @@ inline void WriteDescriptorRequest::set_characteristic_uuid(std::string&& value)
   
   characteristic_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteDescriptorRequest.characteristic_uuid)
 }
 inline void WriteDescriptorRequest::set_characteristic_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteDescriptorRequest.characteristic_uuid)
 }
 inline void WriteDescriptorRequest::set_characteristic_uuid(const char* value,
     size_t size) {
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteDescriptorRequest.characteristic_uuid)
 }
 inline std::string* WriteDescriptorRequest::_internal_mutable_characteristic_uuid() {
   
   return characteristic_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteDescriptorRequest::release_characteristic_uuid() {
-  // @@protoc_insertion_point(field_release:WriteDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteDescriptorRequest.characteristic_uuid)
   return characteristic_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteDescriptorRequest::set_allocated_characteristic_uuid(std::string* characteristic_uuid) {
@@ -8723,7 +8729,7 @@ inline void WriteDescriptorRequest::set_allocated_characteristic_uuid(std::strin
   }
   characteristic_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), characteristic_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteDescriptorRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteDescriptorRequest.characteristic_uuid)
 }
 
 // bytes value = 6;
@@ -8731,15 +8737,15 @@ inline void WriteDescriptorRequest::clear_value() {
   value_.ClearToEmpty();
 }
 inline const std::string& WriteDescriptorRequest::value() const {
-  // @@protoc_insertion_point(field_get:WriteDescriptorRequest.value)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteDescriptorRequest.value)
   return _internal_value();
 }
 inline void WriteDescriptorRequest::set_value(const std::string& value) {
   _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:WriteDescriptorRequest.value)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteDescriptorRequest.value)
 }
 inline std::string* WriteDescriptorRequest::mutable_value() {
-  // @@protoc_insertion_point(field_mutable:WriteDescriptorRequest.value)
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteDescriptorRequest.value)
   return _internal_mutable_value();
 }
 inline const std::string& WriteDescriptorRequest::_internal_value() const {
@@ -8753,27 +8759,27 @@ inline void WriteDescriptorRequest::set_value(std::string&& value) {
   
   value_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:WriteDescriptorRequest.value)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.WriteDescriptorRequest.value)
 }
 inline void WriteDescriptorRequest::set_value(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:WriteDescriptorRequest.value)
+  // @@protoc_insertion_point(field_set_char:proto.gen.WriteDescriptorRequest.value)
 }
 inline void WriteDescriptorRequest::set_value(const void* value,
     size_t size) {
   
   value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:WriteDescriptorRequest.value)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.WriteDescriptorRequest.value)
 }
 inline std::string* WriteDescriptorRequest::_internal_mutable_value() {
   
   return value_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* WriteDescriptorRequest::release_value() {
-  // @@protoc_insertion_point(field_release:WriteDescriptorRequest.value)
+  // @@protoc_insertion_point(field_release:proto.gen.WriteDescriptorRequest.value)
   return value_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void WriteDescriptorRequest::set_allocated_value(std::string* value) {
@@ -8784,14 +8790,14 @@ inline void WriteDescriptorRequest::set_allocated_value(std::string* value) {
   }
   value_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:WriteDescriptorRequest.value)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteDescriptorRequest.value)
 }
 
 // -------------------------------------------------------------------
 
 // WriteDescriptorResponse
 
-// .WriteDescriptorRequest request = 1;
+// .proto.gen.WriteDescriptorRequest request = 1;
 inline bool WriteDescriptorResponse::_internal_has_request() const {
   return this != internal_default_instance() && request_ != nullptr;
 }
@@ -8804,17 +8810,17 @@ inline void WriteDescriptorResponse::clear_request() {
   }
   request_ = nullptr;
 }
-inline const ::WriteDescriptorRequest& WriteDescriptorResponse::_internal_request() const {
-  const ::WriteDescriptorRequest* p = request_;
-  return p != nullptr ? *p : reinterpret_cast<const ::WriteDescriptorRequest&>(
-      ::_WriteDescriptorRequest_default_instance_);
+inline const ::proto::gen::WriteDescriptorRequest& WriteDescriptorResponse::_internal_request() const {
+  const ::proto::gen::WriteDescriptorRequest* p = request_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::WriteDescriptorRequest&>(
+      ::proto::gen::_WriteDescriptorRequest_default_instance_);
 }
-inline const ::WriteDescriptorRequest& WriteDescriptorResponse::request() const {
-  // @@protoc_insertion_point(field_get:WriteDescriptorResponse.request)
+inline const ::proto::gen::WriteDescriptorRequest& WriteDescriptorResponse::request() const {
+  // @@protoc_insertion_point(field_get:proto.gen.WriteDescriptorResponse.request)
   return _internal_request();
 }
 inline void WriteDescriptorResponse::unsafe_arena_set_allocated_request(
-    ::WriteDescriptorRequest* request) {
+    ::proto::gen::WriteDescriptorRequest* request) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(request_);
   }
@@ -8824,37 +8830,37 @@ inline void WriteDescriptorResponse::unsafe_arena_set_allocated_request(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:WriteDescriptorResponse.request)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.WriteDescriptorResponse.request)
 }
-inline ::WriteDescriptorRequest* WriteDescriptorResponse::release_request() {
+inline ::proto::gen::WriteDescriptorRequest* WriteDescriptorResponse::release_request() {
   
-  ::WriteDescriptorRequest* temp = request_;
+  ::proto::gen::WriteDescriptorRequest* temp = request_;
   request_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::WriteDescriptorRequest* WriteDescriptorResponse::unsafe_arena_release_request() {
-  // @@protoc_insertion_point(field_release:WriteDescriptorResponse.request)
+inline ::proto::gen::WriteDescriptorRequest* WriteDescriptorResponse::unsafe_arena_release_request() {
+  // @@protoc_insertion_point(field_release:proto.gen.WriteDescriptorResponse.request)
   
-  ::WriteDescriptorRequest* temp = request_;
+  ::proto::gen::WriteDescriptorRequest* temp = request_;
   request_ = nullptr;
   return temp;
 }
-inline ::WriteDescriptorRequest* WriteDescriptorResponse::_internal_mutable_request() {
+inline ::proto::gen::WriteDescriptorRequest* WriteDescriptorResponse::_internal_mutable_request() {
   
   if (request_ == nullptr) {
-    auto* p = CreateMaybeMessage<::WriteDescriptorRequest>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::WriteDescriptorRequest>(GetArena());
     request_ = p;
   }
   return request_;
 }
-inline ::WriteDescriptorRequest* WriteDescriptorResponse::mutable_request() {
-  // @@protoc_insertion_point(field_mutable:WriteDescriptorResponse.request)
+inline ::proto::gen::WriteDescriptorRequest* WriteDescriptorResponse::mutable_request() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.WriteDescriptorResponse.request)
   return _internal_mutable_request();
 }
-inline void WriteDescriptorResponse::set_allocated_request(::WriteDescriptorRequest* request) {
+inline void WriteDescriptorResponse::set_allocated_request(::proto::gen::WriteDescriptorRequest* request) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete request_;
@@ -8871,7 +8877,7 @@ inline void WriteDescriptorResponse::set_allocated_request(::WriteDescriptorRequ
     
   }
   request_ = request;
-  // @@protoc_insertion_point(field_set_allocated:WriteDescriptorResponse.request)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.WriteDescriptorResponse.request)
 }
 
 // bool success = 2;
@@ -8882,7 +8888,7 @@ inline bool WriteDescriptorResponse::_internal_success() const {
   return success_;
 }
 inline bool WriteDescriptorResponse::success() const {
-  // @@protoc_insertion_point(field_get:WriteDescriptorResponse.success)
+  // @@protoc_insertion_point(field_get:proto.gen.WriteDescriptorResponse.success)
   return _internal_success();
 }
 inline void WriteDescriptorResponse::_internal_set_success(bool value) {
@@ -8891,7 +8897,7 @@ inline void WriteDescriptorResponse::_internal_set_success(bool value) {
 }
 inline void WriteDescriptorResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:WriteDescriptorResponse.success)
+  // @@protoc_insertion_point(field_set:proto.gen.WriteDescriptorResponse.success)
 }
 
 // -------------------------------------------------------------------
@@ -8903,15 +8909,15 @@ inline void SetNotificationRequest::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& SetNotificationRequest::remote_id() const {
-  // @@protoc_insertion_point(field_get:SetNotificationRequest.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.SetNotificationRequest.remote_id)
   return _internal_remote_id();
 }
 inline void SetNotificationRequest::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:SetNotificationRequest.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.SetNotificationRequest.remote_id)
 }
 inline std::string* SetNotificationRequest::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:SetNotificationRequest.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.SetNotificationRequest.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& SetNotificationRequest::_internal_remote_id() const {
@@ -8925,27 +8931,27 @@ inline void SetNotificationRequest::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:SetNotificationRequest.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.SetNotificationRequest.remote_id)
 }
 inline void SetNotificationRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:SetNotificationRequest.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.SetNotificationRequest.remote_id)
 }
 inline void SetNotificationRequest::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:SetNotificationRequest.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.SetNotificationRequest.remote_id)
 }
 inline std::string* SetNotificationRequest::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* SetNotificationRequest::release_remote_id() {
-  // @@protoc_insertion_point(field_release:SetNotificationRequest.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.SetNotificationRequest.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void SetNotificationRequest::set_allocated_remote_id(std::string* remote_id) {
@@ -8956,7 +8962,7 @@ inline void SetNotificationRequest::set_allocated_remote_id(std::string* remote_
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:SetNotificationRequest.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.SetNotificationRequest.remote_id)
 }
 
 // string service_uuid = 2;
@@ -8964,15 +8970,15 @@ inline void SetNotificationRequest::clear_service_uuid() {
   service_uuid_.ClearToEmpty();
 }
 inline const std::string& SetNotificationRequest::service_uuid() const {
-  // @@protoc_insertion_point(field_get:SetNotificationRequest.service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.SetNotificationRequest.service_uuid)
   return _internal_service_uuid();
 }
 inline void SetNotificationRequest::set_service_uuid(const std::string& value) {
   _internal_set_service_uuid(value);
-  // @@protoc_insertion_point(field_set:SetNotificationRequest.service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.SetNotificationRequest.service_uuid)
 }
 inline std::string* SetNotificationRequest::mutable_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:SetNotificationRequest.service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.SetNotificationRequest.service_uuid)
   return _internal_mutable_service_uuid();
 }
 inline const std::string& SetNotificationRequest::_internal_service_uuid() const {
@@ -8986,27 +8992,27 @@ inline void SetNotificationRequest::set_service_uuid(std::string&& value) {
   
   service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:SetNotificationRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.SetNotificationRequest.service_uuid)
 }
 inline void SetNotificationRequest::set_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:SetNotificationRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.SetNotificationRequest.service_uuid)
 }
 inline void SetNotificationRequest::set_service_uuid(const char* value,
     size_t size) {
   
   service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:SetNotificationRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.SetNotificationRequest.service_uuid)
 }
 inline std::string* SetNotificationRequest::_internal_mutable_service_uuid() {
   
   return service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* SetNotificationRequest::release_service_uuid() {
-  // @@protoc_insertion_point(field_release:SetNotificationRequest.service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.SetNotificationRequest.service_uuid)
   return service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void SetNotificationRequest::set_allocated_service_uuid(std::string* service_uuid) {
@@ -9017,7 +9023,7 @@ inline void SetNotificationRequest::set_allocated_service_uuid(std::string* serv
   }
   service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:SetNotificationRequest.service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.SetNotificationRequest.service_uuid)
 }
 
 // string secondary_service_uuid = 3;
@@ -9025,15 +9031,15 @@ inline void SetNotificationRequest::clear_secondary_service_uuid() {
   secondary_service_uuid_.ClearToEmpty();
 }
 inline const std::string& SetNotificationRequest::secondary_service_uuid() const {
-  // @@protoc_insertion_point(field_get:SetNotificationRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.SetNotificationRequest.secondary_service_uuid)
   return _internal_secondary_service_uuid();
 }
 inline void SetNotificationRequest::set_secondary_service_uuid(const std::string& value) {
   _internal_set_secondary_service_uuid(value);
-  // @@protoc_insertion_point(field_set:SetNotificationRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.SetNotificationRequest.secondary_service_uuid)
 }
 inline std::string* SetNotificationRequest::mutable_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_mutable:SetNotificationRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.SetNotificationRequest.secondary_service_uuid)
   return _internal_mutable_secondary_service_uuid();
 }
 inline const std::string& SetNotificationRequest::_internal_secondary_service_uuid() const {
@@ -9047,27 +9053,27 @@ inline void SetNotificationRequest::set_secondary_service_uuid(std::string&& val
   
   secondary_service_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:SetNotificationRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.SetNotificationRequest.secondary_service_uuid)
 }
 inline void SetNotificationRequest::set_secondary_service_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:SetNotificationRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.SetNotificationRequest.secondary_service_uuid)
 }
 inline void SetNotificationRequest::set_secondary_service_uuid(const char* value,
     size_t size) {
   
   secondary_service_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:SetNotificationRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.SetNotificationRequest.secondary_service_uuid)
 }
 inline std::string* SetNotificationRequest::_internal_mutable_secondary_service_uuid() {
   
   return secondary_service_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* SetNotificationRequest::release_secondary_service_uuid() {
-  // @@protoc_insertion_point(field_release:SetNotificationRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.SetNotificationRequest.secondary_service_uuid)
   return secondary_service_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void SetNotificationRequest::set_allocated_secondary_service_uuid(std::string* secondary_service_uuid) {
@@ -9078,7 +9084,7 @@ inline void SetNotificationRequest::set_allocated_secondary_service_uuid(std::st
   }
   secondary_service_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), secondary_service_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:SetNotificationRequest.secondary_service_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.SetNotificationRequest.secondary_service_uuid)
 }
 
 // string characteristic_uuid = 4;
@@ -9086,15 +9092,15 @@ inline void SetNotificationRequest::clear_characteristic_uuid() {
   characteristic_uuid_.ClearToEmpty();
 }
 inline const std::string& SetNotificationRequest::characteristic_uuid() const {
-  // @@protoc_insertion_point(field_get:SetNotificationRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_get:proto.gen.SetNotificationRequest.characteristic_uuid)
   return _internal_characteristic_uuid();
 }
 inline void SetNotificationRequest::set_characteristic_uuid(const std::string& value) {
   _internal_set_characteristic_uuid(value);
-  // @@protoc_insertion_point(field_set:SetNotificationRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set:proto.gen.SetNotificationRequest.characteristic_uuid)
 }
 inline std::string* SetNotificationRequest::mutable_characteristic_uuid() {
-  // @@protoc_insertion_point(field_mutable:SetNotificationRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_mutable:proto.gen.SetNotificationRequest.characteristic_uuid)
   return _internal_mutable_characteristic_uuid();
 }
 inline const std::string& SetNotificationRequest::_internal_characteristic_uuid() const {
@@ -9108,27 +9114,27 @@ inline void SetNotificationRequest::set_characteristic_uuid(std::string&& value)
   
   characteristic_uuid_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:SetNotificationRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.SetNotificationRequest.characteristic_uuid)
 }
 inline void SetNotificationRequest::set_characteristic_uuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:SetNotificationRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_char:proto.gen.SetNotificationRequest.characteristic_uuid)
 }
 inline void SetNotificationRequest::set_characteristic_uuid(const char* value,
     size_t size) {
   
   characteristic_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:SetNotificationRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.SetNotificationRequest.characteristic_uuid)
 }
 inline std::string* SetNotificationRequest::_internal_mutable_characteristic_uuid() {
   
   return characteristic_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* SetNotificationRequest::release_characteristic_uuid() {
-  // @@protoc_insertion_point(field_release:SetNotificationRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_release:proto.gen.SetNotificationRequest.characteristic_uuid)
   return characteristic_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void SetNotificationRequest::set_allocated_characteristic_uuid(std::string* characteristic_uuid) {
@@ -9139,7 +9145,7 @@ inline void SetNotificationRequest::set_allocated_characteristic_uuid(std::strin
   }
   characteristic_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), characteristic_uuid,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:SetNotificationRequest.characteristic_uuid)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.SetNotificationRequest.characteristic_uuid)
 }
 
 // bool enable = 5;
@@ -9150,7 +9156,7 @@ inline bool SetNotificationRequest::_internal_enable() const {
   return enable_;
 }
 inline bool SetNotificationRequest::enable() const {
-  // @@protoc_insertion_point(field_get:SetNotificationRequest.enable)
+  // @@protoc_insertion_point(field_get:proto.gen.SetNotificationRequest.enable)
   return _internal_enable();
 }
 inline void SetNotificationRequest::_internal_set_enable(bool value) {
@@ -9159,7 +9165,7 @@ inline void SetNotificationRequest::_internal_set_enable(bool value) {
 }
 inline void SetNotificationRequest::set_enable(bool value) {
   _internal_set_enable(value);
-  // @@protoc_insertion_point(field_set:SetNotificationRequest.enable)
+  // @@protoc_insertion_point(field_set:proto.gen.SetNotificationRequest.enable)
 }
 
 // -------------------------------------------------------------------
@@ -9171,15 +9177,15 @@ inline void SetNotificationResponse::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& SetNotificationResponse::remote_id() const {
-  // @@protoc_insertion_point(field_get:SetNotificationResponse.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.SetNotificationResponse.remote_id)
   return _internal_remote_id();
 }
 inline void SetNotificationResponse::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:SetNotificationResponse.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.SetNotificationResponse.remote_id)
 }
 inline std::string* SetNotificationResponse::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:SetNotificationResponse.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.SetNotificationResponse.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& SetNotificationResponse::_internal_remote_id() const {
@@ -9193,27 +9199,27 @@ inline void SetNotificationResponse::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:SetNotificationResponse.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.SetNotificationResponse.remote_id)
 }
 inline void SetNotificationResponse::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:SetNotificationResponse.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.SetNotificationResponse.remote_id)
 }
 inline void SetNotificationResponse::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:SetNotificationResponse.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.SetNotificationResponse.remote_id)
 }
 inline std::string* SetNotificationResponse::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* SetNotificationResponse::release_remote_id() {
-  // @@protoc_insertion_point(field_release:SetNotificationResponse.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.SetNotificationResponse.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void SetNotificationResponse::set_allocated_remote_id(std::string* remote_id) {
@@ -9224,10 +9230,10 @@ inline void SetNotificationResponse::set_allocated_remote_id(std::string* remote
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:SetNotificationResponse.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.SetNotificationResponse.remote_id)
 }
 
-// .BluetoothCharacteristic characteristic = 2;
+// .proto.gen.BluetoothCharacteristic characteristic = 2;
 inline bool SetNotificationResponse::_internal_has_characteristic() const {
   return this != internal_default_instance() && characteristic_ != nullptr;
 }
@@ -9240,17 +9246,17 @@ inline void SetNotificationResponse::clear_characteristic() {
   }
   characteristic_ = nullptr;
 }
-inline const ::BluetoothCharacteristic& SetNotificationResponse::_internal_characteristic() const {
-  const ::BluetoothCharacteristic* p = characteristic_;
-  return p != nullptr ? *p : reinterpret_cast<const ::BluetoothCharacteristic&>(
-      ::_BluetoothCharacteristic_default_instance_);
+inline const ::proto::gen::BluetoothCharacteristic& SetNotificationResponse::_internal_characteristic() const {
+  const ::proto::gen::BluetoothCharacteristic* p = characteristic_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::BluetoothCharacteristic&>(
+      ::proto::gen::_BluetoothCharacteristic_default_instance_);
 }
-inline const ::BluetoothCharacteristic& SetNotificationResponse::characteristic() const {
-  // @@protoc_insertion_point(field_get:SetNotificationResponse.characteristic)
+inline const ::proto::gen::BluetoothCharacteristic& SetNotificationResponse::characteristic() const {
+  // @@protoc_insertion_point(field_get:proto.gen.SetNotificationResponse.characteristic)
   return _internal_characteristic();
 }
 inline void SetNotificationResponse::unsafe_arena_set_allocated_characteristic(
-    ::BluetoothCharacteristic* characteristic) {
+    ::proto::gen::BluetoothCharacteristic* characteristic) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(characteristic_);
   }
@@ -9260,37 +9266,37 @@ inline void SetNotificationResponse::unsafe_arena_set_allocated_characteristic(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:SetNotificationResponse.characteristic)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.SetNotificationResponse.characteristic)
 }
-inline ::BluetoothCharacteristic* SetNotificationResponse::release_characteristic() {
+inline ::proto::gen::BluetoothCharacteristic* SetNotificationResponse::release_characteristic() {
   
-  ::BluetoothCharacteristic* temp = characteristic_;
+  ::proto::gen::BluetoothCharacteristic* temp = characteristic_;
   characteristic_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::BluetoothCharacteristic* SetNotificationResponse::unsafe_arena_release_characteristic() {
-  // @@protoc_insertion_point(field_release:SetNotificationResponse.characteristic)
+inline ::proto::gen::BluetoothCharacteristic* SetNotificationResponse::unsafe_arena_release_characteristic() {
+  // @@protoc_insertion_point(field_release:proto.gen.SetNotificationResponse.characteristic)
   
-  ::BluetoothCharacteristic* temp = characteristic_;
+  ::proto::gen::BluetoothCharacteristic* temp = characteristic_;
   characteristic_ = nullptr;
   return temp;
 }
-inline ::BluetoothCharacteristic* SetNotificationResponse::_internal_mutable_characteristic() {
+inline ::proto::gen::BluetoothCharacteristic* SetNotificationResponse::_internal_mutable_characteristic() {
   
   if (characteristic_ == nullptr) {
-    auto* p = CreateMaybeMessage<::BluetoothCharacteristic>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::BluetoothCharacteristic>(GetArena());
     characteristic_ = p;
   }
   return characteristic_;
 }
-inline ::BluetoothCharacteristic* SetNotificationResponse::mutable_characteristic() {
-  // @@protoc_insertion_point(field_mutable:SetNotificationResponse.characteristic)
+inline ::proto::gen::BluetoothCharacteristic* SetNotificationResponse::mutable_characteristic() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.SetNotificationResponse.characteristic)
   return _internal_mutable_characteristic();
 }
-inline void SetNotificationResponse::set_allocated_characteristic(::BluetoothCharacteristic* characteristic) {
+inline void SetNotificationResponse::set_allocated_characteristic(::proto::gen::BluetoothCharacteristic* characteristic) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete characteristic_;
@@ -9307,7 +9313,7 @@ inline void SetNotificationResponse::set_allocated_characteristic(::BluetoothCha
     
   }
   characteristic_ = characteristic;
-  // @@protoc_insertion_point(field_set_allocated:SetNotificationResponse.characteristic)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.SetNotificationResponse.characteristic)
 }
 
 // bool success = 3;
@@ -9318,7 +9324,7 @@ inline bool SetNotificationResponse::_internal_success() const {
   return success_;
 }
 inline bool SetNotificationResponse::success() const {
-  // @@protoc_insertion_point(field_get:SetNotificationResponse.success)
+  // @@protoc_insertion_point(field_get:proto.gen.SetNotificationResponse.success)
   return _internal_success();
 }
 inline void SetNotificationResponse::_internal_set_success(bool value) {
@@ -9327,7 +9333,7 @@ inline void SetNotificationResponse::_internal_set_success(bool value) {
 }
 inline void SetNotificationResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:SetNotificationResponse.success)
+  // @@protoc_insertion_point(field_set:proto.gen.SetNotificationResponse.success)
 }
 
 // -------------------------------------------------------------------
@@ -9339,15 +9345,15 @@ inline void OnCharacteristicChanged::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& OnCharacteristicChanged::remote_id() const {
-  // @@protoc_insertion_point(field_get:OnCharacteristicChanged.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.OnCharacteristicChanged.remote_id)
   return _internal_remote_id();
 }
 inline void OnCharacteristicChanged::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:OnCharacteristicChanged.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.OnCharacteristicChanged.remote_id)
 }
 inline std::string* OnCharacteristicChanged::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:OnCharacteristicChanged.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.OnCharacteristicChanged.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& OnCharacteristicChanged::_internal_remote_id() const {
@@ -9361,27 +9367,27 @@ inline void OnCharacteristicChanged::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:OnCharacteristicChanged.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.OnCharacteristicChanged.remote_id)
 }
 inline void OnCharacteristicChanged::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:OnCharacteristicChanged.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.OnCharacteristicChanged.remote_id)
 }
 inline void OnCharacteristicChanged::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:OnCharacteristicChanged.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.OnCharacteristicChanged.remote_id)
 }
 inline std::string* OnCharacteristicChanged::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* OnCharacteristicChanged::release_remote_id() {
-  // @@protoc_insertion_point(field_release:OnCharacteristicChanged.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.OnCharacteristicChanged.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void OnCharacteristicChanged::set_allocated_remote_id(std::string* remote_id) {
@@ -9392,10 +9398,10 @@ inline void OnCharacteristicChanged::set_allocated_remote_id(std::string* remote
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:OnCharacteristicChanged.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.OnCharacteristicChanged.remote_id)
 }
 
-// .BluetoothCharacteristic characteristic = 2;
+// .proto.gen.BluetoothCharacteristic characteristic = 2;
 inline bool OnCharacteristicChanged::_internal_has_characteristic() const {
   return this != internal_default_instance() && characteristic_ != nullptr;
 }
@@ -9408,17 +9414,17 @@ inline void OnCharacteristicChanged::clear_characteristic() {
   }
   characteristic_ = nullptr;
 }
-inline const ::BluetoothCharacteristic& OnCharacteristicChanged::_internal_characteristic() const {
-  const ::BluetoothCharacteristic* p = characteristic_;
-  return p != nullptr ? *p : reinterpret_cast<const ::BluetoothCharacteristic&>(
-      ::_BluetoothCharacteristic_default_instance_);
+inline const ::proto::gen::BluetoothCharacteristic& OnCharacteristicChanged::_internal_characteristic() const {
+  const ::proto::gen::BluetoothCharacteristic* p = characteristic_;
+  return p != nullptr ? *p : reinterpret_cast<const ::proto::gen::BluetoothCharacteristic&>(
+      ::proto::gen::_BluetoothCharacteristic_default_instance_);
 }
-inline const ::BluetoothCharacteristic& OnCharacteristicChanged::characteristic() const {
-  // @@protoc_insertion_point(field_get:OnCharacteristicChanged.characteristic)
+inline const ::proto::gen::BluetoothCharacteristic& OnCharacteristicChanged::characteristic() const {
+  // @@protoc_insertion_point(field_get:proto.gen.OnCharacteristicChanged.characteristic)
   return _internal_characteristic();
 }
 inline void OnCharacteristicChanged::unsafe_arena_set_allocated_characteristic(
-    ::BluetoothCharacteristic* characteristic) {
+    ::proto::gen::BluetoothCharacteristic* characteristic) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(characteristic_);
   }
@@ -9428,37 +9434,37 @@ inline void OnCharacteristicChanged::unsafe_arena_set_allocated_characteristic(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:OnCharacteristicChanged.characteristic)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.gen.OnCharacteristicChanged.characteristic)
 }
-inline ::BluetoothCharacteristic* OnCharacteristicChanged::release_characteristic() {
+inline ::proto::gen::BluetoothCharacteristic* OnCharacteristicChanged::release_characteristic() {
   
-  ::BluetoothCharacteristic* temp = characteristic_;
+  ::proto::gen::BluetoothCharacteristic* temp = characteristic_;
   characteristic_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::BluetoothCharacteristic* OnCharacteristicChanged::unsafe_arena_release_characteristic() {
-  // @@protoc_insertion_point(field_release:OnCharacteristicChanged.characteristic)
+inline ::proto::gen::BluetoothCharacteristic* OnCharacteristicChanged::unsafe_arena_release_characteristic() {
+  // @@protoc_insertion_point(field_release:proto.gen.OnCharacteristicChanged.characteristic)
   
-  ::BluetoothCharacteristic* temp = characteristic_;
+  ::proto::gen::BluetoothCharacteristic* temp = characteristic_;
   characteristic_ = nullptr;
   return temp;
 }
-inline ::BluetoothCharacteristic* OnCharacteristicChanged::_internal_mutable_characteristic() {
+inline ::proto::gen::BluetoothCharacteristic* OnCharacteristicChanged::_internal_mutable_characteristic() {
   
   if (characteristic_ == nullptr) {
-    auto* p = CreateMaybeMessage<::BluetoothCharacteristic>(GetArena());
+    auto* p = CreateMaybeMessage<::proto::gen::BluetoothCharacteristic>(GetArena());
     characteristic_ = p;
   }
   return characteristic_;
 }
-inline ::BluetoothCharacteristic* OnCharacteristicChanged::mutable_characteristic() {
-  // @@protoc_insertion_point(field_mutable:OnCharacteristicChanged.characteristic)
+inline ::proto::gen::BluetoothCharacteristic* OnCharacteristicChanged::mutable_characteristic() {
+  // @@protoc_insertion_point(field_mutable:proto.gen.OnCharacteristicChanged.characteristic)
   return _internal_mutable_characteristic();
 }
-inline void OnCharacteristicChanged::set_allocated_characteristic(::BluetoothCharacteristic* characteristic) {
+inline void OnCharacteristicChanged::set_allocated_characteristic(::proto::gen::BluetoothCharacteristic* characteristic) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete characteristic_;
@@ -9475,7 +9481,7 @@ inline void OnCharacteristicChanged::set_allocated_characteristic(::BluetoothCha
     
   }
   characteristic_ = characteristic;
-  // @@protoc_insertion_point(field_set_allocated:OnCharacteristicChanged.characteristic)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.OnCharacteristicChanged.characteristic)
 }
 
 // -------------------------------------------------------------------
@@ -9487,15 +9493,15 @@ inline void DeviceStateResponse::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& DeviceStateResponse::remote_id() const {
-  // @@protoc_insertion_point(field_get:DeviceStateResponse.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.DeviceStateResponse.remote_id)
   return _internal_remote_id();
 }
 inline void DeviceStateResponse::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:DeviceStateResponse.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.DeviceStateResponse.remote_id)
 }
 inline std::string* DeviceStateResponse::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:DeviceStateResponse.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.DeviceStateResponse.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& DeviceStateResponse::_internal_remote_id() const {
@@ -9509,27 +9515,27 @@ inline void DeviceStateResponse::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:DeviceStateResponse.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.DeviceStateResponse.remote_id)
 }
 inline void DeviceStateResponse::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:DeviceStateResponse.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.DeviceStateResponse.remote_id)
 }
 inline void DeviceStateResponse::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:DeviceStateResponse.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.DeviceStateResponse.remote_id)
 }
 inline std::string* DeviceStateResponse::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* DeviceStateResponse::release_remote_id() {
-  // @@protoc_insertion_point(field_release:DeviceStateResponse.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.DeviceStateResponse.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void DeviceStateResponse::set_allocated_remote_id(std::string* remote_id) {
@@ -9540,34 +9546,34 @@ inline void DeviceStateResponse::set_allocated_remote_id(std::string* remote_id)
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:DeviceStateResponse.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.DeviceStateResponse.remote_id)
 }
 
-// .DeviceStateResponse.BluetoothDeviceState state = 2;
+// .proto.gen.DeviceStateResponse.BluetoothDeviceState state = 2;
 inline void DeviceStateResponse::clear_state() {
   state_ = 0;
 }
-inline ::DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::_internal_state() const {
-  return static_cast< ::DeviceStateResponse_BluetoothDeviceState >(state_);
+inline ::proto::gen::DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::_internal_state() const {
+  return static_cast< ::proto::gen::DeviceStateResponse_BluetoothDeviceState >(state_);
 }
-inline ::DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::state() const {
-  // @@protoc_insertion_point(field_get:DeviceStateResponse.state)
+inline ::proto::gen::DeviceStateResponse_BluetoothDeviceState DeviceStateResponse::state() const {
+  // @@protoc_insertion_point(field_get:proto.gen.DeviceStateResponse.state)
   return _internal_state();
 }
-inline void DeviceStateResponse::_internal_set_state(::DeviceStateResponse_BluetoothDeviceState value) {
+inline void DeviceStateResponse::_internal_set_state(::proto::gen::DeviceStateResponse_BluetoothDeviceState value) {
   
   state_ = value;
 }
-inline void DeviceStateResponse::set_state(::DeviceStateResponse_BluetoothDeviceState value) {
+inline void DeviceStateResponse::set_state(::proto::gen::DeviceStateResponse_BluetoothDeviceState value) {
   _internal_set_state(value);
-  // @@protoc_insertion_point(field_set:DeviceStateResponse.state)
+  // @@protoc_insertion_point(field_set:proto.gen.DeviceStateResponse.state)
 }
 
 // -------------------------------------------------------------------
 
 // ConnectedDevicesResponse
 
-// repeated .BluetoothDevice devices = 1;
+// repeated .proto.gen.BluetoothDevice devices = 1;
 inline int ConnectedDevicesResponse::_internal_devices_size() const {
   return devices_.size();
 }
@@ -9577,32 +9583,32 @@ inline int ConnectedDevicesResponse::devices_size() const {
 inline void ConnectedDevicesResponse::clear_devices() {
   devices_.Clear();
 }
-inline ::BluetoothDevice* ConnectedDevicesResponse::mutable_devices(int index) {
-  // @@protoc_insertion_point(field_mutable:ConnectedDevicesResponse.devices)
+inline ::proto::gen::BluetoothDevice* ConnectedDevicesResponse::mutable_devices(int index) {
+  // @@protoc_insertion_point(field_mutable:proto.gen.ConnectedDevicesResponse.devices)
   return devices_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDevice >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDevice >*
 ConnectedDevicesResponse::mutable_devices() {
-  // @@protoc_insertion_point(field_mutable_list:ConnectedDevicesResponse.devices)
+  // @@protoc_insertion_point(field_mutable_list:proto.gen.ConnectedDevicesResponse.devices)
   return &devices_;
 }
-inline const ::BluetoothDevice& ConnectedDevicesResponse::_internal_devices(int index) const {
+inline const ::proto::gen::BluetoothDevice& ConnectedDevicesResponse::_internal_devices(int index) const {
   return devices_.Get(index);
 }
-inline const ::BluetoothDevice& ConnectedDevicesResponse::devices(int index) const {
-  // @@protoc_insertion_point(field_get:ConnectedDevicesResponse.devices)
+inline const ::proto::gen::BluetoothDevice& ConnectedDevicesResponse::devices(int index) const {
+  // @@protoc_insertion_point(field_get:proto.gen.ConnectedDevicesResponse.devices)
   return _internal_devices(index);
 }
-inline ::BluetoothDevice* ConnectedDevicesResponse::_internal_add_devices() {
+inline ::proto::gen::BluetoothDevice* ConnectedDevicesResponse::_internal_add_devices() {
   return devices_.Add();
 }
-inline ::BluetoothDevice* ConnectedDevicesResponse::add_devices() {
-  // @@protoc_insertion_point(field_add:ConnectedDevicesResponse.devices)
+inline ::proto::gen::BluetoothDevice* ConnectedDevicesResponse::add_devices() {
+  // @@protoc_insertion_point(field_add:proto.gen.ConnectedDevicesResponse.devices)
   return _internal_add_devices();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::BluetoothDevice >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::gen::BluetoothDevice >&
 ConnectedDevicesResponse::devices() const {
-  // @@protoc_insertion_point(field_list:ConnectedDevicesResponse.devices)
+  // @@protoc_insertion_point(field_list:proto.gen.ConnectedDevicesResponse.devices)
   return devices_;
 }
 
@@ -9615,15 +9621,15 @@ inline void MtuSizeRequest::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& MtuSizeRequest::remote_id() const {
-  // @@protoc_insertion_point(field_get:MtuSizeRequest.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.MtuSizeRequest.remote_id)
   return _internal_remote_id();
 }
 inline void MtuSizeRequest::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:MtuSizeRequest.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.MtuSizeRequest.remote_id)
 }
 inline std::string* MtuSizeRequest::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:MtuSizeRequest.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.MtuSizeRequest.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& MtuSizeRequest::_internal_remote_id() const {
@@ -9637,27 +9643,27 @@ inline void MtuSizeRequest::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:MtuSizeRequest.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.MtuSizeRequest.remote_id)
 }
 inline void MtuSizeRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:MtuSizeRequest.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.MtuSizeRequest.remote_id)
 }
 inline void MtuSizeRequest::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:MtuSizeRequest.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.MtuSizeRequest.remote_id)
 }
 inline std::string* MtuSizeRequest::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* MtuSizeRequest::release_remote_id() {
-  // @@protoc_insertion_point(field_release:MtuSizeRequest.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.MtuSizeRequest.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void MtuSizeRequest::set_allocated_remote_id(std::string* remote_id) {
@@ -9668,7 +9674,7 @@ inline void MtuSizeRequest::set_allocated_remote_id(std::string* remote_id) {
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:MtuSizeRequest.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.MtuSizeRequest.remote_id)
 }
 
 // uint32 mtu = 2;
@@ -9679,7 +9685,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint32 MtuSizeRequest::_internal_mtu() const {
   return mtu_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 MtuSizeRequest::mtu() const {
-  // @@protoc_insertion_point(field_get:MtuSizeRequest.mtu)
+  // @@protoc_insertion_point(field_get:proto.gen.MtuSizeRequest.mtu)
   return _internal_mtu();
 }
 inline void MtuSizeRequest::_internal_set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 value) {
@@ -9688,7 +9694,7 @@ inline void MtuSizeRequest::_internal_set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 va
 }
 inline void MtuSizeRequest::set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_mtu(value);
-  // @@protoc_insertion_point(field_set:MtuSizeRequest.mtu)
+  // @@protoc_insertion_point(field_set:proto.gen.MtuSizeRequest.mtu)
 }
 
 // -------------------------------------------------------------------
@@ -9700,15 +9706,15 @@ inline void MtuSizeResponse::clear_remote_id() {
   remote_id_.ClearToEmpty();
 }
 inline const std::string& MtuSizeResponse::remote_id() const {
-  // @@protoc_insertion_point(field_get:MtuSizeResponse.remote_id)
+  // @@protoc_insertion_point(field_get:proto.gen.MtuSizeResponse.remote_id)
   return _internal_remote_id();
 }
 inline void MtuSizeResponse::set_remote_id(const std::string& value) {
   _internal_set_remote_id(value);
-  // @@protoc_insertion_point(field_set:MtuSizeResponse.remote_id)
+  // @@protoc_insertion_point(field_set:proto.gen.MtuSizeResponse.remote_id)
 }
 inline std::string* MtuSizeResponse::mutable_remote_id() {
-  // @@protoc_insertion_point(field_mutable:MtuSizeResponse.remote_id)
+  // @@protoc_insertion_point(field_mutable:proto.gen.MtuSizeResponse.remote_id)
   return _internal_mutable_remote_id();
 }
 inline const std::string& MtuSizeResponse::_internal_remote_id() const {
@@ -9722,27 +9728,27 @@ inline void MtuSizeResponse::set_remote_id(std::string&& value) {
   
   remote_id_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:MtuSizeResponse.remote_id)
+  // @@protoc_insertion_point(field_set_rvalue:proto.gen.MtuSizeResponse.remote_id)
 }
 inline void MtuSizeResponse::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:MtuSizeResponse.remote_id)
+  // @@protoc_insertion_point(field_set_char:proto.gen.MtuSizeResponse.remote_id)
 }
 inline void MtuSizeResponse::set_remote_id(const char* value,
     size_t size) {
   
   remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:MtuSizeResponse.remote_id)
+  // @@protoc_insertion_point(field_set_pointer:proto.gen.MtuSizeResponse.remote_id)
 }
 inline std::string* MtuSizeResponse::_internal_mutable_remote_id() {
   
   return remote_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
 inline std::string* MtuSizeResponse::release_remote_id() {
-  // @@protoc_insertion_point(field_release:MtuSizeResponse.remote_id)
+  // @@protoc_insertion_point(field_release:proto.gen.MtuSizeResponse.remote_id)
   return remote_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void MtuSizeResponse::set_allocated_remote_id(std::string* remote_id) {
@@ -9753,7 +9759,7 @@ inline void MtuSizeResponse::set_allocated_remote_id(std::string* remote_id) {
   }
   remote_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:MtuSizeResponse.remote_id)
+  // @@protoc_insertion_point(field_set_allocated:proto.gen.MtuSizeResponse.remote_id)
 }
 
 // uint32 mtu = 2;
@@ -9764,7 +9770,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint32 MtuSizeResponse::_internal_mtu() const {
   return mtu_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 MtuSizeResponse::mtu() const {
-  // @@protoc_insertion_point(field_get:MtuSizeResponse.mtu)
+  // @@protoc_insertion_point(field_get:proto.gen.MtuSizeResponse.mtu)
   return _internal_mtu();
 }
 inline void MtuSizeResponse::_internal_set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 value) {
@@ -9773,7 +9779,7 @@ inline void MtuSizeResponse::_internal_set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 v
 }
 inline void MtuSizeResponse::set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_mtu(value);
-  // @@protoc_insertion_point(field_set:MtuSizeResponse.mtu)
+  // @@protoc_insertion_point(field_set:proto.gen.MtuSizeResponse.mtu)
 }
 
 #ifdef __GNUC__
@@ -9838,13 +9844,15 @@ inline void MtuSizeResponse::set_mtu(::PROTOBUF_NAMESPACE_ID::uint32 value) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace gen
+}  // namespace proto
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::BluetoothState_State> : ::std::true_type {};
-template <> struct is_proto_enum< ::BluetoothDevice_Type> : ::std::true_type {};
-template <> struct is_proto_enum< ::WriteCharacteristicRequest_WriteType> : ::std::true_type {};
-template <> struct is_proto_enum< ::DeviceStateResponse_BluetoothDeviceState> : ::std::true_type {};
+template <> struct is_proto_enum< ::proto::gen::BluetoothState_State> : ::std::true_type {};
+template <> struct is_proto_enum< ::proto::gen::BluetoothDevice_Type> : ::std::true_type {};
+template <> struct is_proto_enum< ::proto::gen::WriteCharacteristicRequest_WriteType> : ::std::true_type {};
+template <> struct is_proto_enum< ::proto::gen::DeviceStateResponse_BluetoothDeviceState> : ::std::true_type {};
 
 PROTOBUF_NAMESPACE_CLOSE
 

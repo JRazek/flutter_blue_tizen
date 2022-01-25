@@ -18,7 +18,7 @@ namespace btu{
          */
         std::mutex operationM;
 
-        std::vector<BluetoothDevice> _protoBluetoothDevices;
+        std::vector<proto::gen::BluetoothDevice> _protoBluetoothDevices;
 
         std::string _address;
         std::condition_variable cv;
@@ -43,7 +43,7 @@ namespace btu{
         auto protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&;
         auto cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&;
 
-        auto connect(const ConnectRequest& connReq) noexcept -> void;
+        auto connect(const proto::gen::ConnectRequest& connReq) noexcept -> void;
         auto disconnect() noexcept -> void;
 
         static auto connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void;

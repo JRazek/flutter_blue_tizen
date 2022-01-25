@@ -13,7 +13,7 @@
 namespace btu{
     using LogLevel = btlog::LogLevel;
     using Logger = btlog::Logger;
-    auto decodeAdvertisementData(char* packetsData, AdvertisementData& adv, int dataLen) -> void;
+    auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) -> void;
 
 
     BluetoothManager::BluetoothManager(NotificationsHandler& notificationsHandler) noexcept:
@@ -46,21 +46,21 @@ namespace btu{
         return state;
     }
 
-    auto BluetoothManager::bluetoothState() const noexcept -> BluetoothState{
+    auto BluetoothManager::bluetoothState() const noexcept -> proto::gen::BluetoothState{
         /* Checks whether the Bluetooth adapter is enabled */
         bt_adapter_state_e adapter_state;
         int ret = bt_adapter_get_state(&adapter_state);
-        BluetoothState bts;
+        proto::gen::BluetoothState bts;
         if(ret == BT_ERROR_NONE){
             if(adapter_state == BT_ADAPTER_ENABLED)
-                bts.set_state(BluetoothState_State_ON);
+                bts.set_state(proto::gen::BluetoothState_State_ON);
             else
-                bts.set_state(BluetoothState_State_OFF);
+                bts.set_state(proto::gen::BluetoothState_State_OFF);
         }
         else if(ret == BT_ERROR_NOT_INITIALIZED)
-            bts.set_state(BluetoothState_State_UNAVAILABLE);
+            bts.set_state(proto::gen::BluetoothState_State_UNAVAILABLE);
         else
-            bts.set_state(BluetoothState_State_UNKNOWN);
+            bts.set_state(proto::gen::BluetoothState_State_UNKNOWN);
         
         return bts;
     }
@@ -71,7 +71,7 @@ namespace btu{
         bluetoothManager.adapterState.var = adapter_state;
     }
     
-    auto BluetoothManager::startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept -> void {
+    auto BluetoothManager::startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) noexcept -> void {
         std::scoped_lock l(_bluetoothDevices.mut, _scanAllowDuplicates.mut);
         _bluetoothDevices.var.clear();        
         _scanAllowDuplicates.var=scanSettings.allow_duplicates();        
@@ -128,13 +128,13 @@ namespace btu{
                 }
                 protoDev.set_remote_id(macAddress);
 
-                ScanResult scanResult;
+                proto::gen::ScanResult scanResult;
                 scanResult.set_rssi(discovery_info->rssi);
-                AdvertisementData* advertisement_data=new AdvertisementData();
+                proto::gen::AdvertisementData* advertisement_data=new proto::gen::AdvertisementData();
                 decodeAdvertisementData(discovery_info->adv_data, *advertisement_data, discovery_info->adv_data_len);
 
                 scanResult.set_allocated_advertisement_data(advertisement_data);
-                scanResult.set_allocated_device(new BluetoothDevice(protoDev));
+                scanResult.set_allocated_device(new proto::gen::BluetoothDevice(protoDev));
 
                 bluetoothManager._notificationsHandler.notifyUIThread("ScanResult", scanResult);
             }
@@ -145,7 +145,7 @@ namespace btu{
         static std::mutex m;
         std::scoped_lock lock(m);
         auto btState=bluetoothState().state();
-        if(btState==BluetoothState_State_ON){
+        if(btState==proto::gen::BluetoothState_State_ON){
             bool isDiscovering;
             int res = bt_adapter_le_is_discovering(&isDiscovering);
             if(!res && isDiscovering){
@@ -164,7 +164,7 @@ namespace btu{
         }
     }
 
-    auto BluetoothManager::connect(const ConnectRequest& connRequest) noexcept -> void {
+    auto BluetoothManager::connect(const proto::gen::ConnectRequest& connRequest) noexcept -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         auto device=(*_bluetoothDevices.var.find(connRequest.remote_id())).second;
@@ -178,7 +178,7 @@ namespace btu{
         device->disconnect();
     }
 
-    auto BluetoothManager::serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept -> void {
+    auto BluetoothManager::serviceSearch(const proto::gen::BluetoothDevice& bluetoothDevice) noexcept -> void {
         int res = bt_device_start_service_search(bluetoothDevice.remote_id().c_str());
         if(res){
             std::string err=get_error_message(res);
@@ -186,8 +186,8 @@ namespace btu{
         }
     }
 
-    auto BluetoothManager::getConnectedProtoBluetoothDevices() noexcept -> std::vector<BluetoothDevice> {
-        std::vector<BluetoothDevice> protoBD;
+    auto BluetoothManager::getConnectedProtoBluetoothDevices() noexcept -> std::vector<proto::gen::BluetoothDevice> {
+        std::vector<proto::gen::BluetoothDevice> protoBD;
         std::scoped_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         for(const auto& e:_bluetoothDevices.var){
@@ -201,7 +201,7 @@ namespace btu{
 
     auto BluetoothManager::bluetoothDevices() noexcept -> decltype(_bluetoothDevices)& { return _bluetoothDevices; }
 
-    auto decodeAdvertisementData(char* packetsData, AdvertisementData& adv, int dataLen) -> void {
+    auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) -> void {
         using byte=char;
         int start=0;
         bool longNameSet=false;

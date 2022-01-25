@@ -5,14 +5,14 @@
 namespace btu{
     using namespace btlog;
 
-    auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> DeviceStateResponse_BluetoothDeviceState{
+    auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> proto::gen::DeviceStateResponse_BluetoothDeviceState{
         using State=btu::BluetoothDeviceController::State;
         switch (s){
-            case State::CONNECTED: return DeviceStateResponse_BluetoothDeviceState_CONNECTED;
+            case State::CONNECTED: return proto::gen::DeviceStateResponse_BluetoothDeviceState_CONNECTED;
             // case State::CONNECTING: return DeviceStateResponse_BluetoothDeviceState_CONNECTING;
-            case State::DISCONNECTED: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
+            case State::DISCONNECTED: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
             // case State::DISCONNECTING: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTING;
-            default: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
+            default: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
         }
     }
 
@@ -22,8 +22,8 @@ namespace btu{
         return encoded;
     }
 
-    auto getProtoServices(bt_gatt_client_h handle) -> std::vector<BluetoothService> {
-        std::vector<BluetoothService> services;
+    auto getProtoServices(bt_gatt_client_h handle) -> std::vector<proto::gen::BluetoothService> {
+        std::vector<proto::gen::BluetoothService> services;
 
         int res=bt_gatt_client_foreach_services(handle, &serviceForeachCallback, &services);
         Logger::showResultError("bt_gatt_client_foreach_services", res);
@@ -61,8 +61,8 @@ namespace btu{
 
         return services;
     }
-    auto getProtoIncludedServices(bt_gatt_h service_handle) -> std::vector<BluetoothService> {
-        std::vector<BluetoothService> services;
+    auto getProtoIncludedServices(bt_gatt_h service_handle) -> std::vector<proto::gen::BluetoothService> {
+        std::vector<proto::gen::BluetoothService> services;
 
         Logger::log(LogLevel::DEBUG, "debug10");
         int res=bt_gatt_service_foreach_included_services(service_handle, &serviceForeachCallback, &services);
@@ -72,11 +72,11 @@ namespace btu{
         return services;
     }
 
-    auto getProtoCharacteristics(bt_gatt_h service_handle) -> std::vector<BluetoothCharacteristic> {
-        std::vector<BluetoothCharacteristic> characteristics;
+    auto getProtoCharacteristics(bt_gatt_h service_handle) -> std::vector<proto::gen::BluetoothCharacteristic> {
+        std::vector<proto::gen::BluetoothCharacteristic> characteristics;
         int res=bt_gatt_service_foreach_characteristics(service_handle, 
         [](int total, int index, bt_gatt_h characteristic_handle, void* user_data) -> bool {
-            auto& characteristics=*static_cast<std::vector<BluetoothCharacteristic> *>(user_data);
+            auto& characteristics=*static_cast<std::vector<proto::gen::BluetoothCharacteristic> *>(user_data);
             auto& characteristic=characteristics.emplace_back();
 
             characteristic.set_uuid(getGattUUID(characteristic_handle));
@@ -89,7 +89,7 @@ namespace btu{
                 *characteristic.add_descriptors()=std::move(d);
             }
 
-            characteristic.set_allocated_properties(new CharacteristicProperties(getProtoCharacteristicProperties(characteristic_handle)));
+            characteristic.set_allocated_properties(new proto::gen::CharacteristicProperties(getProtoCharacteristicProperties(characteristic_handle)));
 
             return true;
         }, &characteristics);
@@ -98,11 +98,11 @@ namespace btu{
         return characteristics;
     }
 
-    auto getProtoDescriptors(bt_gatt_h characteristic_handle) -> std::vector<BluetoothDescriptor> {
-        std::vector<BluetoothDescriptor> descriptors;
+    auto getProtoDescriptors(bt_gatt_h characteristic_handle) -> std::vector<proto::gen::BluetoothDescriptor> {
+        std::vector<proto::gen::BluetoothDescriptor> descriptors;
         int res=bt_gatt_characteristic_foreach_descriptors(characteristic_handle,
         [] (int total, int index, bt_gatt_h descriptor_handle, void* user_data) -> bool {
-            auto& descriptors=*static_cast<std::vector<BluetoothDescriptor> *>(user_data);
+            auto& descriptors=*static_cast<std::vector<proto::gen::BluetoothDescriptor> *>(user_data);
             auto& descriptor=descriptors.emplace_back();
 
             descriptor.set_uuid(getGattUUID(descriptor_handle));
@@ -116,8 +116,8 @@ namespace btu{
         return descriptors;
     }
 
-    auto getProtoCharacteristicProperties(bt_gatt_h characteristic_handle) -> CharacteristicProperties {
-        CharacteristicProperties p;
+    auto getProtoCharacteristicProperties(bt_gatt_h characteristic_handle) -> proto::gen::CharacteristicProperties {
+        proto::gen::CharacteristicProperties p;
         int properties=0;
         int res=bt_gatt_characteristic_get_properties(characteristic_handle, &properties);
         Logger::showResultError("bt_gatt_characteristic_get_properties", res);
@@ -196,9 +196,9 @@ namespace btu{
     }
 
     auto serviceForeachCallback(int total, int index, bt_gatt_h service_handle, void* user_data) -> bool {
-        auto& services=*static_cast<std::vector<BluetoothService> *>(user_data);
+        auto& services=*static_cast<std::vector<proto::gen::BluetoothService> *>(user_data);
 
-        BluetoothService& service=services.emplace_back();
+        proto::gen::BluetoothService& service=services.emplace_back();
         
         service.set_uuid(getGattUUID(service_handle));
         service.set_is_primary(false);

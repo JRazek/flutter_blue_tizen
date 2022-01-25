@@ -33,7 +33,7 @@ namespace btu {
     }
     auto BluetoothDeviceController::protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
     auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
-    auto BluetoothDeviceController::connect(const ConnectRequest& connReq) noexcept -> void {
+    auto BluetoothDeviceController::connect(const proto::gen::ConnectRequest& connReq) noexcept -> void {
         using namespace std::literals;
         std::unique_lock lock(operationM);
         if(state()==State::DISCONNECTED){
@@ -66,7 +66,7 @@ namespace btu {
                 auto device=(*ptr).second;
                 std::scoped_lock devLock(device->operationM);
 
-                DeviceStateResponse devState;
+                proto::gen::DeviceStateResponse devState;
                 devState.set_remote_id(device->cAddress());
                 devState.set_state(localToProtoDeviceState(device->state()));
                 device->_notificationsHandler.notifyUIThread("DeviceState", devState);
@@ -106,7 +106,7 @@ namespace btu {
     }
     auto BluetoothDeviceController::discoverServices() noexcept -> void {
         std::scoped_lock lock(operationM);
-        DiscoverServicesResult res;
+        proto::gen::DiscoverServicesResult res;
         auto services=getProtoServices(getGattClient(_address));
         for(auto& s : services){
             *res.add_services()=std::move(s);

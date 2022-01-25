@@ -30,13 +30,13 @@ namespace btu{
           virtual ~BluetoothManager() noexcept;
           BluetoothManager(const BluetoothManager& bluetoothManager)=delete;
           
-          auto startBluetoothDeviceScanLE(const ScanSettings& scanSettings) noexcept -> void;
+          auto startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) noexcept -> void;
           auto stopBluetoothDeviceScanLE() noexcept -> void;
-          auto connect(const ConnectRequest& connRequest) noexcept -> void;
+          auto connect(const proto::gen::ConnectRequest& connRequest) noexcept -> void;
           auto disconnect(const std::string& deviceID) noexcept -> void;
-          auto serviceSearch(const BluetoothDevice& bluetoothDevice) noexcept -> void;
-          auto bluetoothState() const noexcept -> BluetoothState;
-          auto getConnectedProtoBluetoothDevices() noexcept -> std::vector<BluetoothDevice>;
+          auto serviceSearch(const proto::gen::BluetoothDevice& bluetoothDevice) noexcept -> void;
+          auto bluetoothState() const noexcept -> proto::gen::BluetoothState;
+          auto getConnectedProtoBluetoothDevices() noexcept -> std::vector<proto::gen::BluetoothDevice>;
           auto bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&;
 
           static auto isBLEAvailable() noexcept -> bool;

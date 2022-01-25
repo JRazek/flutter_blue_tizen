@@ -68,10 +68,10 @@ namespace {
           result->Success(flutter::EncodableValue(btu::messageToVector(bluetoothManager.bluetoothState())));
       }
       else if(method_call.method_name() == "isOn"){
-          result->Success(flutter::EncodableValue((bluetoothManager.bluetoothState().state() == BluetoothState_State::BluetoothState_State_ON)));
+          result->Success(flutter::EncodableValue((bluetoothManager.bluetoothState().state() == proto::gen::BluetoothState_State::BluetoothState_State_ON)));
       }
       else if(method_call.method_name() == "startScan"){
-          ScanSettings scanSettings;
+          proto::gen::ScanSettings scanSettings;
           std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
           scanSettings.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager.startBluetoothDeviceScanLE(scanSettings);
@@ -82,7 +82,7 @@ namespace {
           result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name() == "getConnectedDevices"){
-          ConnectedDevicesResponse response;
+          proto::gen::ConnectedDevicesResponse response;
           auto p = bluetoothManager.getConnectedProtoBluetoothDevices();
 
           for(auto& dev : p){
@@ -94,7 +94,7 @@ namespace {
       }
       else if(method_call.method_name() == "connect"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
-        ConnectRequest connectRequest;
+        proto::gen::ConnectRequest connectRequest;
         bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
         
         bluetoothManager.connect(connectRequest);
@@ -116,7 +116,7 @@ namespace {
         if(it!=bluetoothManager.bluetoothDevices().var.end()){
           auto& device=(*it).second;
 
-          DeviceStateResponse res;
+          proto::gen::DeviceStateResponse res;
           res.set_remote_id(device->cAddress());
           res.set_state(btu::localToProtoDeviceState(device->state()));
 
