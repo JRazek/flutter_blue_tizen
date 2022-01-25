@@ -1,5 +1,5 @@
 flutter/
-lib/*.so
+lib/*.so*
 res/flutter_assets/
 res/icudtl.dat
 .cproject
