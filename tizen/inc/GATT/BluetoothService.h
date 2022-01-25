@@ -3,6 +3,8 @@
 
 #include <bluetooth.h>
 
+#include <flutterblue.pb.h>
+
 #include <unordered_map>
 #include <memory>
 #include <vector>
@@ -19,7 +21,7 @@ namespace btGatt{
 
         BluetoothService(bt_gatt_h handle, std::weak_ptr<BluetoothDeviceController> device);
     public:
-        virtual auto toProtoService() -> void=0;
+        virtual auto toProtoService() const noexcept -> proto::gen::BluetoothService=0;
     };
 
 
@@ -37,6 +39,8 @@ namespace btGatt{
         std::shared_ptr<PrimaryService> _primaryService;
     public:
         SecondaryService(bt_gatt_h service_handle, std::weak_ptr<BluetoothDeviceController> device, std::shared_ptr<PrimaryService> primaryService);
+
+        auto toProtoService() const noexcept -> proto::gen::BluetoothService override;
     };
 }
 #endif //BLEUTOOTH_SERVICE_H

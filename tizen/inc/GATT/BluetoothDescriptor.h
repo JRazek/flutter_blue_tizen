@@ -5,6 +5,8 @@
 
 #include <memory>
 
+#include <flutterblue.pb.h>
+
 namespace btGatt{
     class BluetoothCharacteristic;
     class BluetoothDescriptor{
@@ -12,6 +14,8 @@ namespace btGatt{
         std::weak_ptr<BluetoothCharacteristic> _characteristic;
     public:
         BluetoothDescriptor(bt_gatt_h handle, std::weak_ptr<BluetoothCharacteristic> characteristic);
+
+        auto toProtoDescriptor() const noexcept -> proto::gen::BluetoothDescriptor;
     };
 }
 #endif //BLUETOOTH_DESCRIPTOR_H

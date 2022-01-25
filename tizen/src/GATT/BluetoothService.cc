@@ -17,4 +17,14 @@ namespace btGatt{
     SecondaryService::SecondaryService(bt_gatt_h service_handle, std::weak_ptr<BluetoothDeviceController> device, std::shared_ptr<PrimaryService> primaryService):
     BluetoothService(service_handle, device),
     _primaryService(primaryService){}
+
+
+    
+        auto BluetoothService::toProtoService() const noexcept -> proto::gen::BluetoothService {
+        proto::gen::BluetoothService proto;
+        for(const auto& characteristic : _characteristics){
+            *proto.add_characteristics()=characteristic.toProtoCharacteristic();
+        }
+        return proto;
+    }
 }
