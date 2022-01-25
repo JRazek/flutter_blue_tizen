@@ -20,7 +20,7 @@ namespace btGatt{
 
 
     
-        auto BluetoothService::toProtoService() const noexcept -> proto::gen::BluetoothService {
+    auto BluetoothService::toProtoService() const noexcept -> proto::gen::BluetoothService {
         proto::gen::BluetoothService proto;
         for(const auto& characteristic : _characteristics){
             *proto.add_characteristics()=characteristic.toProtoCharacteristic();
