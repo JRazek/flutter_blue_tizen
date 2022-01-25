@@ -8,6 +8,7 @@
 
 namespace btu{
     class NotificationsHandler;
+    class BluetoothService;
     class BluetoothDeviceController{
     public:
         enum class State;
@@ -31,7 +32,6 @@ namespace btu{
             DISCONNECTED,
         };
 
-        
         BluetoothDeviceController(const std::string& address, NotificationsHandler& notificationsHandler) noexcept;
         BluetoothDeviceController(const char* address, NotificationsHandler& notificationsHandler) noexcept;
         ~BluetoothDeviceController() noexcept;

@@ -13,32 +13,37 @@ namespace btGatt{
     class BluetoothDeviceController;
     class BluetoothCharacteristic;
     class SecondaryService;
-    class BluetoothService{
+    class BluetoothService {
     protected:
         bt_gatt_h _handle;
-        std::weak_ptr<BluetoothDeviceController> _device;
         std::vector<BluetoothCharacteristic> _characteristics;
 
-        BluetoothService(bt_gatt_h handle, std::weak_ptr<BluetoothDeviceController> device);
+        BluetoothService(bt_gatt_h handle);
+        BluetoothService(const BluetoothService&)=default;
+        ~BluetoothService()=default;
     public:
         virtual auto toProtoService() const noexcept -> proto::gen::BluetoothService=0;
     };
 
 
-
     ///////PRIMARY///////
-    class PrimaryService : public BluetoothService{
-        std::shared_ptr<SecondaryService> _primaryService;
+    class PrimaryService : public BluetoothService {
+        BluetoothDeviceController& _device;
+        std::vector<SecondaryService> _secondaryServices;
 
     public:
-        PrimaryService(bt_gatt_h handle, std::weak_ptr<BluetoothDeviceController> device);
+        PrimaryService(bt_gatt_h handle, BluetoothDeviceController& device);
+        PrimaryService(const PrimaryService&)=default;
+
+        auto toProtoService() const noexcept -> proto::gen::BluetoothService override;
     };
 
     ///////SECONDARY///////
-    class SecondaryService : public BluetoothService{
-        std::shared_ptr<PrimaryService> _primaryService;
+    class SecondaryService : public BluetoothService {
+        PrimaryService& _primaryService;
     public:
-        SecondaryService(bt_gatt_h service_handle, std::weak_ptr<BluetoothDeviceController> device, std::shared_ptr<PrimaryService> primaryService);
+        SecondaryService(bt_gatt_h service_handle, PrimaryService& primaryService);
+        SecondaryService(const SecondaryService&)=default;
 
         auto toProtoService() const noexcept -> proto::gen::BluetoothService override;
     };

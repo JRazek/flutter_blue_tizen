@@ -3,11 +3,13 @@
 #include <BluetoothManager.h>
 #include <NotificationsHandler.h>
 #include <Utils.h>
+#include <GATT/BluetoothService.h>
 
 #include <mutex>
 #include <unordered_set>
 namespace btu {
     using namespace btlog;
+    using namespace btGatt;
 
     BluetoothDeviceController::BluetoothDeviceController(const std::string& address, NotificationsHandler& notificationsHandler) noexcept:
     BluetoothDeviceController(address.c_str(), notificationsHandler){}
@@ -104,17 +106,16 @@ namespace btu {
             gatt_clients.var.erase(address);
         }
     }
+    //should return std::vector<btGatt::PrimaryService>
     auto BluetoothDeviceController::discoverServices() noexcept -> void {
         std::scoped_lock lock(operationM);
-        proto::gen::DiscoverServicesResult res;
-        auto services=getProtoServices(getGattClient(_address));
-        for(auto& s : services){
-            *res.add_services()=std::move(s);
-        }
-        res.set_remote_id(cAddress());
+        // std::vector<btGatt::PrimaryService> services;
+        int res=bt_gatt_client_foreach_services(getGattClient(_address), [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {
+            auto& device=*static_cast<BluetoothDeviceController*>(scope_ptr);
+            
 
-        Logger::log(LogLevel::DEBUG, "DiscoverServicesResult - done!");
-
-        _notificationsHandler.notifyUIThread("DiscoverServicesResult", res);
+            return true;
+        }, this);
+        Logger::showResultError("bt_gatt_client_foreach_services", res);
     }
 };
