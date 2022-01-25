@@ -16,11 +16,7 @@ void main() async {
     if (results.isNotEmpty) {
       var dev = results.last.device;
       var sc = results.last;
-      debugPrint('${dev.name}, local_name: ${sc.advertisementData.localName}');
-      // if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
-      //   debugPrint("herreeeeee");
-      // }
-      // dev.connect();
+      debugPrint(dev.toString());
       scanResults.add(results.last);
     }
   });
@@ -32,10 +28,12 @@ void main() async {
       debugPrint('connecting to: ${sc.advertisementData.localName}');
       await dev.disconnect();
       await dev.connect(autoConnect: false);
-      dev.discoverServices();
+      var services = await dev.discoverServices();
+      for (var service in services) {
+        debugPrint(service.toString());
+      }
       debugPrint('released connect');
     }
-    // dev.connect();
   }
   // Stop scanning
   debugPrint("hello");

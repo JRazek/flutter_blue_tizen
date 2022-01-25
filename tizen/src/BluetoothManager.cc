@@ -132,8 +132,7 @@ namespace btu{
                 scanResult.set_rssi(discovery_info->rssi);
                 AdvertisementData* advertisement_data=new AdvertisementData();
                 decodeAdvertisementData(discovery_info->adv_data, *advertisement_data, discovery_info->adv_data_len);
-                // Logger::log(LogLevel::WARNING, std::to_string(discovery_info->adv_data_len));
-                //decode advertisment data here...[TODO]
+
                 scanResult.set_allocated_advertisement_data(advertisement_data);
                 scanResult.set_allocated_device(new BluetoothDevice(protoDev));
 

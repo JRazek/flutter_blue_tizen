@@ -5650,23 +5650,24 @@ inline const std::string& ConnectRequest::_internal_remote_id() const {
 }
 inline void ConnectRequest::_internal_set_remote_id(const std::string& value) {
   
-  remote_id_.Set(nullptr, value, GetArena());
+  remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
 }
 inline void ConnectRequest::set_remote_id(std::string&& value) {
   
-  remote_id_.Set(nullptr, ::std::move(value), GetArena());
+  remote_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
   // @@protoc_insertion_point(field_set_rvalue:ConnectRequest.remote_id)
 }
 inline void ConnectRequest::set_remote_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
-  remote_id_.Set(nullptr, ::std::string(value), GetArena());
+  remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
   // @@protoc_insertion_point(field_set_char:ConnectRequest.remote_id)
 }
 inline void ConnectRequest::set_remote_id(const char* value,
     size_t size) {
   
-  remote_id_.Set(nullptr, ::std::string(
+  remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
   // @@protoc_insertion_point(field_set_pointer:ConnectRequest.remote_id)
 }
@@ -5734,7 +5735,7 @@ inline const std::string& BluetoothDevice::_internal_remote_id() const {
 }
 inline void BluetoothDevice::_internal_set_remote_id(const std::string& value) {
   
-  remote_id_.Set(nullptr, value, GetArena());
+  remote_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
 }
 inline void BluetoothDevice::set_remote_id(std::string&& value) {
   
@@ -5806,7 +5807,7 @@ inline void BluetoothDevice::set_name(std::string&& value) {
 inline void BluetoothDevice::set_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
-  name_.Set(PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
   // @@protoc_insertion_point(field_set_char:BluetoothDevice.name)
 }
 inline void BluetoothDevice::set_name(const char* value,
