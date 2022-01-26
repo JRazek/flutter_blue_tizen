@@ -1,8 +1,14 @@
 #include <GATT/BluetoothService.h>
 #include <GATT/BluetoothCharacteristic.h>
 #include <BluetoothDeviceController.h>
+#include <Logger.h>
+
+#include <bluetooth.h>
+
 namespace btGatt{
     using namespace btu;
+    using namespace btlog;
+
     BluetoothService::BluetoothService(bt_gatt_h handle):
     _handle(handle){
         int res=bt_gatt_service_foreach_characteristics(_handle, [](int total, int index, bt_gatt_h handle, void* _service) -> bool{
@@ -19,8 +25,6 @@ namespace btGatt{
     SecondaryService::SecondaryService(bt_gatt_h service_handle, PrimaryService& primaryService):
     BluetoothService(service_handle),
     _primaryService(primaryService){}
-
-
     
     auto PrimaryService::toProtoService() const noexcept -> proto::gen::BluetoothService {
         proto::gen::BluetoothService proto;
@@ -36,5 +40,25 @@ namespace btGatt{
             *proto.add_characteristics()=characteristic.toProtoCharacteristic();
         }
         return proto;
+    }
+
+    auto BluetoothService::getProtoProperties() const noexcept -> proto::gen::CharacteristicProperties {
+        proto::gen::CharacteristicProperties p;
+        int properties=0;
+        int res=bt_gatt_characteristic_get_properties(_handle, &properties);
+        Logger::showResultError("bt_gatt_characteristic_get_properties", res);
+        if(!res){
+            p.set_broadcast((properties & 1) != 0);
+            p.set_read((properties & 2) != 0);
+            p.set_write_without_response((properties & 4) != 0);
+            p.set_write((properties & 8) != 0);
+            p.set_notify((properties & 16) != 0);
+            p.set_indicate((properties & 32) != 0);
+            p.set_authenticated_signed_writes((properties & 64) != 0);
+            p.set_extended_properties((properties & 128) != 0);
+            p.set_notify_encryption_required((properties & 256) != 0);
+            p.set_indicate_encryption_required((properties & 512) != 0);
+        }
+        return p;
     }
 }

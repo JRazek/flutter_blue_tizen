@@ -3,10 +3,10 @@
 #include <BluetoothManager.h>
 #include <NotificationsHandler.h>
 #include <Utils.h>
-#include <GATT/BluetoothService.h>
 
 #include <mutex>
 #include <unordered_set>
+
 namespace btu {
     using namespace btlog;
     using namespace btGatt;
@@ -106,16 +106,19 @@ namespace btu {
             gatt_clients.var.erase(address);
         }
     }
-    //should return std::vector<btGatt::PrimaryService>
-    auto BluetoothDeviceController::discoverServices() noexcept -> void {
+
+    auto BluetoothDeviceController::discoverServices() noexcept -> std::vector<btGatt::PrimaryService> {
         std::scoped_lock lock(operationM);
         std::vector<btGatt::PrimaryService> services;
+
         int res=bt_gatt_client_foreach_services(getGattClient(_address), [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {
             auto& device=*static_cast<BluetoothDeviceController*>(scope_ptr);
             
 
             return true;
         }, this);
+        
         Logger::showResultError("bt_gatt_client_foreach_services", res);
+
     }
 };

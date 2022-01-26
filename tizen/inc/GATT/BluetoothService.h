@@ -27,6 +27,7 @@ namespace btGatt{
         virtual ~BluetoothService()=default;
     public:
         virtual auto toProtoService() const noexcept -> proto::gen::BluetoothService=0;
+        auto getProtoProperties() const noexcept -> proto::gen::CharacteristicProperties;
     };
 
 
