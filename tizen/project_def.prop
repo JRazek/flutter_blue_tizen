@@ -7,6 +7,7 @@ profile = common-4.0
 
 # Source files
 USER_SRCS += src/*.cc
+USER_SRCS += src/GATT/*.cc
 
 # User defines
 USER_DEFS =

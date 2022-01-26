@@ -8,10 +8,14 @@
 #include <unordered_map>
 #include <memory>
 #include <vector>
+#include <GATT/BluetoothCharacteristic.h>
+
+namespace btu{
+    class BluetoothDeviceController;
+};
 
 namespace btGatt{
-    class BluetoothDeviceController;
-    class BluetoothCharacteristic;
+
     class SecondaryService;
     class BluetoothService {
     protected:
@@ -20,7 +24,7 @@ namespace btGatt{
 
         BluetoothService(bt_gatt_h handle);
         BluetoothService(const BluetoothService&)=default;
-        ~BluetoothService()=default;
+        virtual ~BluetoothService()=default;
     public:
         virtual auto toProtoService() const noexcept -> proto::gen::BluetoothService=0;
     };
@@ -28,11 +32,11 @@ namespace btGatt{
 
     ///////PRIMARY///////
     class PrimaryService : public BluetoothService {
-        BluetoothDeviceController& _device;
+        btu::BluetoothDeviceController& _device;
         std::vector<SecondaryService> _secondaryServices;
 
     public:
-        PrimaryService(bt_gatt_h handle, BluetoothDeviceController& device);
+        PrimaryService(bt_gatt_h handle, btu::BluetoothDeviceController& device);
         PrimaryService(const PrimaryService&)=default;
 
         auto toProtoService() const noexcept -> proto::gen::BluetoothService override;

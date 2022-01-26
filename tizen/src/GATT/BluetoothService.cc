@@ -1,6 +1,8 @@
 #include <GATT/BluetoothService.h>
 #include <GATT/BluetoothCharacteristic.h>
+#include <BluetoothDeviceController.h>
 namespace btGatt{
+    using namespace btu;
     BluetoothService::BluetoothService(bt_gatt_h handle):
     _handle(handle){
         int res=bt_gatt_service_foreach_characteristics(_handle, [](int total, int index, bt_gatt_h handle, void* _service) -> bool{

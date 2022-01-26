@@ -2,7 +2,7 @@
 #include <GATT/BluetoothDescriptor.h>
 
 namespace btGatt{
-    BluetoothCharacteristic::BluetoothCharacteristic(bt_gatt_h handle, std::weak_ptr<BluetoothService> service):
+    BluetoothCharacteristic::BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service):
     _handle(handle),
     _service(service){}
 

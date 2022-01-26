@@ -11,9 +11,9 @@ namespace btGatt{
     class BluetoothCharacteristic;
     class BluetoothDescriptor{
         bt_gatt_h _handle;
-        std::weak_ptr<BluetoothCharacteristic> _characteristic;
+        BluetoothCharacteristic& _characteristic;
     public:
-        BluetoothDescriptor(bt_gatt_h handle, std::weak_ptr<BluetoothCharacteristic> characteristic);
+        BluetoothDescriptor(bt_gatt_h handle, BluetoothCharacteristic& characteristic);
 
         auto toProtoDescriptor() const noexcept -> proto::gen::BluetoothDescriptor;
     };

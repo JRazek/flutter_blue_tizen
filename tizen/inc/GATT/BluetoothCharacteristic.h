@@ -5,18 +5,19 @@
 #include <vector>
 
 #include <flutterblue.pb.h>
+#include <GATT/BluetoothDescriptor.h>
 
 namespace btGatt{
     class BluetoothService;
-    class BluetoothDescriptor;
+
     class BluetoothCharacteristic{
         bt_gatt_h _handle;
-        std::weak_ptr<BluetoothService> _service;
+        BluetoothService& _service;
 
         std::vector<BluetoothDescriptor> _descriptors;
     public:
 
-        BluetoothCharacteristic(bt_gatt_h handle, std::weak_ptr<BluetoothService> service);
+        BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service);
 
         auto toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic;
     };
