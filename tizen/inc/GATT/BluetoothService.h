@@ -15,6 +15,10 @@ namespace btu{
 };
 
 namespace btGatt{
+    enum class ServiceType{
+        PRIMARY,
+        SECONDARY,
+    };
 
     class SecondaryService;
     class BluetoothService {
@@ -27,7 +31,10 @@ namespace btGatt{
         virtual ~BluetoothService()=default;
     public:
         virtual auto toProtoService() const noexcept -> proto::gen::BluetoothService=0;
+        virtual auto cDevice() const noexcept -> const btu::BluetoothDeviceController& =0;
         auto getProtoProperties() const noexcept -> proto::gen::CharacteristicProperties;
+        virtual auto getType() const noexcept -> ServiceType=0;
+        auto UUID() noexcept -> std::string;
     };
 
 
@@ -40,8 +47,9 @@ namespace btGatt{
         PrimaryService(bt_gatt_h handle, btu::BluetoothDeviceController& device);
         PrimaryService(const PrimaryService&)=default;
 
-        auto cDevice() const noexcept -> const decltype(_device)&;
+        auto cDevice() const noexcept -> const btu::BluetoothDeviceController& override;
         auto toProtoService() const noexcept -> proto::gen::BluetoothService override;
+        auto getType() const noexcept -> ServiceType override;
     };
 
     ///////SECONDARY///////
@@ -51,7 +59,11 @@ namespace btGatt{
         SecondaryService(bt_gatt_h service_handle, PrimaryService& primaryService);
         SecondaryService(const SecondaryService&)=default;
 
+        auto cDevice() const noexcept -> const btu::BluetoothDeviceController& override;
+        auto cPrimary() const noexcept -> const decltype(_primaryService)&;
         auto toProtoService() const noexcept -> proto::gen::BluetoothService override;
+        auto getType() const noexcept -> ServiceType override;
+        auto primaryUUID() noexcept -> std::string;
     };
 }
 #endif //BLEUTOOTH_SERVICE_H

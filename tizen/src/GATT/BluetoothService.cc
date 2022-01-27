@@ -28,7 +28,7 @@ namespace btGatt{
 
     }
     
-    auto PrimaryService::cDevice() const noexcept -> const decltype(_device)&{
+    auto PrimaryService::cDevice() const noexcept -> const btu::BluetoothDeviceController&{
         return _device;
     }
     auto PrimaryService::toProtoService() const noexcept -> proto::gen::BluetoothService {
@@ -44,7 +44,16 @@ namespace btGatt{
         }
         return proto;
     }
-    
+    auto PrimaryService::getType() const noexcept -> ServiceType {
+        return ServiceType::PRIMARY;
+    }
+
+    auto SecondaryService::cDevice() const noexcept -> const btu::BluetoothDeviceController&{
+        return _primaryService.cDevice();
+    }
+    auto SecondaryService::cPrimary() const noexcept -> const decltype(_primaryService)&{
+        return _primaryService;
+    }
     auto SecondaryService::toProtoService() const noexcept -> proto::gen::BluetoothService {
         proto::gen::BluetoothService proto;
         proto.set_remote_id(_primaryService.cDevice().cAddress());
@@ -54,6 +63,13 @@ namespace btGatt{
             *proto.add_characteristics()=characteristic.toProtoCharacteristic();
         }
         return proto;
+    }
+
+    auto SecondaryService::getType() const noexcept -> ServiceType {
+        return ServiceType::SECONDARY;
+    }
+    auto SecondaryService::primaryUUID() noexcept -> std::string {
+        return _primaryService.UUID();
     }
 
     auto BluetoothService::getProtoProperties() const noexcept -> proto::gen::CharacteristicProperties {
@@ -75,4 +91,8 @@ namespace btGatt{
         }
         return p;
     }
+    auto BluetoothService::UUID() noexcept -> std::string {
+        return getGattUUID(_handle);
+    }
+
 }

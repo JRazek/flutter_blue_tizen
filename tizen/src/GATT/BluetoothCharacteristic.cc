@@ -1,7 +1,11 @@
 #include <GATT/BluetoothCharacteristic.h>
 #include <GATT/BluetoothDescriptor.h>
+#include <GATT/BluetoothService.h>
+#include <BluetoothDeviceController.h>
+#include <Utils.h>
 
 namespace btGatt{
+    using namespace btu;
     BluetoothCharacteristic::BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service):
     _handle(handle),
     _service(service){
@@ -14,6 +18,17 @@ namespace btGatt{
 
     auto BluetoothCharacteristic::toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic{
         proto::gen::BluetoothCharacteristic proto;
+        proto.set_remote_id(_service.cDevice().cAddress());
+        proto.set_uuid(getGattUUID(_handle));
+        proto.set_allocated_properties(new proto::gen::CharacteristicProperties(getProtoCharacteristicProperties(_handle)));
+        //value?
+        if(_service.getType()==ServiceType::PRIMARY)
+            proto.set_serviceuuid(_service.UUID());
+        else{
+            SecondaryService& sec=dynamic_cast<SecondaryService&>(_service);
+            proto.set_serviceuuid(sec.UUID());
+            proto.set_secondaryserviceuuid(sec.primaryUUID());
+        }
         for(const auto& descriptor:_descriptors){
             *proto.add_descriptors()=descriptor.toProtoDescriptor();
         }
