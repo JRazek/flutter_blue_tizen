@@ -23,14 +23,17 @@ namespace btu{
         std::vector<proto::gen::BluetoothDevice> _protoBluetoothDevices;
 
         std::string _address;
-        std::condition_variable cv;
+        bool isConnecting=false;
+        bool isDisconnecting=false;
 
         NotificationsHandler& _notificationsHandler;
 
     public:
         enum class State{
             CONNECTED,
+            CONNECTING,
             DISCONNECTED,
+            DISCONNECTING,
         };
 
         BluetoothDeviceController(const std::string& address, NotificationsHandler& notificationsHandler) noexcept;

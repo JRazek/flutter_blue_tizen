@@ -20,39 +20,44 @@ namespace btu {
     {}
 
     BluetoothDeviceController::~BluetoothDeviceController() noexcept {
-        if(state()==State::CONNECTED) disconnect();
+        disconnect();
         destroyGattClientIfExists(_address);
         Logger::log(LogLevel::DEBUG, "reporting destroy!");
     }
 
     auto BluetoothDeviceController::cAddress() const noexcept -> const decltype(_address)& { return _address; }
     auto BluetoothDeviceController::state() noexcept -> State {
-        bool isConnected;
-        
-        int res=bt_device_is_profile_connected(_address.c_str(), BT_PROFILE_GATT, &isConnected);
-        Logger::showResultError("bt_device_is_profile_connected", res);
-        return (isConnected ? State::CONNECTED : State::DISCONNECTED); 
+        if(isConnecting^isDisconnecting){
+            return (isConnecting ? State::CONNECTING : State::DISCONNECTING);
+        }else{
+            bool isConnected=false;
+            int res=bt_device_is_profile_connected(_address.c_str(), BT_PROFILE_GATT, &isConnected);
+            Logger::showResultError("bt_device_is_profile_connected", res);
+            return (isConnected ? State::CONNECTED : State::DISCONNECTED); 
+        }
     }
     auto BluetoothDeviceController::protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
     auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
     auto BluetoothDeviceController::connect(const proto::gen::ConnectRequest& connReq) noexcept -> void {
-        using namespace std::literals;
         std::unique_lock lock(operationM);
         if(state()==State::DISCONNECTED){
-            int res=bt_gatt_connect(_address.c_str(), false);
+            isConnecting=true;
+            int res=bt_gatt_connect(_address.c_str(), connReq.android_auto_connect());
             Logger::showResultError("bt_gatt_connect", res);
         }else{
             Logger::log(LogLevel::WARNING, "already connected to device "+_address);
         }
     }
     auto BluetoothDeviceController::disconnect() noexcept -> void {
-        Logger::log(LogLevel::DEBUG, "explicit disconnect call");
-        std::unique_lock lock(operationM);
+        std::lock_guard lock(operationM);
+
         if(state()==State::CONNECTED){
+        Logger::log(LogLevel::DEBUG, "explicit disconnect call");
+            isDisconnecting=true;
             int res=bt_gatt_disconnect(_address.c_str());
             Logger::showResultError("bt_gatt_disconnect", res);
         }else{
-            Logger::log(LogLevel::WARNING, "cannot disconnect. Device not connected "+_address);
+            // Logger::log(LogLevel::WARNING, "cannot disconnect. Device not connected "+_address);
         }
     }
     auto BluetoothDeviceController::connectionStateCallback(int res, bool connected, const char* remote_address, void* user_data) noexcept -> void {
@@ -66,6 +71,8 @@ namespace btu {
             //when disconnect is called from destructor, this callback can be invoked when the object is already destroyed.
             if(ptr!=bluetoothManager.bluetoothDevices().var.end()){
                 auto device=(*ptr).second;
+                device->isConnecting=false;
+                device->isDisconnecting=false;
                 std::scoped_lock devLock(device->operationM);
 
                 proto::gen::DeviceStateResponse devState;
@@ -87,7 +94,7 @@ namespace btu {
         if(it==gatt_clients.var.end()){
             int res=bt_gatt_client_create(address.c_str(), &client);
             Logger::showResultError("bt_gatt_client_create", res);
-            if(res==BT_ERROR_NONE || res==BT_ERROR_ALREADY_DONE){
+            if((res==BT_ERROR_NONE || res==BT_ERROR_ALREADY_DONE) && client){
                 gatt_clients.var.emplace(address, client);
                 Logger::log(LogLevel::DEBUG, "creating new gatt client for "+address);
             };
@@ -110,6 +117,7 @@ namespace btu {
     auto BluetoothDeviceController::discoverServices() noexcept -> std::vector<btGatt::PrimaryService> {
         std::scoped_lock lock(operationM);
         std::vector<btGatt::PrimaryService> services;
+        Logger::log(LogLevel::DEBUG, "debug 04");
         
         struct Scope{
             BluetoothDeviceController& device;
@@ -127,6 +135,7 @@ namespace btu {
         ///////////////
 
         Logger::showResultError("bt_gatt_client_foreach_services", res);
-
+        Logger::log(LogLevel::DEBUG, "debug 05");
+        return services;
     }
 };
