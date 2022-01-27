@@ -40,6 +40,7 @@ namespace btGatt{
         PrimaryService(bt_gatt_h handle, btu::BluetoothDeviceController& device);
         PrimaryService(const PrimaryService&)=default;
 
+        auto cDevice() const noexcept -> const decltype(_device)&;
         auto toProtoService() const noexcept -> proto::gen::BluetoothService override;
     };
 

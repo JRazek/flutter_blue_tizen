@@ -110,14 +110,22 @@ namespace btu {
     auto BluetoothDeviceController::discoverServices() noexcept -> std::vector<btGatt::PrimaryService> {
         std::scoped_lock lock(operationM);
         std::vector<btGatt::PrimaryService> services;
-
-        int res=bt_gatt_client_foreach_services(getGattClient(_address), [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {
-            auto& device=*static_cast<BluetoothDeviceController*>(scope_ptr);
-            
-
-            return true;
-        }, this);
         
+        struct Scope{
+            BluetoothDeviceController& device;
+            std::vector<btGatt::PrimaryService>& services;
+        };
+
+        //unsafe block (void *)
+        Scope scope{*this, services};
+        int res=bt_gatt_client_foreach_services(getGattClient(_address), [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {
+            auto& scope=*static_cast<Scope*>(scope_ptr);
+            scope.services.emplace_back(service_handle, scope.device);
+            
+            return true;
+        }, &scope);
+        ///////////////
+
         Logger::showResultError("bt_gatt_client_foreach_services", res);
 
     }

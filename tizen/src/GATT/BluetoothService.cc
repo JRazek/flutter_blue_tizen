@@ -24,18 +24,32 @@ namespace btGatt{
 
     SecondaryService::SecondaryService(bt_gatt_h service_handle, PrimaryService& primaryService):
     BluetoothService(service_handle),
-    _primaryService(primaryService){}
+    _primaryService(primaryService){
+
+    }
     
+    auto PrimaryService::cDevice() const noexcept -> const decltype(_device)&{
+        return _device;
+    }
     auto PrimaryService::toProtoService() const noexcept -> proto::gen::BluetoothService {
         proto::gen::BluetoothService proto;
+        proto.set_remote_id(_device.cAddress());
+        proto.set_uuid(getGattUUID(_handle));
+        proto.set_is_primary(true);
         for(const auto& characteristic : _characteristics){
             *proto.add_characteristics()=characteristic.toProtoCharacteristic();
+        }
+        for(const auto& secondary : _secondaryServices){
+            *proto.add_included_services()=secondary.toProtoService();
         }
         return proto;
     }
     
     auto SecondaryService::toProtoService() const noexcept -> proto::gen::BluetoothService {
         proto::gen::BluetoothService proto;
+        proto.set_remote_id(_primaryService.cDevice().cAddress());
+        proto.set_uuid(getGattUUID(_handle));
+        proto.set_is_primary(false);
         for(const auto& characteristic : _characteristics){
             *proto.add_characteristics()=characteristic.toProtoCharacteristic();
         }
