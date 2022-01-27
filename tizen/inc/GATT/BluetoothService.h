@@ -34,7 +34,7 @@ namespace btGatt{
         virtual auto cDevice() const noexcept -> const btu::BluetoothDeviceController& =0;
         auto getProtoProperties() const noexcept -> proto::gen::CharacteristicProperties;
         virtual auto getType() const noexcept -> ServiceType=0;
-        auto UUID() noexcept -> std::string;
+        auto UUID() const noexcept -> std::string;
     };
 
 

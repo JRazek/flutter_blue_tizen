@@ -14,8 +14,9 @@ namespace btGatt{
         BluetoothCharacteristic& _characteristic;
     public:
         BluetoothDescriptor(bt_gatt_h handle, BluetoothCharacteristic& characteristic);
-
+        
         auto toProtoDescriptor() const noexcept -> proto::gen::BluetoothDescriptor;
+        auto UUID() const noexcept -> std::string;
     };
 }
 #endif //BLUETOOTH_DESCRIPTOR_H
