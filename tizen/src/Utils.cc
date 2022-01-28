@@ -9,9 +9,9 @@ namespace btu{
         using State=btu::BluetoothDeviceController::State;
         switch (s){
             case State::CONNECTED: return proto::gen::DeviceStateResponse_BluetoothDeviceState_CONNECTED;
-            // case State::CONNECTING: return DeviceStateResponse_BluetoothDeviceState_CONNECTING;
+            case State::CONNECTING: return proto::gen::DeviceStateResponse_BluetoothDeviceState_CONNECTING;
             case State::DISCONNECTED: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
-            // case State::DISCONNECTING: return DeviceStateResponse_BluetoothDeviceState_DISCONNECTING;
+            case State::DISCONNECTING: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTING;
             default: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
         }
     }
@@ -89,7 +89,7 @@ namespace btu{
                 *characteristic.add_descriptors()=std::move(d);
             }
 
-            characteristic.set_allocated_properties(new proto::gen::CharacteristicProperties(getProtoCharacteristicProperties(characteristic_handle)));
+            // characteristic.set_allocated_properties(new proto::gen::CharacteristicProperties(getProtoCharacteristicProperties(characteristic_handle)));
 
             return true;
         }, &characteristics);
@@ -116,23 +116,18 @@ namespace btu{
         return descriptors;
     }
 
-    auto getProtoCharacteristicProperties(bt_gatt_h characteristic_handle) -> proto::gen::CharacteristicProperties {
+    auto getProtoCharacteristicProperties(int properties) -> proto::gen::CharacteristicProperties {
         proto::gen::CharacteristicProperties p;
-        int properties=0;
-        int res=bt_gatt_characteristic_get_properties(characteristic_handle, &properties);
-        Logger::showResultError("bt_gatt_characteristic_get_properties", res);
-        if(!res){
-            p.set_broadcast((properties & 1) != 0);
-            p.set_read((properties & 2) != 0);
-            p.set_write_without_response((properties & 4) != 0);
-            p.set_write((properties & 8) != 0);
-            p.set_notify((properties & 16) != 0);
-            p.set_indicate((properties & 32) != 0);
-            p.set_authenticated_signed_writes((properties & 64) != 0);
-            p.set_extended_properties((properties & 128) != 0);
-            p.set_notify_encryption_required((properties & 256) != 0);
-            p.set_indicate_encryption_required((properties & 512) != 0);
-        }
+        p.set_broadcast((properties & 1) != 0);
+        p.set_read((properties & 2) != 0);
+        p.set_write_without_response((properties & 4) != 0);
+        p.set_write((properties & 8) != 0);
+        p.set_notify((properties & 16) != 0);
+        p.set_indicate((properties & 32) != 0);
+        p.set_authenticated_signed_writes((properties & 64) != 0);
+        p.set_extended_properties((properties & 128) != 0);
+        p.set_notify_encryption_required((properties & 256) != 0);
+        p.set_indicate_encryption_required((properties & 512) != 0);
         return p;
     }
 
@@ -186,6 +181,18 @@ namespace btu{
         }
         return result;        
     }
+    auto getProtoServiceDiscoveryResult(const BluetoothDeviceController& device, const std::vector<std::unique_ptr<btGatt::PrimaryService>>& services) -> proto::gen::DiscoverServicesResult {
+        proto::gen::DiscoverServicesResult res;
+        Logger::log(LogLevel::DEBUG, "in order");
+        for(const auto& s : services){
+            *res.add_services() = s->toProtoService();
+        }
+        res.set_remote_id(device.cAddress());
+        Logger::log(LogLevel::DEBUG, "out order");
+        return res;
+    }
+
+
 
     auto getGattService(bt_gatt_client_h handle, const std::string& uuid) -> bt_gatt_h {
         bt_gatt_h result;

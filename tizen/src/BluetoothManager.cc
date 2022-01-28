@@ -33,10 +33,6 @@ namespace btu{
         Logger::log(LogLevel::DEBUG, "All callbacks successfully initialized.");
     }
 
-    BluetoothManager::~BluetoothManager() noexcept{
-
-    }
-
     auto BluetoothManager::isBLEAvailable() noexcept -> bool{
         bool state;
         int ret = system_info_get_platform_bool("http://tizen.org/feature/network.bluetooth.le", &state);

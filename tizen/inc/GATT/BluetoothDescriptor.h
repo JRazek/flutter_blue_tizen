@@ -10,6 +10,7 @@
 namespace btGatt{
     class BluetoothCharacteristic;
     class BluetoothDescriptor{
+
         bt_gatt_h _handle;
         BluetoothCharacteristic& _characteristic;
     public:

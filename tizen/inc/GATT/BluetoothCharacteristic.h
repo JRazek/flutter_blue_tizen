@@ -13,12 +13,12 @@ namespace btGatt{
     class BluetoothCharacteristic{
         bt_gatt_h _handle;
         BluetoothService& _service;
+        int _properties;
 
-        std::vector<BluetoothDescriptor> _descriptors;
+        std::vector<std::unique_ptr<BluetoothDescriptor>> _descriptors;
     public:
 
         BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service);
-
         auto toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic;
         auto cService() const noexcept -> const decltype(_service)&;
         auto UUID() const noexcept -> std::string;

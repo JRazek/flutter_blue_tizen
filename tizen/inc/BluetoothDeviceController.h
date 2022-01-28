@@ -54,7 +54,7 @@ namespace btu{
         static auto getGattClient(const std::string& address) noexcept -> bt_gatt_client_h;
         static auto destroyGattClientIfExists(const std::string& address) noexcept -> void;
 
-        auto discoverServices() noexcept -> std::vector<btGatt::PrimaryService>;
+        auto discoverServices() noexcept -> std::vector<std::unique_ptr<btGatt::PrimaryService>>;
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H

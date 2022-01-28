@@ -27,7 +27,7 @@ namespace btu{
      public:
           
           BluetoothManager(NotificationsHandler& notificationsHandler) noexcept;
-          virtual ~BluetoothManager() noexcept;
+          virtual ~BluetoothManager() noexcept=default;
           BluetoothManager(const BluetoothManager& bluetoothManager)=delete;
           
           auto startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) noexcept -> void;

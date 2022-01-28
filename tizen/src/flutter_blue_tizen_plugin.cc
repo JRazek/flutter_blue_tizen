@@ -129,10 +129,13 @@ namespace {
         auto it=bluetoothManager.bluetoothDevices().var.find(deviceID);
         if(it!=bluetoothManager.bluetoothDevices().var.end()){
           auto& device=it->second;
-          device->discoverServices();
           result->Success(flutter::EncodableValue(NULL));
 
-        } else result->Error("device not available");
+          auto services=device->discoverServices();
+          notificationsHandler.notifyUIThread("DiscoverServicesResult", btu::getProtoServiceDiscoveryResult(*device.get(), services));
+        }
+        else 
+            result->Error("device not available");
       }
       else {
         result->NotImplemented();

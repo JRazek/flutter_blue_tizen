@@ -8,25 +8,34 @@
 namespace btGatt{
     using namespace btu;
     using namespace btlog;
-
+    
     BluetoothService::BluetoothService(bt_gatt_h handle):
     _handle(handle){
-        int res=bt_gatt_service_foreach_characteristics(_handle, [](int total, int index, bt_gatt_h handle, void* _service) -> bool{
-            auto& service=*static_cast<BluetoothService *>(_service);
-            service._characteristics.emplace_back(handle, service);
+        int res=bt_gatt_service_foreach_characteristics(handle,
+        [](int total, int index, bt_gatt_h handle, void* scope_ptr) -> bool{
+            auto& service=*static_cast<BluetoothService*>(scope_ptr);
+            service._characteristics.emplace_back(std::make_unique<BluetoothCharacteristic>(handle, service));
             return true;
         }, this);
+        
+        Logger::showResultError("bt_gatt_service_foreach_characteristics", res);
     }
 
     PrimaryService::PrimaryService(bt_gatt_h handle, BluetoothDeviceController& device):
     BluetoothService(handle),
-    _device(device){}
+    _device(device){
+        int res=bt_gatt_service_foreach_included_services(handle,
+            [](int total, int index, bt_gatt_h handle, void* scope_ptr) -> bool{
+                auto& service=*static_cast<PrimaryService*>(scope_ptr);
+                service._secondaryServices.emplace_back(std::make_unique<SecondaryService>(handle, service));
+                return true;
+            }, this);
+        Logger::showResultError("bt_gatt_service_foreach_included_services", res);
+    }
 
     SecondaryService::SecondaryService(bt_gatt_h service_handle, PrimaryService& primaryService):
     BluetoothService(service_handle),
-    _primaryService(primaryService){
-
-    }
+    _primaryService(primaryService){}
     
     auto PrimaryService::cDevice() const noexcept -> const btu::BluetoothDeviceController&{
         return _device;
@@ -37,10 +46,10 @@ namespace btGatt{
         proto.set_uuid(UUID());
         proto.set_is_primary(true);
         for(const auto& characteristic : _characteristics){
-            *proto.add_characteristics()=characteristic.toProtoCharacteristic();
+            *proto.add_characteristics()=characteristic->toProtoCharacteristic();
         }
         for(const auto& secondary : _secondaryServices){
-            *proto.add_included_services()=secondary.toProtoService();
+            *proto.add_included_services()=secondary->toProtoService();
         }
         return proto;
     }
@@ -60,7 +69,7 @@ namespace btGatt{
         proto.set_uuid(UUID());
         proto.set_is_primary(false);
         for(const auto& characteristic : _characteristics){
-            *proto.add_characteristics()=characteristic.toProtoCharacteristic();
+            *proto.add_characteristics()=characteristic->toProtoCharacteristic();
         }
         return proto;
     }
@@ -70,26 +79,6 @@ namespace btGatt{
     }
     auto SecondaryService::primaryUUID() noexcept -> std::string {
         return _primaryService.UUID();
-    }
-
-    auto BluetoothService::getProtoProperties() const noexcept -> proto::gen::CharacteristicProperties {
-        proto::gen::CharacteristicProperties p;
-        int properties=0;
-        int res=bt_gatt_characteristic_get_properties(_handle, &properties);
-        Logger::showResultError("bt_gatt_characteristic_get_properties", res);
-        if(!res){
-            p.set_broadcast((properties & 1) != 0);
-            p.set_read((properties & 2) != 0);
-            p.set_write_without_response((properties & 4) != 0);
-            p.set_write((properties & 8) != 0);
-            p.set_notify((properties & 16) != 0);
-            p.set_indicate((properties & 32) != 0);
-            p.set_authenticated_signed_writes((properties & 64) != 0);
-            p.set_extended_properties((properties & 128) != 0);
-            p.set_notify_encryption_required((properties & 256) != 0);
-            p.set_indicate_encryption_required((properties & 512) != 0);
-        }
-        return p;
     }
     auto BluetoothService::UUID() const noexcept -> std::string {
         return getGattUUID(_handle);
