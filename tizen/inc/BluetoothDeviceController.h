@@ -59,6 +59,8 @@ namespace btu{
         auto discoverServices() noexcept -> std::vector<std::shared_ptr<btGatt::PrimaryService>>;
 
         auto getService(const std::string& uuid) noexcept -> std::shared_ptr<btGatt::PrimaryService>;
+
+        auto cNotificationsHandler() const noexcept -> const NotificationsHandler&;
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H

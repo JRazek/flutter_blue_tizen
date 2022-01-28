@@ -23,6 +23,7 @@ namespace btGatt{
         auto cService() const noexcept -> const decltype(_service)&;
         auto UUID() const noexcept -> std::string;
         auto getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor>;
+        auto read() -> void;
     };
 }
 #endif //BLEUTOOTH_CHARACTERISTIC_H

@@ -4,6 +4,7 @@
 #include <BluetoothDeviceController.h>
 #include <Utils.h>
 #include <Logger.h>
+#include <NotificationsHandler.h>
 
 namespace btGatt{
     using namespace btu;
@@ -26,7 +27,7 @@ namespace btGatt{
         proto.set_remote_id(_service.cDevice().cAddress());
         proto.set_uuid(UUID());
         proto.set_allocated_properties(new proto::gen::CharacteristicProperties(getProtoCharacteristicProperties(_properties)));
-        // value?
+        proto.set_value(getGattValue(_handle));
         if(_service.getType()==ServiceType::PRIMARY)
             proto.set_serviceuuid(_service.UUID());
         else{
@@ -52,4 +53,19 @@ namespace btGatt{
         }
         return {};
     }
+    auto BluetoothCharacteristic::read() -> void {
+        int res=bt_gatt_client_read_value(_handle, 
+            [](int result, bt_gatt_h request_handle, void* scope_ptr){
+            auto& characteristic=*static_cast<BluetoothCharacteristic*>(scope_ptr);
+            proto::gen::ReadCharacteristicResponse res;
+            res.set_remote_id(characteristic.cService().cDevice().cAddress());
+            res.set_allocated_characteristic(new proto::gen::BluetoothCharacteristic(characteristic.toProtoCharacteristic()));
+
+            characteristic.cService().cDevice().cNotificationsHandler()
+                                .notifyUIThread("ReadCharacteristicResponse", res);
+        },
+        this);
+        Logger::showResultError("bt_gatt_client_read_value", res);
+    }
+
 }

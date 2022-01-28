@@ -216,7 +216,7 @@ namespace btu{
                 }else{
                     characteristic=primary->getCharacteristic(request.characteristic_uuid());
                 }
-                // characteristic->read();
+                characteristic->read();
             }
         }else{
             Logger::log(LogLevel::ERROR, "could not find device " + request.remote_id());

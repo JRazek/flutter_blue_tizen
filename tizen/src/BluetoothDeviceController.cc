@@ -144,4 +144,7 @@ namespace btu {
         }
         return {};
     }
+    auto BluetoothDeviceController::cNotificationsHandler() const noexcept -> const NotificationsHandler& {
+        return _notificationsHandler;
+    }
 };
