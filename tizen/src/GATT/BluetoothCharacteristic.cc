@@ -16,7 +16,7 @@ namespace btGatt{
 
         res=bt_gatt_characteristic_foreach_descriptors(handle, [](int total, int index, bt_gatt_h descriptor_handle, void* scope_ptr) -> bool {
             auto& characteristic=*static_cast<BluetoothCharacteristic*>(scope_ptr);
-            characteristic._descriptors.emplace_back(std::make_unique<BluetoothDescriptor>(descriptor_handle, characteristic));
+            characteristic._descriptors.emplace_back(std::make_shared<BluetoothDescriptor>(descriptor_handle, characteristic));
             return true;
         }, this);
     }

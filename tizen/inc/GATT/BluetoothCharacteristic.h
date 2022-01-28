@@ -15,7 +15,7 @@ namespace btGatt{
         BluetoothService& _service;
         int _properties;
 
-        std::vector<std::unique_ptr<BluetoothDescriptor>> _descriptors;
+        std::vector<std::shared_ptr<BluetoothDescriptor>> _descriptors;
     public:
 
         BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service);

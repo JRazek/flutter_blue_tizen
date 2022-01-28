@@ -137,6 +137,20 @@ namespace {
         else 
             result->Error("device not available");
       }
+      else if(method_call.method_name() == "readCharacteristic"){
+        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
+        proto::gen::ReadCharacteristicRequest request;
+        request.ParseFromArray(encoded.data(), encoded.size());
+        std::string deviceID = request.remote_id();
+        std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
+        auto it=bluetoothManager.bluetoothDevices().var.find(deviceID);
+        if(it!=bluetoothManager.bluetoothDevices().var.end()){
+          auto& device=it->second;
+          //delegate to bluetoothManager instead.
+        }
+        else 
+            result->Error("device not available");
+      }
       else {
         result->NotImplemented();
       }

@@ -114,28 +114,34 @@ namespace btu {
         }
     }
 
-    auto BluetoothDeviceController::discoverServices() noexcept -> std::vector<std::unique_ptr<btGatt::PrimaryService>> {
+    auto BluetoothDeviceController::discoverServices() noexcept -> std::vector<std::shared_ptr<btGatt::PrimaryService>> {
         std::scoped_lock lock(operationM);
-        std::vector<std::unique_ptr<btGatt::PrimaryService>> services;
 
         struct Scope{
             BluetoothDeviceController& device;
-            std::vector<std::unique_ptr<btGatt::PrimaryService>>& services;
+            std::vector<std::shared_ptr<btGatt::PrimaryService>>& services;
         };
 
         //unsafe block (void *)
-        Scope scope{*this, services};
+        Scope scope{*this, _services};
 
         int res=bt_gatt_client_foreach_services(getGattClient(_address), [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {
             auto& scope=*static_cast<Scope*>(scope_ptr);
 
-            scope.services.emplace_back(std::make_unique<btGatt::PrimaryService>(service_handle, scope.device));
+            scope.services.emplace_back(std::make_shared<btGatt::PrimaryService>(service_handle, scope.device));
             
             return true;
         }, &scope);
         ///////////////
 
         Logger::showResultError("bt_gatt_client_foreach_services", res);
-        return services;
+        return _services;
+    }
+    auto BluetoothDeviceController::getService(const std::string& uuid) noexcept -> std::shared_ptr<btGatt::PrimaryService>{ 
+        for(auto& s: _services){
+            if(s->UUID()==uuid)
+                return s;
+        }
+        return {};
     }
 };

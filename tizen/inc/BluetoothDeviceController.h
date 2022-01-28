@@ -22,6 +22,8 @@ namespace btu{
 
         std::vector<proto::gen::BluetoothDevice> _protoBluetoothDevices;
 
+        std::vector<std::shared_ptr<btGatt::PrimaryService>> _services;
+
         std::string _address;
         bool isConnecting=false;
         bool isDisconnecting=false;
@@ -54,7 +56,9 @@ namespace btu{
         static auto getGattClient(const std::string& address) noexcept -> bt_gatt_client_h;
         static auto destroyGattClientIfExists(const std::string& address) noexcept -> void;
 
-        auto discoverServices() noexcept -> std::vector<std::unique_ptr<btGatt::PrimaryService>>;
+        auto discoverServices() noexcept -> std::vector<std::shared_ptr<btGatt::PrimaryService>>;
+
+        auto getService(const std::string& uuid) noexcept -> std::shared_ptr<btGatt::PrimaryService>;
     };
 };
 #endif //BLUETOOTH_DEVICE_CONTROLLER_H

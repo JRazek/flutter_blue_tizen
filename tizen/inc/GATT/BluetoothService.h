@@ -24,7 +24,7 @@ namespace btGatt{
     class BluetoothService {
     protected:
         bt_gatt_h _handle;
-        std::vector<std::unique_ptr<BluetoothCharacteristic>> _characteristics;
+        std::vector<std::shared_ptr<BluetoothCharacteristic>> _characteristics;
         
         BluetoothService(bt_gatt_h handle);
         BluetoothService(const BluetoothService&)=default;
@@ -34,13 +34,14 @@ namespace btGatt{
         virtual auto cDevice() const noexcept -> const btu::BluetoothDeviceController& =0;
         virtual auto getType() const noexcept -> ServiceType=0;
         auto UUID() const noexcept -> std::string;
+        auto getCharacteristic(const std::string& uuid) -> std::shared_ptr<BluetoothCharacteristic>;
     };
 
 
     ///////PRIMARY///////
     class PrimaryService : public BluetoothService {
         btu::BluetoothDeviceController& _device;
-        std::vector<std::unique_ptr<SecondaryService>> _secondaryServices;
+        std::vector<std::shared_ptr<SecondaryService>> _secondaryServices;
 
     public:
         PrimaryService(bt_gatt_h handle, btu::BluetoothDeviceController& device);

@@ -14,7 +14,7 @@ namespace btGatt{
         int res=bt_gatt_service_foreach_characteristics(handle,
         [](int total, int index, bt_gatt_h handle, void* scope_ptr) -> bool{
             auto& service=*static_cast<BluetoothService*>(scope_ptr);
-            service._characteristics.emplace_back(std::make_unique<BluetoothCharacteristic>(handle, service));
+            service._characteristics.emplace_back(std::make_shared<BluetoothCharacteristic>(handle, service));
             return true;
         }, this);
         
@@ -27,7 +27,7 @@ namespace btGatt{
         int res=bt_gatt_service_foreach_included_services(handle,
             [](int total, int index, bt_gatt_h handle, void* scope_ptr) -> bool{
                 auto& service=*static_cast<PrimaryService*>(scope_ptr);
-                service._secondaryServices.emplace_back(std::make_unique<SecondaryService>(handle, service));
+                service._secondaryServices.emplace_back(std::make_shared<SecondaryService>(handle, service));
                 return true;
             }, this);
         Logger::showResultError("bt_gatt_service_foreach_included_services", res);
@@ -82,6 +82,13 @@ namespace btGatt{
     }
     auto BluetoothService::UUID() const noexcept -> std::string {
         return getGattUUID(_handle);
+    }
+    auto BluetoothService::getCharacteristic(const std::string& uuid) -> std::shared_ptr<BluetoothCharacteristic>{
+        for(auto& c : _characteristics){
+            if(c->UUID()==uuid)
+                return c;
+        }
+        return {};
     }
 
 }
