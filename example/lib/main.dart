@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
@@ -26,15 +27,18 @@ void main() async {
     var dev = sc.device;
     if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
       debugPrint('connecting to: ${sc.advertisementData.localName}');
-      await dev.disconnect();
+      // await dev.disconnect();
       await dev.connect(autoConnect: false);
+      // sleep(const Duration(seconds: 28));
       var services = await dev.discoverServices();
       for (var service in services) {
         debugPrint(service.toString());
       }
+      dev.disconnect();
       debugPrint('released connect');
     }
   }
+
   // Stop scanning
   debugPrint("hello");
   runApp(const MyApp());
