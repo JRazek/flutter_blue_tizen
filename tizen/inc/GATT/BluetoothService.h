@@ -50,6 +50,7 @@ namespace btGatt{
         auto cDevice() const noexcept -> const btu::BluetoothDeviceController& override;
         auto toProtoService() const noexcept -> proto::gen::BluetoothService override;
         auto getType() const noexcept -> ServiceType override;
+        auto getSecondary(const std::string& uuid) noexcept -> std::shared_ptr<SecondaryService>;
     };
 
     ///////SECONDARY///////

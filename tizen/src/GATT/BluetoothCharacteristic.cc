@@ -39,11 +39,17 @@ namespace btGatt{
         }
         return proto;
     }
-    auto BluetoothCharacteristic::cService() const noexcept -> const decltype(_service)&{
+    auto BluetoothCharacteristic::cService() const noexcept -> const decltype(_service)& {
         return _service;
     }
     auto BluetoothCharacteristic::UUID() const noexcept -> std::string {
         return getGattUUID(_handle);
     }
-
+    auto BluetoothCharacteristic::getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor> {
+        for(auto s: _descriptors){
+            if(s->UUID()==uuid)
+                return s;
+        }
+        return {};
+    }
 }

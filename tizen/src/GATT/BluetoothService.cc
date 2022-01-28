@@ -90,5 +90,12 @@ namespace btGatt{
         }
         return {};
     }
+    auto PrimaryService::getSecondary(const std::string& uuid) noexcept -> std::shared_ptr<SecondaryService>{
+        for(auto s:_secondaryServices){
+            if(s->UUID()==uuid)
+                return s;
+        }
+        return {};
+    }
 
 }

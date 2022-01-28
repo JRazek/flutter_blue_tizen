@@ -197,6 +197,32 @@ namespace btu{
 
     auto BluetoothManager::bluetoothDevices() noexcept -> decltype(_bluetoothDevices)& { return _bluetoothDevices; }
 
+    auto BluetoothManager::readCharacteristic(const proto::gen::ReadCharacteristicRequest& request) -> void {
+        using namespace btGatt;
+        std::scoped_lock lock(_bluetoothDevices.mut);
+        auto it=_bluetoothDevices.var.find(request.remote_id());
+        if(it!=_bluetoothDevices.var.end()){
+            auto device=it->second;
+            
+            auto primary=device->getService(request.service_uuid());
+            if(primary!=nullptr){
+                std::shared_ptr<BluetoothCharacteristic> characteristic;
+                
+                if(!request.secondary_service_uuid().empty()){
+                    auto secondary=primary->getSecondary(request.secondary_service_uuid());
+                    if(secondary!=nullptr){
+                        characteristic=secondary->getCharacteristic(request.characteristic_uuid());
+                    }
+                }else{
+                    characteristic=primary->getCharacteristic(request.characteristic_uuid());
+                }
+                // characteristic->read();
+            }
+        }else{
+            Logger::log(LogLevel::ERROR, "could not find device " + request.remote_id());
+        }
+    }
+
     auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) -> void {
         using byte=char;
         int start=0;
@@ -228,6 +254,7 @@ namespace btu{
             start+=ad_len+1;
         }
     }
+
 
 } // namespace btu
 
