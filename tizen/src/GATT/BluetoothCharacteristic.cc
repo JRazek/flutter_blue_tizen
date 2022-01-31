@@ -66,9 +66,9 @@ namespace btGatt{
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
                 if(!result){
                     Scope& scope=*static_cast<Scope*>(scope_ptr);
-                    auto& descriptor=scope.characteristic;
-                    descriptor._valueFetched=true;
-                    scope.func(descriptor);
+                    auto& characteristic=scope.characteristic;
+                    characteristic._valueFetched=true;
+                    scope.func(characteristic);
                 }else{
                     Logger::showResultError("bt_gatt_client_request_completed_cb", result);
                 }

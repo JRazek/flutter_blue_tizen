@@ -144,6 +144,13 @@ namespace {
         bluetoothManager.readCharacteristic(request);
         result->Success(flutter::EncodableValue(NULL));
       }
+      else if(method_call.method_name() == "readDescriptor"){
+        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
+        proto::gen::ReadDescriptorRequest request;
+        request.ParseFromArray(encoded.data(), encoded.size());
+        bluetoothManager.readDescriptor(request);
+        result->Success(flutter::EncodableValue(NULL));
+      }
       else {
         result->NotImplemented();
       }

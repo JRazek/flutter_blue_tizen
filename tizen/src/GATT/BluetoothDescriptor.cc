@@ -28,7 +28,7 @@ namespace btGatt{
     auto BluetoothDescriptor::read(const std::function<void(BluetoothDescriptor&)>& func) -> void{
         struct Scope{
             std::function<void(BluetoothDescriptor&)> func;
-            BluetoothDescriptor& characteristic;
+            BluetoothDescriptor& descriptor;
         };
         Scope* scope=new Scope{func, *this};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
@@ -37,10 +37,10 @@ namespace btGatt{
                     Logger::log(LogLevel::DEBUG, "result Success");
                     Scope& scope=*static_cast<Scope*>(scope_ptr);
                     Logger::log(LogLevel::DEBUG, "passed static_cast!!!");
-                    auto& characteristic=scope.characteristic;
-                    characteristic._valueFetched=true;
+                    auto& descriptor=scope.descriptor;
+                    descriptor._valueFetched=true;
                     Logger::log(LogLevel::DEBUG, "calling cb...");
-                    scope.func(characteristic);
+                    scope.func(descriptor);
                 }else{
                     Logger::showResultError("bt_gatt_client_request_completed_cb", result);
                 }
@@ -48,5 +48,7 @@ namespace btGatt{
         }, scope);
         Logger::showResultError("bt_gatt_client_read_value", res);
     }
-
+    auto BluetoothDescriptor::cCharacteristic() const noexcept -> const BluetoothCharacteristic& {
+        return _characteristic;
+    }
 }

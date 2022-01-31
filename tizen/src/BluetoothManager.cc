@@ -8,6 +8,7 @@
 #include <tizen.h>
 
 #include <BluetoothDeviceController.h>
+#include <GATT/BluetoothDescriptor.h>
 
 
 namespace btu{
@@ -173,15 +174,7 @@ namespace btu{
         auto device=(*_bluetoothDevices.var.find(deviceID)).second;
         device->disconnect();
     }
-
-    auto BluetoothManager::serviceSearch(const proto::gen::BluetoothDevice& bluetoothDevice) noexcept -> void {
-        int res = bt_device_start_service_search(bluetoothDevice.remote_id().c_str());
-        if(res){
-            std::string err=get_error_message(res);
-            Logger::log(LogLevel::ERROR, "device service search failed with " + err);
-        }
-    }
-
+    
     auto BluetoothManager::getConnectedProtoBluetoothDevices() noexcept -> std::vector<proto::gen::BluetoothDevice> {
         std::vector<proto::gen::BluetoothDevice> protoBD;
         std::scoped_lock lock(_bluetoothDevices.mut);
@@ -259,7 +252,24 @@ namespace btu{
                 if(descriptor!=nullptr){
                     descriptor->read([](auto& descriptor)-> void {
                         Logger::log(LogLevel::DEBUG, "cb called char ");
+                        proto::gen::ReadDescriptorResponse res;
+                        proto::gen::ReadDescriptorRequest* request=new proto::gen::ReadDescriptorRequest();
+                        request->set_remote_id(descriptor.cCharacteristic().cService().cDevice().cAddress());
+                        request->set_characteristic_uuid(descriptor.cCharacteristic().UUID());
+                        request->set_descriptor_uuid(descriptor.UUID());
 
+                        if(descriptor.cCharacteristic().cService().getType()==btGatt::ServiceType::PRIMARY){
+                            request->set_service_uuid(descriptor.cCharacteristic().cService().UUID());
+                        }else{
+                            auto& secondary=dynamic_cast<const btGatt::SecondaryService&>(descriptor.cCharacteristic().cService());
+                            request->set_service_uuid(secondary.cPrimary().UUID());
+                            request->set_secondary_service_uuid(secondary.UUID());
+                        }
+
+                        res.set_allocated_request(request);
+                        res.set_allocated_value(new std::string(descriptor.value()));
+                        descriptor.cCharacteristic().cService().cDevice().cNotificationsHandler()
+                                        .notifyUIThread("ReadDescriptorResponse", res);
                     });
                     Logger::log(LogLevel::DEBUG, "read call!");
                 }else{
