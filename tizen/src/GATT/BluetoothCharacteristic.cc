@@ -12,10 +12,7 @@ namespace btGatt{
     BluetoothCharacteristic::BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service):
     _handle(handle),
     _service(service){
-        int res=bt_gatt_characteristic_get_properties(handle, &_properties);
-        Logger::showResultError("bt_gatt_characteristic_get_properties", res);
-
-        res=bt_gatt_characteristic_foreach_descriptors(handle, [](int total, int index, bt_gatt_h descriptor_handle, void* scope_ptr) -> bool {
+        int res=bt_gatt_characteristic_foreach_descriptors(handle, [](int total, int index, bt_gatt_h descriptor_handle, void* scope_ptr) -> bool {
             auto& characteristic=*static_cast<BluetoothCharacteristic*>(scope_ptr);
             characteristic._descriptors.emplace_back(std::make_shared<BluetoothDescriptor>(descriptor_handle, characteristic));
             return true;
@@ -26,7 +23,7 @@ namespace btGatt{
         proto::gen::BluetoothCharacteristic proto;
         proto.set_remote_id(_service.cDevice().cAddress());
         proto.set_uuid(UUID());
-        proto.set_allocated_properties(new proto::gen::CharacteristicProperties(getProtoCharacteristicProperties(_properties)));
+        proto.set_allocated_properties(new proto::gen::CharacteristicProperties(getProtoCharacteristicProperties(properties())));
         proto.set_value(value());
         if(_service.getType()==ServiceType::PRIMARY)
             proto.set_serviceuuid(_service.UUID());
@@ -76,5 +73,10 @@ namespace btGatt{
         }, scope);
         Logger::showResultError("bt_gatt_client_read_value", res);
     }
-
+    auto BluetoothCharacteristic::properties() const noexcept -> int {
+        int prop=0;
+        int res=bt_gatt_characteristic_get_properties(_handle, &prop);
+        Logger::showResultError("bt_gatt_characteristic_get_properties", res);
+        return prop;
+    }
 }

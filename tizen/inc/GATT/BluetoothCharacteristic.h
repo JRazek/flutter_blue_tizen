@@ -13,7 +13,6 @@ namespace btGatt{
     class BluetoothCharacteristic{
         bt_gatt_h _handle;
         BluetoothService& _service;
-        int _properties;
         std::atomic<bool> _valueFetched=false;
 
         std::vector<std::shared_ptr<BluetoothDescriptor>> _descriptors;
@@ -26,6 +25,7 @@ namespace btGatt{
         auto value() const noexcept -> std::string;
         auto getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor>;
         auto read(const std::function<void(BluetoothCharacteristic&)>& callback) -> void;
+        auto properties() const noexcept -> int;
     };
 }
 #endif //BLEUTOOTH_CHARACTERISTIC_H
