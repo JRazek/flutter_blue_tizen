@@ -39,6 +39,7 @@ namespace btu{
           auto getConnectedProtoBluetoothDevices() noexcept -> std::vector<proto::gen::BluetoothDevice>;
           auto bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&;
           auto readCharacteristic(const proto::gen::ReadCharacteristicRequest& request) -> void;
+          auto readDescriptor(const proto::gen::ReadDescriptorRequest& request) -> void;
 
 
           static auto isBLEAvailable() noexcept -> bool;
