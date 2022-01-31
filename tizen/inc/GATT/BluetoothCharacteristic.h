@@ -14,6 +14,7 @@ namespace btGatt{
         bt_gatt_h _handle;
         BluetoothService& _service;
         int _properties;
+        std::atomic<bool> _valueFetched=false;
 
         std::vector<std::shared_ptr<BluetoothDescriptor>> _descriptors;
     public:
@@ -22,8 +23,9 @@ namespace btGatt{
         auto toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic;
         auto cService() const noexcept -> const decltype(_service)&;
         auto UUID() const noexcept -> std::string;
+        auto value() const noexcept -> std::string;
         auto getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor>;
-        auto read() -> void;
+        auto read(const std::function<void(BluetoothCharacteristic& characteristic)>& func) -> void;
     };
 }
 #endif //BLEUTOOTH_CHARACTERISTIC_H

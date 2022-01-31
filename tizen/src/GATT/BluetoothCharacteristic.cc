@@ -27,7 +27,7 @@ namespace btGatt{
         proto.set_remote_id(_service.cDevice().cAddress());
         proto.set_uuid(UUID());
         proto.set_allocated_properties(new proto::gen::CharacteristicProperties(getProtoCharacteristicProperties(_properties)));
-        proto.set_value(getGattValue(_handle));
+        proto.set_value(value());
         if(_service.getType()==ServiceType::PRIMARY)
             proto.set_serviceuuid(_service.UUID());
         else{
@@ -46,6 +46,9 @@ namespace btGatt{
     auto BluetoothCharacteristic::UUID() const noexcept -> std::string {
         return getGattUUID(_handle);
     }
+    auto BluetoothCharacteristic::value() const noexcept -> std::string {
+        return (_valueFetched ? getGattValue(_handle):"");
+    }
     auto BluetoothCharacteristic::getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor> {
         for(auto s: _descriptors){
             if(s->UUID()==uuid)
@@ -53,18 +56,27 @@ namespace btGatt{
         }
         return {};
     }
-    auto BluetoothCharacteristic::read() -> void {
+    auto BluetoothCharacteristic::read(const std::function<void(BluetoothCharacteristic& characteristic)>& func) -> void {
+        struct Scope{
+            std::function<void(BluetoothCharacteristic& characteristic)> func;
+            BluetoothCharacteristic& characteristic;
+        };
+        Scope* scope=new Scope{func, *this};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
-            auto& characteristic=*static_cast<BluetoothCharacteristic*>(scope_ptr);
-            proto::gen::ReadCharacteristicResponse res;
-            res.set_remote_id(characteristic.cService().cDevice().cAddress());
-            res.set_allocated_characteristic(new proto::gen::BluetoothCharacteristic(characteristic.toProtoCharacteristic()));
-
-            characteristic.cService().cDevice().cNotificationsHandler()
-                                .notifyUIThread("ReadCharacteristicResponse", res);
-        },
-        this);
+                if(!result){
+                    Logger::log(LogLevel::DEBUG, "result Success");
+                    Scope& scope=*static_cast<Scope*>(scope_ptr);
+                    Logger::log(LogLevel::DEBUG, "passed static_cast!!!");
+                    auto& characteristic=scope.characteristic;
+                    characteristic._valueFetched=true;
+                    Logger::log(LogLevel::DEBUG, "calling cb...");
+                    scope.func(characteristic);
+                }else{
+                    Logger::showResultError("bt_gatt_client_request_completed_cb", result);
+                }
+                delete scope_ptr;
+        }, scope);
         Logger::showResultError("bt_gatt_client_read_value", res);
     }
 

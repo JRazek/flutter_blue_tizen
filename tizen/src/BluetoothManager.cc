@@ -216,10 +216,23 @@ namespace btu{
                 }else{
                     characteristic=primary->getCharacteristic(request.characteristic_uuid());
                 }
-                characteristic->read();
+                characteristic->read([](auto& characteristic)-> void {
+                    Logger::log(LogLevel::DEBUG, "cb called char ");
+                    proto::gen::ReadCharacteristicResponse res;
+                    res.set_remote_id(characteristic.cService().cDevice().cAddress());
+                    res.set_allocated_characteristic(new proto::gen::BluetoothCharacteristic(characteristic.toProtoCharacteristic()));
+                    
+                    Logger::log(LogLevel::DEBUG, "read value of characteristic="+characteristic.value());
+
+                    characteristic.cService().cDevice().cNotificationsHandler()
+                                        .notifyUIThread("ReadCharacteristicResponse", res);
+                });
+                Logger::log(LogLevel::DEBUG, "read call!");
+            }else{
+                Logger::log(LogLevel::WARNING, "could not find service " + request.service_uuid());
             }
         }else{
-            Logger::log(LogLevel::ERROR, "could not find device " + request.remote_id());
+            Logger::log(LogLevel::WARNING, "could not find device " + request.remote_id());
         }
     }
 
