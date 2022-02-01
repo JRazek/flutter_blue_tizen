@@ -179,7 +179,7 @@ namespace btu{
             result=std::string(address);
             free(address);
         }
-        return result;        
+        return result;
     }
     auto getProtoServiceDiscoveryResult(const BluetoothDeviceController& device, const std::vector<std::shared_ptr<btGatt::PrimaryService>>& services) -> proto::gen::DiscoverServicesResult {
         proto::gen::DiscoverServicesResult res;
@@ -191,8 +191,6 @@ namespace btu{
         Logger::log(LogLevel::DEBUG, "out order");
         return res;
     }
-
-
 
     auto getGattService(bt_gatt_client_h handle, const std::string& uuid) -> bt_gatt_h {
         bt_gatt_h result;

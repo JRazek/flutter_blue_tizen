@@ -215,94 +215,55 @@ namespace btu{
     auto BluetoothManager::readCharacteristic(const proto::gen::ReadCharacteristicRequest& request) -> void {
         using namespace btGatt;
         std::scoped_lock lock(_bluetoothDevices.mut);
-        auto it=_bluetoothDevices.var.find(request.remote_id());
-        if(it!=_bluetoothDevices.var.end()){
-            auto device=it->second;
-            
-            auto primary=device->getService(request.service_uuid());
-            if(primary!=nullptr){
-                std::shared_ptr<BluetoothCharacteristic> characteristic;
+        auto characteristic=locateCharacteristic(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid());
+        if(characteristic){
+            characteristic->read([](auto& characteristic)-> void {
+                Logger::log(LogLevel::DEBUG, "cb called char ");
+                proto::gen::ReadCharacteristicResponse res;
+                res.set_remote_id(characteristic.cService().cDevice().cAddress());
+                res.set_allocated_characteristic(new proto::gen::BluetoothCharacteristic(characteristic.toProtoCharacteristic()));
                 
-                if(!request.secondary_service_uuid().empty()){
-                    auto secondary=primary->getSecondary(request.secondary_service_uuid());
-                    if(secondary!=nullptr){
-                        characteristic=secondary->getCharacteristic(request.characteristic_uuid());
-                    }
-                }else{
-                    characteristic=primary->getCharacteristic(request.characteristic_uuid());
-                }
-                characteristic->read([](auto& characteristic)-> void {
-                    Logger::log(LogLevel::DEBUG, "cb called char ");
-                    proto::gen::ReadCharacteristicResponse res;
-                    res.set_remote_id(characteristic.cService().cDevice().cAddress());
-                    res.set_allocated_characteristic(new proto::gen::BluetoothCharacteristic(characteristic.toProtoCharacteristic()));
-                    
-                    Logger::log(LogLevel::DEBUG, "read value of characteristic="+characteristic.value());
+                Logger::log(LogLevel::DEBUG, "read value of characteristic="+characteristic.value());
 
-                    characteristic.cService().cDevice().cNotificationsHandler()
-                                        .notifyUIThread("ReadCharacteristicResponse", res);
-                });
-                Logger::log(LogLevel::DEBUG, "read call!");
-            }else{
-                Logger::log(LogLevel::WARNING, "could not find service " + request.service_uuid());
-            }
+                characteristic.cService().cDevice().cNotificationsHandler()
+                                    .notifyUIThread("ReadCharacteristicResponse", res);
+            });
+            Logger::log(LogLevel::DEBUG, "read call!");
         }else{
-            Logger::log(LogLevel::WARNING, "could not find device " + request.remote_id());
+            Logger::log(LogLevel::ERROR, "could not locate characteristic "+request.characteristic_uuid());
         }
     }
 
     auto BluetoothManager::readDescriptor(const proto::gen::ReadDescriptorRequest& request) -> void {
         using namespace btGatt;
         std::scoped_lock lock(_bluetoothDevices.mut);
-        auto it=_bluetoothDevices.var.find(request.remote_id());
-        if(it!=_bluetoothDevices.var.end()){
-            auto device=it->second;
-            
-            auto primary=device->getService(request.service_uuid());
-            if(primary!=nullptr){
-                std::shared_ptr<BluetoothCharacteristic> characteristic;
-                
-                if(!request.secondary_service_uuid().empty()){
-                    auto secondary=primary->getSecondary(request.secondary_service_uuid());
-                    if(secondary!=nullptr){
-                        characteristic=secondary->getCharacteristic(request.characteristic_uuid());
-                    }
-                }else{
-                    characteristic=primary->getCharacteristic(request.characteristic_uuid());
-                }
-                auto descriptor=characteristic->getDescriptor(request.descriptor_uuid());
-                if(descriptor!=nullptr){
-                    descriptor->read([](auto& descriptor)-> void {
-                        Logger::log(LogLevel::DEBUG, "cb called char ");
-                        proto::gen::ReadDescriptorResponse res;
-                        proto::gen::ReadDescriptorRequest* request=new proto::gen::ReadDescriptorRequest();
-                        request->set_remote_id(descriptor.cCharacteristic().cService().cDevice().cAddress());
-                        request->set_characteristic_uuid(descriptor.cCharacteristic().UUID());
-                        request->set_descriptor_uuid(descriptor.UUID());
+        auto descriptor=locateDescriptor(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid(), request.descriptor_uuid());
+        if(descriptor){
+            descriptor->read([](auto& descriptor)-> void {
+                Logger::log(LogLevel::DEBUG, "cb called char ");
+                proto::gen::ReadDescriptorResponse res;
+                proto::gen::ReadDescriptorRequest* request=new proto::gen::ReadDescriptorRequest();
+                request->set_remote_id(descriptor.cCharacteristic().cService().cDevice().cAddress());
+                request->set_characteristic_uuid(descriptor.cCharacteristic().UUID());
+                request->set_descriptor_uuid(descriptor.UUID());
 
-                        if(descriptor.cCharacteristic().cService().getType()==btGatt::ServiceType::PRIMARY){
-                            request->set_service_uuid(descriptor.cCharacteristic().cService().UUID());
-                        }else{
-                            auto& secondary=dynamic_cast<const btGatt::SecondaryService&>(descriptor.cCharacteristic().cService());
-                            request->set_service_uuid(secondary.cPrimary().UUID());
-                            request->set_secondary_service_uuid(secondary.UUID());
-                        }
-
-                        res.set_allocated_request(request);
-                        res.set_allocated_value(new std::string(descriptor.value()));
-                        descriptor.cCharacteristic().cService().cDevice().cNotificationsHandler()
-                                        .notifyUIThread("ReadDescriptorResponse", res);
-                    });
-                    Logger::log(LogLevel::DEBUG, "read call!");
+                if(descriptor.cCharacteristic().cService().getType()==btGatt::ServiceType::PRIMARY){
+                    request->set_service_uuid(descriptor.cCharacteristic().cService().UUID());
                 }else{
-                    Logger::log(LogLevel::WARNING, "could not find descriptor " + request.descriptor_uuid());
+                    auto& secondary=dynamic_cast<const btGatt::SecondaryService&>(descriptor.cCharacteristic().cService());
+                    request->set_service_uuid(secondary.cPrimary().UUID());
+                    request->set_secondary_service_uuid(secondary.UUID());
                 }
-            }else{
-                Logger::log(LogLevel::WARNING, "could not find service " + request.service_uuid());
-            }
+
+                res.set_allocated_request(request);
+                res.set_allocated_value(new std::string(descriptor.value()));
+                descriptor.cCharacteristic().cService().cDevice().cNotificationsHandler()
+                                .notifyUIThread("ReadDescriptorResponse", res);
+            });
         }else{
-            Logger::log(LogLevel::WARNING, "could not find device " + request.remote_id());
+            Logger::log(LogLevel::ERROR, "could not locate descriptor "+request.characteristic_uuid());
         }
+        Logger::log(LogLevel::DEBUG, "read call!");
     }
 
 
