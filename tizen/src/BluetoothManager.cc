@@ -266,6 +266,23 @@ namespace btu{
         Logger::log(LogLevel::DEBUG, "read call!");
     }
 
+    auto BluetoothManager::writeCharacteristic(const proto::gen::WriteCharacteristicRequest& request) -> void {
+        auto characteristic=locateCharacteristic(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid());
+        if(characteristic){
+            
+        }else{
+            Logger::log(LogLevel::ERROR, "could not locate characteristic "+request.characteristic_uuid());
+        }
+    }
+
+    auto BluetoothManager::writeDescriptor(const proto::gen::WriteDescriptorRequest& request) -> void {
+        auto descriptor=locateDescriptor(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid(), request.descriptor_uuid());
+        if(descriptor){
+            
+        }else{
+            Logger::log(LogLevel::ERROR, "could not locate descriptor "+request.characteristic_uuid());
+        }
+    }
 
     auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) -> void {
         using byte=char;
