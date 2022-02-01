@@ -33,6 +33,28 @@ namespace btu{
         }
         Logger::log(LogLevel::DEBUG, "All callbacks successfully initialized.");
     }
+    auto BluetoothManager::locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID) -> std::shared_ptr<btGatt::BluetoothCharacteristic>{
+        auto it=_bluetoothDevices.var.find(remoteID);
+        if(it!=_bluetoothDevices.var.end()){
+            auto device=it->second;
+            auto primary=device->getService(primaryUUID);
+            std::shared_ptr<btGatt::BluetoothService> service=primary;
+            if(primary && !secondaryUUID.empty()){
+                service=primary->getSecondary(secondaryUUID);
+            }
+            if(service){
+                return service->getCharacteristic(characteristicUUID);
+            }
+        }
+        return {};
+    }
+    auto BluetoothManager::locateDescriptor(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID, const std::string& descriptorUUID) -> std::shared_ptr<btGatt::BluetoothDescriptor> {
+        auto characteristic=locateCharacteristic(remoteID, primaryUUID, secondaryUUID, characteristicUUID);
+        if(characteristic){
+            return characteristic->getDescriptor(descriptorUUID);
+        }
+        return {};
+    }
 
     auto BluetoothManager::isBLEAvailable() noexcept -> bool{
         bool state;
