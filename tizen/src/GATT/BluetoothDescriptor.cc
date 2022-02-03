@@ -23,27 +23,23 @@ namespace btGatt{
         return getGattUUID(_handle);
     }
     auto BluetoothDescriptor::value() const noexcept -> std::string{
-        return (_valueFetched ? getGattValue(_handle):"");
+        return getGattValue(_handle);
     }
-    auto BluetoothDescriptor::read(const std::function<void(BluetoothDescriptor&)>& func) -> void{
+    auto BluetoothDescriptor::read(const std::function<void(const BluetoothDescriptor&)>& func) -> void{
         struct Scope{
-            std::function<void(BluetoothDescriptor&)> func;
-            BluetoothDescriptor& descriptor;
+            std::function<void(const BluetoothDescriptor&)> func;
+            const BluetoothDescriptor& descriptor;
         };
         Scope* scope=new Scope{func, *this};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
                 if(!result){
-                    Logger::log(LogLevel::DEBUG, "result Success");
                     Scope& scope=*static_cast<Scope*>(scope_ptr);
-                    Logger::log(LogLevel::DEBUG, "passed static_cast!!!");
                     auto& descriptor=scope.descriptor;
-                    descriptor._valueFetched=true;
-                    Logger::log(LogLevel::DEBUG, "calling cb...");
                     scope.func(descriptor);
-                }else{
-                    Logger::showResultError("bt_gatt_client_request_completed_cb", result);
                 }
+                Logger::showResultError("bt_gatt_client_request_completed_cb", result);
+                
                 delete scope_ptr;
         }, scope);
         Logger::showResultError("bt_gatt_client_read_value", res);

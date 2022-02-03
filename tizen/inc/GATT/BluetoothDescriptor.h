@@ -20,7 +20,7 @@ namespace btGatt{
         auto toProtoDescriptor() const noexcept -> proto::gen::BluetoothDescriptor;
         auto UUID() const noexcept -> std::string;
         auto value() const noexcept -> std::string;
-        auto read(const std::function<void(BluetoothDescriptor&)>& callback) -> void;
+        auto read(const std::function<void(const BluetoothDescriptor&)>& callback) -> void;
         auto cCharacteristic() const noexcept -> const BluetoothCharacteristic&;
     };
 }

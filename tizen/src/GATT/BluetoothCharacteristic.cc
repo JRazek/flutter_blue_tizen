@@ -44,7 +44,7 @@ namespace btGatt{
         return getGattUUID(_handle);
     }
     auto BluetoothCharacteristic::value() const noexcept -> std::string {
-        return (_valueFetched ? getGattValue(_handle):"");
+        return getGattValue(_handle);
     }
     auto BluetoothCharacteristic::getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor> {
         for(auto s: _descriptors){
@@ -53,26 +53,54 @@ namespace btGatt{
         }
         return {};
     }
-    auto BluetoothCharacteristic::read(const std::function<void(BluetoothCharacteristic&)>& func) -> void {
+    auto BluetoothCharacteristic::read(const std::function<void(const BluetoothCharacteristic&)>& func) -> void {
         struct Scope{
-            std::function<void(BluetoothCharacteristic&)> func;
-            BluetoothCharacteristic& characteristic;
+            std::function<void(const BluetoothCharacteristic&)> func;
+            const BluetoothCharacteristic& characteristic;
         };
         Scope* scope=new Scope{func, *this};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
-                if(!result){
-                    Scope& scope=*static_cast<Scope*>(scope_ptr);
-                    auto& characteristic=scope.characteristic;
-                    characteristic._valueFetched=true;
-                    scope.func(characteristic);
-                }else{
-                    Logger::showResultError("bt_gatt_client_request_completed_cb", result);
-                }
+                Scope& scope=*static_cast<Scope*>(scope_ptr);
+                auto& characteristic=scope.characteristic;
+                scope.func(characteristic);
+                Logger::showResultError("bt_gatt_client_request_completed_cb", result);
+                
                 delete scope_ptr;
         }, scope);
         Logger::showResultError("bt_gatt_client_read_value", res);
     }
+
+    auto BluetoothCharacteristic::write(const std::string value, bool withResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void {
+        struct Scope{
+            std::function<void(bool success, const BluetoothCharacteristic&)> func;
+            const BluetoothCharacteristic& characteristic;
+        };  
+        
+        int res=bt_gatt_set_value(_handle, value.c_str(), value.size());
+        Logger::showResultError("bt_gatt_set_value", res);
+
+        res=bt_gatt_characteristic_set_write_type(_handle,
+        (withResponse ? BT_GATT_WRITE_TYPE_WRITE:
+        BT_GATT_WRITE_TYPE_WRITE_NO_RESPONSE));
+
+        Scope* scope=new Scope{callback, *this};//unfortunately it requires raw ptr
+        Logger::log(LogLevel::DEBUG, "characteristic write cb native");
+
+        res=bt_gatt_client_write_value(_handle,
+        [](int result, bt_gatt_h request_handle, void* scope_ptr){
+            Logger::showResultError("bt_gatt_client_request_completed_cb", result);
+            Logger::log(LogLevel::DEBUG, "characteristic write cb native");
+
+            Scope& scope=*static_cast<Scope*>(scope_ptr);
+            auto& characteristic=scope.characteristic;
+            scope.func(!result, characteristic);
+            
+            delete scope_ptr;
+        }, scope);
+        Logger::showResultError("bt_gatt_client_write_value", res);
+    }
+
     auto BluetoothCharacteristic::properties() const noexcept -> int {
         int prop=0;
         int res=bt_gatt_characteristic_get_properties(_handle, &prop);

@@ -183,12 +183,10 @@ namespace btu{
     }
     auto getProtoServiceDiscoveryResult(const BluetoothDeviceController& device, const std::vector<std::shared_ptr<btGatt::PrimaryService>>& services) -> proto::gen::DiscoverServicesResult {
         proto::gen::DiscoverServicesResult res;
-        Logger::log(LogLevel::DEBUG, "in order");
         for(const auto& s : services){
             *res.add_services() = s->toProtoService();
         }
         res.set_remote_id(device.cAddress());
-        Logger::log(LogLevel::DEBUG, "out order");
         return res;
     }
 
