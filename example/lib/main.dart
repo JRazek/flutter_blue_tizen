@@ -1,23 +1,29 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
-class BluetoothHelper {}
+List<int> _getRandomBytes() {
+  final math = Random();
+  return [
+    math.nextInt(255),
+    math.nextInt(255),
+    math.nextInt(255),
+    math.nextInt(255)
+  ];
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
-  // flutterBlue.setLogLevel(LogLevel.alert);
   await flutterBlue.stopScan();
   List<ScanResult> scanResults = <ScanResult>[];
   var subscription = flutterBlue.scanResults.listen((results) async {
-    // do something with scan results
     if (results.isNotEmpty) {
       var dev = results.last.device;
       var sc = results.last;
-      debugPrint(dev.toString());
       scanResults.add(results.last);
     }
   });
@@ -26,21 +32,38 @@ void main() async {
   for (var sc in scanResults) {
     var dev = sc.device;
     if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
-      debugPrint('connecting to: ${sc.advertisementData.localName}');
-      // await dev.disconnect();
       await dev.connect(autoConnect: false);
-      // sleep(const Duration(seconds: 28));
       var services = await dev.discoverServices();
+      await Future.delayed(const Duration(seconds: 0));
       for (var service in services) {
-        debugPrint(service.toString());
+        for (var characteristic in service.characteristics) {
+          if (characteristic.properties.read &&
+              characteristic.properties.write) {
+            List<int> values = await characteristic.read();
+            try {
+              await characteristic.write([65, 66, 67, 68, 70]);
+              // debugPrint(values.toString());
+            } catch (e) {
+              debugPrint(service.uuid.toString() +
+                  " " +
+                  characteristic.uuid.toString());
+            }
+            values = await characteristic.read();
+            // debugPrint(values.toString());
+
+            for (var descriptor in characteristic.descriptors) {
+              // var values = await descriptor.read();
+              // values = await descriptor.read();
+              // debugPrint(values.toString());
+            }
+          }
+        }
       }
-      dev.disconnect();
-      debugPrint('released connect');
+      debugPrint("released");
+      await dev.disconnect();
     }
   }
 
-  // Stop scanning
-  debugPrint("hello");
   runApp(const MyApp());
 }
 
