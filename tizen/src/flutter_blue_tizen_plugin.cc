@@ -141,29 +141,45 @@ namespace {
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ReadCharacteristicRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
-        bluetoothManager.readCharacteristic(request);
-        result->Success(flutter::EncodableValue(NULL));
+        try{
+          bluetoothManager.readCharacteristic(request);
+          result->Success(flutter::EncodableValue(NULL));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
       }
       else if(method_call.method_name() == "readDescriptor"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ReadDescriptorRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
-        bluetoothManager.readDescriptor(request);
-        result->Success(flutter::EncodableValue(NULL));
+        try{
+          bluetoothManager.readDescriptor(request);
+          result->Success(flutter::EncodableValue(NULL));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
       }
       else if(method_call.method_name() == "writeCharacteristic"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::WriteCharacteristicRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
-        bluetoothManager.writeCharacteristic(request);
-        result->Success(flutter::EncodableValue(NULL));
+        try{
+          bluetoothManager.writeCharacteristic(request);
+          result->Success(flutter::EncodableValue(NULL));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
       }
       else if(method_call.method_name() == "writeDescriptor"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::WriteDescriptorRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
-        bluetoothManager.writeDescriptor(request);
-        result->Success(flutter::EncodableValue(NULL));
+        try{
+          bluetoothManager.writeDescriptor(request);
+          result->Success(flutter::EncodableValue(NULL));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
       }
       else {
         result->NotImplemented();

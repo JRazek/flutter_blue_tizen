@@ -43,6 +43,10 @@ namespace btGatt{
                 delete scope_ptr;
         }, scope);
         Logger::showResultError("bt_gatt_client_read_value", res);
+        if(res) throw BTException("could not read descriptor"); 
+    }
+    auto BluetoothDescriptor::write(const std::string value, bool withResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void {
+        throw BTException("could not write to descriptor");
     }
     auto BluetoothDescriptor::cCharacteristic() const noexcept -> const BluetoothCharacteristic& {
         return _characteristic;

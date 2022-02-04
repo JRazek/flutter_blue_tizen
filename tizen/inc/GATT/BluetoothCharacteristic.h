@@ -25,7 +25,7 @@ namespace btGatt{
         auto value() const noexcept -> std::string;
         auto getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor>;
         auto read(const std::function<void(const BluetoothCharacteristic&)>& callback) -> void;
-        auto write(const std::string value, bool withResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void;
+        auto write(const std::string value, bool withoutResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void;
         auto properties() const noexcept -> int;
     };
 }

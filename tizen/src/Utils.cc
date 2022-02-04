@@ -118,16 +118,16 @@ namespace btu{
 
     auto getProtoCharacteristicProperties(int properties) -> proto::gen::CharacteristicProperties {
         proto::gen::CharacteristicProperties p;
-        p.set_broadcast((properties & 1) != 0);
-        p.set_read((properties & 2) != 0);
-        p.set_write_without_response((properties & 4) != 0);
-        p.set_write((properties & 8) != 0);
-        p.set_notify((properties & 16) != 0);
-        p.set_indicate((properties & 32) != 0);
-        p.set_authenticated_signed_writes((properties & 64) != 0);
-        p.set_extended_properties((properties & 128) != 0);
-        p.set_notify_encryption_required((properties & 256) != 0);
-        p.set_indicate_encryption_required((properties & 512) != 0);
+        p.set_broadcast((properties & 0x01) != 0);
+        p.set_read((properties &  0x02) != 0);
+        p.set_write_without_response((properties & 0x04) != 0);
+        p.set_write((properties & 0x08) != 0);
+        p.set_notify((properties & 0x10) != 0);
+        p.set_indicate((properties & 0x20) != 0);
+        p.set_authenticated_signed_writes((properties & 0x40) != 0);
+        p.set_extended_properties((properties & 0x80) != 0);
+        // p.set_notify_encryption_required((properties & 256) != 0);
+        // p.set_indicate_encryption_required((properties & 512) != 0);
         return p;
     }
 

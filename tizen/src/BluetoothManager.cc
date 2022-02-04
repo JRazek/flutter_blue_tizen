@@ -271,7 +271,6 @@ namespace btu{
         auto characteristic=locateCharacteristic(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid());
         if(characteristic){
             Logger::log(LogLevel::DEBUG, "writing to "+characteristic->cService().cDevice().cAddress()+"...");
-
             characteristic->write(request.value(), request.write_type(), [](bool success, auto& characteristic){
                 Logger::log(LogLevel::DEBUG, "characteristic write callback!");
                 proto::gen::WriteCharacteristicResponse res;

@@ -7,6 +7,7 @@
 #include <BluetoothDeviceController.h>
 
 #include <mutex>
+#include <exception>
 namespace btu{
 
     using MethodChannel = flutter::MethodChannel<flutter::EncodableValue>;
@@ -19,6 +20,14 @@ namespace btu{
         SafeType(const T& t):var(t){}
         SafeType(T&& t):var(std::move(t)){}
         SafeType():var(T()){}
+    };
+    class BTException : public std::exception{
+        std::string _m;
+    public:
+        BTException(const std::string& m):_m(m){}
+        auto what() const noexcept -> const char* override{
+            return _m.c_str();
+        };
     };
     
     auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> proto::gen::DeviceStateResponse_BluetoothDeviceState;
