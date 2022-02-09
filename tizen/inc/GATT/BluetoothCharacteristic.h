@@ -11,14 +11,21 @@ namespace btGatt{
     class BluetoothService;
 
     class BluetoothCharacteristic{
+        using NotifyCallback=std::function<void()>;
         bt_gatt_h _handle;
         BluetoothService& _service;
         std::atomic<bool> _valueFetched=false;
 
         std::vector<std::shared_ptr<BluetoothDescriptor>> _descriptors;
+
+        std::unique_ptr<NotifyCallback> _notifyCallback;
+
+
+
     public:
 
-        BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service);
+        BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service) noexcept;
+        ~BluetoothCharacteristic() noexcept;
         auto toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic;
         auto cService() const noexcept -> const decltype(_service)&;
         auto UUID() const noexcept -> std::string;
@@ -27,6 +34,9 @@ namespace btGatt{
         auto read(const std::function<void(const BluetoothCharacteristic&)>& callback) -> void;
         auto write(const std::string value, bool withoutResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void;
         auto properties() const noexcept -> int;
+        
+        auto setNotifyCallback(const NotifyCallback& callback) -> void;
+        void unsetNotifyCallback();
     };
 }
 #endif //BLEUTOOTH_CHARACTERISTIC_H

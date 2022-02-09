@@ -37,25 +37,25 @@ void main() async {
       await Future.delayed(const Duration(seconds: 0));
       for (var service in services) {
         for (var characteristic in service.characteristics) {
-          if (characteristic.properties.read &&
-              characteristic.properties.write) {
-            List<int> values = await characteristic.read();
-            try {
-              await characteristic.write([65, 66, 67, 68, 70]);
-              // debugPrint(values.toString());
-            } catch (e) {
-              debugPrint(service.uuid.toString() +
-                  " " +
-                  characteristic.uuid.toString());
-            }
-            values = await characteristic.read();
-            // debugPrint(values.toString());
+          // if (characteristic.properties.read &&
+          //     characteristic.properties.write) {
+          //   List<int> values = await characteristic.read();
+          //   try {
+          //     await characteristic
+          //         .write([65, 66, 67, 68, 70], withoutResponse: true);
+          //     // debugPrint(values.toString());
+          //   } catch (e) {
+          //     debugPrint(service.uuid.toString() +
+          //         " " +
+          //         characteristic.uuid.toString());
+          //   }
+          //   values = await characteristic.read();
+          //   debugPrint(values.toString());
 
-            for (var descriptor in characteristic.descriptors) {
-              // var values = await descriptor.read();
-              // values = await descriptor.read();
-              // debugPrint(values.toString());
-            }
+          // }
+          if ((characteristic.properties.notify ||
+              characteristic.properties.indicate)) {
+            characteristic.setNotifyValue(true);
           }
         }
       }

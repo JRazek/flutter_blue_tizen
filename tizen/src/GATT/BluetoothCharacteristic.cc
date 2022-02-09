@@ -10,7 +10,7 @@
 namespace btGatt{
     using namespace btu;
     using namespace btlog;
-    BluetoothCharacteristic::BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service):
+    BluetoothCharacteristic::BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service) noexcept:
     _handle(handle),
     _service(service){
         int res=bt_gatt_characteristic_foreach_descriptors(handle, [](int total, int index, bt_gatt_h descriptor_handle, void* scope_ptr) -> bool {
@@ -112,9 +112,37 @@ namespace btGatt{
     }
 
     auto BluetoothCharacteristic::properties() const noexcept -> int {
-        int prop=0;
-        int res=bt_gatt_characteristic_get_properties(_handle, &prop);
+        auto prop=0;
+        auto res=bt_gatt_characteristic_get_properties(_handle, &prop);
         Logger::showResultError("bt_gatt_characteristic_get_properties", res);
         return prop;
+    }
+    
+    auto BluetoothCharacteristic::setNotifyCallback(const NotifyCallback& callback) -> void {
+        auto p=properties();
+        if(!(p & 0x30))
+            throw BTException("cannot set callback! notify=0 && indicate=0");
+        
+        unsetNotifyCallback();
+
+        _notifyCallback=std::make_unique<NotifyCallback>(callback);
+        auto res=bt_gatt_client_set_characteristic_value_changed_cb(_handle,
+        [](bt_gatt_h characteristic, char* value, int len, void* scope_ptr){
+            auto notifyCallback=static_cast<NotifyCallback *>(scope_ptr);
+            notifyCallback->operator()();
+
+        }, _notifyCallback.get());
+    }
+    
+    void BluetoothCharacteristic::unsetNotifyCallback() {
+        if(_notifyCallback){
+            auto res=bt_gatt_client_unset_characteristic_value_changed_cb(_handle);
+            Logger::showResultError("bt_gatt_client_unset_characteristic_value_changed_cb", res);
+
+            _notifyCallback=nullptr;
+        }
+    }
+    BluetoothCharacteristic::~BluetoothCharacteristic() noexcept {
+        unsetNotifyCallback();
     }
 }

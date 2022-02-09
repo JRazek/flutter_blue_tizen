@@ -42,6 +42,8 @@ namespace btu{
           auto writeCharacteristic(const proto::gen::WriteCharacteristicRequest& request) -> void;
           auto writeDescriptor(const proto::gen::WriteDescriptorRequest& request) -> void;
 
+          auto setNotification(const proto::gen::SetNotificationRequest& request) -> void;
+
           auto locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID) -> std::shared_ptr<btGatt::BluetoothCharacteristic>;
           auto locateDescriptor(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID, const std::string& descriptorUUID) -> std::shared_ptr<btGatt::BluetoothDescriptor>;
           static auto isBLEAvailable() noexcept -> bool;

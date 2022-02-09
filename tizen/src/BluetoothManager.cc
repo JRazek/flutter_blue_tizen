@@ -33,6 +33,23 @@ namespace btu{
         }
         Logger::log(LogLevel::DEBUG, "All callbacks successfully initialized.");
     }
+
+    auto BluetoothManager::setNotification(const proto::gen::SetNotificationRequest& request) -> void {
+        std::scoped_lock lock(_bluetoothDevices.mut);
+        
+        auto characteristic=locateCharacteristic(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid());
+        if(characteristic){
+            if(request.enable())
+                characteristic->setNotifyCallback([]{
+                    Logger::log(LogLevel::DEBUG, "notification!!!");
+                });
+            else
+                characteristic->unsetNotifyCallback();
+        }else{
+            throw BTException("could not find characteristic");
+        }
+    }
+
     auto BluetoothManager::locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID) -> std::shared_ptr<btGatt::BluetoothCharacteristic>{
         auto it=_bluetoothDevices.var.find(remoteID);
         if(it!=_bluetoothDevices.var.end()){

@@ -56,32 +56,32 @@ namespace {
   private:
     void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
       const flutter::EncodableValue& args = *method_call.arguments();
-      if(method_call.method_name() == "isAvailable"){
+      if(method_call.method_name()=="isAvailable"){
           result->Success(flutter::EncodableValue(bluetoothManager.isBLEAvailable()));
       }
-      else if(method_call.method_name() == "setLogLevel" && std::holds_alternative<int>(args)){
+      else if(method_call.method_name()=="setLogLevel" && std::holds_alternative<int>(args)){
           btlog::LogLevel logLevel = static_cast<btlog::LogLevel>(std::get<int>(args));
           btlog::Logger::setLogLevel(logLevel);
           result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "state"){
+      else if(method_call.method_name()=="state"){
           result->Success(flutter::EncodableValue(btu::messageToVector(bluetoothManager.bluetoothState())));
       }
-      else if(method_call.method_name() == "isOn"){
+      else if(method_call.method_name()=="isOn"){
           result->Success(flutter::EncodableValue((bluetoothManager.bluetoothState().state() == proto::gen::BluetoothState_State::BluetoothState_State_ON)));
       }
-      else if(method_call.method_name() == "startScan"){
+      else if(method_call.method_name()=="startScan"){
           proto::gen::ScanSettings scanSettings;
           std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
           scanSettings.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager.startBluetoothDeviceScanLE(scanSettings);
           result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "stopScan"){
+      else if(method_call.method_name()=="stopScan"){
           bluetoothManager.stopBluetoothDeviceScanLE();
           result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "getConnectedDevices"){
+      else if(method_call.method_name()=="getConnectedDevices"){
           proto::gen::ConnectedDevicesResponse response;
           auto p = bluetoothManager.getConnectedProtoBluetoothDevices();
 
@@ -92,7 +92,7 @@ namespace {
           //[TODO] TEST THIS FUNCTION
           result->Success(flutter::EncodableValue(btu::messageToVector(response)));
       }
-      else if(method_call.method_name() == "connect"){
+      else if(method_call.method_name()=="connect"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ConnectRequest connectRequest;
         bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
@@ -109,7 +109,7 @@ namespace {
         bluetoothManager.disconnect(deviceID);
         result->Success(flutter::EncodableValue(NULL));
       }
-      else if(method_call.method_name() == "deviceState"){
+      else if(method_call.method_name()=="deviceState"){
         std::string deviceID = std::get<std::string>(args);
         std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
         auto it=bluetoothManager.bluetoothDevices().var.find(deviceID);
@@ -123,7 +123,7 @@ namespace {
           result->Success(flutter::EncodableValue(btu::messageToVector(res)));
         } else result->Error("device not available");
       }
-      else if(method_call.method_name() == "discoverServices"){
+      else if(method_call.method_name()=="discoverServices"){
         std::string deviceID = std::get<std::string>(args);
         std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
         auto it=bluetoothManager.bluetoothDevices().var.find(deviceID);
@@ -137,7 +137,7 @@ namespace {
         else 
             result->Error("device not available");
       }
-      else if(method_call.method_name() == "readCharacteristic"){
+      else if(method_call.method_name()=="readCharacteristic"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ReadCharacteristicRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
@@ -148,7 +148,7 @@ namespace {
           result->Error(e.what());
         }
       }
-      else if(method_call.method_name() == "readDescriptor"){
+      else if(method_call.method_name()=="readDescriptor"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ReadDescriptorRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
@@ -159,7 +159,7 @@ namespace {
           result->Error(e.what());
         }
       }
-      else if(method_call.method_name() == "writeCharacteristic"){
+      else if(method_call.method_name()=="writeCharacteristic"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::WriteCharacteristicRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
@@ -170,12 +170,22 @@ namespace {
           result->Error(e.what());
         }
       }
-      else if(method_call.method_name() == "writeDescriptor"){
+      else if(method_call.method_name()=="writeDescriptor"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::WriteDescriptorRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
         try{
           bluetoothManager.writeDescriptor(request);
+          result->Success(flutter::EncodableValue(NULL));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
+      }else if(method_call.method_name()=="setNotification"){
+        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
+        proto::gen::SetNotificationRequest request;
+        request.ParseFromArray(encoded.data(), encoded.size());
+        try{
+          bluetoothManager.setNotification(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
           result->Error(e.what());
