@@ -231,6 +231,7 @@ namespace btu{
             Logger::log(LogLevel::DEBUG, "read call!");
         }else{
             Logger::log(LogLevel::ERROR, "could not locate characteristic "+request.characteristic_uuid());
+            throw BTException("could not locate characteristic");
         }
     }
 
@@ -240,7 +241,6 @@ namespace btu{
         auto descriptor=locateDescriptor(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid(), request.descriptor_uuid());
         if(descriptor){
             descriptor->read([](auto& descriptor)-> void {
-                proto::gen::ReadDescriptorResponse res;
                 proto::gen::ReadDescriptorRequest* request=new proto::gen::ReadDescriptorRequest();
                 request->set_remote_id(descriptor.cCharacteristic().cService().cDevice().cAddress());
                 request->set_characteristic_uuid(descriptor.cCharacteristic().UUID());
@@ -254,6 +254,7 @@ namespace btu{
                     request->set_secondary_service_uuid(secondary.UUID());
                 }
 
+                proto::gen::ReadDescriptorResponse res;
                 res.set_allocated_request(request);
                 res.set_allocated_value(new std::string(descriptor.value()));
                 descriptor.cCharacteristic().cService().cDevice().cNotificationsHandler()
@@ -261,8 +262,8 @@ namespace btu{
             });
         }else{
             Logger::log(LogLevel::ERROR, "could not locate descriptor "+request.characteristic_uuid());
+            throw BTException("could not locate descriptor");
         }
-        Logger::log(LogLevel::DEBUG, "read call!");
     }
 
     auto BluetoothManager::writeCharacteristic(const proto::gen::WriteCharacteristicRequest& request) -> void {
@@ -294,6 +295,7 @@ namespace btu{
             Logger::log(LogLevel::DEBUG, "called async write...");
         }else{
             Logger::log(LogLevel::ERROR, "could not locate characteristic "+request.characteristic_uuid());
+            throw BTException("could not locate characteristic");
         }
     }
 
@@ -301,10 +303,33 @@ namespace btu{
         std::scoped_lock lock(_bluetoothDevices.mut);
         auto descriptor=locateDescriptor(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid(), request.descriptor_uuid());
         if(descriptor){
-            // descriptor->wr
+            descriptor->write(request.value(), [](auto success, auto& descriptor) -> void {
+                Logger::log(LogLevel::DEBUG, "descriptor write callback!");
+                proto::gen::WriteDescriptorRequest* request=new proto::gen::WriteDescriptorRequest();
+
+                if(descriptor.cCharacteristic().cService().getType()==btGatt::ServiceType::PRIMARY){
+                    request->set_service_uuid(descriptor.cCharacteristic().cService().UUID());
+                }else{
+                    auto& secondary=dynamic_cast<const btGatt::SecondaryService&>(descriptor.cCharacteristic().cService());
+                    request->set_service_uuid(secondary.cPrimary().UUID());
+                    request->set_secondary_service_uuid(secondary.UUID());
+                }
+                request->set_descriptor_uuid(descriptor.UUID());
+                request->set_remote_id(descriptor.cCharacteristic().cService().cDevice().cAddress());
+                request->set_characteristic_uuid(descriptor.cCharacteristic().UUID());
+                
+                proto::gen::WriteDescriptorResponse res;
+                res.set_success(success);
+                res.set_allocated_request(request);
+
+                descriptor.cCharacteristic().cService().cDevice().cNotificationsHandler()
+                                .notifyUIThread("WriteDescriptorResponse", res);
+            });
         }else{
             Logger::log(LogLevel::ERROR, "could not locate descriptor "+request.characteristic_uuid());
+            throw BTException("could not locate descriptor");
         }
+        
     }
 
     auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) -> void {

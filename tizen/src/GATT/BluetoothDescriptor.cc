@@ -45,8 +45,34 @@ namespace btGatt{
         Logger::showResultError("bt_gatt_client_read_value", res);
         if(res) throw BTException("could not read descriptor"); 
     }
-    auto BluetoothDescriptor::write(const std::string value, bool withResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void {
-        throw BTException("could not write to descriptor");
+    auto BluetoothDescriptor::write(const std::string value, const std::function<void(bool success, const BluetoothDescriptor&)>& callback) -> void {
+        struct Scope{
+            std::function<void(bool success, const BluetoothDescriptor&)> func;
+            const BluetoothDescriptor& descriptor;
+        };  
+        Logger::log(LogLevel::DEBUG, "setting descriptor to value="+value+", with size="+std::to_string(value.size()));
+        int res=bt_gatt_set_value(_handle, value.c_str(), value.size());
+        Logger::showResultError("bt_gatt_set_value", res);
+
+        if(res) throw BTException("could not set value");
+
+        Scope* scope=new Scope{callback, *this};//unfortunately it requires raw ptr
+        Logger::log(LogLevel::DEBUG, "characteristic write cb native");
+
+        res=bt_gatt_client_write_value(_handle,
+        [](int result, bt_gatt_h request_handle, void* scope_ptr){
+            Logger::showResultError("bt_gatt_client_request_completed_cb", result);
+            Logger::log(LogLevel::DEBUG, "descriptor write cb native");
+
+            Scope& scope=*static_cast<Scope*>(scope_ptr);
+            auto& descriptor=scope.descriptor;
+            scope.func(!result, descriptor);
+            
+            delete scope_ptr;
+        }, scope);
+        Logger::showResultError("bt_gatt_client_write_value", res);
+
+        if(res) throw BTException("could not write value to remote");
     }
     auto BluetoothDescriptor::cCharacteristic() const noexcept -> const BluetoothCharacteristic& {
         return _characteristic;

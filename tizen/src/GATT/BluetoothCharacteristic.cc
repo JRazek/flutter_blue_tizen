@@ -82,11 +82,11 @@ namespace btGatt{
         };  
         Logger::log(LogLevel::DEBUG, "setting characteristic to value="+value+", with size="+std::to_string(value.size()));
 
-        // int res=bt_gatt_characteristic_set_write_type(_handle, (withoutResponse ? BT_GATT_WRITE_TYPE_WRITE_NO_RESPONSE:BT_GATT_WRITE_TYPE_WRITE));
+        int res=bt_gatt_characteristic_set_write_type(_handle, (withoutResponse ? BT_GATT_WRITE_TYPE_WRITE_NO_RESPONSE:BT_GATT_WRITE_TYPE_WRITE));
 
-        // if(res) throw BTException("could not set write type");
+        if(res) throw BTException("could not set write type");
 
-        int res=bt_gatt_set_value(_handle, value.c_str(), value.size());
+        res=bt_gatt_set_value(_handle, value.c_str(), value.size());
         Logger::showResultError("bt_gatt_set_value", res);
 
         if(res) throw BTException("could not set value");
@@ -95,7 +95,7 @@ namespace btGatt{
         Scope* scope=new Scope{callback, *this};//unfortunately it requires raw ptr
         Logger::log(LogLevel::DEBUG, "characteristic write cb native");
 
-         res=bt_gatt_client_write_value(_handle,
+        res=bt_gatt_client_write_value(_handle,
         [](int result, bt_gatt_h request_handle, void* scope_ptr){
             Logger::showResultError("bt_gatt_client_request_completed_cb", result);
             Logger::log(LogLevel::DEBUG, "characteristic write cb native");
