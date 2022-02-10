@@ -34,7 +34,7 @@ void main() async {
     if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
       await dev.connect(autoConnect: false);
       var services = await dev.discoverServices();
-      await Future.delayed(const Duration(seconds: 0));
+      // await Future.delayed(const Duration(seconds: 20));
       for (var service in services) {
         for (var characteristic in service.characteristics) {
           // if (characteristic.properties.read &&
@@ -55,12 +55,13 @@ void main() async {
           // }
           if ((characteristic.properties.notify ||
               characteristic.properties.indicate)) {
-            characteristic.setNotifyValue(true);
+            await characteristic.setNotifyValue(true);
+            await characteristic.setNotifyValue(false);
           }
         }
       }
       debugPrint("released");
-      await dev.disconnect();
+      // await dev.disconnect();
     }
   }
 
