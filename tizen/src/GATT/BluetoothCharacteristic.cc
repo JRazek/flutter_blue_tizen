@@ -127,11 +127,12 @@ namespace btGatt{
 
         _notifyCallback=std::make_unique<NotifyCallback>(callback);
         auto res=bt_gatt_client_set_characteristic_value_changed_cb(_handle,
-        [](bt_gatt_h characteristic, char* value, int len, void* scope_ptr){
-            auto notifyCallback=static_cast<NotifyCallback *>(scope_ptr);
-            notifyCallback->operator()();
+        [](bt_gatt_h ch_handle, char* value, int len, void* scope_ptr){
+            auto& characteristic=*static_cast<BluetoothCharacteristic*>(scope_ptr);
 
-        }, _notifyCallback.get());
+            characteristic._notifyCallback->operator()(characteristic);
+
+        }, this);
     }
     
     void BluetoothCharacteristic::unsetNotifyCallback() {

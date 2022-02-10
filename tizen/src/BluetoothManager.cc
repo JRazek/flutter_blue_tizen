@@ -40,8 +40,8 @@ namespace btu{
         auto characteristic=locateCharacteristic(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid());
         if(characteristic){
             if(request.enable())
-                characteristic->setNotifyCallback([]{
-                    Logger::log(LogLevel::DEBUG, "notification!!!");
+                characteristic->setNotifyCallback([](auto& characteristic){
+                    Logger::log(LogLevel::DEBUG, "notification from characteristic of uuid="+characteristic.UUID()+" to value="+characteristic.value());
                 });
             else
                 characteristic->unsetNotifyCallback();

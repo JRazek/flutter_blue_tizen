@@ -13,7 +13,6 @@ namespace btGatt{
 
         bt_gatt_h _handle;
         BluetoothCharacteristic& _characteristic;
-        std::atomic<bool> _valueFetched=false;
 
     public:
         BluetoothDescriptor(bt_gatt_h handle, BluetoothCharacteristic& characteristic);

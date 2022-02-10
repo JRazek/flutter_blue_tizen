@@ -11,10 +11,9 @@ namespace btGatt{
     class BluetoothService;
 
     class BluetoothCharacteristic{
-        using NotifyCallback=std::function<void()>;
+        using NotifyCallback=std::function<void(const BluetoothCharacteristic&)>;
         bt_gatt_h _handle;
         BluetoothService& _service;
-        std::atomic<bool> _valueFetched=false;
 
         std::vector<std::shared_ptr<BluetoothDescriptor>> _descriptors;
 
