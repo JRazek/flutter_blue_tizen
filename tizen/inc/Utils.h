@@ -39,7 +39,7 @@ namespace btu{
     auto getGattUUID(bt_gatt_h handle) -> std::string;
     auto getGattService(bt_gatt_client_h handle, const std::string& uuid) -> bt_gatt_h;
     auto getGattClientAddress(bt_gatt_client_h handle) -> std::string;
-    auto getProtoServiceDiscoveryResult(const BluetoothDeviceController& device, const std::vector<std::shared_ptr<btGatt::PrimaryService>>& services) -> proto::gen::DiscoverServicesResult;
+    auto getProtoServiceDiscoveryResult(const BluetoothDeviceController& device, const std::vector<btGatt::PrimaryService*>& services) -> proto::gen::DiscoverServicesResult;
 
     /*
      * do not use the functions below

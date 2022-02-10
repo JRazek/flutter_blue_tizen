@@ -22,11 +22,11 @@ namespace btu{
 
         std::vector<proto::gen::BluetoothDevice> _protoBluetoothDevices;
 
-        std::vector<std::shared_ptr<btGatt::PrimaryService>> _services;
+        std::vector<std::unique_ptr<btGatt::PrimaryService>> _services;
 
         std::string _address;
-        bool isConnecting=false;
-        bool isDisconnecting=false;
+        std::atomic<bool> isConnecting=false;
+        std::atomic<bool> isDisconnecting=false;
 
         NotificationsHandler& _notificationsHandler;
 
@@ -45,7 +45,7 @@ namespace btu{
         BluetoothDeviceController(const BluetoothDeviceController& address)=delete;
         
         auto cAddress() const noexcept -> const decltype(_address)&;
-        auto state() noexcept -> State;
+        auto state() const noexcept -> State;
         auto protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&;
         auto cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&;
 
@@ -56,9 +56,9 @@ namespace btu{
         static auto getGattClient(const std::string& address) noexcept -> bt_gatt_client_h;
         static auto destroyGattClientIfExists(const std::string& address) noexcept -> void;
 
-        auto discoverServices() noexcept -> std::vector<std::shared_ptr<btGatt::PrimaryService>>;
+        auto discoverServices() noexcept -> std::vector<btGatt::PrimaryService*>;
 
-        auto getService(const std::string& uuid) noexcept -> std::shared_ptr<btGatt::PrimaryService>;
+        auto getService(const std::string& uuid) noexcept -> btGatt::PrimaryService*;
 
         auto cNotificationsHandler() const noexcept -> const NotificationsHandler&;
     };

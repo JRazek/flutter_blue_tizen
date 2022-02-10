@@ -30,17 +30,17 @@ namespace btGatt{
             std::function<void(const BluetoothDescriptor&)> func;
             const BluetoothDescriptor& descriptor;
         };
-        Scope* scope=new Scope{func, *this};//unfortunately it requires raw ptr
+        auto scope=new Scope{func, *this};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
+                auto scope=static_cast<Scope*>(scope_ptr);
                 if(!result){
-                    Scope& scope=*static_cast<Scope*>(scope_ptr);
-                    auto& descriptor=scope.descriptor;
-                    scope.func(descriptor);
+                    auto& descriptor=scope->descriptor;
+                    scope->func(descriptor);
                 }
                 Logger::showResultError("bt_gatt_client_request_completed_cb", result);
                 
-                delete scope_ptr;
+                delete scope;
         }, scope);
         Logger::showResultError("bt_gatt_client_read_value", res);
         if(res) throw BTException("could not read descriptor"); 
@@ -56,7 +56,7 @@ namespace btGatt{
 
         if(res) throw BTException("could not set value");
 
-        Scope* scope=new Scope{callback, *this};//unfortunately it requires raw ptr
+        auto scope=new Scope{callback, *this};//unfortunately it requires raw ptr
         Logger::log(LogLevel::DEBUG, "characteristic write cb native");
 
         res=bt_gatt_client_write_value(_handle,
@@ -64,11 +64,11 @@ namespace btGatt{
             Logger::showResultError("bt_gatt_client_request_completed_cb", result);
             Logger::log(LogLevel::DEBUG, "descriptor write cb native");
 
-            Scope& scope=*static_cast<Scope*>(scope_ptr);
-            auto& descriptor=scope.descriptor;
-            scope.func(!result, descriptor);
+            auto scope=static_cast<Scope*>(scope_ptr);
+            auto& descriptor=scope->descriptor;
+            scope->func(!result, descriptor);
             
-            delete scope_ptr;
+            delete scope;
         }, scope);
         Logger::showResultError("bt_gatt_client_write_value", res);
 

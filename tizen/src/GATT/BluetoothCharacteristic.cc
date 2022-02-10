@@ -15,7 +15,7 @@ namespace btGatt{
     _service(service){
         int res=bt_gatt_characteristic_foreach_descriptors(handle, [](int total, int index, bt_gatt_h descriptor_handle, void* scope_ptr) -> bool {
             auto& characteristic=*static_cast<BluetoothCharacteristic*>(scope_ptr);
-            characteristic._descriptors.emplace_back(std::make_shared<BluetoothDescriptor>(descriptor_handle, characteristic));
+            characteristic._descriptors.emplace_back(std::make_unique<BluetoothDescriptor>(descriptor_handle, characteristic));
             return true;
         }, this);
     }
@@ -47,12 +47,12 @@ namespace btGatt{
     auto BluetoothCharacteristic::value() const noexcept -> std::string {
         return getGattValue(_handle);
     }
-    auto BluetoothCharacteristic::getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor> {
-        for(auto s: _descriptors){
+    auto BluetoothCharacteristic::getDescriptor(const std::string& uuid) -> BluetoothDescriptor* {
+        for(auto& s: _descriptors){
             if(s->UUID()==uuid)
-                return s;
+                return s.get();
         }
-        return {};
+        return nullptr;
     }
     auto BluetoothCharacteristic::read(const std::function<void(const BluetoothCharacteristic&)>& func) -> void {
         struct Scope{
@@ -62,12 +62,12 @@ namespace btGatt{
         Scope* scope=new Scope{func, *this};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
-                Scope& scope=*static_cast<Scope*>(scope_ptr);
-                auto& characteristic=scope.characteristic;
-                scope.func(characteristic);
+                auto scope=static_cast<Scope*>(scope_ptr);
+                auto& characteristic=scope->characteristic;
+                scope->func(characteristic);
                 Logger::showResultError("bt_gatt_client_request_completed_cb", result);
                 
-                delete scope_ptr;
+                delete scope;
         }, scope);
 
         if(res) throw BTException("could not read client");
@@ -100,11 +100,11 @@ namespace btGatt{
             Logger::showResultError("bt_gatt_client_request_completed_cb", result);
             Logger::log(LogLevel::DEBUG, "characteristic write cb native");
 
-            Scope& scope=*static_cast<Scope*>(scope_ptr);
-            auto& characteristic=scope.characteristic;
-            scope.func(!result, characteristic);
+            auto scope=static_cast<Scope*>(scope_ptr);
+            auto& characteristic=scope->characteristic;
+            scope->func(!result, characteristic);
             
-            delete scope_ptr;
+            delete scope;
         }, scope);
         Logger::showResultError("bt_gatt_client_write_value", res);
 
@@ -136,14 +136,15 @@ namespace btGatt{
     }
     
     void BluetoothCharacteristic::unsetNotifyCallback() {
-        if(_notifyCallback){
+        if(cService().cDevice().state()==btu::BluetoothDeviceController::State::CONNECTED && _notifyCallback){
+            Logger::log(LogLevel::DEBUG, "unsubscribing from characteristic notifications...");
             auto res=bt_gatt_client_unset_characteristic_value_changed_cb(_handle);
             Logger::showResultError("bt_gatt_client_unset_characteristic_value_changed_cb", res);
-
-            _notifyCallback=nullptr;
         }
+        _notifyCallback=nullptr;
     }
     BluetoothCharacteristic::~BluetoothCharacteristic() noexcept {
         unsetNotifyCallback();
+        _descriptors.clear();
     }
 }

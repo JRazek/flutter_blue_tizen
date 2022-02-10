@@ -50,12 +50,13 @@ namespace btu{
         }
     }
 
-    auto BluetoothManager::locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID) -> std::shared_ptr<btGatt::BluetoothCharacteristic>{
+    auto BluetoothManager::locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID,
+    const std::string& secondaryUUID, const std::string& characteristicUUID) -> btGatt::BluetoothCharacteristic*{
         auto it=_bluetoothDevices.var.find(remoteID);
         if(it!=_bluetoothDevices.var.end()){
             auto device=it->second;
             auto primary=device->getService(primaryUUID);
-            std::shared_ptr<btGatt::BluetoothService> service=primary;
+            btGatt::BluetoothService* service=primary;
             if(primary && !secondaryUUID.empty()){
                 service=primary->getSecondary(secondaryUUID);
             }
@@ -63,14 +64,15 @@ namespace btu{
                 return service->getCharacteristic(characteristicUUID);
             }
         }
-        return {};
+        return nullptr;
     }
-    auto BluetoothManager::locateDescriptor(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID, const std::string& descriptorUUID) -> std::shared_ptr<btGatt::BluetoothDescriptor> {
+    auto BluetoothManager::locateDescriptor(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, 
+    const std::string& characteristicUUID, const std::string& descriptorUUID) -> btGatt::BluetoothDescriptor* {
         auto characteristic=locateCharacteristic(remoteID, primaryUUID, secondaryUUID, characteristicUUID);
         if(characteristic){
             return characteristic->getDescriptor(descriptorUUID);
         }
-        return {};
+        return nullptr;
     }
 
     auto BluetoothManager::isBLEAvailable() noexcept -> bool{
@@ -148,9 +150,9 @@ namespace btu{
             std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut, bluetoothManager._scanAllowDuplicates.mut);
             std::shared_ptr<BluetoothDeviceController> device;
             if(bluetoothManager._bluetoothDevices.var.find(macAddress)==bluetoothManager._bluetoothDevices.var.end())
-                device=(*(bluetoothManager._bluetoothDevices.var.insert({macAddress, std::make_shared<BluetoothDeviceController>(macAddress, bluetoothManager._notificationsHandler)}).first)).second;
+                device=bluetoothManager._bluetoothDevices.var.insert({macAddress, std::make_shared<BluetoothDeviceController>(macAddress, bluetoothManager._notificationsHandler)}).first->second;
             else
-                device=(*bluetoothManager._bluetoothDevices.var.find(macAddress)).second;
+                device=bluetoothManager._bluetoothDevices.var.find(macAddress)->second;
                 
             if(bluetoothManager._scanAllowDuplicates.var || device->cProtoBluetoothDevices().empty()){
                 device->protoBluetoothDevices().emplace_back();
@@ -186,15 +188,11 @@ namespace btu{
             int res = bt_adapter_le_is_discovering(&isDiscovering);
             if(!res && isDiscovering){
                 res = bt_adapter_le_stop_scan();
-                if(res){
-                    std::string err=get_error_message(res);
-                    Logger::log(LogLevel::ERROR, "disabling scan failed with " + err);
-                    Logger::log(LogLevel::ERROR, "is Discovering=" + std::to_string(isDiscovering));
-                }else
-                    btlog::Logger::log(btlog::LogLevel::DEBUG, "scan stopped.");
-            }else{
-                btlog::Logger::log(btlog::LogLevel::WARNING, "Cannot stop scan. It is not in progress!");
+                if(!res) btlog::Logger::log(btlog::LogLevel::DEBUG, "scan stopped.");
+                Logger::showResultError("bt_adapter_le_stop_scan", res);
             }
+            Logger::showResultError("bt_adapter_le_is_discovering", res);
+
         }else{
             Logger::log(LogLevel::ERROR, "bluetooth adapter state="+std::to_string(btState));
         }

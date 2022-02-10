@@ -21,12 +21,13 @@ namespace btu {
 
     BluetoothDeviceController::~BluetoothDeviceController() noexcept {
         disconnect();
+        _services.clear();
         destroyGattClientIfExists(_address);
         Logger::log(LogLevel::DEBUG, "reporting destroy!");
     }
 
     auto BluetoothDeviceController::cAddress() const noexcept -> const decltype(_address)& { return _address; }
-    auto BluetoothDeviceController::state() noexcept -> State {
+    auto BluetoothDeviceController::state() const noexcept -> State {
         if(isConnecting^isDisconnecting){
             return (isConnecting ? State::CONNECTING : State::DISCONNECTING);
         }else{
@@ -58,28 +59,6 @@ namespace btu {
             Logger::showResultError("bt_gatt_disconnect", res);
         }else{
             // Logger::log(LogLevel::WARNING, "cannot disconnect. Device not connected "+_address);
-        }
-    }
-    auto BluetoothDeviceController::connectionStateCallback(int res, bool connected, const char* remote_address, void* user_data) noexcept -> void {
-        std::string err=get_error_message(res);
-        Logger::log(LogLevel::DEBUG, "callback called for device "+std::string(remote_address)+" with state="+std::to_string(connected)+" and result="+err);
-        
-        if(!res){
-            auto& bluetoothManager=*static_cast<BluetoothManager*> (user_data);
-            std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
-            auto ptr=bluetoothManager.bluetoothDevices().var.find(remote_address);
-            //when disconnect is called from destructor, this callback can be invoked when the object is already destroyed.
-            if(ptr!=bluetoothManager.bluetoothDevices().var.end()){
-                auto device=(*ptr).second;
-                device->isConnecting=false;
-                device->isDisconnecting=false;
-                std::scoped_lock devLock(device->operationM);
-
-                proto::gen::DeviceStateResponse devState;
-                devState.set_remote_id(device->cAddress());
-                devState.set_state(localToProtoDeviceState(device->state()));
-                device->_notificationsHandler.notifyUIThread("DeviceState", devState);
-            }
         }
     }
 
@@ -114,12 +93,12 @@ namespace btu {
         }
     }
 
-    auto BluetoothDeviceController::discoverServices() noexcept -> std::vector<std::shared_ptr<btGatt::PrimaryService>> {
+    auto BluetoothDeviceController::discoverServices() noexcept -> std::vector<btGatt::PrimaryService*> {
         std::scoped_lock lock(operationM);
 
         struct Scope{
             BluetoothDeviceController& device;
-            std::vector<std::shared_ptr<btGatt::PrimaryService>>& services;
+            std::vector<std::unique_ptr<btGatt::PrimaryService>>& services;
         };
 
         //unsafe block (void *)
@@ -128,23 +107,56 @@ namespace btu {
         int res=bt_gatt_client_foreach_services(getGattClient(_address), [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {
             auto& scope=*static_cast<Scope*>(scope_ptr);
 
-            scope.services.emplace_back(std::make_shared<btGatt::PrimaryService>(service_handle, scope.device));
+            scope.services.emplace_back(std::make_unique<btGatt::PrimaryService>(service_handle, scope.device));
             
             return true;
         }, &scope);
         ///////////////
 
         Logger::showResultError("bt_gatt_client_foreach_services", res);
-        return _services;
+        auto result=std::vector<btGatt::PrimaryService*>();
+        for(auto& s:_services){
+            result.emplace_back(s.get());
+        }
+        return result;
     }
-    auto BluetoothDeviceController::getService(const std::string& uuid) noexcept -> std::shared_ptr<btGatt::PrimaryService>{ 
+    auto BluetoothDeviceController::getService(const std::string& uuid) noexcept -> PrimaryService*{ 
         for(auto& s: _services){
             if(s->UUID()==uuid)
-                return s;
+                return s.get();
         }
-        return {};
+        return nullptr;
     }
     auto BluetoothDeviceController::cNotificationsHandler() const noexcept -> const NotificationsHandler& {
         return _notificationsHandler;
     }
+
+    auto BluetoothDeviceController::connectionStateCallback(int res, bool connected, const char* remote_address, void* user_data) noexcept -> void {
+        std::string err=get_error_message(res);
+        Logger::log(LogLevel::DEBUG, "callback called for device "+std::string(remote_address)+" with state="+std::to_string(connected)+" and result="+err);
+        
+        if(!res){
+            auto& bluetoothManager=*static_cast<BluetoothManager*> (user_data);
+            std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
+            auto ptr=bluetoothManager.bluetoothDevices().var.find(remote_address);
+            //when disconnect is called from destructor, this callback can be invoked when the object is already destroyed.
+            if(ptr!=bluetoothManager.bluetoothDevices().var.end()){
+                auto device=(*ptr).second;
+                device->isConnecting=false;
+                device->isDisconnecting=false;
+                std::scoped_lock devLock(device->operationM);
+                if(!connected){
+                    device->_services.clear();
+                    std::scoped_lock l(gatt_clients.mut);
+                    gatt_clients.var.erase(device->cAddress());
+                }
+
+                proto::gen::DeviceStateResponse devState;
+                devState.set_remote_id(device->cAddress());
+                devState.set_state(localToProtoDeviceState(device->state()));
+                device->_notificationsHandler.notifyUIThread("DeviceState", devState);
+            }
+        }
+    }
+
 };

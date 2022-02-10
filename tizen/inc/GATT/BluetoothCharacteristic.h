@@ -15,7 +15,7 @@ namespace btGatt{
         bt_gatt_h _handle;
         BluetoothService& _service;
 
-        std::vector<std::shared_ptr<BluetoothDescriptor>> _descriptors;
+        std::vector<std::unique_ptr<BluetoothDescriptor>> _descriptors;
 
         std::unique_ptr<NotifyCallback> _notifyCallback;
 
@@ -29,7 +29,7 @@ namespace btGatt{
         auto cService() const noexcept -> const decltype(_service)&;
         auto UUID() const noexcept -> std::string;
         auto value() const noexcept -> std::string;
-        auto getDescriptor(const std::string& uuid) -> std::shared_ptr<BluetoothDescriptor>;
+        auto getDescriptor(const std::string& uuid) -> BluetoothDescriptor*;
         auto read(const std::function<void(const BluetoothCharacteristic&)>& callback) -> void;
         auto write(const std::string value, bool withoutResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void;
         auto properties() const noexcept -> int;

@@ -44,8 +44,12 @@ namespace btu{
 
           auto setNotification(const proto::gen::SetNotificationRequest& request) -> void;
 
-          auto locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID) -> std::shared_ptr<btGatt::BluetoothCharacteristic>;
-          auto locateDescriptor(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, const std::string& characteristicUUID, const std::string& descriptorUUID) -> std::shared_ptr<btGatt::BluetoothDescriptor>;
+          auto locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, 
+          const std::string& characteristicUUID) -> btGatt::BluetoothCharacteristic*;
+
+          auto locateDescriptor(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, 
+          const std::string& characteristicUUID, const std::string& descriptorUUID) -> btGatt::BluetoothDescriptor*;
+
           static auto isBLEAvailable() noexcept -> bool;
           static auto scanCallback(int result, bt_adapter_le_device_scan_result_info_s* discovery_info, void* user_data) noexcept -> void;
           static auto adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void;

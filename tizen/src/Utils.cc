@@ -181,7 +181,7 @@ namespace btu{
         }
         return result;
     }
-    auto getProtoServiceDiscoveryResult(const BluetoothDeviceController& device, const std::vector<std::shared_ptr<btGatt::PrimaryService>>& services) -> proto::gen::DiscoverServicesResult {
+    auto getProtoServiceDiscoveryResult(const BluetoothDeviceController& device, const std::vector<btGatt::PrimaryService*>& services) -> proto::gen::DiscoverServicesResult {
         proto::gen::DiscoverServicesResult res;
         for(const auto& s : services){
             *res.add_services() = s->toProtoService();
