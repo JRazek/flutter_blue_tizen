@@ -44,6 +44,9 @@ namespace btu{
 
           auto setNotification(const proto::gen::SetNotificationRequest& request) -> void;
 
+          auto getMtu(const std::string& deviceID) -> u_int32_t;
+          auto requestMtu(const proto::gen::MtuSizeRequest& request) -> void;
+
           auto locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, 
           const std::string& characteristicUUID) -> btGatt::BluetoothCharacteristic*;
 

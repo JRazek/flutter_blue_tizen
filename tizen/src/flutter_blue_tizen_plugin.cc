@@ -190,6 +190,26 @@ namespace {
         }catch(const std::exception& e){
           result->Error(e.what());
         }
+      }else if(method_call.method_name()=="mtu"){
+        std::string deviceID = std::get<std::string>(args);
+        try{
+          proto::gen::MtuSizeResponse res;
+          res.set_remote_id(deviceID);
+          res.set_mtu(bluetoothManager.getMtu(deviceID));
+          result->Success(flutter::EncodableValue(btu::messageToVector(res)));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
+      }else if(method_call.method_name()=="requestMtu"){
+        std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
+        proto::gen::MtuSizeRequest req;
+        req.ParseFromArray(encoded.data(), encoded.size());
+        try{
+          bluetoothManager.requestMtu(req);
+          result->Success(flutter::EncodableValue(NULL));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
       }
       else {
         result->NotImplemented();

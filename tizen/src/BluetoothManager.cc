@@ -50,6 +50,29 @@ namespace btu{
         }
     }
 
+    auto BluetoothManager::getMtu(const std::string& deviceID) -> u_int32_t {
+        std::scoped_lock lock(_bluetoothDevices.mut);
+        auto device=_bluetoothDevices.var.find(deviceID)->second;
+        if(!device)
+            throw btu::BTException("could not find device of id="+deviceID);
+            
+        return device->getMtu();
+    }
+
+    auto BluetoothManager::requestMtu(const proto::gen::MtuSizeRequest& request) -> void {
+        auto device=_bluetoothDevices.var.find(request.remote_id())->second;
+        if(!device)
+            throw btu::BTException("could not find device of id="+request.remote_id());
+
+        device->requestMtu(request.mtu(), [](auto status, auto& bluetoothDevice){
+            proto::gen::MtuSizeResponse res;
+            res.set_remote_id(bluetoothDevice.cAddress());
+            res.set_mtu(bluetoothDevice.getMtu());
+
+            bluetoothDevice.cNotificationsHandler().notifyUIThread("MtuSize", res);
+        });
+    }
+
     auto BluetoothManager::locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID,
     const std::string& secondaryUUID, const std::string& characteristicUUID) -> btGatt::BluetoothCharacteristic*{
         auto it=_bluetoothDevices.var.find(remoteID);
@@ -201,14 +224,14 @@ namespace btu{
     auto BluetoothManager::connect(const proto::gen::ConnectRequest& connRequest) noexcept -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
-        auto device=(*_bluetoothDevices.var.find(connRequest.remote_id())).second;
+        auto device=_bluetoothDevices.var.find(connRequest.remote_id())->second;
         device->connect(connRequest);
     }
 
     auto BluetoothManager::disconnect(const std::string& deviceID) noexcept -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
-        auto device=(*_bluetoothDevices.var.find(deviceID)).second;
+        auto device=_bluetoothDevices.var.find(deviceID)->second;
         device->disconnect();
     }
     

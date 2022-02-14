@@ -30,6 +30,8 @@ namespace btu{
 
         NotificationsHandler& _notificationsHandler;
 
+        using requestMtuCallback=std::function<void(bool, const BluetoothDeviceController&)>;
+
     public:
         enum class State{
             CONNECTED,
@@ -60,6 +62,10 @@ namespace btu{
 
         auto getService(const std::string& uuid) noexcept -> btGatt::PrimaryService*;
 
+        auto getMtu() const -> u_int32_t;
+        
+        auto requestMtu(u_int32_t mtu, const requestMtuCallback& callback) -> void;
+        
         auto cNotificationsHandler() const noexcept -> const NotificationsHandler&;
     };
 };
