@@ -32,8 +32,8 @@ namespace btu{
           
           auto startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) noexcept -> void;
           auto stopBluetoothDeviceScanLE() noexcept -> void;
-          auto connect(const proto::gen::ConnectRequest& connRequest) noexcept -> void;
-          auto disconnect(const std::string& deviceID) noexcept -> void;
+          auto connect(const proto::gen::ConnectRequest& connRequest) -> void;
+          auto disconnect(const std::string& deviceID) -> void;
           auto bluetoothState() const noexcept -> proto::gen::BluetoothState;
           auto getConnectedProtoBluetoothDevices() noexcept -> std::vector<proto::gen::BluetoothDevice>;
           auto bluetoothDevices() noexcept -> decltype(_bluetoothDevices)&;

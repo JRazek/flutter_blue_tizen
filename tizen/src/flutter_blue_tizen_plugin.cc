@@ -40,24 +40,26 @@ namespace {
     }
 
     btu::NotificationsHandler notificationsHandler;
-    btu::BluetoothManager bluetoothManager;
+    std::unique_ptr<btu::BluetoothManager> bluetoothManager;
     FlutterBlueTizenPlugin():
     notificationsHandler(methodChannel),
-    bluetoothManager(notificationsHandler)
+    bluetoothManager(std::make_unique<btu::BluetoothManager>(notificationsHandler))
     {}
 
     virtual ~FlutterBlueTizenPlugin() {
+      bluetoothManager=nullptr;
       google::protobuf::ShutdownProtobufLibrary();
-      // if(bt_deinitialize()){
-      //     btlog::Logger::log(btlog::LogLevel::ERROR, "[bt_deinitialize] failed");
-      // }
+      
+      btlog::Logger::log(btlog::LogLevel::DEBUG, "calling bt_deinitialize..");
+      auto res=bt_deinitialize();
+      btlog::Logger::showResultError("bt_adapter_le_is_discovering", res);
     }
 
   private:
     void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
       const flutter::EncodableValue& args = *method_call.arguments();
       if(method_call.method_name()=="isAvailable"){
-          result->Success(flutter::EncodableValue(bluetoothManager.isBLEAvailable()));
+          result->Success(flutter::EncodableValue(bluetoothManager->isBLEAvailable()));
       }
       else if(method_call.method_name()=="setLogLevel" && std::holds_alternative<int>(args)){
           btlog::LogLevel logLevel = static_cast<btlog::LogLevel>(std::get<int>(args));
@@ -65,25 +67,25 @@ namespace {
           result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name()=="state"){
-          result->Success(flutter::EncodableValue(btu::messageToVector(bluetoothManager.bluetoothState())));
+          result->Success(flutter::EncodableValue(btu::messageToVector(bluetoothManager->bluetoothState())));
       }
       else if(method_call.method_name()=="isOn"){
-          result->Success(flutter::EncodableValue((bluetoothManager.bluetoothState().state() == proto::gen::BluetoothState_State::BluetoothState_State_ON)));
+          result->Success(flutter::EncodableValue((bluetoothManager->bluetoothState().state() == proto::gen::BluetoothState_State::BluetoothState_State_ON)));
       }
       else if(method_call.method_name()=="startScan"){
           proto::gen::ScanSettings scanSettings;
           std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
           scanSettings.ParseFromArray(encoded.data(), encoded.size());
-          bluetoothManager.startBluetoothDeviceScanLE(scanSettings);
+          bluetoothManager->startBluetoothDeviceScanLE(scanSettings);
           result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name()=="stopScan"){
-          bluetoothManager.stopBluetoothDeviceScanLE();
+          bluetoothManager->stopBluetoothDeviceScanLE();
           result->Success(flutter::EncodableValue(NULL));
       }
       else if(method_call.method_name()=="getConnectedDevices"){
           proto::gen::ConnectedDevicesResponse response;
-          auto p = bluetoothManager.getConnectedProtoBluetoothDevices();
+          auto p = bluetoothManager->getConnectedProtoBluetoothDevices();
 
           for(auto& dev : p){
             *response.add_devices()=std::move(dev);
@@ -96,25 +98,28 @@ namespace {
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ConnectRequest connectRequest;
         bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
-        
-        bluetoothManager.connect(connectRequest);
-        if(!ok)
-          result->Error("could not deserialize request!");
-        else
+        try{
+          bluetoothManager->connect(connectRequest);
           result->Success(flutter::EncodableValue(NULL));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
       }
       else if(method_call.method_name() == "disconnect"){
         std::string deviceID = std::get<std::string>(args);
-
-        bluetoothManager.disconnect(deviceID);
-        result->Success(flutter::EncodableValue(NULL));
+        try{
+          bluetoothManager->disconnect(deviceID);
+          result->Success(flutter::EncodableValue(NULL));
+        }catch(const std::exception& e){
+          result->Error(e.what());
+        }
       }
       else if(method_call.method_name()=="deviceState"){
         std::string deviceID = std::get<std::string>(args);
-        std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
-        auto it=bluetoothManager.bluetoothDevices().var.find(deviceID);
-        if(it!=bluetoothManager.bluetoothDevices().var.end()){
-          auto& device=(*it).second;
+        std::scoped_lock lock(bluetoothManager->bluetoothDevices().mut);
+        auto it=bluetoothManager->bluetoothDevices().var.find(deviceID);
+        if(it!=bluetoothManager->bluetoothDevices().var.end()){
+          auto& device=it->second;
 
           proto::gen::DeviceStateResponse res;
           res.set_remote_id(device->cAddress());
@@ -125,14 +130,14 @@ namespace {
       }
       else if(method_call.method_name()=="discoverServices"){
         std::string deviceID = std::get<std::string>(args);
-        std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
-        auto it=bluetoothManager.bluetoothDevices().var.find(deviceID);
-        if(it!=bluetoothManager.bluetoothDevices().var.end()){
+        std::scoped_lock lock(bluetoothManager->bluetoothDevices().mut);
+        auto it=bluetoothManager->bluetoothDevices().var.find(deviceID);
+        if(it!=bluetoothManager->bluetoothDevices().var.end()){
           auto& device=it->second;
           result->Success(flutter::EncodableValue(NULL));
 
           auto services=device->discoverServices();
-          notificationsHandler.notifyUIThread("DiscoverServicesResult", btu::getProtoServiceDiscoveryResult(*device.get(), services));
+          notificationsHandler.notifyUIThread("DiscoverServicesResult", btu::getProtoServiceDiscoveryResult(*device, services));
         }
         else 
             result->Error("device not available");
@@ -142,7 +147,7 @@ namespace {
         proto::gen::ReadCharacteristicRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
         try{
-          bluetoothManager.readCharacteristic(request);
+          bluetoothManager->readCharacteristic(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
           result->Error(e.what());
@@ -153,7 +158,7 @@ namespace {
         proto::gen::ReadDescriptorRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
         try{
-          bluetoothManager.readDescriptor(request);
+          bluetoothManager->readDescriptor(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
           result->Error(e.what());
@@ -164,7 +169,7 @@ namespace {
         proto::gen::WriteCharacteristicRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
         try{
-          bluetoothManager.writeCharacteristic(request);
+          bluetoothManager->writeCharacteristic(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
           result->Error(e.what());
@@ -175,7 +180,7 @@ namespace {
         proto::gen::WriteDescriptorRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
         try{
-          bluetoothManager.writeDescriptor(request);
+          bluetoothManager->writeDescriptor(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
           result->Error(e.what());
@@ -185,7 +190,7 @@ namespace {
         proto::gen::SetNotificationRequest request;
         request.ParseFromArray(encoded.data(), encoded.size());
         try{
-          bluetoothManager.setNotification(request);
+          bluetoothManager->setNotification(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
           result->Error(e.what());
@@ -195,7 +200,7 @@ namespace {
         try{
           proto::gen::MtuSizeResponse res;
           res.set_remote_id(deviceID);
-          res.set_mtu(bluetoothManager.getMtu(deviceID));
+          res.set_mtu(bluetoothManager->getMtu(deviceID));
           result->Success(flutter::EncodableValue(btu::messageToVector(res)));
         }catch(const std::exception& e){
           result->Error(e.what());
@@ -205,7 +210,7 @@ namespace {
         proto::gen::MtuSizeRequest req;
         req.ParseFromArray(encoded.data(), encoded.size());
         try{
-          bluetoothManager.requestMtu(req);
+          bluetoothManager->requestMtu(req);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
           result->Error(e.what());

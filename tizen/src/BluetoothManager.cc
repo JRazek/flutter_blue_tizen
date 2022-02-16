@@ -138,7 +138,9 @@ namespace btu{
         _scanAllowDuplicates.var=scanSettings.allow_duplicates();        
         Logger::log(LogLevel::DEBUG, "allowDuplicates="+std::to_string(_scanAllowDuplicates.var));
 
-        int res = bt_adapter_le_set_scan_mode(BT_ADAPTER_LE_SCAN_MODE_BALANCED);
+        auto res = bt_adapter_le_set_scan_mode(BT_ADAPTER_LE_SCAN_MODE_BALANCED);
+        Logger::showResultError("bt_adapter_le_set_scan_mode", res);
+
         //remove from bluetooth Devices all devices with status==Scanned
 
         int uuidCount=scanSettings.service_uuids_size();
@@ -146,20 +148,21 @@ namespace btu{
 
         for(int i=0;i<uuidCount;i++){
             const std::string& uuid=scanSettings.service_uuids()[i];
-            bt_adapter_le_scan_filter_create(&filters[i]);
-            bt_adapter_le_scan_filter_set_device_address(filters[i], uuid.c_str());
+            res=bt_adapter_le_scan_filter_create(&filters[i]);
+            Logger::showResultError("bt_adapter_le_scan_filter_create", res);
+
+            res=bt_adapter_le_scan_filter_set_device_address(filters[i], uuid.c_str());
+            Logger::showResultError("bt_adapter_le_scan_filter_set_device_address", res);
         }
 
         if(!res){
             btlog::Logger::log(btlog::LogLevel::DEBUG, "starting scan...");
             res = bt_adapter_le_start_scan(&BluetoothManager::scanCallback, this);
-        }
-        if(res){
-            std::string err=get_error_message(res);
-            Logger::log(LogLevel::ERROR, "scanning start failed with " + err);
+            Logger::showResultError("bt_adapter_le_start_scan", res);
         }
         for(auto& f : filters){
-            bt_adapter_le_scan_filter_destroy(&f);
+            res=bt_adapter_le_scan_filter_destroy(&f);
+            Logger::showResultError("bt_adapter_le_scan_filter_destroy", res);
         }
     }
 
@@ -208,7 +211,7 @@ namespace btu{
         auto btState=bluetoothState().state();
         if(btState==proto::gen::BluetoothState_State_ON){
             bool isDiscovering;
-            int res = bt_adapter_le_is_discovering(&isDiscovering);
+            auto res = bt_adapter_le_is_discovering(&isDiscovering);
             if(!res && isDiscovering){
                 res = bt_adapter_le_stop_scan();
                 if(!res) btlog::Logger::log(btlog::LogLevel::DEBUG, "scan stopped.");
@@ -221,14 +224,14 @@ namespace btu{
         }
     }
 
-    auto BluetoothManager::connect(const proto::gen::ConnectRequest& connRequest) noexcept -> void {
+    auto BluetoothManager::connect(const proto::gen::ConnectRequest& connRequest) -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         auto device=_bluetoothDevices.var.find(connRequest.remote_id())->second;
-        device->connect(connRequest);
+        device->connect(connRequest.android_auto_connect());
     }
 
-    auto BluetoothManager::disconnect(const std::string& deviceID) noexcept -> void {
+    auto BluetoothManager::disconnect(const std::string& deviceID) -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         auto device=_bluetoothDevices.var.find(deviceID)->second;

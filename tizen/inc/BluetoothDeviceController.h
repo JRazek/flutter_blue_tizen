@@ -51,8 +51,8 @@ namespace btu{
         auto protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&;
         auto cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&;
 
-        auto connect(const proto::gen::ConnectRequest& connReq) noexcept -> void;
-        auto disconnect() noexcept -> void;
+        auto connect(bool autoConnect) -> void;
+        auto disconnect() -> void;
 
         static auto connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void;
         static auto getGattClient(const std::string& address) noexcept -> bt_gatt_client_h;
@@ -66,6 +66,7 @@ namespace btu{
         
         auto requestMtu(u_int32_t mtu, const requestMtuCallback& callback) -> void;
         
+        auto notifyDeviceState() const -> void;
         auto cNotificationsHandler() const noexcept -> const NotificationsHandler&;
     };
 };

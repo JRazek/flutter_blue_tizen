@@ -18,52 +18,59 @@ List<int> _getRandomBytes() {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
-  await flutterBlue.stopScan();
-  List<ScanResult> scanResults = <ScanResult>[];
-  var subscription = flutterBlue.scanResults.listen((results) async {
-    if (results.isNotEmpty) {
-      var dev = results.last.device;
-      var sc = results.last;
-      scanResults.add(results.last);
-    }
-  });
-  await flutterBlue.startScan(timeout: const Duration(seconds: 5));
+  for (int i = 0; i < 100; i++) {
+    await flutterBlue.stopScan();
+    List<ScanResult> scanResults = <ScanResult>[];
+    var subscription = flutterBlue.scanResults.listen((results) async {
+      if (results.isNotEmpty) {
+        var dev = results.last.device;
+        var sc = results.last;
+        scanResults.add(results.last);
+      }
+    });
+    await flutterBlue.startScan(timeout: const Duration(seconds: 3));
 
-  for (var sc in scanResults) {
-    var dev = sc.device;
-    if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
-      await dev.connect(autoConnect: false);
-      var services = await dev.discoverServices();
-      await Future.delayed(const Duration(seconds: 0));
-      for (var service in services) {
-        for (var characteristic in service.characteristics) {
-          // if (characteristic.properties.read &&
-          //     characteristic.properties.write) {
-          //   List<int> values = await characteristic.read();
-          //   try {
-          //     await characteristic
-          //         .write([65, 66, 67, 68, 70], withoutResponse: true);
-          //     // debugPrint(values.toString());
-          //   } catch (e) {
-          //     debugPrint(service.uuid.toString() +
-          //         " " +
-          //         characteristic.uuid.toString());
+    for (var sc in scanResults) {
+      var dev = sc.device;
+      if (sc.advertisementData.localName == "Galaxy S20 FE JRazek") {
+        for (int j = 0; j < 1; j++) {
+          dev.connect(autoConnect: false);
+          dev.disconnect();
+          // await dev.disconnect();
+          // var services = await dev.discoverServices();
+          // for (var service in services) {
+          //   for (var characteristic in service.characteristics) {
+          //     if (characteristic.properties.read &&
+          //         characteristic.properties.write) {
+          //       List<int> values = await characteristic.read();
+          //       try {
+          //         await characteristic
+          //             .write([65, 66, 67, 68, 70], withoutResponse: true);
+          //         // debugPrint(values.toString());
+          //       } catch (e) {
+          //         debugPrint(service.uuid.toString() +
+          //             " " +
+          //             characteristic.uuid.toString());
+          //       }
+          //       values = await characteristic.read();
+          //       debugPrint(values.toString());
+          //     }
+          //     if ((characteristic.properties.notify ||
+          //         characteristic.properties.indicate)) {
+          //       characteristic.setNotifyValue(true);
+          //       // var charNotify=characteristic.
+          //     }
           //   }
-          //   values = await characteristic.read();
-          //   debugPrint(values.toString());
-
           // }
-          if ((characteristic.properties.notify ||
-              characteristic.properties.indicate)) {
-            characteristic.setNotifyValue(true);
-          }
+          // await dev.requestMtu(321);
+          // var mtuSub = dev.mtu.listen((mtu) async {
+          //   debugPrint(mtu.toString());
+          // });
+          // debugPrint("released");
         }
       }
-      debugPrint("released");
-      await dev.disconnect();
     }
   }
-
   runApp(const MyApp());
 }
 
