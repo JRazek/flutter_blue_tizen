@@ -21,7 +21,6 @@ namespace btu {
 
     BluetoothDeviceController::~BluetoothDeviceController() noexcept {
         disconnect();
-        _services.clear();
         // Logger::log(LogLevel::DEBUG, "reporting destroy!");
     }
 
@@ -57,9 +56,10 @@ namespace btu {
             Logger::log(LogLevel::DEBUG, "st="+std::to_string(static_cast<int>(st))+" vs state()="+std::to_string(static_cast<int>(state())));
 
             Logger::log(LogLevel::DEBUG, "explicit disconnect call");
+            _services.clear();
             isDisconnecting=true;
             int res=bt_gatt_disconnect(_address.c_str());
-            Logger::showResultError("bt_gatt_disconnect", res);
+            Logger::showResultError("bt_gatt_disconnect", res);   
         }
     }
 

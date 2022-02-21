@@ -228,14 +228,18 @@ namespace btu{
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         auto device=_bluetoothDevices.var.find(connRequest.remote_id())->second;
-        device->connect(connRequest.android_auto_connect());
+        if(device)
+            device->connect(connRequest.android_auto_connect());
+        else throw BTException("device not found!");
     }
 
     auto BluetoothManager::disconnect(const std::string& deviceID) -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
         using State=BluetoothDeviceController::State;
         auto device=_bluetoothDevices.var.find(deviceID)->second;
-        device->disconnect();
+        if(device)
+            device->disconnect();
+        else throw BTException("device not found!");
     }
     
     auto BluetoothManager::getConnectedProtoBluetoothDevices() noexcept -> std::vector<proto::gen::BluetoothDevice> {

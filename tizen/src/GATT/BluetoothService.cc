@@ -102,6 +102,11 @@ namespace btGatt{
         btlog::Logger::log(btlog::LogLevel::DEBUG, "calling destroy for bluetoothService!");
     }
 
+
+/**
+ * these must not be in a virtual destructor. Characteristic references abstract method, when derived objects are already destroyed otherwise.
+ * 
+ */
     PrimaryService::~PrimaryService(){
         _characteristics.clear();
     }
