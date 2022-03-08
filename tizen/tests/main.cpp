@@ -9,14 +9,19 @@ class App : public FlutterApp {
     }
     return IsRunning();
   }
+  auto test(int argc, char **argv) -> void{
+    std::cout<<"Running!\n";
+  }
+  auto Run(int argc, char **argv) -> int override{
+    std::cout<<"Hello!!!\n";
+  }
 };
 
 auto main(int argc, char *argv[]) -> int{
     App app;
     app.SetDartEntrypoint("serviceMain");
     
-    std::cout<<"Running!\n";
-    auto res=app.Run(argc, argv);
+    app.test(argc, argv);
 
-    return res;
+    return app.Run(argc, argv);//this line crashes the program.
 }
