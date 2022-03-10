@@ -3,17 +3,14 @@
 
 class App : public FlutterApp {
  public:
-  bool OnCreate() {
-    if (FlutterApp::OnCreate()) {
+  auto OnCreate() -> bool override{
+    if (FlutterApp::OnCreate()){
 
     }
     return IsRunning();
   }
   auto test(int argc, char **argv) -> void{
     std::cout<<"Running!\n";
-  }
-  auto Run(int argc, char **argv) -> int override{
-    std::cout<<"Hello!!!\n";
   }
 };
 
