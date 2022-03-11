@@ -33,6 +33,7 @@ target_compile_options(
     -march=armv7-a
     -mfloat-abi=softfp
     -D_DEBUG
+    -ggdb
 )
 
 target_link_options(
