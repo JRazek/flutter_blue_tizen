@@ -20,7 +20,6 @@ add_executable(
     main.cpp
 )
 
-
 target_compile_options(
     Main PUBLIC 
     -Ipch
@@ -50,6 +49,8 @@ target_link_options(
     -Xlinker
     --unresolved-symbols=ignore-in-shared-libs
     --sysroot=${TIZEN_STUDIO_DIR}/platforms/tizen-6.5/wearable/rootstraps/wearable-6.5-device.core
+    -Wl,-rpath,../lib/armel 
+    # -Wl,-rpath,/home/owner/unit_tests_flutter_blue/lib/armel
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ccc-gcc-name arm-linux-gnueabi-g++")
@@ -97,7 +98,6 @@ target_link_directories(
     Main PUBLIC
 
     lib/armel
-    /home/owner/unit_tests_flutter_blue/lib/armel
 )
 
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
