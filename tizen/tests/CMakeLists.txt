@@ -17,7 +17,7 @@ set(CMAKE_C_COMPILER_TARGET armv7-a)
 
 add_executable(
     Main 
-    main.cpp
+    src/main.cpp
 )
 
 target_compile_options(
@@ -70,6 +70,8 @@ target_include_directories(
     ${FLUTTER_TIZEN_DIR}/embedding/cpp/include
     ${FLUTTER_TIZEN_DIR}/flutter/bin/cache/artifacts/engine/tizen-common/cpp_client_wrapper/include
     ${FLUTTER_TIZEN_DIR}/flutter/bin/cache/artifacts/engine/tizen-common/public
+    ../inc
+    ../include
 )
 
 target_link_libraries(
