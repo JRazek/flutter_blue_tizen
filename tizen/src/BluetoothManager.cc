@@ -37,11 +37,18 @@ namespace btu{
     auto BluetoothManager::setNotification(const proto::gen::SetNotificationRequest& request) -> void {
         std::scoped_lock lock(_bluetoothDevices.mut);
         
-        auto characteristic=locateCharacteristic(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid());
+        auto characteristic=locateCharacteristic(
+            request.remote_id(), 
+            request.service_uuid(), 
+            request.secondary_service_uuid(), 
+            request.characteristic_uuid()
+        );
+
         if(characteristic){
             if(request.enable())
                 characteristic->setNotifyCallback([](auto& characteristic){
-                    Logger::log(LogLevel::DEBUG, "notification from characteristic of uuid="+characteristic.UUID()+" to value="+characteristic.value());
+                    Logger::log(LogLevel::DEBUG, "notification from characteristic of uuid="
+                    +characteristic.UUID()+" to value="+characteristic.value());
                 });
             else
                 characteristic->unsetNotifyCallback();
@@ -73,8 +80,12 @@ namespace btu{
         });
     }
 
-    auto BluetoothManager::locateCharacteristic(const std::string& remoteID, const std::string& primaryUUID,
-    const std::string& secondaryUUID, const std::string& characteristicUUID) -> btGatt::BluetoothCharacteristic*{
+    auto BluetoothManager::locateCharacteristic(
+        const std::string& remoteID, 
+        const std::string& primaryUUID,
+        const std::string& secondaryUUID,
+        const std::string& characteristicUUID
+    ) -> btGatt::BluetoothCharacteristic*{
         auto it=_bluetoothDevices.var.find(remoteID);
         if(it!=_bluetoothDevices.var.end()){
             auto device=it->second;
@@ -89,8 +100,13 @@ namespace btu{
         }
         return nullptr;
     }
-    auto BluetoothManager::locateDescriptor(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, 
-    const std::string& characteristicUUID, const std::string& descriptorUUID) -> btGatt::BluetoothDescriptor* {
+    auto BluetoothManager::locateDescriptor(
+        const std::string& remoteID,
+        const std::string& primaryUUID, 
+        const std::string& secondaryUUID, 
+        const std::string& characteristicUUID, 
+        const std::string& descriptorUUID
+    ) -> btGatt::BluetoothDescriptor* {
         auto characteristic=locateCharacteristic(remoteID, primaryUUID, secondaryUUID, characteristicUUID);
         if(characteristic){
             return characteristic->getDescriptor(descriptorUUID);
@@ -125,7 +141,11 @@ namespace btu{
         return bts;
     }
 
-    auto BluetoothManager::adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void {
+    auto BluetoothManager::adapterStateChangedCallback(
+        int result,
+        bt_adapter_state_e adapter_state, 
+        void* user_data
+    ) noexcept -> void {
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
         std::scoped_lock lock(bluetoothManager.adapterState.mut);
         bluetoothManager.adapterState.var = adapter_state;
@@ -177,7 +197,10 @@ namespace btu{
             std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut, bluetoothManager._scanAllowDuplicates.mut);
             std::shared_ptr<BluetoothDeviceController> device;
             if(bluetoothManager._bluetoothDevices.var.find(macAddress)==bluetoothManager._bluetoothDevices.var.end())
-                device=bluetoothManager._bluetoothDevices.var.insert({macAddress, std::make_shared<BluetoothDeviceController>(macAddress, bluetoothManager._notificationsHandler)}).first->second;
+                device=bluetoothManager._bluetoothDevices.var.insert({
+                    macAddress, 
+                    std::make_shared<BluetoothDeviceController>(macAddress, bluetoothManager._notificationsHandler)
+                }).first->second;
             else
                 device=bluetoothManager._bluetoothDevices.var.find(macAddress)->second;
                 
