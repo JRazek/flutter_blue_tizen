@@ -60,7 +60,7 @@ namespace btGatt{
     auto SecondaryService::cDevice() const noexcept -> const btu::BluetoothDeviceController&{
         return _primaryService.cDevice();
     }
-    auto SecondaryService::cPrimary() const noexcept -> const decltype(_primaryService)&{
+    auto SecondaryService::cPrimary() const noexcept -> const PrimaryService&{
         return _primaryService;
     }
     auto SecondaryService::toProtoService() const noexcept -> proto::gen::BluetoothService {

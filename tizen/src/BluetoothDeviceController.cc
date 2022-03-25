@@ -24,7 +24,7 @@ namespace btu {
         // Logger::log(LogLevel::DEBUG, "reporting destroy!");
     }
 
-    auto BluetoothDeviceController::cAddress() const noexcept -> const decltype(_address)& { return _address; }
+    auto BluetoothDeviceController::cAddress() const noexcept -> const std::string& { return _address; }
     auto BluetoothDeviceController::state() const noexcept -> State {
         if(isConnecting^isDisconnecting){
             return (isConnecting ? State::CONNECTING : State::DISCONNECTING);
@@ -38,8 +38,8 @@ namespace btu {
             return (isConnected ? State::CONNECTED : State::DISCONNECTED); 
         }
     }
-    auto BluetoothDeviceController::protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
-    auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)& { return _protoBluetoothDevices; }
+    auto BluetoothDeviceController::protoBluetoothDevices() noexcept -> std::vector<proto::gen::BluetoothDevice>& { return _protoBluetoothDevices; }
+    auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const std::vector<proto::gen::BluetoothDevice>& { return _protoBluetoothDevices; }
     auto BluetoothDeviceController::connect(bool autoConnect) -> void {
         std::unique_lock lock(operationM);
 

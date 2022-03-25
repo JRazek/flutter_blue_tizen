@@ -46,10 +46,10 @@ namespace btu{
 
         BluetoothDeviceController(const BluetoothDeviceController& address)=delete;
         
-        auto cAddress() const noexcept -> const decltype(_address)&;
+        auto cAddress() const noexcept -> const std::string&;
         auto state() const noexcept -> State;
-        auto protoBluetoothDevices() noexcept -> decltype(_protoBluetoothDevices)&;
-        auto cProtoBluetoothDevices() const noexcept -> const decltype(_protoBluetoothDevices)&;
+        auto protoBluetoothDevices() noexcept -> std::vector<proto::gen::BluetoothDevice>&;
+        auto cProtoBluetoothDevices() const noexcept -> const std::vector<proto::gen::BluetoothDevice>&;
 
         auto connect(bool autoConnect) -> void;
         auto disconnect() -> void;

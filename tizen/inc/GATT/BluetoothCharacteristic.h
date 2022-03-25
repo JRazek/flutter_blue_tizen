@@ -26,7 +26,7 @@ namespace btGatt{
         BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service) noexcept;
         ~BluetoothCharacteristic() noexcept;
         auto toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic;
-        auto cService() const noexcept -> const decltype(_service)&;
+        auto cService() const noexcept -> const BluetoothService&;
         auto UUID() const noexcept -> std::string;
         auto value() const noexcept -> std::string;
         auto getDescriptor(const std::string& uuid) -> BluetoothDescriptor*;
