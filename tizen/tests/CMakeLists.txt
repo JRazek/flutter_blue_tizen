@@ -46,6 +46,7 @@ target_link_options(
     -fPIC
     -march=armv7-a
     -static-libstdc++
+    -ccc-gcc-name arm-linux-gnueabi-g++
     -Xlinker
     --unresolved-symbols=ignore-in-shared-libs
     --sysroot=${TIZEN_STUDIO_DIR}/platforms/tizen-6.5/wearable/rootstraps/wearable-6.5-device.core
@@ -53,7 +54,6 @@ target_link_options(
     # -Wl,-rpath,/home/owner/unit_tests_flutter_blue/lib/armel
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ccc-gcc-name arm-linux-gnueabi-g++")
 
 SET(CMAKE_SYSROOT ${TIZEN_STUDIO_DIR}/platforms/tizen-6.5/wearable/rootstraps/wearable-6.5-device.core)
 
