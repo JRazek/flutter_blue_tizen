@@ -26,12 +26,12 @@ namespace btu{
 
      public:
           
-          BluetoothManager(NotificationsHandler& notificationsHandler) noexcept;
+          BluetoothManager(NotificationsHandler& notificationsHandler);
           virtual ~BluetoothManager() noexcept=default;
           BluetoothManager(const BluetoothManager& bluetoothManager)=delete;
           
-          auto startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) noexcept -> void;
-          auto stopBluetoothDeviceScanLE() noexcept -> void;
+          auto startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) -> void;
+          auto stopBluetoothDeviceScanLE() -> void;
           auto connect(const proto::gen::ConnectRequest& connRequest) -> void;
           auto disconnect(const std::string& deviceID) -> void;
           auto bluetoothState() const noexcept -> proto::gen::BluetoothState;
@@ -53,7 +53,7 @@ namespace btu{
           auto locateDescriptor(const std::string& remoteID, const std::string& primaryUUID, const std::string& secondaryUUID, 
           const std::string& characteristicUUID, const std::string& descriptorUUID) -> btGatt::BluetoothDescriptor*;
 
-          static auto isBLEAvailable() noexcept -> bool;
+          static auto isBLEAvailable() -> bool;
           static auto scanCallback(int result, bt_adapter_le_device_scan_result_info_s* discovery_info, void* user_data) noexcept -> void;
           static auto adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void;
      };

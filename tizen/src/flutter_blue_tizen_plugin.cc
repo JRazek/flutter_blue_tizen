@@ -59,7 +59,11 @@ namespace {
     void HandleMethodCall(const flutter::MethodCall<flutter::EncodableValue> &method_call, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
       const flutter::EncodableValue& args = *method_call.arguments();
       if(method_call.method_name()=="isAvailable"){
+        try{
           result->Success(flutter::EncodableValue(bluetoothManager->isBLEAvailable()));
+        }catch(std::exception const& e){
+          result->Error(e.what());
+        }
       }
       else if(method_call.method_name()=="setLogLevel" && std::holds_alternative<int>(args)){
           btlog::LogLevel logLevel = static_cast<btlog::LogLevel>(std::get<int>(args));
@@ -76,12 +80,20 @@ namespace {
           proto::gen::ScanSettings scanSettings;
           std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
           scanSettings.ParseFromArray(encoded.data(), encoded.size());
-          bluetoothManager->startBluetoothDeviceScanLE(scanSettings);
-          result->Success(flutter::EncodableValue(NULL));
+          try{
+            bluetoothManager->startBluetoothDeviceScanLE(scanSettings);
+            result->Success(flutter::EncodableValue(NULL));
+          }catch(std::exception const& e){
+            result->Error(e.what());
+          }
       }
       else if(method_call.method_name()=="stopScan"){
-          bluetoothManager->stopBluetoothDeviceScanLE();
-          result->Success(flutter::EncodableValue(NULL));
+          try{
+            bluetoothManager->stopBluetoothDeviceScanLE();
+            result->Success(flutter::EncodableValue(NULL));
+          }catch(std::exception const& e){
+            result->Error(e.what());
+          }
       }
       else if(method_call.method_name()=="getConnectedDevices"){
           proto::gen::ConnectedDevicesResponse response;
@@ -91,14 +103,13 @@ namespace {
             *response.add_devices()=std::move(dev);
           }
           
-          //[TODO] TEST THIS FUNCTION
           result->Success(flutter::EncodableValue(btu::messageToVector(response)));
       }
       else if(method_call.method_name()=="connect"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ConnectRequest connectRequest;
-        bool ok = connectRequest.ParseFromArray(encoded.data(), encoded.size());
         try{
+          connectRequest.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager->connect(connectRequest);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
@@ -145,8 +156,8 @@ namespace {
       else if(method_call.method_name()=="readCharacteristic"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ReadCharacteristicRequest request;
-        request.ParseFromArray(encoded.data(), encoded.size());
         try{
+          request.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager->readCharacteristic(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
@@ -156,8 +167,8 @@ namespace {
       else if(method_call.method_name()=="readDescriptor"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::ReadDescriptorRequest request;
-        request.ParseFromArray(encoded.data(), encoded.size());
         try{
+          request.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager->readDescriptor(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
@@ -167,8 +178,8 @@ namespace {
       else if(method_call.method_name()=="writeCharacteristic"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::WriteCharacteristicRequest request;
-        request.ParseFromArray(encoded.data(), encoded.size());
         try{
+          request.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager->writeCharacteristic(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
@@ -178,8 +189,8 @@ namespace {
       else if(method_call.method_name()=="writeDescriptor"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::WriteDescriptorRequest request;
-        request.ParseFromArray(encoded.data(), encoded.size());
         try{
+          request.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager->writeDescriptor(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
@@ -188,8 +199,8 @@ namespace {
       }else if(method_call.method_name()=="setNotification"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::SetNotificationRequest request;
-        request.ParseFromArray(encoded.data(), encoded.size());
         try{
+          request.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager->setNotification(request);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){
@@ -208,8 +219,8 @@ namespace {
       }else if(method_call.method_name()=="requestMtu"){
         std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
         proto::gen::MtuSizeRequest req;
-        req.ParseFromArray(encoded.data(), encoded.size());
         try{
+          req.ParseFromArray(encoded.data(), encoded.size());
           bluetoothManager->requestMtu(req);
           result->Success(flutter::EncodableValue(NULL));
         }catch(const std::exception& e){

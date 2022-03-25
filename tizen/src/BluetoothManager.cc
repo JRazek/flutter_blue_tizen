@@ -17,7 +17,7 @@ namespace btu{
     auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) -> void;
 
 
-    BluetoothManager::BluetoothManager(NotificationsHandler& notificationsHandler) noexcept:
+    BluetoothManager::BluetoothManager(NotificationsHandler& notificationsHandler):
     _notificationsHandler(notificationsHandler){
         if(!isBLEAvailable()){
             Logger::log(LogLevel::ERROR, "Bluetooth is not available on this device!");
@@ -98,12 +98,11 @@ namespace btu{
         return nullptr;
     }
 
-    auto BluetoothManager::isBLEAvailable() noexcept -> bool{
+    auto BluetoothManager::isBLEAvailable() -> bool{
         bool state;
-        int ret = system_info_get_platform_bool("http://tizen.org/feature/network.bluetooth.le", &state);
-        if(ret != SYSTEM_INFO_ERROR_NONE){
-            Logger::log(LogLevel::ERROR, "failed fetching bluetooth data!");
-        }
+        auto res = system_info_get_platform_bool("http://tizen.org/feature/network.bluetooth.le", &state);
+        if(res) throw BTException(res, "system_info_get_platform_bool");
+        
         return state;
     }
 
@@ -132,7 +131,7 @@ namespace btu{
         bluetoothManager.adapterState.var = adapter_state;
     }
     
-    auto BluetoothManager::startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) noexcept -> void {
+    auto BluetoothManager::startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) -> void {
         std::scoped_lock l(_bluetoothDevices.mut, _scanAllowDuplicates.mut);
         _bluetoothDevices.var.clear();        
         _scanAllowDuplicates.var=scanSettings.allow_duplicates();        
@@ -140,9 +139,7 @@ namespace btu{
 
         auto res = bt_adapter_le_set_scan_mode(BT_ADAPTER_LE_SCAN_MODE_BALANCED);
         Logger::showResultError("bt_adapter_le_set_scan_mode", res);
-
-        //remove from bluetooth Devices all devices with status==Scanned
-
+        if(res) throw BTException(res, "bt_adapter_le_set_scan_mode");
         int uuidCount=scanSettings.service_uuids_size();
         std::vector<bt_scan_filter_h> filters(uuidCount);
 
@@ -150,19 +147,23 @@ namespace btu{
             const std::string& uuid=scanSettings.service_uuids()[i];
             res=bt_adapter_le_scan_filter_create(&filters[i]);
             Logger::showResultError("bt_adapter_le_scan_filter_create", res);
+            if(res) throw BTException(res, "bt_adapter_le_scan_filter_create");
 
             res=bt_adapter_le_scan_filter_set_device_address(filters[i], uuid.c_str());
             Logger::showResultError("bt_adapter_le_scan_filter_set_device_address", res);
+            if(res) throw BTException(res, "bt_adapter_le_scan_filter_set_device_address");
         }
 
         if(!res){
             btlog::Logger::log(btlog::LogLevel::DEBUG, "starting scan...");
             res = bt_adapter_le_start_scan(&BluetoothManager::scanCallback, this);
             Logger::showResultError("bt_adapter_le_start_scan", res);
+            if(res) throw BTException(res, "bt_adapter_le_start_scan");
         }
         for(auto& f : filters){
             res=bt_adapter_le_scan_filter_destroy(&f);
             Logger::showResultError("bt_adapter_le_scan_filter_destroy", res);
+            if(res) throw BTException(res, "bt_adapter_le_scan_filter_destroy");
         }
     }
 
@@ -205,7 +206,7 @@ namespace btu{
         }
     }
     
-    auto BluetoothManager::stopBluetoothDeviceScanLE() noexcept -> void{
+    auto BluetoothManager::stopBluetoothDeviceScanLE() -> void{
         static std::mutex m;
         std::scoped_lock lock(m);
         auto btState=bluetoothState().state();

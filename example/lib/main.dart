@@ -15,6 +15,34 @@ List<int> _getRandomBytes() {
   ];
 }
 
+void foreachCharacteristic(BluetoothService service) async {
+  for (var characteristic in service.characteristics) {
+    if (characteristic.properties.read && characteristic.properties.write) {
+      try {
+        List<int> values = await characteristic.read();
+      } catch (e) {
+        debugPrint("ERROR:" + service.uuid.toString());
+      }
+      //       try {
+      //         await characteristic
+      //             .write([65, 66, 67, 68, 70], withoutResponse: true);
+      //         // debugPrint(values.toString());
+      //       } catch (e) {
+      //         debugPrint(service.uuid.toString() +
+      //             " " +
+      //             characteristic.uuid.toString());
+      //       }
+      //       values = await characteristic.read();
+      //       debugPrint(values.toString());
+      //     }
+      //     if ((characteristic.properties.notify ||
+      //         characteristic.properties.indicate)) {
+      //       characteristic.setNotifyValue(true);
+      //       // var charNotify=characteristic.
+    }
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterBlue flutterBlue = FlutterBlue.instance;
@@ -35,30 +63,9 @@ void main() async {
       await dev.connect(autoConnect: false);
       var services = await dev.discoverServices();
       for (var service in services) {
-        for (var characteristic in service.characteristics) {
-          if (characteristic.properties.read &&
-              characteristic.properties.write) {
-            List<int> values = await characteristic.read();
-            try {
-              await characteristic
-                  .write([65, 66, 67, 68, 70], withoutResponse: true);
-              // debugPrint(values.toString());
-            } catch (e) {
-              debugPrint(service.uuid.toString() +
-                  " " +
-                  characteristic.uuid.toString());
-            }
-            values = await characteristic.read();
-            debugPrint(values.toString());
-          }
-          if ((characteristic.properties.notify ||
-              characteristic.properties.indicate)) {
-            characteristic.setNotifyValue(true);
-            // var charNotify=characteristic.
-          }
-        }
+        // foreachCharacteristic(service);
       }
-      await dev.requestMtu(321);
+      await dev.requestMtu(123);
       var mtuSub = dev.mtu.listen((mtu) async {
         debugPrint(mtu.toString());
       });

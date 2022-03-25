@@ -25,6 +25,12 @@ namespace btu{
         std::string _m;
     public:
         BTException(const std::string& m):_m(m){}
+        BTException(const int tizen_error, std::string const& m):
+        _m(std::string(get_error_message(tizen_error))+": "+m) {}
+
+        BTException(const int tizen_error):
+        _m(get_error_message(tizen_error)){}
+
         auto what() const noexcept -> const char* override{
             return _m.c_str();
         };

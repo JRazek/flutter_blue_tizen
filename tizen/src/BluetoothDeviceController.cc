@@ -164,7 +164,7 @@ namespace btu {
         auto res=bt_gatt_client_get_att_mtu(getGattClient(_address), &mtu);
         Logger::showResultError("bt_device_is_profile_connected", res);
         if(res)
-            throw BTException("could not get mtu of the device!");
+            throw BTException(res, "could not get mtu of the device!");
         return mtu;
     }
     auto BluetoothDeviceController::requestMtu(u_int32_t mtu, const requestMtuCallback& callback) -> void {
@@ -189,13 +189,13 @@ namespace btu {
 
         Logger::showResultError("bt_gatt_client_set_att_mtu_changed_cb", res);
         if(res)
-            throw BTException("could set mtu request callback!");
+            throw BTException(res, "could set mtu request callback!");
 
         res=bt_gatt_client_request_att_mtu_change(getGattClient(_address), mtu);
 
         Logger::showResultError("bt_gatt_client_request_att_mtu_change", res);
         if(res)
-            throw BTException("could set request mtu change!");        
+            throw BTException(res, "could set request mtu change!");        
     }
     auto BluetoothDeviceController::notifyDeviceState() const -> void {
         proto::gen::DeviceStateResponse devState;
