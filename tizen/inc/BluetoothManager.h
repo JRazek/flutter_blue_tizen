@@ -15,7 +15,6 @@
 namespace btu{
      class BluetoothDeviceController;
      class BluetoothManager{
-          SafeType<bt_adapter_state_e> adapterState;
           /**
           * @brief key - MAC address of the device
           */
@@ -55,7 +54,6 @@ namespace btu{
 
           static auto isBLEAvailable() -> bool;
           static auto scanCallback(int result, bt_adapter_le_device_scan_result_info_s* discovery_info, void* user_data) noexcept -> void;
-          static auto adapterStateChangedCallback(int result, bt_adapter_state_e adapter_state, void* user_data) noexcept -> void;
      };
 } // namespace btu
 

@@ -5,6 +5,7 @@
 #include <bluetooth.h>
 
 #include <flutter/method_channel.h>
+#include <flutter/event_channel.h>
 #include <flutter/plugin_registrar.h>
 #include <flutter/standard_method_codec.h>
 
@@ -17,6 +18,7 @@
 #include <Logger.h>
 #include <BluetoothDeviceController.h>
 #include <NotificationsHandler.h>
+#include <StreamHandler.h>
 
 #include <flutterblue.pb.h>
 
@@ -26,15 +28,26 @@ namespace {
     const static inline std::string channel_name = "plugins.pauldemarco.com/flutter_blue/";
     
     static inline std::shared_ptr<flutter::MethodChannel<flutter::EncodableValue>> methodChannel;
+    static inline std::shared_ptr<flutter::EventChannel<flutter::EncodableValue>> stateChannel;
 
     static void RegisterWithRegistrar(flutter::PluginRegistrar *registrar) {
-      methodChannel = std::make_shared<flutter::MethodChannel<flutter::EncodableValue>>(registrar->messenger(), (channel_name + "methods"), &flutter::StandardMethodCodec::GetInstance());
-
       auto plugin = std::make_unique<FlutterBlueTizenPlugin>();
 
+      methodChannel = std::make_shared<flutter::MethodChannel<flutter::EncodableValue>>(
+        registrar->messenger(), 
+        channel_name + "methods",
+        &flutter::StandardMethodCodec::GetInstance()
+      );
       methodChannel->SetMethodCallHandler([plugin_pointer = plugin.get()] (const auto &call, auto result) {
         plugin_pointer->HandleMethodCall(call, std::move(result));
       });
+
+      stateChannel = std::make_shared<flutter::EventChannel<flutter::EncodableValue>>(
+        registrar->messenger(), 
+        channel_name + "state",
+        &flutter::StandardMethodCodec::GetInstance()
+      );
+      stateChannel->SetStreamHandler(std::make_unique<btu::StreamHandler>());//todo
 
       registrar->AddPlugin(std::move(plugin));
     }

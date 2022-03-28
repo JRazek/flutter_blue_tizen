@@ -140,17 +140,7 @@ namespace btu{
         
         return bts;
     }
-
-    auto BluetoothManager::adapterStateChangedCallback(
-        int result,
-        bt_adapter_state_e adapter_state, 
-        void* user_data
-    ) noexcept -> void {
-        BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        std::scoped_lock lock(bluetoothManager.adapterState.mut);
-        bluetoothManager.adapterState.var = adapter_state;
-    }
-    
+        
     auto BluetoothManager::startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) -> void {
         std::scoped_lock l(_bluetoothDevices.mut, _scanAllowDuplicates.mut);
         _bluetoothDevices.var.clear();        
