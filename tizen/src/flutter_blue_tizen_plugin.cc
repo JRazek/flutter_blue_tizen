@@ -18,7 +18,7 @@
 #include <Logger.h>
 #include <BluetoothDeviceController.h>
 #include <NotificationsHandler.h>
-#include <StreamHandler.h>
+#include <StateHandler.h>
 
 #include <flutterblue.pb.h>
 
@@ -47,7 +47,7 @@ namespace {
         channel_name + "state",
         &flutter::StandardMethodCodec::GetInstance()
       );
-      stateChannel->SetStreamHandler(std::make_unique<btu::StreamHandler>());//todo
+      stateChannel->SetStreamHandler(std::make_unique<btu::StateHandler>());//todo
 
       registrar->AddPlugin(std::move(plugin));
     }
