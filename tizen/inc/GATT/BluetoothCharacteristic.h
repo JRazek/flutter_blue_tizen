@@ -22,15 +22,14 @@ namespace btGatt{
 
         std::unique_ptr<NotifyCallback> _notifyCallback;
 
-
-
-    public:
         /**
          * @brief used to validate whether the characteristic still exists in async callback.
          * key-uuid
          * value-pointer of characteristic
          */
         static inline btu::SafeType<std::map<std::string, BluetoothCharacteristic*>> _activeCharacteristics;
+
+    public:
 
         BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service) noexcept;
         ~BluetoothCharacteristic() noexcept;

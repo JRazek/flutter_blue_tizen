@@ -170,9 +170,8 @@ namespace btGatt{
         _notifyCallback=nullptr;
     }
     BluetoothCharacteristic::~BluetoothCharacteristic() noexcept {
-        auto uuid=UUID();
         std::scoped_lock lock(_activeCharacteristics.mut);
-        _activeCharacteristics.var.erase(uuid);
+        _activeCharacteristics.var.erase(UUID());
         unsetNotifyCallback();
         _descriptors.clear();
     }

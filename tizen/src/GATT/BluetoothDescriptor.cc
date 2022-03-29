@@ -10,7 +10,10 @@ namespace btGatt{
     using namespace btlog;
     BluetoothDescriptor::BluetoothDescriptor(bt_gatt_h handle, BluetoothCharacteristic& characteristic):
     _handle(handle),
-    _characteristic(characteristic){}
+    _characteristic(characteristic){
+        std::scoped_lock lock(_activeDescriptors.mut);
+        _activeDescriptors.var[UUID()]=this;
+    }
     
     auto BluetoothDescriptor::toProtoDescriptor() const noexcept -> proto::gen::BluetoothDescriptor{
         proto::gen::BluetoothDescriptor proto;
@@ -29,14 +32,17 @@ namespace btGatt{
     auto BluetoothDescriptor::read(const std::function<void(const BluetoothDescriptor&)>& func) -> void{
         struct Scope{
             std::function<void(const BluetoothDescriptor&)> func;
-            const BluetoothDescriptor& descriptor;
+            const std::string descriptor_uuid;
         };
-        auto scope=new Scope{func, *this};//unfortunately it requires raw ptr
+        auto scope=new Scope{func, UUID()};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
                 auto scope=static_cast<Scope*>(scope_ptr);
-                if(!result){
-                    auto& descriptor=scope->descriptor;
+                std::scoped_lock lock(_activeDescriptors.mut);
+                auto it=_activeDescriptors.var.find(scope->descriptor_uuid);
+                
+                if(it!=_activeDescriptors.var.end() && !result){
+                    auto& descriptor=*it->second;
                     scope->func(descriptor);
                 }
                 Logger::showResultError("bt_gatt_client_request_completed_cb", result);
@@ -49,7 +55,7 @@ namespace btGatt{
     auto BluetoothDescriptor::write(const std::string value, const std::function<void(bool success, const BluetoothDescriptor&)>& callback) -> void {
         struct Scope{
             std::function<void(bool success, const BluetoothDescriptor&)> func;
-            const BluetoothDescriptor& descriptor;
+            const std::string descriptor_uuid;
         };  
         Logger::log(LogLevel::DEBUG, "setting descriptor to value="+value+", with size="+std::to_string(value.size()));
         int res=bt_gatt_set_value(_handle, value.c_str(), value.size());
@@ -57,7 +63,7 @@ namespace btGatt{
 
         if(res) throw BTException("could not set value");
 
-        auto scope=new Scope{callback, *this};//unfortunately it requires raw ptr
+        auto scope=new Scope{callback, UUID()};//unfortunately it requires raw ptr
         Logger::log(LogLevel::DEBUG, "characteristic write cb native");
 
         res=bt_gatt_client_write_value(_handle,
@@ -66,9 +72,14 @@ namespace btGatt{
             Logger::log(LogLevel::DEBUG, "descriptor write cb native");
 
             auto scope=static_cast<Scope*>(scope_ptr);
-            auto& descriptor=scope->descriptor;
-            scope->func(!result, descriptor);
+            std::scoped_lock lock(_activeDescriptors.mut);
+            auto it=_activeDescriptors.var.find(scope->descriptor_uuid);
             
+            if(it!=_activeDescriptors.var.end()){
+                auto& descriptor=*it->second;
+                scope->func(!result, descriptor);
+            }
+
             delete scope;
         }, scope);
         Logger::showResultError("bt_gatt_client_write_value", res);
@@ -77,5 +88,9 @@ namespace btGatt{
     }
     auto BluetoothDescriptor::cCharacteristic() const noexcept -> const BluetoothCharacteristic& {
         return _characteristic;
+    }
+    BluetoothDescriptor::~BluetoothDescriptor(){
+        std::scoped_lock lock(_activeDescriptors.mut);
+        _activeDescriptors.var.erase(UUID());
     }
 }
