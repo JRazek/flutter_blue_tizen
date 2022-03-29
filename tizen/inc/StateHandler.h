@@ -1,17 +1,20 @@
 #ifndef STATE_HANDLER_H
 #define STATE_HANDLER_H
-
-#include <flutter/event_stream_handler.h>
+#include <string>
 
 #include <functional>
 #include <memory>
 
+#include <flutter/event_stream_handler.h>
+
 namespace btu{
     
-class StateHandler : public flutter::StreamHandler<>{
+class StateHandler : public flutter::StreamHandler<flutter::EncodableValue>{
     using T=flutter::EncodableValue;
-    using Base=flutter::StreamHandler<>;
+    using Base=flutter::StreamHandler<T>;
     using err_type=flutter::StreamHandlerError<T>;
+
+    std::shared_ptr<flutter::EventSink<T>> sink;
 
     virtual auto OnListenInternal(
         const T* arguments,

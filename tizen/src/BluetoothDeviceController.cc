@@ -28,10 +28,7 @@ namespace btu {
     auto BluetoothDeviceController::state() const noexcept -> State {
         if(isConnecting^isDisconnecting){
             return (isConnecting ? State::CONNECTING : State::DISCONNECTING);
-        }else if(isConnecting&isDisconnecting){ 
-            Logger::log(LogLevel::ERROR, "disconnecting and connecting!");
-        }
-        else{
+        }else{
             bool isConnected=false;
             int res=bt_device_is_profile_connected(_address.c_str(), BT_PROFILE_GATT, &isConnected);
             Logger::showResultError("bt_device_is_profile_connected", res);
