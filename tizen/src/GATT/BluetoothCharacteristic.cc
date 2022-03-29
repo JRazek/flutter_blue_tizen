@@ -142,13 +142,23 @@ namespace btGatt{
         unsetNotifyCallback();
 
         _notifyCallback=std::make_unique<NotifyCallback>(callback);
+
+        std::string* uuid=new std::string(UUID());
+
         auto res=bt_gatt_client_set_characteristic_value_changed_cb(_handle,
         [](bt_gatt_h ch_handle, char* value, int len, void* scope_ptr){
-            auto& characteristic=*static_cast<BluetoothCharacteristic*>(scope_ptr);
+            std::string* uuid=static_cast<std::string*>(scope_ptr);
 
-            characteristic._notifyCallback->operator()(characteristic);
+            std::scoped_lock lock(_activeCharacteristics.mut);
+            auto it=_activeCharacteristics.var.find(*uuid);
+            
+            if(it!=_activeCharacteristics.var.end()){
+                auto& characteristic=*it->second;
+                characteristic._notifyCallback->operator()(characteristic);
+            }
 
-        }, this);
+            delete uuid;
+        }, uuid);
     }
     
     void BluetoothCharacteristic::unsetNotifyCallback() {
