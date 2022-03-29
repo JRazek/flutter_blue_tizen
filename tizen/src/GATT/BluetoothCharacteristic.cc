@@ -84,7 +84,7 @@ namespace btGatt{
 
         int res=bt_gatt_characteristic_set_write_type(_handle, (withoutResponse ? BT_GATT_WRITE_TYPE_WRITE_NO_RESPONSE:BT_GATT_WRITE_TYPE_WRITE));
 
-        if(res) throw BTException("could not set write type");
+        if(res) throw BTException("could not set write type to characteristic "+UUID());
 
         res=bt_gatt_set_value(_handle, value.c_str(), value.size());
         Logger::showResultError("bt_gatt_set_value", res);
