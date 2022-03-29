@@ -14,7 +14,7 @@
 namespace btu{
     using LogLevel = btlog::LogLevel;
     using Logger = btlog::Logger;
-    auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) -> void;
+    auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) noexcept -> void;
 
 
     BluetoothManager::BluetoothManager(NotificationsHandler& notificationsHandler):
@@ -391,7 +391,7 @@ namespace btu{
         
     }
 
-    auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) -> void {
+    auto decodeAdvertisementData(char* packetsData, proto::gen::AdvertisementData& adv, int dataLen) noexcept -> void {
         using byte=char;
         int start=0;
         bool longNameSet=false;

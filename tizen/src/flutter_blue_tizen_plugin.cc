@@ -31,22 +31,25 @@ namespace {
     static inline std::shared_ptr<flutter::EventChannel<flutter::EncodableValue>> stateChannel;
 
     static void RegisterWithRegistrar(flutter::PluginRegistrar *registrar) {
-      auto plugin = std::make_unique<FlutterBlueTizenPlugin>();
 
       methodChannel = std::make_shared<flutter::MethodChannel<flutter::EncodableValue>>(
         registrar->messenger(), 
         channel_name + "methods",
         &flutter::StandardMethodCodec::GetInstance()
       );
-      methodChannel->SetMethodCallHandler([plugin_pointer = plugin.get()] (const auto &call, auto result) {
-        plugin_pointer->HandleMethodCall(call, std::move(result));
-      });
 
       stateChannel = std::make_shared<flutter::EventChannel<flutter::EncodableValue>>(
         registrar->messenger(), 
         channel_name + "state",
         &flutter::StandardMethodCodec::GetInstance()
       );
+      
+      auto plugin = std::make_unique<FlutterBlueTizenPlugin>();
+
+      methodChannel->SetMethodCallHandler([plugin_pointer = plugin.get()] (const auto &call, auto result) {
+        plugin_pointer->HandleMethodCall(call, std::move(result));
+      });
+
       stateChannel->SetStreamHandler(std::make_unique<btu::StateHandler>());//todo
 
       registrar->AddPlugin(std::move(plugin));
@@ -92,8 +95,8 @@ namespace {
       else if(method_call.method_name()=="startScan"){
           proto::gen::ScanSettings scanSettings;
           std::vector<uint8_t> encoded = std::get<std::vector<uint8_t>>(args);
-          scanSettings.ParseFromArray(encoded.data(), encoded.size());
           try{
+            scanSettings.ParseFromArray(encoded.data(), encoded.size());
             bluetoothManager->startBluetoothDeviceScanLE(scanSettings);
             result->Success(flutter::EncodableValue(NULL));
           }catch(std::exception const& e){
