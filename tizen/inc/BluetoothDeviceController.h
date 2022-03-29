@@ -4,8 +4,12 @@
 
 #include <condition_variable>
 
-#include <GATT/BluetoothService.h>
 #include <bluetooth.h>
+
+namespace btGatt{
+    class PrimaryService;
+    class SecondaryService;
+}
 
 namespace btu{
     class NotificationsHandler;

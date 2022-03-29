@@ -12,6 +12,11 @@
 #include <Utils.h>
 #include <NotificationsHandler.h>
 
+namespace btGatt{
+    class BluetoothDescriptor;
+    class BluetoothCharacteristic;
+}
+
 namespace btu{
      class BluetoothDeviceController;
      class BluetoothManager{

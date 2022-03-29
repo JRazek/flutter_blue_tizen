@@ -5,7 +5,9 @@
 #include <Utils.h>
 #include <Logger.h>
 #include <NotificationsHandler.h>
+#include <BluetoothManager.h>
 #include <exception>
+
 
 namespace btGatt{
     using namespace btu;
@@ -18,6 +20,9 @@ namespace btGatt{
             characteristic._descriptors.emplace_back(std::make_unique<BluetoothDescriptor>(descriptor_handle, characteristic));
             return true;
         }, this);
+        std::scoped_lock lock(_activeCharacteristics.mut);
+        _activeCharacteristics.var[UUID()]=this;
+        if(res) throw BTException(res, "bt_gatt_characteristic_foreach_descriptors");
     }
 
     auto BluetoothCharacteristic::toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic{
@@ -57,15 +62,21 @@ namespace btGatt{
     auto BluetoothCharacteristic::read(const std::function<void(const BluetoothCharacteristic&)>& func) -> void {
         struct Scope{
             std::function<void(const BluetoothCharacteristic&)> func;
-            const BluetoothCharacteristic& characteristic;
+            const std::string characteristic_uuid;
         };
-        Scope* scope=new Scope{func, *this};//unfortunately it requires raw ptr
+
+        Scope* scope=new Scope{func, UUID()};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
                 auto scope=static_cast<Scope*>(scope_ptr);
-                auto& characteristic=scope->characteristic;
-                scope->func(characteristic);
-                Logger::showResultError("bt_gatt_client_request_completed_cb", result);
+                std::scoped_lock lock(_activeCharacteristics.mut);
+                auto it=_activeCharacteristics.var.find(scope->characteristic_uuid);
+                Logger::log(LogLevel::DEBUG, "called characteristic read native cb");
+                if(it!=_activeCharacteristics.var.end()){
+                    auto& characteristic=*it->second;
+                    scope->func(characteristic);
+                    Logger::showResultError("bt_gatt_client_request_completed_cb", result);
+                }
                 
                 delete scope;
         }, scope);
@@ -78,7 +89,7 @@ namespace btGatt{
     auto BluetoothCharacteristic::write(const std::string value, bool withoutResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void {
         struct Scope{
             std::function<void(bool success, const BluetoothCharacteristic&)> func;
-            const BluetoothCharacteristic& characteristic;
+            const std::string characteristic_uuid;
         };  
         Logger::log(LogLevel::DEBUG, "setting characteristic to value="+value+", with size="+std::to_string(value.size()));
 
@@ -92,7 +103,7 @@ namespace btGatt{
         if(res) throw BTException("could not set value");
 
 
-        Scope* scope=new Scope{callback, *this};//unfortunately it requires raw ptr
+        Scope* scope=new Scope{callback, UUID()};//unfortunately it requires raw ptr
         Logger::log(LogLevel::DEBUG, "characteristic write cb native");
 
         res=bt_gatt_client_write_value(_handle,
@@ -101,8 +112,13 @@ namespace btGatt{
             Logger::log(LogLevel::DEBUG, "characteristic write cb native");
 
             auto scope=static_cast<Scope*>(scope_ptr);
-            auto& characteristic=scope->characteristic;
-            scope->func(!result, characteristic);
+            std::scoped_lock lock(_activeCharacteristics.mut);
+            auto it=_activeCharacteristics.var.find(scope->characteristic_uuid);
+            
+            if(it!=_activeCharacteristics.var.end()){
+                auto& characteristic=*it->second;
+                scope->func(!result, characteristic);
+            }
             
             delete scope;
         }, scope);
@@ -144,6 +160,9 @@ namespace btGatt{
         _notifyCallback=nullptr;
     }
     BluetoothCharacteristic::~BluetoothCharacteristic() noexcept {
+        auto uuid=UUID();
+        std::scoped_lock lock(_activeCharacteristics.mut);
+        _activeCharacteristics.var.erase(uuid);
         unsetNotifyCallback();
         _descriptors.clear();
     }

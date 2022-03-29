@@ -8,7 +8,9 @@
 #include <tizen.h>
 
 #include <BluetoothDeviceController.h>
+#include <GATT/BluetoothCharacteristic.h>
 #include <GATT/BluetoothDescriptor.h>
+#include <GATT/BluetoothService.h>
 
 
 namespace btu{
@@ -273,7 +275,7 @@ namespace btu{
         auto characteristic=locateCharacteristic(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid());
         
         characteristic->read([](auto& characteristic)-> void {
-            Logger::log(LogLevel::DEBUG, "cb called char ");
+            Logger::log(LogLevel::DEBUG, "cb called characteristic");
             proto::gen::ReadCharacteristicResponse res;
             res.set_remote_id(characteristic.cService().cDevice().cAddress());
             res.set_allocated_characteristic(new proto::gen::BluetoothCharacteristic(characteristic.toProtoCharacteristic()));

@@ -5,11 +5,14 @@
 #include <vector>
 
 #include <flutterblue.pb.h>
-#include <GATT/BluetoothDescriptor.h>
+#include <map>
+#include <atomic>
+#include <Utils.h>
 
 namespace btGatt{
     class BluetoothService;
-
+    class BluetoothDescriptor;
+    
     class BluetoothCharacteristic{
         using NotifyCallback=std::function<void(const BluetoothCharacteristic&)>;
         bt_gatt_h _handle;
@@ -22,6 +25,12 @@ namespace btGatt{
 
 
     public:
+        /**
+         * @brief used to validate whether the characteristic still exists in async callback.
+         * key-uuid
+         * value-pointer of characteristic
+         */
+        static inline btu::SafeType<std::map<std::string, BluetoothCharacteristic*>> _activeCharacteristics;
 
         BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service) noexcept;
         ~BluetoothCharacteristic() noexcept;

@@ -1,3 +1,4 @@
+#include <GATT/BluetoothService.h>
 #include <GATT/BluetoothDescriptor.h>
 #include <GATT/BluetoothCharacteristic.h>
 #include <BluetoothDeviceController.h>

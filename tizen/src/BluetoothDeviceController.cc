@@ -6,6 +6,7 @@
 
 #include <mutex>
 #include <unordered_set>
+#include <GATT/BluetoothService.h>
 
 namespace btu {
     using namespace btlog;
