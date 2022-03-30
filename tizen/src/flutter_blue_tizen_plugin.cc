@@ -150,7 +150,7 @@ namespace {
 
           proto::gen::DeviceStateResponse res;
           res.set_remote_id(device->cAddress());
-          res.set_state(btu::localToProtoDeviceState(device->state()));
+          res.set_state(btu::BluetoothDeviceController::localToProtoDeviceState(device->state()));
 
           result->Success(flutter::EncodableValue(btu::messageToVector(res)));
         } else result->Error("device not available");

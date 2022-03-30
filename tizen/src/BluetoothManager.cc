@@ -70,6 +70,7 @@ namespace btu{
             throw btu::BTException("could not find device of id="+request.remote_id());
 
         device->requestMtu(request.mtu(), [](auto status, auto& bluetoothDevice){
+            Logger::log(LogLevel::DEBUG, "called request mtu cb");
             proto::gen::MtuSizeResponse res;
             res.set_remote_id(bluetoothDevice.cAddress());
             res.set_mtu(bluetoothDevice.getMtu());

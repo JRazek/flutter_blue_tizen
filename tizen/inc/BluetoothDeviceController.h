@@ -6,6 +6,8 @@
 
 #include <bluetooth.h>
 
+#include <Utils.h>
+
 namespace btGatt{
     class PrimaryService;
     class SecondaryService;
@@ -36,6 +38,9 @@ namespace btu{
 
         using requestMtuCallback=std::function<void(bool, const BluetoothDeviceController&)>;
 
+
+        static inline SafeType<std::map<std::string, BluetoothDeviceController*>> _activeDevices;
+
     public:
         enum class State{
             CONNECTED,
@@ -61,6 +66,7 @@ namespace btu{
         static auto connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void;
         static auto getGattClient(const std::string& address) noexcept -> bt_gatt_client_h;
         static auto destroyGattClientIfExists(const std::string& address) noexcept -> void;
+        static auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> proto::gen::DeviceStateResponse_BluetoothDeviceState;
 
         auto discoverServices() noexcept -> std::vector<btGatt::PrimaryService*>;
 

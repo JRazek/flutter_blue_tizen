@@ -4,12 +4,17 @@
 #include <flutter/method_channel.h>
 #include <flutter/encodable_value.h>
 #include <flutterblue.pb.h>
-#include <BluetoothDeviceController.h>
 
+#include <bluetooth.h>
 #include <mutex>
 #include <exception>
-namespace btu{
 
+namespace btGatt{
+    class PrimaryService;
+    class SecondaryService;
+}
+namespace btu{
+    class BluetoothDeviceController;
     using MethodChannel = flutter::MethodChannel<flutter::EncodableValue>;
 
     template<typename T>
@@ -36,7 +41,6 @@ namespace btu{
         };
     };
     
-    auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> proto::gen::DeviceStateResponse_BluetoothDeviceState;
     
     auto messageToVector(const google::protobuf::MessageLite& messageLite) noexcept -> std::vector<u_int8_t>;
 

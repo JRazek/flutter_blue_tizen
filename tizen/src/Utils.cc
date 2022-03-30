@@ -1,20 +1,11 @@
 #include <Utils.h>
 #include <Logger.h>
 #include <GATT/BluetoothService.h>
+#include <BluetoothDeviceController.h>
 
 namespace btu{
     using namespace btlog;
 
-    auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> proto::gen::DeviceStateResponse_BluetoothDeviceState{
-        using State=btu::BluetoothDeviceController::State;
-        switch (s){
-            case State::CONNECTED: return proto::gen::DeviceStateResponse_BluetoothDeviceState_CONNECTED;
-            case State::CONNECTING: return proto::gen::DeviceStateResponse_BluetoothDeviceState_CONNECTING;
-            case State::DISCONNECTED: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
-            case State::DISCONNECTING: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTING;
-            default: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
-        }
-    }
 
     auto messageToVector(const google::protobuf::MessageLite& messageLite) noexcept -> std::vector<u_int8_t>{
         std::vector<u_int8_t> encoded(messageLite.ByteSizeLong());
