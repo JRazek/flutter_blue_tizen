@@ -31,7 +31,7 @@ namespace btGatt{
 
     public:
 
-        BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service) noexcept;
+        BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service);
         ~BluetoothCharacteristic() noexcept;
         auto toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic;
         auto cService() const noexcept -> const BluetoothService&;

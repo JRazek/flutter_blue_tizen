@@ -12,7 +12,7 @@
 namespace btGatt{
     using namespace btu;
     using namespace btlog;
-    BluetoothCharacteristic::BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service) noexcept:
+    BluetoothCharacteristic::BluetoothCharacteristic(bt_gatt_h handle, BluetoothService& service):
     _handle(handle),
     _service(service){
         int res=bt_gatt_characteristic_foreach_descriptors(handle, [](int total, int index, bt_gatt_h descriptor_handle, void* scope_ptr) -> bool {
@@ -159,6 +159,7 @@ namespace btGatt{
 
             delete uuid;
         }, uuid);
+        if(res) throw BTException(res, "bt_gatt_client_set_characteristic_value_changed_cb");
     }
     
     void BluetoothCharacteristic::unsetNotifyCallback() {

@@ -178,7 +178,6 @@ namespace btu{
 
     auto BluetoothManager::scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept -> void {
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        using State=BluetoothDeviceController::State;
         if(result)
             Logger::log(LogLevel::ERROR, "NULLPTR IN CALL!");
         else{
@@ -239,7 +238,6 @@ namespace btu{
 
     auto BluetoothManager::connect(const proto::gen::ConnectRequest& connRequest) -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
-        using State=BluetoothDeviceController::State;
         auto device=_bluetoothDevices.var.find(connRequest.remote_id())->second;
         if(device)
             device->connect(connRequest.android_auto_connect());
@@ -248,7 +246,6 @@ namespace btu{
 
     auto BluetoothManager::disconnect(const std::string& deviceID) -> void {
         std::unique_lock lock(_bluetoothDevices.mut);
-        using State=BluetoothDeviceController::State;
         auto device=_bluetoothDevices.var.find(deviceID)->second;
         if(device)
             device->disconnect();
