@@ -54,8 +54,6 @@ namespace btu {
         auto st=state();
         _activeDevices.var.erase(_address);
         if(st==State::CONNECTED){
-            Logger::log(LogLevel::DEBUG, "st="+std::to_string(static_cast<int>(st))+" vs state()="+std::to_string(static_cast<int>(state())));
-
             Logger::log(LogLevel::DEBUG, "explicit disconnect call");
             _services.clear();
             isDisconnecting=true;
@@ -105,9 +103,7 @@ namespace btu {
             std::vector<std::unique_ptr<btGatt::PrimaryService>>& services;
         };
 
-        //unsafe block (void *)
         Scope scope{*this, _services};
-
         int res=bt_gatt_client_foreach_services(getGattClient(_address),
         [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {
             auto& scope=*static_cast<Scope*>(scope_ptr);
@@ -116,7 +112,6 @@ namespace btu {
             
             return true;
         }, &scope);
-        ////////////////////////
 
         Logger::showResultError("bt_gatt_client_foreach_services", res);
         auto result=std::vector<btGatt::PrimaryService*>();
@@ -145,7 +140,7 @@ namespace btu {
             auto& bluetoothManager=*static_cast<BluetoothManager*> (user_data);
             std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
             auto ptr=bluetoothManager.bluetoothDevices().var.find(remote_address);
-            //when disconnect is called from destructor, this callback can be invoked when the object is already destroyed.
+            
             if(ptr!=bluetoothManager.bluetoothDevices().var.end()){
                 auto device=ptr->second;
                 std::scoped_lock devLock(device->operationM);
