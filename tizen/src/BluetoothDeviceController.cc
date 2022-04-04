@@ -133,28 +133,27 @@ namespace btu {
         Logger::log(LogLevel::DEBUG, "callback called for device "+std::string(remote_address)+" with state="+std::to_string(connected)+" and result="+err);
         Logger::showResultError("bt_gatt_connection_state_changed_cb", res);
 
-        if(!res){
-            auto& bluetoothManager=*static_cast<BluetoothManager*> (user_data);
-            std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
-            auto ptr=bluetoothManager.bluetoothDevices().var.find(remote_address);
-            
-            //TEST THIS CHANGE! 03.04.2022
-            if(ptr!=bluetoothManager.bluetoothDevices().var.end()){
-                auto device=ptr->second;
-                std::scoped_lock devLock(device->operationM, device->_activeGatts.mut);
-                device->isConnecting=false;
-                device->isDisconnecting=false;
-                if(!connected){
-                    device->_services.clear();
-                }
-                device->_activeGatts.var.insert({device->cAddress(), device.get()});
-
-                device->notifyDeviceState();
-            }
+        auto& bluetoothManager=*static_cast<BluetoothManager*> (user_data);
+        std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
+        auto ptr=bluetoothManager.bluetoothDevices().var.find(remote_address);
+        
+        //TEST THIS CHANGE! 03.04.2022
+        if(ptr!=bluetoothManager.bluetoothDevices().var.end()){
+            auto device=ptr->second;
+            std::scoped_lock devLock(device->operationM, device->_activeGatts.mut);
+            device->isConnecting=false;
+            device->isDisconnecting=false;
             if(!connected){
-                destroyGattClientIfExists(remote_address);
+                device->_services.clear();
             }
+            device->_activeGatts.var.insert({device->cAddress(), device.get()});
+
+            device->notifyDeviceState();
         }
+        if(!connected){
+            destroyGattClientIfExists(remote_address);
+        }
+        
     }
     auto BluetoothDeviceController::getMtu() const -> u_int32_t {
         u_int32_t mtu=-1;
