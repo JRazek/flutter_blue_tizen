@@ -40,6 +40,8 @@ namespace btu{
 
 
         static inline SafeType<std::map<std::string, BluetoothDeviceController*>> _activeDevices;
+        
+        static inline SafeType<std::unordered_map<std::string, bt_gatt_client_h>> gatt_clients;
 
     public:
         enum class State{
