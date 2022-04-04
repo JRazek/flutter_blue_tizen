@@ -39,7 +39,7 @@ namespace btu{
         using requestMtuCallback=std::function<void(bool, const BluetoothDeviceController&)>;
 
 
-        static inline SafeType<std::map<std::string, BluetoothDeviceController*>> _activeDevices;
+        static inline SafeType<std::map<std::string, BluetoothDeviceController*>> _activeGatts;
 
     public:
         enum class State{

@@ -12,10 +12,7 @@ namespace btu {
     using namespace btGatt;
 
     BluetoothDeviceController::BluetoothDeviceController(const std::string& address, NotificationsHandler& notificationsHandler) noexcept:
-    BluetoothDeviceController(address.c_str(), notificationsHandler){
-        std::scoped_lock lock(_activeDevices.mut);
-        _activeDevices.var.insert({address, this});
-    }
+    BluetoothDeviceController(address.c_str(), notificationsHandler){}
     
     BluetoothDeviceController::BluetoothDeviceController(const char* address, NotificationsHandler& notificationsHandler) noexcept:
     _address(address),
@@ -50,9 +47,9 @@ namespace btu {
         }
     }
     auto BluetoothDeviceController::disconnect() -> void {
-        std::scoped_lock lock(operationM, _activeDevices.mut);
+        std::scoped_lock lock(operationM, _activeGatts.mut);
         auto st=state();
-        _activeDevices.var.erase(_address);
+        _activeGatts.var.erase(_address);
         if(st==State::CONNECTED){
             Logger::log(LogLevel::DEBUG, "explicit disconnect call");
             _services.clear();
@@ -141,14 +138,17 @@ namespace btu {
             std::scoped_lock lock(bluetoothManager.bluetoothDevices().mut);
             auto ptr=bluetoothManager.bluetoothDevices().var.find(remote_address);
             
+            //TEST THIS CHANGE! 03.04.2022
             if(ptr!=bluetoothManager.bluetoothDevices().var.end()){
                 auto device=ptr->second;
-                std::scoped_lock devLock(device->operationM);
+                std::scoped_lock devLock(device->operationM, device->_activeGatts.mut);
                 device->isConnecting=false;
                 device->isDisconnecting=false;
                 if(!connected){
                     device->_services.clear();
                 }
+                device->_activeGatts.var.insert({device->cAddress(), device.get()});
+
                 device->notifyDeviceState();
             }
             if(!connected){
@@ -176,9 +176,9 @@ namespace btu {
             auto scope=static_cast<Scope*>(scope_ptr);
             
             Logger::log(LogLevel::DEBUG, "called NATIVE request mtu cb");
-            std::scoped_lock lock(_activeDevices.mut);
-            auto it=_activeDevices.var.find(scope->device_address);
-            if(it!=_activeDevices.var.end()){
+            std::scoped_lock lock(_activeGatts.mut);
+            auto it=_activeGatts.var.find(scope->device_address);
+            if(it!=_activeGatts.var.end()){
                 scope->callback(mtu_info->status==0, *it->second);
             }          
             delete scope;
