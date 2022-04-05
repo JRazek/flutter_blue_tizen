@@ -49,10 +49,13 @@ namespace btu {
             isConnecting=true;
             int res=bt_gatt_connect(_address.c_str(), autoConnect);
             Logger::showResultError("bt_gatt_connect", res);
+        }else{
+            Logger::log(LogLevel::WARNING, "trying to connect to a device with state!=DISCONNECTED");
+            throw BTException("cannot connect - device was already connected!");
         }
     }
     auto BluetoothDeviceController::disconnect() -> void {
-        std::scoped_lock lock(operationM, _activeDevices.mut);
+        std::scoped_lock lock(operationM);
         auto st=state();
         destroyGattClientIfExists(cAddress());
         if(st==State::CONNECTED){
@@ -150,6 +153,7 @@ namespace btu {
                 getGattClient(device->cAddress()); //this function creates gatt client if it does not exists.
             }
             device->notifyDeviceState();
+            Logger::log(LogLevel::DEBUG, "sending state notification = "+std::to_string((int)device->state()));
         }
         if(!connected){
             destroyGattClientIfExists(remote_address);

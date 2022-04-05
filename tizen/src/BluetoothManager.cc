@@ -141,14 +141,15 @@ namespace btu{
     }
         
     auto BluetoothManager::startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) -> void {
-        std::scoped_lock l(_bluetoothDevices.mut, _scanAllowDuplicates.mut);
+        std::scoped_lock l(_bluetoothDevices.mut);
         _bluetoothDevices.var.clear();        
-        _scanAllowDuplicates.var=scanSettings.allow_duplicates();        
-        Logger::log(LogLevel::DEBUG, "allowDuplicates="+std::to_string(_scanAllowDuplicates.var));
+        _scanAllowDuplicates=scanSettings.allow_duplicates();        
+        Logger::log(LogLevel::DEBUG, "allowDuplicates="+std::to_string(_scanAllowDuplicates));
 
         auto res = bt_adapter_le_set_scan_mode(BT_ADAPTER_LE_SCAN_MODE_BALANCED);
         Logger::showResultError("bt_adapter_le_set_scan_mode", res);
         if(res) throw BTException(res, "bt_adapter_le_set_scan_mode");
+        
         int uuidCount=scanSettings.service_uuids_size();
         std::vector<bt_scan_filter_h> filters(uuidCount);
 
@@ -168,7 +169,10 @@ namespace btu{
             res = bt_adapter_le_start_scan(&BluetoothManager::scanCallback, this);
             Logger::showResultError("bt_adapter_le_start_scan", res);
             if(res) throw BTException(res, "bt_adapter_le_start_scan");
+        }else{
+            throw BTException(res, "cannot start scan");
         }
+
         for(auto& f : filters){
             res=bt_adapter_le_scan_filter_destroy(&f);
             Logger::showResultError("bt_adapter_le_scan_filter_destroy", res);
@@ -178,11 +182,10 @@ namespace btu{
 
     auto BluetoothManager::scanCallback(int result, bt_adapter_le_device_scan_result_info_s *discovery_info, void *user_data) noexcept -> void {
         BluetoothManager& bluetoothManager = *static_cast<BluetoothManager*> (user_data);
-        if(result)
-            Logger::log(LogLevel::ERROR, "NULLPTR IN CALL!");
-        else{
+        Logger::log(LogLevel::DEBUG, "scan callback with result="+std::to_string(result));
+        if(!result){
             std::string macAddress=discovery_info->remote_address;
-            std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut, bluetoothManager._scanAllowDuplicates.mut);
+            std::scoped_lock lock(bluetoothManager._bluetoothDevices.mut);
             std::shared_ptr<BluetoothDeviceController> device;
             if(bluetoothManager._bluetoothDevices.var.find(macAddress)==bluetoothManager._bluetoothDevices.var.end())
                 device=bluetoothManager._bluetoothDevices.var.insert({
@@ -192,7 +195,7 @@ namespace btu{
             else
                 device=bluetoothManager._bluetoothDevices.var.find(macAddress)->second;
                 
-            if(bluetoothManager._scanAllowDuplicates.var || device->cProtoBluetoothDevices().empty()){
+            if(bluetoothManager._scanAllowDuplicates || device->cProtoBluetoothDevices().empty()){
                 device->protoBluetoothDevices().emplace_back();
                             
                 auto& protoDev=device->protoBluetoothDevices().back();

@@ -26,7 +26,7 @@ namespace btu{
           SafeType<std::unordered_map<std::string, std::shared_ptr<BluetoothDeviceController>>> _bluetoothDevices;
 
           NotificationsHandler& _notificationsHandler;
-          SafeType<bool> _scanAllowDuplicates;
+          std::atomic<bool> _scanAllowDuplicates;
 
      public:
           
