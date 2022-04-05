@@ -45,19 +45,21 @@ namespace btu {
     auto BluetoothDeviceController::cProtoBluetoothDevices() const noexcept -> const std::vector<proto::gen::BluetoothDevice>& { return _protoBluetoothDevices; }
     auto BluetoothDeviceController::connect(bool autoConnect) -> void {
         std::unique_lock lock(operationM);
+        autoConnect=false;//TODO - fix. API fails when autoconnect==true
+        Logger::log(LogLevel::DEBUG, "connecting...");
         if(state()==State::DISCONNECTED){
             isConnecting=true;
             int res=bt_gatt_connect(_address.c_str(), autoConnect);
             Logger::showResultError("bt_gatt_connect", res);
         }else{
-            Logger::log(LogLevel::WARNING, "trying to connect to a device with state!=DISCONNECTED");
-            throw BTException("cannot connect - device was already connected!");
+            std::string mes="trying to connect to a device with state!=DISCONNECTED "+std::to_string((int)state());
+            Logger::log(LogLevel::WARNING, mes);
+            throw BTException(mes);
         }
     }
     auto BluetoothDeviceController::disconnect() -> void {
         std::scoped_lock lock(operationM);
         auto st=state();
-        destroyGattClientIfExists(cAddress());
         if(st==State::CONNECTED){
             Logger::log(LogLevel::DEBUG, "explicit disconnect call");
             _services.clear();
@@ -65,10 +67,12 @@ namespace btu {
             int res=bt_gatt_disconnect(_address.c_str());
             Logger::showResultError("bt_gatt_disconnect", res);   
         }
+        destroyGattClientIfExists(cAddress());
     }
 
-    auto BluetoothDeviceController::getGattClient(const std::string& address) noexcept -> bt_gatt_client_h {
+    auto BluetoothDeviceController::getGattClient(const std::string& address) -> bt_gatt_client_h {
         std::scoped_lock lock(gatt_clients.mut);
+
         auto it=gatt_clients.var.find(address);
         bt_gatt_client_h client=nullptr;
 
@@ -78,7 +82,7 @@ namespace btu {
             if((res==BT_ERROR_NONE || res==BT_ERROR_ALREADY_DONE) && client){
                 gatt_clients.var.emplace(address, client);
                 Logger::log(LogLevel::DEBUG, "creating new gatt client for "+address);
-            };
+            }else throw BTException(res, "bt_gatt_client_create");
         }else{
             client=it->second;   
             Logger::log(LogLevel::DEBUG, "gatt client already exists. Returning for "+address);
@@ -165,6 +169,7 @@ namespace btu {
         Logger::showResultError("bt_gatt_client_get_att_mtu", res);
         if(res)
             throw BTException(res, "could not get mtu of the device!");
+        Logger::log(LogLevel::DEBUG, "fetched mtu size successfully");
         return mtu;
     }
     auto BluetoothDeviceController::requestMtu(u_int32_t mtu, const requestMtuCallback& callback) -> void {
@@ -179,12 +184,11 @@ namespace btu {
             auto scope=static_cast<Scope*>(scope_ptr);
             
             Logger::log(LogLevel::DEBUG, "called NATIVE request mtu cb");
-            std::scoped_lock lock(_activeDevices.mut, gatt_clients.mut);
-            auto it1=gatt_clients.var.find(scope->device_address);
-            auto it2=_activeDevices.var.find(scope->device_address);
-            if(it1!=gatt_clients.var.end()){
-                scope->callback(mtu_info->status==0, *it2->second);
-            }          
+            std::scoped_lock lock(_activeDevices.mut);
+            auto it=_activeDevices.var.find(scope->device_address);
+            if(it!=_activeDevices.var.end()){
+                scope->callback(mtu_info->status==0, *it->second);
+            }
             delete scope;
         }, scope);
 

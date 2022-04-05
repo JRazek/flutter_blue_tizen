@@ -76,6 +76,7 @@ namespace btu{
             res.set_mtu(bluetoothDevice.getMtu());
 
             bluetoothDevice.cNotificationsHandler().notifyUIThread("MtuSize", res);
+            Logger::log(LogLevel::DEBUG, "mtu request callback sent response!");
         });
     }
 
@@ -141,6 +142,7 @@ namespace btu{
     }
         
     auto BluetoothManager::startBluetoothDeviceScanLE(const proto::gen::ScanSettings& scanSettings) -> void {
+        stopBluetoothDeviceScanLE();
         std::scoped_lock l(_bluetoothDevices.mut);
         _bluetoothDevices.var.clear();        
         _scanAllowDuplicates=scanSettings.allow_duplicates();        
@@ -233,9 +235,6 @@ namespace btu{
                 Logger::showResultError("bt_adapter_le_stop_scan", res);
             }
             Logger::showResultError("bt_adapter_le_is_discovering", res);
-
-        }else{
-            Logger::log(LogLevel::ERROR, "bluetooth adapter state="+std::to_string(btState));
         }
     }
 

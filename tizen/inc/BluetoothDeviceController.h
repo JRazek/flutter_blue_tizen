@@ -33,6 +33,7 @@ namespace btu{
         std::string _address;
         std::atomic<bool> isConnecting=false;
         std::atomic<bool> isDisconnecting=false;
+        std::condition_variable connection_state_cv;
 
         NotificationsHandler& _notificationsHandler;
 
@@ -66,7 +67,7 @@ namespace btu{
         auto disconnect() -> void;
 
         static auto connectionStateCallback(int result, bool connected, const char* remote_address, void* user_data) noexcept -> void;
-        static auto getGattClient(const std::string& address) noexcept -> bt_gatt_client_h;
+        static auto getGattClient(const std::string& address) -> bt_gatt_client_h;
         static auto destroyGattClientIfExists(const std::string& address) noexcept -> void;
         static auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> proto::gen::DeviceStateResponse_BluetoothDeviceState;
 
