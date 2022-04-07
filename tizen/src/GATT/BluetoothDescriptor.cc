@@ -37,6 +37,7 @@ namespace btGatt{
         auto scope=new Scope{func, UUID()};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
+                Logger::log(LogLevel::DEBUG, "called native descriptor read cb");
                 auto scope=static_cast<Scope*>(scope_ptr);
                 std::scoped_lock lock(_activeDescriptors.mut);
                 auto it=_activeDescriptors.var.find(scope->descriptor_uuid);
@@ -64,12 +65,11 @@ namespace btGatt{
         if(res) throw BTException("could not set value");
 
         auto scope=new Scope{callback, UUID()};//unfortunately it requires raw ptr
-        Logger::log(LogLevel::DEBUG, "characteristic write cb native");
 
         res=bt_gatt_client_write_value(_handle,
         [](int result, bt_gatt_h request_handle, void* scope_ptr){
             Logger::showResultError("bt_gatt_client_request_completed_cb", result);
-            Logger::log(LogLevel::DEBUG, "descriptor write cb native");
+            Logger::log(LogLevel::DEBUG, "descriptor native write cb native");
 
             auto scope=static_cast<Scope*>(scope_ptr);
             std::scoped_lock lock(_activeDescriptors.mut);

@@ -56,6 +56,7 @@ namespace btu{
         BluetoothDeviceController(const char* address, NotificationsHandler& notificationsHandler) noexcept;
         ~BluetoothDeviceController() noexcept;
 
+        BluetoothDeviceController()=delete;
         BluetoothDeviceController(const BluetoothDeviceController& address)=delete;
         
         auto cAddress() const noexcept -> const std::string&;
@@ -71,7 +72,9 @@ namespace btu{
         static auto destroyGattClientIfExists(const std::string& address) noexcept -> void;
         static auto localToProtoDeviceState(const BluetoothDeviceController::State& s) -> proto::gen::DeviceStateResponse_BluetoothDeviceState;
 
-        auto discoverServices() noexcept -> std::vector<btGatt::PrimaryService*>;
+        auto discoverServices() noexcept -> void;
+
+        auto getServices() noexcept -> std::vector<btGatt::PrimaryService*>;
 
         auto getService(const std::string& uuid) noexcept -> btGatt::PrimaryService*;
 

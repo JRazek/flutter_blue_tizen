@@ -20,9 +20,9 @@ namespace btGatt{
             characteristic._descriptors.emplace_back(std::make_unique<BluetoothDescriptor>(descriptor_handle, characteristic));
             return true;
         }, this);
+        if(res) throw BTException(res, "bt_gatt_characteristic_foreach_descriptors");
         std::scoped_lock lock(_activeCharacteristics.mut);
         _activeCharacteristics.var[UUID()]=this;
-        if(res) throw BTException(res, "bt_gatt_characteristic_foreach_descriptors");
     }
 
     auto BluetoothCharacteristic::toProtoCharacteristic() const noexcept -> proto::gen::BluetoothCharacteristic{
@@ -68,10 +68,10 @@ namespace btGatt{
         Scope* scope=new Scope{func, UUID()};//unfortunately it requires raw ptr
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
+                Logger::log(LogLevel::DEBUG, "called characteristic read native cb");
                 auto scope=static_cast<Scope*>(scope_ptr);
                 std::scoped_lock lock(_activeCharacteristics.mut);
                 auto it=_activeCharacteristics.var.find(scope->characteristic_uuid);
-                Logger::log(LogLevel::DEBUG, "called characteristic read native cb");
                 if(it!=_activeCharacteristics.var.end()){
                     auto& characteristic=*it->second;
                     scope->func(characteristic);
@@ -81,9 +81,8 @@ namespace btGatt{
                 delete scope;
         }, scope);
 
-        if(res) throw BTException("could not read client");
-        
         Logger::showResultError("bt_gatt_client_read_value", res);
+        if(res) throw BTException(res, "could not read characteristic");
     }
 
     auto BluetoothCharacteristic::write(const std::string value, bool withoutResponse, const std::function<void(bool success, const BluetoothCharacteristic&)>& callback) -> void {
@@ -91,25 +90,25 @@ namespace btGatt{
             std::function<void(bool success, const BluetoothCharacteristic&)> func;
             const std::string characteristic_uuid;
         };  
-        Logger::log(LogLevel::DEBUG, "setting characteristic to value="+value+", with size="+std::to_string(value.size()));
+        Logger::log(LogLevel::DEBUG, "setting characteristic to value="+value+", with size="+std::to_string(value.size())+" write type=");
 
-        int res=bt_gatt_characteristic_set_write_type(_handle, (withoutResponse ? BT_GATT_WRITE_TYPE_WRITE_NO_RESPONSE:BT_GATT_WRITE_TYPE_WRITE));
+        int res=bt_gatt_characteristic_set_write_type(_handle, withoutResponse ? BT_GATT_WRITE_TYPE_WRITE_NO_RESPONSE : BT_GATT_WRITE_TYPE_WRITE);
+        Logger::showResultError("bt_gatt_characteristic_set_write_type", res);
 
-        if(res) throw BTException("could not set write type to characteristic "+UUID());
+        if(res) throw BTException(res, "could not set write type to characteristic "+UUID());
 
         res=bt_gatt_set_value(_handle, value.c_str(), value.size());
         Logger::showResultError("bt_gatt_set_value", res);
 
-        if(res) throw BTException("could not set value");
+        if(res) throw BTException(res, "could not set value");
 
 
         Scope* scope=new Scope{callback, UUID()};//unfortunately it requires raw ptr
-        Logger::log(LogLevel::DEBUG, "characteristic write cb native");
 
         res=bt_gatt_client_write_value(_handle,
         [](int result, bt_gatt_h request_handle, void* scope_ptr){
-            Logger::showResultError("bt_gatt_client_request_completed_cb", result);
             Logger::log(LogLevel::DEBUG, "characteristic write cb native");
+            Logger::showResultError("bt_gatt_client_request_completed_cb", result);
 
             auto scope=static_cast<Scope*>(scope_ptr);
             std::scoped_lock lock(_activeCharacteristics.mut);
@@ -140,7 +139,6 @@ namespace btGatt{
             throw BTException("cannot set callback! notify=0 && indicate=0");
         
         unsetNotifyCallback();
-
         _notifyCallback=std::make_unique<NotifyCallback>(callback);
 
         std::string* uuid=new std::string(UUID());
@@ -159,7 +157,9 @@ namespace btGatt{
 
             delete uuid;
         }, uuid);
+        Logger::showResultError("bt_gatt_client_set_characteristic_value_changed_cb", res);
         if(res) throw BTException(res, "bt_gatt_client_set_characteristic_value_changed_cb");
+        Logger::log(LogLevel::DEBUG, "notifications were set successfully.");
     }
     
     void BluetoothCharacteristic::unsetNotifyCallback() {
@@ -175,5 +175,6 @@ namespace btGatt{
         _activeCharacteristics.var.erase(UUID());
         unsetNotifyCallback();
         _descriptors.clear();
+        Logger::log(LogLevel::DEBUG, "Called destructor for characteristic.");
     }
 }

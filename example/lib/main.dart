@@ -182,7 +182,7 @@ class DeviceScreen extends StatelessWidget {
                     characteristic: c,
                     onReadPressed: () => c.read(),
                     onWritePressed: () async {
-                      await c.write(_getRandomBytes(), withoutResponse: true);
+                      await c.write(_getRandomBytes(), withoutResponse: false);
                       await c.read();
                     },
                     onNotificationPressed: () async {
@@ -301,7 +301,7 @@ class DeviceScreen extends StatelessWidget {
               initialData: const [],
               builder: (c, snapshot) {
                 return Column(
-                  children: _buildServiceTiles(snapshot.data!),
+                  children: _buildServiceTiles(snapshot.data ?? []),
                 );
               },
             ),

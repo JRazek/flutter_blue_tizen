@@ -67,7 +67,6 @@ namespace btu {
             int res=bt_gatt_disconnect(_address.c_str());
             Logger::showResultError("bt_gatt_disconnect", res);   
         }
-        destroyGattClientIfExists(cAddress());
     }
 
     auto BluetoothDeviceController::getGattClient(const std::string& address) -> bt_gatt_client_h {
@@ -101,14 +100,14 @@ namespace btu {
         }
     }
 
-    auto BluetoothDeviceController::discoverServices() noexcept -> std::vector<btGatt::PrimaryService*> {
+    auto BluetoothDeviceController::discoverServices() noexcept -> void {
         std::scoped_lock lock(operationM);
+        _services.clear();
 
         struct Scope{
             BluetoothDeviceController& device;
             std::vector<std::unique_ptr<btGatt::PrimaryService>>& services;
         };
-
         Scope scope{*this, _services};
         int res=bt_gatt_client_foreach_services(getGattClient(_address),
         [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {
@@ -120,12 +119,15 @@ namespace btu {
         }, &scope);
 
         Logger::showResultError("bt_gatt_client_foreach_services", res);
+
+    }
+
+    auto BluetoothDeviceController::getServices() noexcept -> std::vector<btGatt::PrimaryService*>{
         auto result=std::vector<btGatt::PrimaryService*>();
-        for(auto& s:_services){
-            result.emplace_back(s.get());
-        }
+        for(auto& s: _services) result.emplace_back(s.get());
         return result;
     }
+
     auto BluetoothDeviceController::getService(const std::string& uuid) noexcept -> PrimaryService*{ 
         for(auto& s: _services){
             if(s->UUID()==uuid)

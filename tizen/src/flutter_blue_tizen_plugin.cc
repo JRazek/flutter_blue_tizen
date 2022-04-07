@@ -144,6 +144,7 @@ namespace {
       else if(method_call.method_name()=="deviceState"){
         std::string deviceID = std::get<std::string>(args);
         std::scoped_lock lock(bluetoothManager->bluetoothDevices().mut);
+        // btlog::Logger::log(btlog::LogLevel::DEBUG, "sent request for device state.");
         auto it=bluetoothManager->bluetoothDevices().var.find(deviceID);
         if(it!=bluetoothManager->bluetoothDevices().var.end()){
           auto& device=it->second;
@@ -156,6 +157,7 @@ namespace {
         } else result->Error("device not available");
       }
       else if(method_call.method_name()=="discoverServices"){
+        btlog::Logger::log(btlog::LogLevel::DEBUG, "sent request for discoverServices.");
         std::string deviceID = std::get<std::string>(args);
         std::scoped_lock lock(bluetoothManager->bluetoothDevices().mut);
         auto it=bluetoothManager->bluetoothDevices().var.find(deviceID);
@@ -163,8 +165,23 @@ namespace {
           auto& device=it->second;
           result->Success(flutter::EncodableValue(NULL));
 
-          auto services=device->discoverServices();
+          device->discoverServices();
+          auto services=device->getServices();
+          btlog::Logger::log(btlog::LogLevel::DEBUG, "notifying UI about services list...");
           notificationsHandler.notifyUIThread("DiscoverServicesResult", btu::getProtoServiceDiscoveryResult(*device, services));
+        }
+        else 
+            result->Error("device not available");
+      }
+      else if(method_call.method_name()=="services"){
+        std::string deviceID = std::get<std::string>(args);
+        std::scoped_lock lock(bluetoothManager->bluetoothDevices().mut);
+        auto it=bluetoothManager->bluetoothDevices().var.find(deviceID);
+        if(it!=bluetoothManager->bluetoothDevices().var.end()){
+          auto& device=it->second;
+
+          auto protoServices=btu::getProtoServiceDiscoveryResult(*device, device->getServices());
+          result->Success(flutter::EncodableValue(btu::messageToVector(protoServices)));
         }
         else 
             result->Error("device not available");

@@ -50,6 +50,12 @@ namespace btu{
             characteristic->setNotifyCallback([](auto& characteristic){
                 Logger::log(LogLevel::DEBUG, "notification from characteristic of uuid="
                 +characteristic.UUID()+" to value="+characteristic.value());
+
+                proto::gen::SetNotificationResponse response;
+                response.set_remote_id(characteristic.cService().cDevice().cAddress());
+                response.set_allocated_characteristic(new proto::gen::BluetoothCharacteristic(characteristic.toProtoCharacteristic()));
+                characteristic.cService().cDevice().cNotificationsHandler().notifyUIThread("SetNotificationResponse", response);
+                Logger::log(LogLevel::DEBUG, "notified UI thread - characteristic written by remote");
             });
         else
             characteristic->unsetNotifyCallback();
@@ -73,8 +79,11 @@ namespace btu{
             Logger::log(LogLevel::DEBUG, "called request mtu cb");
             proto::gen::MtuSizeResponse res;
             res.set_remote_id(bluetoothDevice.cAddress());
-            res.set_mtu(bluetoothDevice.getMtu());
-
+            try{
+                res.set_mtu(bluetoothDevice.getMtu());
+            }catch(std::exception const& e){
+                Logger::log(LogLevel::ERROR, e.what());
+            }
             bluetoothDevice.cNotificationsHandler().notifyUIThread("MtuSize", res);
             Logger::log(LogLevel::DEBUG, "mtu request callback sent response!");
         });
@@ -284,6 +293,7 @@ namespace btu{
 
             characteristic.cService().cDevice().cNotificationsHandler()
                                 .notifyUIThread("ReadCharacteristicResponse", res);
+            Logger::log(LogLevel::DEBUG, "finished characteristic read cb");
         });
         Logger::log(LogLevel::DEBUG, "read call!");
         
@@ -295,6 +305,7 @@ namespace btu{
         auto descriptor=locateDescriptor(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid(), request.descriptor_uuid());
         
         descriptor->read([](auto& descriptor)-> void {
+            Logger::log(LogLevel::DEBUG, "descriptor read cb");
             proto::gen::ReadDescriptorRequest* request=new proto::gen::ReadDescriptorRequest();
             request->set_remote_id(descriptor.cCharacteristic().cService().cDevice().cAddress());
             request->set_characteristic_uuid(descriptor.cCharacteristic().UUID());
@@ -322,7 +333,8 @@ namespace btu{
         auto characteristic=locateCharacteristic(request.remote_id(), request.service_uuid(), request.secondary_service_uuid(), request.characteristic_uuid());
         
         Logger::log(LogLevel::DEBUG, "writing to "+characteristic->cService().cDevice().cAddress()+"...");
-        characteristic->write(request.value(), request.write_type(), [](bool success, auto& characteristic){
+        characteristic->write(request.value(), request.write_type(), 
+        [](bool success, auto& characteristic){
             Logger::log(LogLevel::DEBUG, "characteristic write callback!");
             proto::gen::WriteCharacteristicResponse res;
             proto::gen::WriteCharacteristicRequest* request=new proto::gen::WriteCharacteristicRequest();
@@ -340,6 +352,7 @@ namespace btu{
             res.set_allocated_request(request);
             characteristic.cService().cDevice().cNotificationsHandler()
                             .notifyUIThread("WriteCharacteristicResponse", res);
+            Logger::log(LogLevel::DEBUG, "finished characteristic write cb");
 
         });
         Logger::log(LogLevel::DEBUG, "called async write...");
