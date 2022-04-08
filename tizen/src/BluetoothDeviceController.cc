@@ -100,14 +100,14 @@ namespace btu {
         }
     }
 
-    auto BluetoothDeviceController::discoverServices() noexcept -> void {
+    auto BluetoothDeviceController::discoverServices() -> void {
         std::scoped_lock lock(operationM);
-        _services.clear();
 
         struct Scope{
             BluetoothDeviceController& device;
             std::vector<std::unique_ptr<btGatt::PrimaryService>>& services;
         };
+        _services.clear();
         Scope scope{*this, _services};
         int res=bt_gatt_client_foreach_services(getGattClient(_address),
         [](int total, int index, bt_gatt_h service_handle, void* scope_ptr) -> bool {

@@ -65,7 +65,7 @@ namespace btGatt{
             const std::string characteristic_uuid;
         };
 
-        Scope* scope=new Scope{func, UUID()};//unfortunately it requires raw ptr
+        Scope* scope=new Scope{func, UUID()};
         int res=bt_gatt_client_read_value(_handle, 
             [](int result, bt_gatt_h request_handle, void* scope_ptr){
                 Logger::log(LogLevel::DEBUG, "called characteristic read native cb");
@@ -90,7 +90,6 @@ namespace btGatt{
             std::function<void(bool success, const BluetoothCharacteristic&)> func;
             const std::string characteristic_uuid;
         };  
-        Logger::log(LogLevel::DEBUG, "setting characteristic to value="+value+", with size="+std::to_string(value.size())+" write type=");
 
         int res=bt_gatt_characteristic_set_write_type(_handle, withoutResponse ? BT_GATT_WRITE_TYPE_WRITE_NO_RESPONSE : BT_GATT_WRITE_TYPE_WRITE);
         Logger::showResultError("bt_gatt_characteristic_set_write_type", res);
@@ -103,7 +102,7 @@ namespace btGatt{
         if(res) throw BTException(res, "could not set value");
 
 
-        Scope* scope=new Scope{callback, UUID()};//unfortunately it requires raw ptr
+        Scope* scope=new Scope{callback, UUID()};
 
         res=bt_gatt_client_write_value(_handle,
         [](int result, bt_gatt_h request_handle, void* scope_ptr){
