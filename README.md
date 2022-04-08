@@ -145,8 +145,16 @@ In the **ios/Runner/Info.plist** let’s add:
 	    <key>NSLocationWhenInUseUsageDescription</key>  
 	    <string>Need Location permission</string>
 ```
-
 For location permissions on iOS see more at: [https://developer.apple.com/documentation/corelocation/requesting_authorization_for_location_services](https://developer.apple.com/documentation/corelocation/requesting_authorization_for_location_services)
+
+### **Tizen**
+In the **tizen-manifest.xml** let's add
+```xml
+    <privileges>
+        <privilege>http://tizen.org/privilege/bluetooth</privilege>
+    </privileges>
+```
+
 
 
 ## Reference
@@ -167,7 +175,7 @@ For location permissions on iOS see more at: [https://developer.apple.com/docume
 | services                    |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Gets a list of services. Requires that discoverServices() has completed. |
 | state                       |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Stream of state changes for the Bluetooth Device. |
 | mtu                         |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Stream of mtu size changes. |
-| requestMtu                  |  :white_check_mark:  |                      |                      | Request to change the MTU for the device. |
+| requestMtu                  |  :white_check_mark:  |                      |  :white_check_mark:  | Request to change the MTU for the device. |
 
 ### BluetoothCharacteristic API
 |                             |       Android        |         iOS          |         Tizen        |             Description            |
