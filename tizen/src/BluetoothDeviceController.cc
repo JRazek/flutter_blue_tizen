@@ -221,4 +221,4 @@ namespace btu {
             default: return proto::gen::DeviceStateResponse_BluetoothDeviceState_DISCONNECTED;
         }
     }
-};
+}

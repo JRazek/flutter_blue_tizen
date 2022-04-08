@@ -12,4 +12,4 @@ namespace btu{
     };
 };
 
-#endif
+#endif //NOTIFICATIONS_HANDLER_H
