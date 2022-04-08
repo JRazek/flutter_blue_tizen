@@ -151,37 +151,37 @@ For location permissions on iOS see more at: [https://developer.apple.com/docume
 
 ## Reference
 ### FlutterBlue API
-|                  |      Android       |         iOS          |             Description            |
-| :--------------- | :----------------: | :------------------: |  :-------------------------------- |
-| scan             | :white_check_mark: |  :white_check_mark:  | Starts a scan for Bluetooth Low Energy devices. |
-| state            | :white_check_mark: |  :white_check_mark:  | Stream of state changes for the Bluetooth Adapter. |
-| isAvailable      | :white_check_mark: |  :white_check_mark:  | Checks whether the device supports Bluetooth. |
-| isOn             | :white_check_mark: |  :white_check_mark:  | Checks if Bluetooth functionality is turned on. |
+|                  |      Android       |         iOS          |         Tizen          |             Description            |
+| :--------------- | :----------------: | :------------------: | :------------------: |  :-------------------------------- |
+| scan             | :white_check_mark: |  :white_check_mark:  |  :white_check_mark:  | Starts a scan for Bluetooth Low Energy devices. |
+| state            | :white_check_mark: |  :white_check_mark:  |  :white_check_mark:  | Stream of state changes for the Bluetooth Adapter. |
+| isAvailable      | :white_check_mark: |  :white_check_mark:  |  :white_check_mark:  | Checks whether the device supports Bluetooth. |
+| isOn             | :white_check_mark: |  :white_check_mark:  |  :white_check_mark:  | Checks if Bluetooth functionality is turned on. |
 
 ### BluetoothDevice API
-|                             |       Android        |         iOS          |             Description            |
-| :-------------------------- | :------------------: | :------------------: |  :-------------------------------- |
-| connect                     |  :white_check_mark:  |  :white_check_mark:  | Establishes a connection to the device. |
-| disconnect                  |  :white_check_mark:  |  :white_check_mark:  | Cancels an active or pending connection to the device. |
-| discoverServices            |  :white_check_mark:  |  :white_check_mark:  | Discovers services offered by the remote device as well as their characteristics and descriptors. |
-| services                    |  :white_check_mark:  |  :white_check_mark:  | Gets a list of services. Requires that discoverServices() has completed. |
-| state                       |  :white_check_mark:  |  :white_check_mark:  | Stream of state changes for the Bluetooth Device. |
-| mtu                         |  :white_check_mark:  |  :white_check_mark:  | Stream of mtu size changes. |
-| requestMtu                  |  :white_check_mark:  |                      | Request to change the MTU for the device. |
+|                             |       Android        |         iOS          |         Tizen        |             Description            |
+| :-------------------------- | :------------------: | :------------------: | :------------------: |  :-------------------------------- |
+| connect                     |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Establishes a connection to the device. |
+| disconnect                  |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Cancels an active or pending connection to the device. |
+| discoverServices            |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Discovers services offered by the remote device as well as their characteristics and descriptors. |
+| services                    |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Gets a list of services. Requires that discoverServices() has completed. |
+| state                       |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Stream of state changes for the Bluetooth Device. |
+| mtu                         |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Stream of mtu size changes. |
+| requestMtu                  |  :white_check_mark:  |                      |                      | Request to change the MTU for the device. |
 
 ### BluetoothCharacteristic API
-|                             |       Android        |         iOS          |             Description            |
-| :-------------------------- | :------------------: | :------------------: |  :-------------------------------- |
-| read                        |  :white_check_mark:  |  :white_check_mark:  | Retrieves the value of the characteristic.  |
-| write                       |  :white_check_mark:  |  :white_check_mark:  | Writes the value of the characteristic. |
-| setNotifyValue              |  :white_check_mark:  |  :white_check_mark:  | Sets notifications or indications on the characteristic. |
-| value                       |  :white_check_mark:  |  :white_check_mark:  | Stream of characteristic's value when changed. |
+|                             |       Android        |         iOS          |         Tizen        |             Description            |
+| :-------------------------- | :------------------: | :------------------: | :------------------: |  :-------------------------------- |
+| read                        |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Retrieves the value of the characteristic.  |
+| write                       |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Writes the value of the characteristic. |
+| setNotifyValue              |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Sets notifications or indications on the characteristic. |
+| value                       |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Stream of characteristic's value when changed. |
 
 ### BluetoothDescriptor API
-|                             |       Android        |         iOS          |             Description            |
-| :-------------------------- | :------------------: | :------------------: |  :-------------------------------- |
-| read                        |  :white_check_mark:  |  :white_check_mark:  | Retrieves the value of the descriptor.  |
-| write                       |  :white_check_mark:  |  :white_check_mark:  | Writes the value of the descriptor. |
+|                             |       Android        |         iOS          |         Tizen        |             Description            |
+| :-------------------------- | :------------------: | :------------------: | :------------------: |  :-------------------------------- |
+| read                        |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Retrieves the value of the descriptor.  |
+| write                       |  :white_check_mark:  |  :white_check_mark:  |  :white_check_mark:  | Writes the value of the descriptor. |
 
 ## Troubleshooting
 ### When I scan using a service UUID filter, it doesn't find any devices.
